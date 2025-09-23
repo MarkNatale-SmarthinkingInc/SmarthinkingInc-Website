@@ -1,0 +1,261 @@
+---
+description: SmartThinking Migration Goal - HTML to Next.js 15 + Prismic CMS
+globs: **/*
+alwaysApply: true
+---
+
+# SmartThinking Migration Project Goal
+
+## Primary Objective
+
+Modernize the SmartThinking website by migrating from the existing HTML version (located in `html-version/`) to a modern Next.js 15 application with Prismic CMS integration, while preserving the luxury aesthetic and smooth animations.
+
+## Migration Strategy
+
+### Phase 1: HTML Structure Extraction
+
+- **Copy raw HTML** directly from `html-version/index.html` into React components
+- **No modifications** to the original HTML structure during initial extraction
+- **Preserve all** existing CSS classes, IDs, and HTML attributes
+- **Convert only** HTML syntax to JSX (self-closing tags, className, etc.)
+- **Create static components** first with placeholder content for development
+
+### Phase 2: Prismic Integration (Document-Based, No Slices)
+
+- **Homepage Document Type**: All content in single document type
+- **Field-by-Field Mapping**: Map each content piece to specific Prismic fields
+- **Dual Component Strategy**: Create both static and Prismic versions
+- **TypeScript Integration**: Use `Content.HomepageDocumentData` types
+- **Content Model Design**: Text, Image, StructuredText, and Group fields
+
+### Phase 3: Modern Tech Stack Integration
+
+- **Next.js 15** with App Router architecture
+- **React 19** with Server Components as default
+- **Prismic CMS** for content management with document-based architecture
+- **GSAP Professional** for animations via Script components in layout
+- **Zustand** for state management
+- **TypeScript** for type safety
+- **SCSS/Sass** for styling
+
+## Key Principles & Patterns
+
+### 1. Unified Prismic Component Architecture
+
+- **Primary Component**: `section-name.tsx` with Prismic integration as default
+- **TypeScript Integration**: Interface with `Content.HomepageDocumentData`
+- **Conditional Rendering**: Graceful fallbacks when fields are empty
+- **Export Pattern**: Export components from `index.ts` for clean imports
+
+### 2. File Naming Conventions
+
+- **Component Files**: kebab-case (`hero-section.tsx`, `work-section.tsx`)
+- **Component Exports**: PascalCase (`export default HeroSection`)
+- **Assets**: kebab-case with proper extensions
+
+### 3. Content Strategy
+
+- **Placeholder First**: Use placeholder images during development
+- **Content Mapping**: Map every text/image to specific Prismic field
+- **Document-Based**: No slices - everything in main homepage document
+- **Field Types**: Text, StructuredText, Image, Group (repeatable)
+
+### 4. Image Path Standards
+
+- **Development**: Placeholder URLs (`https://placehold.co/1920x1080/333/fff`)
+- **Production**: `/img/...` format in public directory
+- **Prismic**: Use `PrismicNextImage` with field mapping
+
+### 5. HTML-First Approach
+
+- **Extract HTML structure** before adding React functionality
+- **No premature optimization** with React features
+- **Preserve original behavior** until explicitly modified
+- **Test static version** before building Prismic version
+
+### 6. Script Integration Pattern
+
+- **Layout-Based**: Add all JavaScript via Next.js Script components
+- **Loading Strategy**: `beforeInteractive` for critical, `afterInteractive` for others
+- **File Location**: Copy all JS files to `public/js/` directory
+
+### 7. TypeScript Integration
+
+- **Prismic Types**: Use `Content.HomepageDocumentData` for type safety
+- **Field Validation**: Use `isFilled` helpers from `@prismicio/client`
+- **Component Props**: Proper interface definitions for all props
+
+### 8. Prismic Component Patterns
+
+- **Conditional Rendering**: Always check field existence with `data.field_name && (...)`
+- **Image Components**: `PrismicNextImage` requires NO alt attribute (handled automatically)
+- **Link Components**: Use `PrismicNextLink` with `field` prop for proper routing
+- **Rich Text**: Use `PrismicRichText` with custom `components` for formatting control
+- **Rich Text for Titles**: When using rich text for headings/titles, wrap in main component and use paragraph/strong/italic as child spans
+- **Content Relationships**: Access nested data via `workItem.data.field_name`
+- **Validation**: Use `isFilled.contentRelationship()` for content relationship validation
+- **Key Generation**: Use meaningful keys combining index and field data
+- **Dynamic Content**: Handle dynamic values like current year in component logic
+
+### 9. Data Fetching & Performance
+
+- **FetchLinks**: Use `fetchLinks` to include related document fields in queries
+- **Field Selection**: Specify exact fields needed: `["work.title", "work.featured_image"]`
+- **Content Relationships**: Configure with specific field requirements in content model
+- **Query Optimization**: Apply fetchLinks to both `generateMetadata` and page functions
+
+### 10. Animation Preservation
+
+- **Maintain all** existing GSAP animations and effects
+- **Preserve timing** and easing from original implementation
+- **Keep canvas animations** (equalizer, strings, etc.)
+- **Script-based loading** until NPM migration
+
+## Success Criteria
+
+1. ✅ **Visual Fidelity**: New site matches original design 100%
+2. ✅ **Animation Quality**: All GSAP effects work smoothly
+3. ✅ **Performance**: Lighthouse scores > 90 across all metrics
+4. ✅ **Content Management**: Easy editing through Prismic CMS
+5. ✅ **Code Quality**: Clean, maintainable, well-documented code
+6. ✅ **Responsive Design**: Perfect experience across all devices
+
+## Established Workflow Pattern
+
+### 1. Section Analysis
+
+- Identify HTML boundaries in `html-version/index.html`
+- Note any special animations or canvas elements
+- Map content that should be dynamic vs. static
+
+### 2. Static Component Creation
+
+```tsx
+// section-name.tsx
+export default function SectionName() {
+  return (
+    // Raw HTML converted to JSX with placeholders
+  );
+}
+```
+
+### 3. Prismic Content Model
+
+```json
+// Add fields to customtypes/homepage/index.json
+"section_field": {
+  "type": "Text|Image|StructuredText|Group",
+  "config": { ... }
+},
+// Rich text for titles with inline formatting
+"section_title": {
+  "type": "StructuredText",
+  "config": {
+    "label": "Section Title",
+    "placeholder": "Think **Beyond** The Brief",
+    "allowTargetBlank": false,
+    "single": "strong,paragraph,em"
+  }
+},
+// Content relationships with specific field fetching
+"related_items": {
+  "type": "Group",
+  "config": {
+    "label": "Related Items",
+    "repeat": true,
+    "fields": {
+      "work_item": {
+        "type": "Link",
+        "config": {
+          "label": "Work Item",
+          "select": "document",
+          "customtypes": [
+            {
+              "id": "work",
+              "fields": ["title", "featured_image"]
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+```
+
+### 4. Prismic Component Creation
+
+```tsx
+// section-name.tsx
+import { type Content, isFilled } from "@prismicio/client";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { PrismicRichText } from "@prismicio/react";
+
+interface SectionProps {
+  data: Content.HomepageDocumentData;
+}
+
+export default function SectionName({ data }: SectionProps) {
+  return (
+    <section>
+      {/* Conditional rendering with field validation */}
+      {data.section_title && <h2>{data.section_title}</h2>}
+
+      {/* Images (no alt attribute needed) */}
+      <PrismicNextImage field={data.section_image} />
+
+      {/* Rich text with custom components */}
+      <PrismicRichText
+        field={data.section_content}
+        components={{
+          paragraph: ({ children }) => (
+            <p className="custom-style">{children}</p>
+          ),
+        }}
+      />
+
+      {/* Rich text for titles - wrap in main component */}
+      <h2 className="f-60">
+        <PrismicRichText
+          field={data.section_title}
+          components={{
+            paragraph: ({ children }) => <span>{children}</span>,
+            strong: ({ children }) => <span className="Brown">{children}</span>,
+            em: ({ children }) => <span className="italic">{children}</span>,
+          }}
+        />
+      </h2>
+
+      {/* Content relationships with validation */}
+      {data.related_items?.map((item, index) => {
+        const relatedItem = item.work_item;
+
+        if (!isFilled.contentRelationship(relatedItem) || !relatedItem.data) {
+          return null;
+        }
+
+        return (
+          <article key={`item-${index}-${relatedItem.data.title}`}>
+            <PrismicNextLink field={relatedItem}>
+              <PrismicNextImage field={relatedItem.data.featured_image} />
+              <h3>{relatedItem.data.title}</h3>
+            </PrismicNextLink>
+          </article>
+        );
+      })}
+    </section>
+  );
+}
+```
+
+### 5. Testing & Integration
+
+- Test static component first
+- Test Prismic component with CMS data
+- Verify animations work with JavaScript files
+- Add to homepage assembly
+
+Follow the established patterns in @general.mdc for all development work.
+
+### Warning: Linting errors for Prismic.
+
+- When you encounter linting errors for Prismic, just ask the user to reload the schema for you. Do not fix the linting errors yourself.

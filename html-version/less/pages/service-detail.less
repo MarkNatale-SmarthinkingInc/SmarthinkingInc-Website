@@ -1,0 +1,190 @@
+
+// SERVICES PAGE /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.service-detail {
+     #hero {
+          position: relative;
+          overflow: hidden;
+          h1 {
+               display: inline-block;
+          }
+          h2 {
+               margin: .4em 0;
+               width: 100%;
+          }
+          .hero-title {
+               min-height: calc(30vh - @gap40 * 3);
+               height: auto;
+               padding-top: @gap40 * 3;
+          }
+          .string-canvas {
+               position: relative;
+          }
+          .string-lines {
+               position: absolute;
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100vh;
+               
+          }
+          .hero-images {
+               position: relative;
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100%;
+               padding: @gap20 0;
+               & > figure:first-of-type {
+                    margin-right: @gap40;
+               }
+               & > figure:last-of-type {
+                    margin-left: @gap20;
+               }
+          }
+          @media only screen and (max-width: 1024px) {
+               .hero-title {
+                    min-height: auto;
+                    height: auto;
+                    padding-top: @gap40 * 6;
+               }
+          }
+          @media only screen and (max-width: 768px) {
+               .hero-title {
+                    padding-top: @gap40 * 10;
+               }
+               .hero-images {
+                    & > figure:first-of-type {
+                         margin-right: @colGap;
+                         margin-left: 0;
+                    }
+                    & > figure:last-of-type {
+                         margin-left: 0;
+                         margin-top: @colGap;
+                    }
+                    
+               }
+          }
+     }
+
+     /// HERO /////////////////////////////////////////////////////////////////
+     #service-content {
+          .service-list {
+               margin-top: @gap40 * 3;
+               article .outline {
+                    margin-top: @gap20;
+               }
+               article:first-of-type {
+                    border-top: @borderLine;
+               }
+               article > div:nth-of-type(2) h3 {
+                    margin: @gap20 * 3 0 ;
+               }
+               article {
+                    border-bottom: @borderLine;
+                    padding-bottom: @gap20 * 3;
+               }
+               @media only screen and (max-width: 768px) {
+                    article {
+                         padding-bottom: @gap20 * 4;
+                         padding-top: @gap40;
+                    }
+               }
+          }
+          .service-contact {
+               .button-wrap {
+                    margin-top: @gap20 * 3;
+               }
+          }
+
+     }
+
+          /////////////////////////////////////////////////////////////////////////////////////////////////
+     //MANIFESTO SECTION
+     ///////////////////////////////////////////////////////////////////////////////////////////////
+     #other-services {
+          position: relative;
+          & > .grid-margin {
+               position: absolute;
+               top: @gap20;
+               left: 0;
+          }
+          a {
+               position: relative;
+               .White;
+          }
+          .s-list-item {
+               border-bottom: @borderLine;
+               border-color: fade(@white, 15%);
+               padding: @gap20 2.08333vw;
+ 
+          }
+          @media only screen and (max-width: 768px) {
+               & > .grid-margin {
+                    position: relative;
+                    top: auto;
+                    padding: @gap40 * 2 0 @gap40 * 6;
+                    left: auto;
+                    border-bottom: @borderLine;
+                    border-color: fade(@white, 15%);
+               }
+                .s-list-item {
+                    padding: @gap40 * 1.5 2.08333vw;
+     
+               }
+          }
+     }
+
+     // WORK SECTOIN /////////////////////////////////////////////////////////////////
+     #work {
+          padding-top: @gap40;
+          .work-title {
+               font-size:34.027vw;
+               line-height: .8;
+          }
+     }
+     .work-listing {
+          article {
+               position: relative;
+               canvas.equalizer-canvas {
+                    position: absolute;
+                    z-index: 1;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    pointer-events: none;
+               }
+               a {
+                    margin-top: @gap20;
+                    padding-bottom: @gap20;
+                    border-bottom: @borderLine;
+                    position: relative;
+                    z-index: 2;
+               }
+               i {
+                    display: inline-block;
+                    margin-top: 1em;
+               }
+               &:first-of-type a {
+                    margin-top: 0;
+                    padding-top: @gap20;
+                    border-top: @borderLine;
+               }
+               &:last-of-type a {
+                    border-bottom: none;
+               }
+               @media only screen and (max-width: 768px) {
+                    margin-top: @gap40;
+                    padding-bottom: @gap40;
+                    &:first-of-type {
+                         padding-top: @gap40;
+                    }
+               }
+          }
+          .arrow-link {
+               margin-top: @gap20 *3;
+          }
+     }
+
+
+}

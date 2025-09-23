@@ -1,0 +1,85 @@
+.Title {
+  font-family: 'Epica Pro';
+  font-weight: 300;
+  font-style: normal;
+}
+.CopyLight {
+  font-family: 'Epica Sans Pro';
+  font-weight: 200;
+  font-style: normal;
+}
+.Copy {
+  font-family: 'Epica Sans Pro';
+  font-weight: 300;
+  font-style: normal;
+}
+.CopyBold {
+  font-family: 'Epica Sans Pro';
+  font-weight: 600;
+  font-style: normal;
+}
+.Top40 {
+  margin-top: 2.77776vw;
+}
+.Top20 {
+  margin-top: 1.38888vw;
+}
+.Dark {
+  color: #1A1417;
+}
+.BgDark {
+  background-color: #1A1417;
+}
+.Brown {
+  color: #99947E;
+}
+.BgBrown {
+  background-color: #99947E;
+}
+.Fade {
+  color: #F2F2F3;
+}
+.BgFade {
+  background-color: #F2F2F3;
+}
+.BorderColor {
+  border: 1px solid #D7D9DA;
+}
+.Red {
+  color: #721444;
+}
+.BgRed {
+  background-color: #721444;
+}
+.White {
+  color: #fff;
+}
+.BgWhite {
+  background-color: #fff;
+}
+.BorderRadius {
+  border-radius: 5px;
+}
+.PixelFix {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+.XY {
+  transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+.X {
+  transform: translate(-50%, 0%);
+  -moz-transform: translate(-50%, 0%);
+  -webkit-transform: translate(-50%, 0%);
+  -o-transform: translate(-50%, 0%);
+  -ms-transform: translate(-50%, 0%);
+}
+.BoxSizing {
+  box-sizing: border-box;
+}

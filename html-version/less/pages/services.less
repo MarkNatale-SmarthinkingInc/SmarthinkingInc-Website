@@ -1,0 +1,339 @@
+
+// SERVICES PAGE /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.services {
+     #hero {
+          position: relative;
+          overflow: hidden;
+          color: @white;
+          figure {
+               z-index: -1;
+               width: 100%;
+               height: 100%;
+               position: absolute;
+               top: 0;
+               left: 0;
+
+          }
+          .parallax {
+               background-color: @dark;
+               img {
+                    opacity: .65;
+               }
+          }
+          .hero-captions {
+               height: 100%;
+               padding-top: @gap40 * 3;
+               height: auto;
+               padding-bottom: @gap20 * 3;
+          }
+          .hero-img-title {
+               margin-top: @gap40 * 7;
+               padding-top: @gap20;
+               border-top: @borderLine;
+               border-color: @white;
+               position: relative;
+               .v-line {
+                    position: absolute;
+                    top: -@gap40 * 7;
+                    left: 50%;
+                    width: 1px;
+                    height: @gap40 * 7;
+                    .BgWhite;
+               }
+          }
+          .hero-bottom {
+               padding-top: @gap40 * 2;
+               padding-bottom: @gap40 * 3;
+          }
+          a {
+               color: @white;
+          }
+          @media only screen and (max-width: 1024px) {
+              .hero-captions {
+                    padding-top: @gap40 * 4;
+               }
+          }
+           @media only screen and (max-width: 768px) {
+               min-height: 100vh;
+              .hero-captions {
+                    padding-top: @gap40 * 8;
+               }
+               .hero-img-title {
+                    padding-top: @gap40 * 2;
+                    margin-top: 40vh;
+                    .v-line {
+                         top: -40vh;
+                         height: 40vh;
+                    }
+               }
+               .hero-bottom {
+                    padding-top: @gap40 * 4;
+                    padding-bottom: @gap40 * 8;
+                    .f-28 {
+                         font-size: 18px;
+                    }
+               }
+          }
+     }
+
+     /////////////////////////////////////////////////////////////////////////////////////////////////
+     //SERVICES  SECTION
+     ///////////////////////////////////////////////////////////////////////////////////////////////
+     
+     #services {
+          overflow:hidden;
+          border-bottom: @borderLine;
+          border-color: @dark;
+          padding-bottom: @gap40 * 4;
+
+     }
+     #circle-stage {
+          z-index: 2;
+          line-height: 0;
+          width: 100%;
+          height: 50vw;
+          .stage-inner {
+               position: relative;
+               width: 100%;
+               height: 100%;
+          }
+          .circle-wrap {
+               position: relative;
+               height: 100%;
+               overflow: hidden;
+          }
+          .circle-wrap img {
+               position: absolute;
+               top: 0;
+               left: 0;
+               z-index: 1;
+          }
+          .circle-shape {
+               width: 100%;
+               height: auto;
+          }
+          .circle-target  {
+               z-index: 5;
+               position: absolute;
+               width: 33.333vw;
+               bottom: 0;
+               left: 50%;
+               .Transform(translate(-50%, 50%));
+               img {
+                    position: relative;
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                    z-index: 1;
+                    
+               }
+               .circle-rotate {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 90%;
+                    z-index: 2;
+                    .XY;
+               }
+          }
+     }
+     .service-listing {
+          @colSize: calc((100vw - 4px) / 18);
+          position: relative;
+          padding-top: @gap40 * 4;
+          border-top: @borderLine;
+          border-color: @dark;
+          background-color: @white;
+          .canvas-wrap {
+               position: absolute;
+               top: 0;
+               left: 0;
+               width: 100%;
+               will-change: transform;
+               height: 100%;
+               .string-lines {
+                    position: relative;
+               }
+          }
+          .service-col {
+               flex-wrap: wrap;
+               flex: 0 0 calc(@colSize * 4);
+               @media only screen and (max-width: 768px) {
+                     display: block;
+                     padding: 0 @margin;
+                     width: 100%;
+               }
+          }
+          .service-grid {
+               margin: 0 @colSize;
+               display: flex;
+               justify-content: space-between;
+               @media only screen and (max-width: 768px) {
+                    display: block;
+                     width: 100%;
+                     margin: 0;
+                     padding: @gap40 * 3 0;
+               }
+          }
+          canvas {
+               position: absolute;
+               top: 0;
+               left: 0;
+               width: 100vw;
+               height: 100vh;
+          }
+          article {
+               width: 100%;
+                margin-top: @gap40 * 4;
+               a {
+                    position: relative;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    @media only screen and (min-width: 768px) {
+                         h3, h3 img {
+                              .Transition(all 600ms cubic-bezier(0.190, 1.000, 0.220, 1.000));
+                         }
+                         figure img {
+                              will-change: transform;
+                              .Transition(transform 600ms cubic-bezier(0.190, 1.000, 0.220, 1.000));
+                         }
+                         &:hover {
+                              h3 {
+                                   .BgBrown;    
+                              }
+                              h3 img {
+                                   .Transform(translate(0%, -50%));
+                                   opacity: 1;  
+                              }
+                              figure img {
+                                   .Transform(scale(1.025));
+                              }
+                         }
+                    }
+               }
+               h3 {
+                    position: relative;
+                    margin-top: @gap20 / 2;
+                    padding: 5px 10px 5px 10px;
+                    .BgDark;
+                    .White;
+                    .BorderRadius;
+                    img {
+                         position: absolute;
+                         top: 50%;
+                         right: @gap20 / 2;
+                         width: .9em;
+                         height: auto;
+                         .Transform(translate(-50%, -50%));
+                         opacity: 0;
+                    }
+                    @media only screen and (max-width: 768px) {
+                         position: absolute;
+                         bottom: @gap40;
+                         left: @gap40;
+                         right: @gap40;
+                         width: calc(100% - @gap40 * 2);
+                         img {
+                               right: @gap40;
+                               .Transform(translate(0, -50%));
+                               opacity: 1;
+                         }
+                    }
+               }
+               @media only screen and (max-width: 768px) {
+                    flex: 0 0 auto;
+                    margin-top: @gap20;
+                    margin-right: @colGap;
+                    h3 {
+                         opacity: 1;
+                         .Transform(scale(1));
+                    }
+               }
+          }
+     }
+
+     /////////////////////////////////////////////////////////////////////////////////////////////////
+     //BELIEF SECTION
+     ///////////////////////////////////////////////////////////////////////////////////////////////
+     #belief {
+          overflow: hidden;
+          .outline {
+               font-size:30.027vw;
+               line-height: .8;
+          }
+     }
+     .circle-slider {
+          position: relative;
+          padding-top: 40vh;
+          .arc-path {
+               position: absolute;
+               top: 0;
+               left: 0;
+               width: 140vw;
+               .Transform(translateX(-20vw));
+               text {
+                    .Title;
+                    font-size: clamp(66px, 9.1112vw, 240px);
+                    fill:@dark;
+               }
+          }
+          .labels {
+               width: 100vw;
+
+          }
+     }
+     .slider-img {
+          position: relative;
+          figure {
+               clip-path: inset(0% round 10px);
+               position: relative;
+               &:not(:first-of-type) {
+                    position: absolute;
+                    width: 100%;
+                    height: auto;
+                    top: 0;
+                    left: 0;
+               }
+          }
+     }
+     .circle-copy {
+          margin-top: @gap20 * 3;
+     }
+
+
+     #service-intro {
+          @media only screen and (max-width: 768px) {
+               figure {
+                    margin-bottom: @gap40;
+               }
+          }
+     }
+
+     // WORK LINK SECTION /////////////////
+     #work-link {
+          padding-top: @gap40;
+          color:@white;
+          .outline {
+               font-size:34.027vw;
+               line-height: .8;
+          }
+          p {
+               margin-top: -1em;
+          }
+          figure {
+               border-bottom-left-radius: 0px;
+               border-bottom-right-radius: 0px;
+          }
+          @media only screen and (max-width: 768px) {
+               padding-top: @gap40 * 2;
+               p {
+                    margin: 1em 0;
+               }
+          }
+     }
+
+
+
+
+}

@@ -1,0 +1,153 @@
+
+//FONTS //////////////////////////////
+.Title {
+    font-family: 'Epica Pro';
+    font-weight: 300;
+    font-style: normal;
+}
+
+.CopyLight {
+    font-family: 'Epica Sans Pro';
+    font-weight: 200;
+    font-style: normal;
+}
+.Copy {
+    font-family: 'Epica Sans Pro';
+    font-weight: 300;
+    font-style: normal;
+}
+.CopyBold {
+    font-family: 'Epica Sans Pro';
+    font-weight: 600;
+    font-style: normal;
+}
+
+//Variables ///////////////////////////////////////////////////////////////
+
+@transitionValue: all 400ms cubic-bezier(0.860, 0.000, 0.070, 1.000); 
+@transitionDelayValue: 0.15s;
+
+@dark: #1A1417 ;
+@brown: #99947E;
+@border: #D7D9DA;
+@fade: #F2F2F3;
+@white: #fff;
+@accent: #721444;
+@gap20: 1.38888vw;
+@gap40: @gap20 * 2;
+@radius: 5px;
+@borderLine: 1px solid @dark;
+@ease:cubic-bezier(0.860, 0.000, 0.070, 1.000);
+
+.Top40 {
+     margin-top: @gap40;
+}
+.Top20 {
+     margin-top: @gap20;
+}
+.Dark {
+     color: @dark;
+}
+.BgDark {
+     background-color: @dark;
+}
+.Brown {
+     color: @brown;
+}
+.BgBrown {
+     background-color: @brown;
+}
+.Fade {
+     color: @fade;
+}
+.BgFade {
+     background-color: @fade;
+}
+.BorderColor {
+     border: 1px solid @border;
+}
+.Red {
+     color: @accent;
+}
+.BgRed {
+     background-color: @accent;
+}
+.White {
+     color: @white;
+}
+.BgWhite {
+     background-color: @white;
+}
+.BorderRadius {
+     border-radius: @radius;
+}
+
+
+// MIXINS ////////////////////////////////////////////////////////////////
+.PixelFix {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.XY {
+  .Transform(translate(-50%, -50%));
+}
+.X {
+  .Transform(translate(-50%, 0%));
+}
+.TransitionMixin(@transition: @transitionValue){
+  transition: @transition;
+    -webkit-transition: @transition;
+      -moz-transition: @transition;
+        -o-transition: @transition;
+}
+.Transition(@transition: @transitionValue){
+  .TransitionMixin(@transition);
+}
+.TransitionDelayMixin(@delay: @transitionDelayValue){
+  -webkit-transition-delay: @delay;
+    -moz-transition-delay: @delay;
+      -o-transition-delay: @delay;
+        -ms-transition-delay: @delay;
+          transition-delay: @delay;
+}
+.TransitionDelay(@delay: @transitionDelayValue){
+  .TransitionDelayMixin(@delay);
+}
+.Transform(@transform: @transform){
+  transform: @transform;
+    -moz-transform: @transform;
+      -webkit-transform: @transform;
+        -o-transform: @transform;
+            -ms-transform: @transform;
+}
+.TransformOrigin(@origin: @origin) {
+    transform-origin: @origin;
+      -webkit-transform-origin: @origin;
+        -o-transform-origin: @origin;
+            -ms-transform-origin: @origin;
+}
+.Animation(@animation: @animation){
+  animation: @animation;
+    -moz-animation: @animation;
+      -webkit-animation: @animation;
+        -o-animation: @animation;
+}
+.AnimationDelayMixin(@delay: @animationDelayValue){
+  -webkit-animation-delay: @delay;
+    -moz-animation-delay: @delay;
+      -o-animation-delay: @delay;
+        -ms-animation-delay: @delay;
+          animation-delay: @delay;
+}
+.AnimationDelay(@delay: @AnimationDelayValue){
+  .AnimationDelayMixin(@delay);
+}
+.BoxSizing {
+   -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+      box-sizing: border-box; 
+}

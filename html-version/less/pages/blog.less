@@ -1,0 +1,203 @@
+
+// HOME PAGE /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.blog {
+     #hero {
+          position: relative;
+          overflow: hidden;
+          color: @white;
+          display: flex;
+          align-items: center;
+          figure {
+               z-index: -1;
+               width: 100%;
+               height: 100%;
+               position: absolute;
+               top: 0;
+               left: 0;
+
+          }
+          .hero-img-title {
+               margin-top: @gap40 * 7;
+               padding-top: @gap20;
+               position: relative;
+
+          }
+          @media only screen and (max-width: 768px) {
+               min-height: 50vh;
+               .hero-img-title {
+                    margin-top: 0;
+                    padding-top: @gap40 * 3;  
+               }
+          }
+     }
+     .piano-wrap {
+          position: relative;
+     }
+     
+
+     /////////////////////////////////////////////////////////////////////////////////////////////////
+     // POFCAST SECTION
+     ///////////////////////////////////////////////////////////////////////////////////////////////
+     #podcast {
+          position: relative;
+          overflow: hidden;
+          #piano {
+               position: absolute;
+               z-index: -1;
+               width: 100%;
+               height: 100%;
+               top: 0;
+               left: 0;
+          }
+          &::before {
+               content: "";
+               display: block;
+               position: absolute;
+               top: 0;
+               right: 0;
+               width: 50%;
+               height: 100%;
+               .BgWhite;
+               @media only screen and (max-width: 1024px) {
+                   width: 66%; 
+               }
+          }
+          & > .st-grid {
+               position: relative;
+               padding: @gap20 0;
+               z-index: 2;
+          }
+          .podcast-list {
+               article {
+                    .st-xl-6 {
+                         position: relative;
+                    }
+                    .Brown {
+                         position: absolute;
+                         bottom: 0;
+                         left: 0;
+                    }
+               }
+               article:not(:last-of-type) {
+                    border-bottom: @borderLine;
+                    padding-bottom: @gap20;
+                    margin-bottom: @gap20;
+               }
+          }
+          .p-details {
+               margin-bottom: @gap20;
+               span:not(:first-of-type) {
+                    padding-left: 2em;
+                    background: url("../img/svg/icon-diamond-red.svg");
+                    background-repeat: no-repeat;
+                    background-size: .6em .6em;
+                    background-position: .7em center;
+               }
+          }
+          @media only screen and (max-width: 1024px) {
+               .f-16, .Brown {
+                    font-size: 14px;
+               }
+               .f-32 {
+                    font-size: 24px;
+               }
+          }
+          @media only screen and (max-width: 768px) {
+               .f-32 {
+                    font-size: 20px;
+               }
+               .podcast-list {
+                    article {
+                         .Brown {
+                              position: relative;
+                              margin-top: @gap40;
+                         }
+                         figure {
+                              margin-right: @gap40;
+                         }
+                    }
+                    article:not(:last-of-type) {
+                         padding-bottom: @gap40;
+                         margin-bottom: @gap40;
+               }
+               }
+          }
+     }
+
+     #blog {
+          border-top: @borderLine;
+          padding-top: @gap20;
+          .blog-featured {
+               article {
+                    figure a {
+                         width: 100%;
+                         height: auto;
+                         display: block;
+                    }
+                    padding-bottom: @gap40 * 2;
+                    text-align: center;
+                    h3 {
+                         margin: 0 @gap20;
+                    }
+                    border-bottom: @borderLine;
+               }
+               .tags {
+                    margin: -@gap20 / 2 0 @gap20;
+               }
+                @media only screen and (max-width: 768px) {
+                    .tags {
+                         margin-top: -@gap40;
+                    }
+                    article h3 {
+                         margin: @gap40 @gap20 @gap40 * 2;
+                    }
+                    article:not(:first-of-type) {
+                         padding-top: @gap40;
+                    }
+               }
+               
+          }
+          .blog-wrap {
+               margin-top: @gap20;
+          }
+          .blog-listing {
+               article {
+                    figure a {
+                         width: 100%;
+                         height: auto;
+                         display: block;
+                    }
+                    padding-bottom: @gap20;
+                    margin-bottom: @gap20;
+                    border-bottom: @borderLine;
+                    .tags {
+                         margin-bottom: @gap20;
+                    }
+                    .tags .tag:first-of-type {
+                         margin-left: 0;
+                    }
+                    @media only screen and (max-width: 768px) {
+                         padding-bottom: @gap40;
+                         margin-bottom: @gap40;
+                         .tags, h2 {
+                              padding-left: @gap20;
+                         } 
+                         h2 {
+                              margin: @gap40 0 @gap40 * 2;
+                         }
+                    }
+               }
+          }
+          .newsletter-box {
+               background-color: @fade;
+               .BorderRadius;
+               align-self: flex-start;
+               padding: @gap20 * 1.5;
+               h2 {
+                    margin: @gap20 0 @gap40;
+               }
+          }
+     }
+
+
+}

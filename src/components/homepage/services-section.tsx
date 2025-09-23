@@ -1,0 +1,80 @@
+import { type Content, isFilled } from "@prismicio/client";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+
+interface ServicesSectionProps {
+  data: Content.HomepageDocumentData;
+}
+
+export default function ServicesSection({ data }: ServicesSectionProps) {
+  return (
+    <section id="services" className="grid-margin xl-top-5 xs-top-10">
+      {data.services_section_title && (
+        <h2 className="sup-title">{data.services_section_title}</h2>
+      )}
+
+      {data.services_intro_text && (
+        <p className="f-60 CopyLight st-sm-15 st-xs-18">
+          {data.services_intro_text}
+        </p>
+      )}
+
+      <div className="st-grid">
+        <div className="st-xl-9 st-xs-8 st-grid img-combo xs-wrap xs-self-start">
+          {isFilled.image(data.services_image_small) && (
+            <figure className="st-xl-3 st-xs-8 xl-self-start">
+              <PrismicNextImage
+                field={data.services_image_small}
+                className="lazy"
+              />
+            </figure>
+          )}
+          {isFilled.image(data.services_image_large) && (
+            <figure className="st-xl-6 st-xs-8 xs-self-start">
+              <PrismicNextImage
+                field={data.services_image_large}
+                className="lazy"
+              />
+            </figure>
+          )}
+        </div>
+        <div className="st-xl-9 st-xs-10 st-grid grid-row grid-between">
+          {data.services_outro_text && (
+            <p className="f-60 CopyLight">{data.services_outro_text}</p>
+          )}
+          <div className="st-xl-os-3 st-sm-os-0 sm-top-2">
+            {data.featured_services && data.featured_services.length > 0 && (
+              <ul className="f-20">
+                {data.featured_services.map((serviceItem, index) => {
+                  const service = serviceItem.service;
+
+                  if (!isFilled.contentRelationship(service) || !service.data) {
+                    return null;
+                  }
+
+                  const serviceTitle = service.data.title;
+
+                  return (
+                    <li key={`service-${index}-${serviceTitle}`}>
+                      <PrismicNextLink field={service}>
+                        {serviceTitle}
+                      </PrismicNextLink>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+            <div className="arrow-link">
+              <a href="/services" className="st-grid">
+                <img
+                  src="/img/svg/icon-semi-arrow-red.svg"
+                  alt="Red arrow pointing to right"
+                />
+                <span>View All Services</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

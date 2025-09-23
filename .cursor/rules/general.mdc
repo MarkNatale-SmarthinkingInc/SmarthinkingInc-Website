@@ -1,0 +1,238 @@
+---
+description: Comprehensive rules for the SmartThinking Next.js 15 project using React 19, Prismic CMS, GSAP animations, Zustand state management, SCSS styling, and TypeScript. This rule should be applied for all development tasks including content slices, animations, state management, styling, and component development.
+globs: **/*.{ts,tsx,js,jsx,json,scss,css}
+alwaysApply: true
+---
+
+# SmartThinking Next.js 15 Project Rules
+
+## Project Overview
+
+SmartThinking is a modern, animation-heavy website built with Next.js 15, featuring:
+
+- **Content Management**: Prismic CMS with slice-based architecture
+- **Animations**: GSAP with professional plugins for smooth interactions
+- **State Management**: Zustand for client-side state
+- **Styling**: SCSS/Sass with utility mixins
+- **Email**: Dual email service setup (Mailjet & Resend)
+- **Performance**: Lenis smooth scrolling and optimized animations
+
+## Framework & Architecture
+
+- **Next.js 15 App Router**: Use the App Router structure with `page.tsx`, `layout.tsx`, `loading.tsx`, and `error.tsx` files
+- **React 19**: Leverage React Server Components (RSC) by default, only use `'use client'` when necessary for interactivity, animations, or state management
+- **TypeScript**: Use strict TypeScript with proper type definitions for all functions, components, and data structures
+- **File Structure**: Follow Next.js 15 conventions with `app/` directory for routes and `src/` for source code
+
+### Project Structure Patterns
+
+```
+src/
+├── app/                    # Next.js App Router
+├── components/             # Reusable UI components
+├── slices/                 # Prismic slice components
+├── stores/                 # Zustand state stores
+├── lib/                    # Third-party library configurations
+├── utils/                  # Utility functions and constants
+├── hooks/                  # Custom React hooks
+├── styles/                 # SCSS files and mixins
+└── assets/                 # Static assets (fonts, images)
+```
+
+## Content Management System (Prismic)
+
+- **Prismic CMS**: All content is managed through Prismic with a slice-based architecture
+- **Slice Machine**: Use Slice Machine for developing and managing content slices
+- **Type Safety**: Leverage auto-generated TypeScript types from `prismicio-types.d.ts`
+- **Route Resolution**: Configure routes in `src/prismicio.ts` for proper URL handling
+
+### Prismic Patterns
+
+```typescript
+// Always import types and client properly
+import { createClient } from '@/prismicio'
+import type { Content } from '@prismicio/client'
+
+// Use proper Prismic client patterns
+const client = createClient()
+const page = await client.getByUID('page_type', uid)
+
+// Leverage slice components
+import { SliceZone } from '@prismicio/react'
+import { components } from '@/slices'
+
+<SliceZone slices={page.data.slices} components={components} />
+```
+
+### Slice Development
+
+- **Component Location**: All slices are in `src/slices/` directory
+- **Slice Simulator**: Use `/slice-simulator` route for development and testing
+- **Type Safety**: Import proper types from `@prismicio/client`
+- **Responsive Design**: Ensure all slices work across all device sizes
+
+## Animation & GSAP
+
+- **GSAP Professional**: Use GSAP with professional plugins (ScrollTrigger, SplitText, Draggable, InertiaPlugin)
+- **useGSAP Hook**: Always use the `@gsap/react` useGSAP hook for React integration
+- **Performance**: Register plugins globally in `src/lib/gsap.ts`
+- **Smooth Scrolling**: Lenis is configured for smooth scrolling experiences
+
+### GSAP Patterns
+
+```typescript
+import { useGSAP } from '@gsap/react'
+import gsap from '@/lib/gsap'
+
+// Proper GSAP usage in components
+const Component = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    // GSAP animations here
+    gsap.fromTo('.element',
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: 1, scrollTrigger: '.element' }
+    )
+  }, { scope: containerRef })
+
+  return <div ref={containerRef}>...</div>
+}
+```
+
+### Animation Best Practices
+
+- **Performance**: Use `will-change` CSS property sparingly and remove after animations
+- **ScrollTrigger**: Configure with `ignoreMobileResize: true` for mobile optimization
+- **Text Animations**: Use SplitText for advanced text animation effects
+- **Page Transitions**: Implement smooth page transitions using the PageToPage component
+
+## State Management (Zustand)
+
+- **Zustand**: Use Zustand for all client-side state management
+- **Store Pattern**: Use `combine` middleware for better TypeScript integration
+- **Store Location**: All stores in `src/stores/` directory with proper typing
+- **Selectors**: Create selectors in separate files for performance optimization
+
+### Zustand Patterns
+
+```typescript
+import { create } from "zustand";
+import { combine } from "zustand/middleware";
+
+// Define types first
+export type StoreValues = {
+  value: string;
+  isOpen: boolean;
+};
+
+export const INITIAL_VALUES: StoreValues = {
+  value: "",
+  isOpen: false,
+};
+
+// Create store with combine middleware
+const useStore = create(
+  combine(INITIAL_VALUES, (set, get) => ({
+    setValue: (value: string) => set({ value }),
+    setIsOpen: (isOpen: boolean) => set({ isOpen }),
+    toggle: () => set({ isOpen: !get().isOpen }),
+  }))
+);
+```
+
+## Code Quality & Formatting
+
+- **Biome**: Use Biome for linting and formatting with tab indentation
+- **Import Organization**: Organize imports: React/Next.js, third-party, internal, relative
+- **Error Handling**: Implement proper error boundaries and error handling patterns
+- **Performance**: Optimize for animations and smooth user experiences
+
+### Code Quality Patterns
+
+```typescript
+// Proper import organization
+import { useRef } from "react";
+import { Metadata } from "next";
+import { redirect } from "next/navigation";
+
+// Third-party
+import { useGSAP } from "@gsap/react";
+import { create } from "zustand";
+
+// Internal
+import { createClient } from "@/prismicio";
+import gsap from "@/lib/gsap";
+
+// Relative
+import "./component.scss";
+```
+
+## Email Services
+
+- **Dual Setup**: Both .... and Resend are configured for email services
+- **API Routes**: Use Next.js API routes for email handling
+- **Type Safety**: Ensure proper typing for email payloads
+- **Error Handling**: Implement robust error handling for email failures
+
+## Performance & Optimization
+
+- **Image Optimization**: Use Next.js Image component with Prismic image optimization
+- **Bundle Size**: Monitor and optimize bundle size, especially with GSAP plugins
+- **Smooth Scrolling**: Lenis is configured for enhanced scroll experiences
+- **Animation Performance**: Use GPU-accelerated properties (transform, opacity)
+- **Code Splitting**: Lazy load heavy components and animations
+
+## Best Practices
+
+### Component Development
+
+- **Server Components**: Default to Server Components for content rendering
+- **Client Components**: Use `'use client'` for animations, interactions, and state
+- **Props Interface**: Always define proper TypeScript interfaces for component props
+- **Ref Forwarding**: Use forwardRef for components that need animation targeting
+
+### Animation Guidelines
+
+- **Accessibility**: Respect `prefers-reduced-motion` for accessibility
+- **Performance**: Use transform and opacity for smooth animations
+- **Cleanup**: Properly cleanup GSAP animations and ScrollTriggers
+- **Responsive**: Ensure animations work well across all device sizes
+
+### Content Management
+
+- **Slice Architecture**: Build reusable, composable content slices
+- **Preview Mode**: Ensure all content works in Prismic preview mode
+- **Image Handling**: Use Prismic's responsive image capabilities
+- **SEO**: Implement proper meta tags and structured data from Prismic content
+
+## Common Patterns to Follow
+
+1. **Content Rendering**: Use Prismic slices for all dynamic content areas
+2. **Animation Flow**: Implement smooth page transitions and micro-interactions
+3. **State Management**: Use Zustand for UI state, modals, and user preferences
+4. **Styling**: SCSS with BEM methodology and utility mixins
+5. **Type Safety**: Leverage Prismic-generated types and strict TypeScript
+6. **Performance**: Optimize for smooth animations and fast loading
+
+## File Naming Conventions
+
+- **Component Files**: kebab-case (`my-component.tsx`, `header-navigation.tsx`)
+- **Component Exports**: PascalCase (export default `MyComponent`)
+- **Stores**: camelCase with suffix (`ui.store.ts`, `ui.selectors.ts`)
+- **Utilities**: camelCase (`math.ts`, `prismic.ts`)
+- **Styles**: kebab-case (`component-name.scss`)
+- **Hooks**: kebab-case with prefix (`use-header-color.hook.ts`)
+- **Pages**: kebab-case (`page.tsx`, `layout.tsx`)
+- **Assets**: kebab-case (`logo-white.svg`, `hero-image.jpg`)
+
+## Development Workflow
+
+1. **Content First**: Start with Prismic slice development using Slice Machine
+2. **Animation Planning**: Plan animations early and implement with GSAP
+3. **State Architecture**: Design Zustand stores for complex UI state
+4. **Style System**: Use SCSS mixins and custom properties consistently
+5. **Performance Testing**: Test animations and transitions across devices
+6. **Email Integration**: Test email flows with both Mailjet and Resend
+
+Follow these patterns consistently to maintain code quality, performance, and the unique animated user experience that defines the SmartThinking project.

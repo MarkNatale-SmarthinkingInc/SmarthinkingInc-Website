@@ -1,0 +1,227 @@
+
+// HOME PAGE /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.blog-detail {
+     #hero {
+          position: relative;
+          overflow: hidden;
+          border-bottom: @borderLine;
+          .hero-title {
+              padding-top: @gap40 * 3;
+              a {
+                    margin: @gap20 0 @gap40 0;
+               }
+               h1 {
+                    margin-bottom: @gap40;
+               }
+               @media only screen and (max-width: 768px) {
+                    padding: @gap40 * 10 0 @gap40 * 4;
+                    a {
+                         margin-bottom: @gap40 * 2;
+                    }
+               }
+          }
+          #piano {
+               position: absolute;
+               z-index: 1;
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100%;
+          }
+          .hero-img {
+               margin-bottom: @gap20;
+          }
+           @media only screen and (max-width: 768px) {
+               .hero-img {
+                    margin-bottom: @gap40;
+               }
+          }
+          .author-box {
+               margin: @gap20 0;
+               figure {
+                    flex: 0 0 40px;
+                    border-radius: 50%;
+               }
+               .caption {
+                    margin-left: 10px;
+               }
+          }
+          .empty-left {
+               border-right: @borderLine;
+
+          }
+          .empty-right {
+               border-left: @borderLine;
+          }
+          .piano-wrap {
+               position: relative;
+               border-top: @borderLine;
+               & > .st-grid {
+                    position: relative;
+                    z-index: 2;
+               }
+               .st-xl-8 {
+                    position: relative;
+                    &::before {
+                         content: "";
+                         background-color: @white;
+                         position: absolute;
+                         top: 0;
+                         left: -@colGap;
+                         width: calc(100% + (@colGap * 2));
+                         height: 100%;
+                         z-index: -1;
+                    }
+               }
+          }
+     }
+     
+
+     /////////////////////////////////////////////////////////////////////////////////////////////////
+     // BLOG CONTENT
+     ///////////////////////////////////////////////////////////////////////////////////////////////
+     .newsletter-box {
+          background-color: @fade;
+          .BorderRadius;
+          align-self: flex-start;
+          padding: @gap20 * 1.5;
+          h2 {
+               margin: @gap20 0 @gap40;
+          }
+     }
+     .newsletter-wrap {
+          padding: @gap20 @gap20 0 0;
+          border-right: @borderLine;
+     }
+     .related-articles {
+          padding: @gap20 0 0 @gap20;
+          border-left: @borderLine;
+          .tag {
+               &:first-of-type {
+                    margin-left: 0;
+               }
+          }
+          article {
+               border-bottom: @borderLine;
+               h3 {
+                    margin-top: @gap20;
+               }
+               .tags {
+                    margin: @gap20 0;
+               }
+          }
+          @media only screen and (max-width: 768px) {
+               padding: 0;
+               border-left: none;
+               border-top: @borderLine;
+               article {
+                    padding: @gap40 0 @gap40 * 2;
+               }
+          }
+     }
+
+     #blog-content {   
+          .quote {
+               padding: @gap40 0;
+               margin: @gap40 0;
+               border-top: @borderLine;
+               border-bottom: @borderLine;
+               background-image: url("../img/svg/blog-quotes.svg");
+               background-repeat: no-repeat;
+               background-size: @gap40;
+               background-position: left @gap40;
+               .caption {
+                    margin-top: @gap40;
+               }
+               .CopyLight;
+               p {
+                    margin-top: 0;
+               }
+          }
+          ol {
+               padding-inline-start: @gap40;
+               margin: @gap40 0;
+               li {
+                    list-style-type: decimal;
+                    padding-left: @gap40;
+               }
+                @media only screen and (max-width: 768px) {
+                    padding-inline-start: @gap40 * 2;
+                    li {
+                         padding-left: @gap40 * 1.5;
+                    }
+               }
+          }
+          p {
+               margin-top: @gap40;
+          }
+          h2, h3,h4,h5,h6, p, figure  {
+               & + p, & + h2, & + h3, & + h4, & + h5, & + h6, & + figure {
+                    margin-top: @gap40;
+               }
+          }
+          @media only screen and (max-width: 768px) {
+               p {
+                    margin-top: @gap40 * 3;
+               }
+               h2, h3,h4,h5,h6, p, figure, .quote  {
+                    & + p, & + h2, & + h3, & + h4, & + h5, & + h6, & + figure, & + .quote, & + ul, & + ol {
+                         margin-top: @gap40 * 3;
+                    }
+               }
+               .quote {
+                    padding: @gap40 * 3 0;
+                    margin: @gap40 * 3 0;
+                    background-position: left @gap40 * 3;
+                    background-size: @gap40 * 3;
+               }
+          }
+          ul {
+               padding-inline-start: @gap20;
+               margin: @gap40 0;
+               li {
+                    list-style-type: disc;
+                    position: relative;
+                    overflow: visible;
+                    padding-left: @gap40 * 1.5;
+                    &::marker {
+                         color: @white;
+                    }
+                    &::before {
+                         content: "";
+                         position: absolute;
+                         width: 1em;
+                         height: 1em;
+                         top: calc(50% - .5em);
+                         left: 0;
+                         background: url("../img/svg/icon-diamond-red.svg");
+                         background-repeat: no-repeat;
+                         background-size: @gap20 / 2;
+                         background-position: 0 4px;
+                    }
+               }
+               @media only screen and (max-width: 768px) {
+                    li::before {
+                         background-size: 50%;
+                    } 
+                    li {
+                         padding-left: @gap40 * 3;
+                    }
+               }
+          }
+     }
+     #contact {
+          padding: @gap40 * 3 0;
+          .BgDark;
+          .White;
+          a:not(.button) {
+               margin: @gap40 0 @gap20;
+               .White;
+          }
+          @media only screen and (max-width: 768px) {
+               padding: @gap40 * 8 0;
+          }
+     }
+     
+
+}
