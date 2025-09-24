@@ -69,12 +69,375 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
+/**
+ * Item in *About → Belief Circle Words*
+ */
+export interface AboutDocumentDataBeliefCircleWordsItem {
+  /**
+   * Word field in *About → Belief Circle Words*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Images
+   * - **API ID Path**: about.belief_circle_words[].word
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  word: prismic.KeyTextField;
+}
+
+/**
+ * Item in *About → Belief Slider Images*
+ */
+export interface AboutDocumentDataBeliefSliderImagesItem {
+  /**
+   * Image field in *About → Belief Slider Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.belief_slider_images[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<"mobile" | "desktop">;
+}
+
+/**
+ * Item in *About → Manifesto Items*
+ */
+export interface AboutDocumentDataManifestoItemsItem {
+  /**
+   * Item Label field in *About → Manifesto Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Everything Communicates. Everything either strengthens or weakens your brand...
+   * - **API ID Path**: about.manifesto_items[].label
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
+ * Item in *About → Testimonials*
+ */
+export interface AboutDocumentDataTestimonialsItem {
+  /**
+   * Testimonial Quote field in *About → Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Their ability to understand complex requirements....
+   * - **API ID Path**: about.testimonials[].quote
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  quote: prismic.KeyTextField;
+
+  /**
+   * Author Name field in *About → Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Damon Salerno
+   * - **API ID Path**: about.testimonials[].author_name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  author_name: prismic.KeyTextField;
+
+  /**
+   * Author Title field in *About → Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Mansion Global
+   * - **API ID Path**: about.testimonials[].author_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  author_title: prismic.KeyTextField;
+
+  /**
+   * Author Company field in *About → Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: The Wall Street Journal
+   * - **API ID Path**: about.testimonials[].author_company
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  author_company: prismic.KeyTextField;
+}
+
+/**
+ * Item in *About → Client Logos*
+ */
+export interface AboutDocumentDataClientLogosItem {
+  /**
+   * Client Logo field in *About → Client Logos*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.client_logos[].client_logo
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  client_logo: prismic.ImageField<"mobile" | "desktop">;
+
+  /**
+   * Client Name field in *About → Client Logos*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Client Name
+   * - **API ID Path**: about.client_logos[].client_name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  client_name: prismic.KeyTextField;
+}
+
 type AboutDocumentDataSlicesSlice = never;
 
 /**
  * Content for About documents
  */
 interface AboutDocumentData {
+  /**
+   * Hero Background Image field in *About*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.hero_background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  hero_background_image: prismic.ImageField<"mobile" | "desktop">;
+
+  /**
+   * Hero Left Caption field in *About*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Think Critically. Act Creatively.®
+   * - **API ID Path**: about.hero_left_caption
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  hero_left_caption: prismic.RichTextField;
+
+  /**
+   * Hero Center Caption field in *About*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: We are an agency of professional storytellers
+   * - **API ID Path**: about.hero_center_caption
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  hero_center_caption: prismic.KeyTextField;
+
+  /**
+   * Hero Main Title field in *About*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Where Strategy, Story, and Space Play in Perfect Harmony
+   * - **API ID Path**: about.hero_main_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  hero_main_title: prismic.KeyTextField;
+
+  /**
+   * Hero Bottom Paragraph field in *About*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Smarthinking Inc. opened in 2006 and was forged...
+   * - **API ID Path**: about.hero_bottom_paragraph
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  hero_bottom_paragraph: prismic.RichTextField;
+
+  /**
+   * About Sup Title field in *About*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: New York Roots
+   * - **API ID Path**: about.about_sup_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  about_sup_title: prismic.KeyTextField;
+
+  /**
+   * About Left Paragraph 1 field in *About*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Experience across Manhattan’s top hotels...
+   * - **API ID Path**: about.about_left_paragraph_1
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  about_left_paragraph_1: prismic.RichTextField;
+
+  /**
+   * About Left Image Small field in *About*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.about_left_image_small
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  about_left_image_small: prismic.ImageField<"mobile" | "desktop">;
+
+  /**
+   * About Left Image Large field in *About*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.about_left_image_large
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  about_left_image_large: prismic.ImageField<"mobile" | "desktop">;
+
+  /**
+   * About Right Heading field in *About*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: results in some of the world’s most competitive markets
+   * - **API ID Path**: about.about_right_heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  about_right_heading: prismic.KeyTextField;
+
+  /**
+   * About Right Paragraph field in *About*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Natale’s early successes in developing and working with luxury brands in NYC...
+   * - **API ID Path**: about.about_right_paragraph
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  about_right_paragraph: prismic.RichTextField;
+
+  /**
+   * Belief Title field in *About*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Belief
+   * - **API ID Path**: about.belief_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  belief_title: prismic.KeyTextField;
+
+  /**
+   * Belief Intro Paragraph field in *About*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: What makes Smarthinking Inc. different is the synergistic blend of skills...
+   * - **API ID Path**: about.belief_intro_paragraph
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  belief_intro_paragraph: prismic.RichTextField;
+
+  /**
+   * Belief Subheading field in *About*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A successful brand integrates
+   * - **API ID Path**: about.belief_subheading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  belief_subheading: prismic.KeyTextField;
+
+  /**
+   * Belief Circle Words field in *About*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.belief_circle_words[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  belief_circle_words: prismic.GroupField<
+    Simplify<AboutDocumentDataBeliefCircleWordsItem>
+  >;
+
+  /**
+   * Belief Slider Images field in *About*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.belief_slider_images[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  belief_slider_images: prismic.GroupField<
+    Simplify<AboutDocumentDataBeliefSliderImagesItem>
+  >;
+
+  /**
+   * Belief Bottom Paragraph field in *About*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: It is the consistent ability to tell a compelling story...
+   * - **API ID Path**: about.belief_bottom_paragraph
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  belief_bottom_paragraph: prismic.RichTextField;
+
+  /**
+   * Manifesto Title field in *About*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Our Manifesto
+   * - **API ID Path**: about.manifesto_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  manifesto_title: prismic.KeyTextField;
+
+  /**
+   * Manifesto Items field in *About*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.manifesto_items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  manifesto_items: prismic.GroupField<
+    Simplify<AboutDocumentDataManifestoItemsItem>
+  >;
+
+  /**
+   * Testimonials Section Title field in *About*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: **Word** On The Street
+   * - **API ID Path**: about.testimonials_section_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  testimonials_section_title: prismic.RichTextField;
+
+  /**
+   * Testimonials field in *About*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.testimonials[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  testimonials: prismic.GroupField<Simplify<AboutDocumentDataTestimonialsItem>>;
+
+  /**
+   * Client Logos field in *About*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.client_logos[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  client_logos: prismic.GroupField<Simplify<AboutDocumentDataClientLogosItem>>;
+
   /**
    * Slice Zone field in *About*
    *
@@ -130,12 +493,108 @@ interface AboutDocumentData {
 export type AboutDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<AboutDocumentData>, "about", Lang>;
 
+/**
+ * Item in *Blog → Featured Blog Posts*
+ */
+export interface BlogDocumentDataFeaturedBlogPostsItem {
+  /**
+   * Blog Post field in *Blog → Featured Blog Posts*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.featured_blog_posts[].post
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  post: ContentRelationshipFieldWithData<
+    [{ id: "blog_post"; fields: ["title", "featured_image", "excerpt"] }]
+  >;
+}
+
 type BlogDocumentDataSlicesSlice = never;
 
 /**
  * Content for Blog documents
  */
 interface BlogDocumentData {
+  /**
+   * Hero Image field in *Blog*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.hero_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  hero_image: prismic.ImageField<"mobile" | "desktop">;
+
+  /**
+   * Hero Title field in *Blog*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Think Tank
+   * - **API ID Path**: blog.hero_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  hero_title: prismic.KeyTextField;
+
+  /**
+   * Podcast Section Title field in *Blog*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Tune Into the Brand
+   * - **API ID Path**: blog.podcast_section_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  podcast_section_title: prismic.KeyTextField;
+
+  /**
+   * Blog Section Title field in *Blog*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: What We’re Thinking
+   * - **API ID Path**: blog.blog_section_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  blog_section_title: prismic.KeyTextField;
+
+  /**
+   * Newsletter Subtitle field in *Blog*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.newsletter_subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  newsletter_subtitle: prismic.KeyTextField;
+
+  /**
+   * Newsletter Title field in *Blog*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Join the Newsletter for Brand Thinking
+   * - **API ID Path**: blog.newsletter_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  newsletter_title: prismic.KeyTextField;
+
+  /**
+   * Featured Blog Posts field in *Blog*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.featured_blog_posts[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  featured_blog_posts: prismic.GroupField<
+    Simplify<BlogDocumentDataFeaturedBlogPostsItem>
+  >;
+
   /**
    * Slice Zone field in *Blog*
    *
@@ -191,7 +650,10 @@ interface BlogDocumentData {
 export type BlogDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<BlogDocumentData>, "blog", Lang>;
 
-type BlogPostDocumentDataSlicesSlice = never;
+type BlogPostDocumentDataSlicesSlice =
+  | QuoteBlockSlice
+  | ImageBlockSlice
+  | RichTextBlockSlice;
 
 /**
  * Content for Blog Post documents
@@ -229,6 +691,39 @@ interface BlogPostDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   excerpt: prismic.KeyTextField;
+
+  /**
+   * Author Image field in *Blog Post*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.author_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  author_image: prismic.ImageField<never>;
+
+  /**
+   * Author Name field in *Blog Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.author_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  author_name: prismic.KeyTextField;
+
+  /**
+   * Introduction field in *Blog Post*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.introduction
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  introduction: prismic.RichTextField;
 
   /**
    * Slice Zone field in *Blog Post*
@@ -295,6 +790,83 @@ type ContactDocumentDataSlicesSlice = never;
  * Content for Contact documents
  */
 interface ContactDocumentData {
+  /**
+   * Hero Title field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Contact
+   * - **API ID Path**: contact.hero_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  hero_title: prismic.KeyTextField;
+
+  /**
+   * Contact Title field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Start the First Note
+   * - **API ID Path**: contact.contact_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  contact_title: prismic.KeyTextField;
+
+  /**
+   * Contact Image field in *Contact*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.contact_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  contact_image: prismic.ImageField<"mobile" | "desktop">;
+
+  /**
+   * General Inquiries Email field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: thinkers@smarthinkinginc.com
+   * - **API ID Path**: contact.general_inquiries_email
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  general_inquiries_email: prismic.KeyTextField;
+
+  /**
+   * General Inquiries Phone field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 888.315.4056
+   * - **API ID Path**: contact.general_inquiries_phone
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  general_inquiries_phone: prismic.KeyTextField;
+
+  /**
+   * Press Inquiries Email field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: mark@smarthinkinginc.com
+   * - **API ID Path**: contact.press_inquiries_email
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  press_inquiries_email: prismic.KeyTextField;
+
+  /**
+   * Press Inquiries Phone field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 888.315.4056
+   * - **API ID Path**: contact.press_inquiries_phone
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  press_inquiries_phone: prismic.KeyTextField;
+
   /**
    * Slice Zone field in *Contact*
    *
@@ -940,6 +1512,137 @@ export type NavigationDocument<Lang extends string = string> =
     Lang
   >;
 
+type PodcastDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Podcast documents
+ */
+interface PodcastDocumentData {
+  /**
+   * Title field in *Podcast*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: podcast.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Image field in *Podcast*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: podcast.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Date field in *Podcast*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: podcast.date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/date
+   */
+  date: prismic.DateField;
+
+  /**
+   * Episode field in *Podcast*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: podcast.episode
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  episode: prismic.KeyTextField;
+
+  /**
+   * Time field in *Podcast*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: podcast.time
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  time: prismic.KeyTextField;
+
+  /**
+   * Link field in *Podcast*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: podcast.link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Slice Zone field in *Podcast*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: podcast.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<PodcastDocumentDataSlicesSlice> /**
+   * Meta Title field in *Podcast*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: podcast.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Podcast*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: podcast.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Podcast*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: podcast.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Podcast document from Prismic
+ *
+ * - **API ID**: `podcast`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PodcastDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<PodcastDocumentData>,
+    "podcast",
+    Lang
+  >;
+
 type ServiceDocumentDataSlicesSlice = never;
 
 /**
@@ -1060,12 +1763,334 @@ export type ServiceDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Services → Testimonials*
+ */
+export interface ServicesDocumentDataTestimonialsItem {
+  /**
+   * Testimonial Quote field in *Services → Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Their ability to understand complex requirements....
+   * - **API ID Path**: services.testimonials[].quote
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  quote: prismic.KeyTextField;
+
+  /**
+   * Author Name field in *Services → Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Damon Salerno
+   * - **API ID Path**: services.testimonials[].author_name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  author_name: prismic.KeyTextField;
+
+  /**
+   * Author Title field in *Services → Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Mansion Global
+   * - **API ID Path**: services.testimonials[].author_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  author_title: prismic.KeyTextField;
+
+  /**
+   * Author Company field in *Services → Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: The Wall Street Journal
+   * - **API ID Path**: services.testimonials[].author_company
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  author_company: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Services → Client Logos*
+ */
+export interface ServicesDocumentDataClientLogosItem {
+  /**
+   * Client Logo field in *Services → Client Logos*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.client_logos[].client_logo
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  client_logo: prismic.ImageField<"mobile" | "desktop">;
+
+  /**
+   * Client Name field in *Services → Client Logos*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Client Name
+   * - **API ID Path**: services.client_logos[].client_name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  client_name: prismic.KeyTextField;
+}
+
 type ServicesDocumentDataSlicesSlice = never;
 
 /**
  * Content for Services documents
  */
 interface ServicesDocumentData {
+  /**
+   * Hero Background Image field in *Services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.hero_background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  hero_background_image: prismic.ImageField<"mobile" | "desktop">;
+
+  /**
+   * Hero Left Caption field in *Services*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Think Critically. Act Creatively.®
+   * - **API ID Path**: services.hero_left_caption
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  hero_left_caption: prismic.RichTextField;
+
+  /**
+   * Hero Center Caption field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: philosophy that drives all efforts
+   * - **API ID Path**: services.hero_center_caption
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  hero_center_caption: prismic.KeyTextField;
+
+  /**
+   * Hero Main Title field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Think Critically. Act Creatively.®
+   * - **API ID Path**: services.hero_main_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  hero_main_title: prismic.KeyTextField;
+
+  /**
+   * Hero Subtitle field in *Services*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: At our core, Smarthinking Inc. is a group of problem solvers...
+   * - **API ID Path**: services.hero_subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  hero_subtitle: prismic.RichTextField;
+
+  /**
+   * Service Intro Title field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Our Services
+   * - **API ID Path**: services.service_intro_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  service_intro_title: prismic.KeyTextField;
+
+  /**
+   * Service Intro Heading field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Experience across Manhattan’s top hotels...
+   * - **API ID Path**: services.service_intro_heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  service_intro_heading: prismic.KeyTextField;
+
+  /**
+   * Service Intro Trademark SVG field in *Services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service_intro_trademark_svg
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  service_intro_trademark_svg: prismic.ImageField<never>;
+
+  /**
+   * Service Intro Main Image field in *Services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.service_intro_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  service_intro_image: prismic.ImageField<"mobile" | "desktop">;
+
+  /**
+   * Service Intro Paragraph 1 field in *Services*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Once this strategy is defined and agreed upon...
+   * - **API ID Path**: services.service_intro_paragraph_1
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  service_intro_paragraph_1: prismic.RichTextField;
+
+  /**
+   * Service Intro Paragraph 2 field in *Services*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Building truly remarkable brands is about much more...
+   * - **API ID Path**: services.service_intro_paragraph_2
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  service_intro_paragraph_2: prismic.RichTextField;
+
+  /**
+   * Since Year field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 2011
+   * - **API ID Path**: services.services_since_year
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  services_since_year: prismic.KeyTextField;
+
+  /**
+   * Testimonials Section Title field in *Services*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: **Word** On The Street
+   * - **API ID Path**: services.testimonials_section_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  testimonials_section_title: prismic.RichTextField;
+
+  /**
+   * Testimonials field in *Services*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.testimonials[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  testimonials: prismic.GroupField<
+    Simplify<ServicesDocumentDataTestimonialsItem>
+  >;
+
+  /**
+   * Client Logos field in *Services*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.client_logos[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  client_logos: prismic.GroupField<
+    Simplify<ServicesDocumentDataClientLogosItem>
+  >;
+
+  /**
+   * Work Link Title field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Work
+   * - **API ID Path**: services.work_link_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  work_link_title: prismic.KeyTextField;
+
+  /**
+   * Work Link Description field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Brilliant storytelling is a universal language...
+   * - **API ID Path**: services.work_link_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  work_link_description: prismic.KeyTextField;
+
+  /**
+   * Work Link Button Label field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: View Our Work
+   * - **API ID Path**: services.work_link_button_label
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  work_link_button_label: prismic.KeyTextField;
+
+  /**
+   * Work Link Button Link field in *Services*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.work_link_button_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  work_link_button_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Work Link Image Left field in *Services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.work_link_image_left
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  work_link_image_left: prismic.ImageField<"mobile" | "desktop">;
+
+  /**
+   * Work Link Image Center field in *Services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.work_link_image_center
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  work_link_image_center: prismic.ImageField<"mobile" | "desktop">;
+
+  /**
+   * Work Link Image Right field in *Services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.work_link_image_right
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  work_link_image_right: prismic.ImageField<"mobile" | "desktop">;
+
   /**
    * Slice Zone field in *Services*
    *
@@ -1172,6 +2197,40 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   meta_image: prismic.ImageField<never>;
+
+  /**
+   * Instagram link field in *settings*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.instagram_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  instagram_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Linkedin Link field in *settings*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.linkedin_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  linkedin_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**
@@ -1190,14 +2249,19 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-type WorkDocumentDataSlicesSlice = never;
+type WorkDocumentDataSlicesSlice =
+  | WorkDetailSliderBlockSlice
+  | WorkDetailCategoryBlockSlice
+  | WorkDetailImageHalfHalfBlockSlice
+  | WorkDetailImageFullBlockSlice
+  | WorkDetailChallengeBlockSlice;
 
 /**
  * Content for Work documents
  */
 interface WorkDocumentData {
   /**
-   * title field in *Work*
+   * Title field in *Work*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -1206,6 +2270,19 @@ interface WorkDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
+
+  /**
+   * Attached Service field in *Work*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.attached_service
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  attached_service: ContentRelationshipFieldWithData<
+    [{ id: "service"; fields: ["title"] }]
+  >;
 
   /**
    * homepage image 1 field in *Work*
@@ -1261,6 +2338,111 @@ interface WorkDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   small_image: prismic.ImageField<never>;
+
+  /**
+   * Location field in *Work*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.location
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  location: prismic.KeyTextField;
+
+  /**
+   * Short Description field in *Work*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.short_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  short_description: prismic.KeyTextField;
+
+  /**
+   * Hero Image field in *Work*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.hero_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  hero_image: prismic.ImageField<never>;
+
+  /**
+   * Hero Description field in *Work*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Detailed description for the hero section
+   * - **API ID Path**: work.hero_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  hero_description: prismic.RichTextField;
+
+  /**
+   * Video Poster field in *Work*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.video_poster
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  video_poster: prismic.ImageField<never>;
+
+  /**
+   * Video External Link field in *Work*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.video_external_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  video_external_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Testimonial Quote field in *Work*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Client testimonial quote
+   * - **API ID Path**: work.testimonial_quote
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  testimonial_quote: prismic.RichTextField;
+
+  /**
+   * Testimonial Client Name field in *Work*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Damon Salerno
+   * - **API ID Path**: work.testimonial_client_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  testimonial_client_name: prismic.KeyTextField;
+
+  /**
+   * Testimonial Client Title field in *Work*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: CEO, The Vines
+   * - **API ID Path**: work.testimonial_client_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  testimonial_client_title: prismic.KeyTextField;
 
   /**
    * Slice Zone field in *Work*
@@ -1324,6 +2506,17 @@ type WorksDocumentDataSlicesSlice = never;
  */
 interface WorksDocumentData {
   /**
+   * Hero Title field in *Works*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Featured **Work**
+   * - **API ID Path**: works.hero_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  hero_title: prismic.RichTextField;
+
+  /**
    * Slice Zone field in *Works*
    *
    * - **Field Type**: Slice Zone
@@ -1386,11 +2579,436 @@ export type AllDocumentTypes =
   | FooterDocument
   | HomepageDocument
   | NavigationDocument
+  | PodcastDocument
   | ServiceDocument
   | ServicesDocument
   | SettingsDocument
   | WorkDocument
   | WorksDocument;
+
+/**
+ * Primary content in *ImageBlock → Default → Primary*
+ */
+export interface ImageBlockSliceDefaultPrimary {
+  /**
+   * Image field in *ImageBlock → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: image_block.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for ImageBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ImageBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ImageBlock*
+ */
+type ImageBlockSliceVariation = ImageBlockSliceDefault;
+
+/**
+ * ImageBlock Shared Slice
+ *
+ * - **API ID**: `image_block`
+ * - **Description**: ImageBlock
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageBlockSlice = prismic.SharedSlice<
+  "image_block",
+  ImageBlockSliceVariation
+>;
+
+/**
+ * Primary content in *QuoteBlock → Default → Primary*
+ */
+export interface QuoteBlockSliceDefaultPrimary {
+  /**
+   * Quote field in *QuoteBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quote_block.default.primary.quote
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  quote: prismic.KeyTextField;
+
+  /**
+   * Quote Author field in *QuoteBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: quote_block.default.primary.quote_author
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  quote_author: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for QuoteBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type QuoteBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<QuoteBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *QuoteBlock*
+ */
+type QuoteBlockSliceVariation = QuoteBlockSliceDefault;
+
+/**
+ * QuoteBlock Shared Slice
+ *
+ * - **API ID**: `quote_block`
+ * - **Description**: QuoteBlock
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type QuoteBlockSlice = prismic.SharedSlice<
+  "quote_block",
+  QuoteBlockSliceVariation
+>;
+
+/**
+ * Primary content in *RichTextBlock → Default → Primary*
+ */
+export interface RichTextBlockSliceDefaultPrimary {
+  /**
+   * Content field in *RichTextBlock → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_text_block.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Default variation for RichTextBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type RichTextBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<RichTextBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *RichTextBlock*
+ */
+type RichTextBlockSliceVariation = RichTextBlockSliceDefault;
+
+/**
+ * RichTextBlock Shared Slice
+ *
+ * - **API ID**: `rich_text_block`
+ * - **Description**: RichTextBlock
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type RichTextBlockSlice = prismic.SharedSlice<
+  "rich_text_block",
+  RichTextBlockSliceVariation
+>;
+
+/**
+ * Primary content in *WorkDetailCategoryBlock → Default → Primary*
+ */
+export interface WorkDetailCategoryBlockSliceDefaultPrimary {
+  /**
+   * Service field in *WorkDetailCategoryBlock → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_category_block.default.primary.service
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  service: ContentRelationshipFieldWithData<
+    [{ id: "service"; fields: ["title"] }]
+  >;
+
+  /**
+   * Description field in *WorkDetailCategoryBlock → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_category_block.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Caption field in *WorkDetailCategoryBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_category_block.default.primary.caption
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  caption: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for WorkDetailCategoryBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailCategoryBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<WorkDetailCategoryBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *WorkDetailCategoryBlock*
+ */
+type WorkDetailCategoryBlockSliceVariation =
+  WorkDetailCategoryBlockSliceDefault;
+
+/**
+ * WorkDetailCategoryBlock Shared Slice
+ *
+ * - **API ID**: `work_detail_category_block`
+ * - **Description**: WorkDetailCategoryBlock
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailCategoryBlockSlice = prismic.SharedSlice<
+  "work_detail_category_block",
+  WorkDetailCategoryBlockSliceVariation
+>;
+
+/**
+ * Primary content in *WorkDetailChallengeBlock → Default → Primary*
+ */
+export interface WorkDetailChallengeBlockSliceDefaultPrimary {
+  /**
+   * Content field in *WorkDetailChallengeBlock → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_challenge_block.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Default variation for WorkDetailChallengeBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailChallengeBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<WorkDetailChallengeBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *WorkDetailChallengeBlock*
+ */
+type WorkDetailChallengeBlockSliceVariation =
+  WorkDetailChallengeBlockSliceDefault;
+
+/**
+ * WorkDetailChallengeBlock Shared Slice
+ *
+ * - **API ID**: `work_detail_challenge_block`
+ * - **Description**: WorkDetailChallengeBlock
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailChallengeBlockSlice = prismic.SharedSlice<
+  "work_detail_challenge_block",
+  WorkDetailChallengeBlockSliceVariation
+>;
+
+/**
+ * Primary content in *WorkDetailImageFullBlock → Default → Primary*
+ */
+export interface WorkDetailImageFullBlockSliceDefaultPrimary {
+  /**
+   * Image field in *WorkDetailImageFullBlock → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_image_full_block.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for WorkDetailImageFullBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailImageFullBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<WorkDetailImageFullBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *WorkDetailImageFullBlock*
+ */
+type WorkDetailImageFullBlockSliceVariation =
+  WorkDetailImageFullBlockSliceDefault;
+
+/**
+ * WorkDetailImageFullBlock Shared Slice
+ *
+ * - **API ID**: `work_detail_image_full_block`
+ * - **Description**: WorkDetailImageFullBlock
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailImageFullBlockSlice = prismic.SharedSlice<
+  "work_detail_image_full_block",
+  WorkDetailImageFullBlockSliceVariation
+>;
+
+/**
+ * Primary content in *WorkDetailImageHalfHalfBlock → Default → Primary*
+ */
+export interface WorkDetailImageHalfHalfBlockSliceDefaultPrimary {
+  /**
+   * Left Image field in *WorkDetailImageHalfHalfBlock → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_image_half_half_block.default.primary.left_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  left_image: prismic.ImageField<never>;
+
+  /**
+   * Right Image field in *WorkDetailImageHalfHalfBlock → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_image_half_half_block.default.primary.right_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  right_image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for WorkDetailImageHalfHalfBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailImageHalfHalfBlockSliceDefault =
+  prismic.SharedSliceVariation<
+    "default",
+    Simplify<WorkDetailImageHalfHalfBlockSliceDefaultPrimary>,
+    never
+  >;
+
+/**
+ * Slice variation for *WorkDetailImageHalfHalfBlock*
+ */
+type WorkDetailImageHalfHalfBlockSliceVariation =
+  WorkDetailImageHalfHalfBlockSliceDefault;
+
+/**
+ * WorkDetailImageHalfHalfBlock Shared Slice
+ *
+ * - **API ID**: `work_detail_image_half_half_block`
+ * - **Description**: WorkDetailImageHalfHalfBlock
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailImageHalfHalfBlockSlice = prismic.SharedSlice<
+  "work_detail_image_half_half_block",
+  WorkDetailImageHalfHalfBlockSliceVariation
+>;
+
+/**
+ * Item in *WorkDetailSliderBlock → Default → Primary → Images*
+ */
+export interface WorkDetailSliderBlockSliceDefaultPrimaryImagesItem {
+  /**
+   * Image field in *WorkDetailSliderBlock → Default → Primary → Images*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_slider_block.default.primary.images[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *WorkDetailSliderBlock → Default → Primary*
+ */
+export interface WorkDetailSliderBlockSliceDefaultPrimary {
+  /**
+   * Images field in *WorkDetailSliderBlock → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_slider_block.default.primary.images[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  images: prismic.GroupField<
+    Simplify<WorkDetailSliderBlockSliceDefaultPrimaryImagesItem>
+  >;
+}
+
+/**
+ * Default variation for WorkDetailSliderBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailSliderBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<WorkDetailSliderBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *WorkDetailSliderBlock*
+ */
+type WorkDetailSliderBlockSliceVariation = WorkDetailSliderBlockSliceDefault;
+
+/**
+ * WorkDetailSliderBlock Shared Slice
+ *
+ * - **API ID**: `work_detail_slider_block`
+ * - **Description**: WorkDetailSliderBlock
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailSliderBlockSlice = prismic.SharedSlice<
+  "work_detail_slider_block",
+  WorkDetailSliderBlockSliceVariation
+>;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -1415,9 +3033,15 @@ declare module "@prismicio/client" {
     export type {
       AboutDocument,
       AboutDocumentData,
+      AboutDocumentDataBeliefCircleWordsItem,
+      AboutDocumentDataBeliefSliderImagesItem,
+      AboutDocumentDataManifestoItemsItem,
+      AboutDocumentDataTestimonialsItem,
+      AboutDocumentDataClientLogosItem,
       AboutDocumentDataSlicesSlice,
       BlogDocument,
       BlogDocumentData,
+      BlogDocumentDataFeaturedBlogPostsItem,
       BlogDocumentDataSlicesSlice,
       BlogPostDocument,
       BlogPostDocumentData,
@@ -1437,11 +3061,16 @@ declare module "@prismicio/client" {
       NavigationDocument,
       NavigationDocumentData,
       NavigationDocumentDataLinksItem,
+      PodcastDocument,
+      PodcastDocumentData,
+      PodcastDocumentDataSlicesSlice,
       ServiceDocument,
       ServiceDocumentData,
       ServiceDocumentDataSlicesSlice,
       ServicesDocument,
       ServicesDocumentData,
+      ServicesDocumentDataTestimonialsItem,
+      ServicesDocumentDataClientLogosItem,
       ServicesDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
@@ -1452,6 +3081,39 @@ declare module "@prismicio/client" {
       WorksDocumentData,
       WorksDocumentDataSlicesSlice,
       AllDocumentTypes,
+      ImageBlockSlice,
+      ImageBlockSliceDefaultPrimary,
+      ImageBlockSliceVariation,
+      ImageBlockSliceDefault,
+      QuoteBlockSlice,
+      QuoteBlockSliceDefaultPrimary,
+      QuoteBlockSliceVariation,
+      QuoteBlockSliceDefault,
+      RichTextBlockSlice,
+      RichTextBlockSliceDefaultPrimary,
+      RichTextBlockSliceVariation,
+      RichTextBlockSliceDefault,
+      WorkDetailCategoryBlockSlice,
+      WorkDetailCategoryBlockSliceDefaultPrimary,
+      WorkDetailCategoryBlockSliceVariation,
+      WorkDetailCategoryBlockSliceDefault,
+      WorkDetailChallengeBlockSlice,
+      WorkDetailChallengeBlockSliceDefaultPrimary,
+      WorkDetailChallengeBlockSliceVariation,
+      WorkDetailChallengeBlockSliceDefault,
+      WorkDetailImageFullBlockSlice,
+      WorkDetailImageFullBlockSliceDefaultPrimary,
+      WorkDetailImageFullBlockSliceVariation,
+      WorkDetailImageFullBlockSliceDefault,
+      WorkDetailImageHalfHalfBlockSlice,
+      WorkDetailImageHalfHalfBlockSliceDefaultPrimary,
+      WorkDetailImageHalfHalfBlockSliceVariation,
+      WorkDetailImageHalfHalfBlockSliceDefault,
+      WorkDetailSliderBlockSlice,
+      WorkDetailSliderBlockSliceDefaultPrimaryImagesItem,
+      WorkDetailSliderBlockSliceDefaultPrimary,
+      WorkDetailSliderBlockSliceVariation,
+      WorkDetailSliderBlockSliceDefault,
     };
   }
 }

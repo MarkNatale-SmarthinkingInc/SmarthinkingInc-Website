@@ -2,4 +2,21 @@
 
 import dynamic from "next/dynamic";
 
-export const components = {};
+export const components = {
+  image_block: dynamic(() => import("./ImageBlock")),
+  quote_block: dynamic(() => import("./QuoteBlock")),
+  rich_text_block: dynamic(() => import("./RichTextBlock")),
+  work_detail_category_block: dynamic(
+    () => import("./WorkDetailCategoryBlock"),
+  ),
+  work_detail_challenge_block: dynamic(
+    () => import("./WorkDetailChallengeBlock"),
+  ),
+  work_detail_image_full_block: dynamic(
+    () => import("./WorkDetailImageFullBlock"),
+  ),
+  work_detail_image_half_half_block: dynamic(
+    () => import("./WorkDetailImageHalfHalfBlock"),
+  ),
+  work_detail_slider_block: dynamic(() => import("./WorkDetailSliderBlock")),
+};

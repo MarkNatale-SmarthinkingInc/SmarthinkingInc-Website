@@ -1,14 +1,78 @@
 {
   "format": "page",
   "id": "contact",
+  "label": "Contact",
+  "repeatable": false,
+  "status": true,
   "json": {
     "Main": {
+      "hero_title": {
+        "type": "Text",
+        "config": {
+          "label": "Hero Title",
+          "placeholder": "Contact"
+        }
+      },
+      "contact_title": {
+        "type": "Text",
+        "config": {
+          "label": "Contact Title",
+          "placeholder": "Start the First Note"
+        }
+      },
+      "contact_image": {
+        "type": "Image",
+        "config": {
+          "label": "Contact Image",
+          "constraint": {},
+          "thumbnails": [
+            {
+              "name": "mobile",
+              "width": 768,
+              "height": 512
+            },
+            {
+              "name": "desktop",
+              "width": 1440,
+              "height": 960
+            }
+          ]
+        }
+      },
+      "general_inquiries_email": {
+        "type": "Text",
+        "config": {
+          "label": "General Inquiries Email",
+          "placeholder": "thinkers@smarthinkinginc.com"
+        }
+      },
+      "general_inquiries_phone": {
+        "type": "Text",
+        "config": {
+          "label": "General Inquiries Phone",
+          "placeholder": "888.315.4056"
+        }
+      },
+      "press_inquiries_email": {
+        "type": "Text",
+        "config": {
+          "label": "Press Inquiries Email",
+          "placeholder": "mark@smarthinkinginc.com"
+        }
+      },
+      "press_inquiries_phone": {
+        "type": "Text",
+        "config": {
+          "label": "Press Inquiries Phone",
+          "placeholder": "888.315.4056"
+        }
+      },
       "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
         "config": {
           "choices": {}
-        },
-        "fieldset": "Slice Zone",
-        "type": "Slices"
+        }
       }
     },
     "SEO & Metadata": {
@@ -38,8 +102,5 @@
         "type": "Image"
       }
     }
-  },
-  "label": "Contact",
-  "repeatable": false,
-  "status": true
+  }
 }

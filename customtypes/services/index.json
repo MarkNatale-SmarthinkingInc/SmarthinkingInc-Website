@@ -1,14 +1,301 @@
 {
   "format": "page",
   "id": "services",
+  "label": "Services",
+  "repeatable": false,
+  "status": true,
   "json": {
     "Main": {
+      "hero_background_image": {
+        "type": "Image",
+        "config": {
+          "label": "Hero Background Image",
+          "constraint": {},
+          "thumbnails": [
+            {
+              "name": "mobile",
+              "width": 768,
+              "height": 1024
+            },
+            {
+              "name": "desktop",
+              "width": 1920,
+              "height": 1080
+            }
+          ]
+        }
+      },
+      "hero_left_caption": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Hero Left Caption",
+          "placeholder": "Think Critically. Act Creatively.®",
+          "allowTargetBlank": false,
+          "multi": "paragraph,strong,em"
+        }
+      },
+      "hero_center_caption": {
+        "type": "Text",
+        "config": {
+          "label": "Hero Center Caption",
+          "placeholder": "philosophy that drives all efforts"
+        }
+      },
+      "hero_main_title": {
+        "type": "Text",
+        "config": {
+          "label": "Hero Main Title",
+          "placeholder": "Think Critically. Act Creatively.®"
+        }
+      },
+      "hero_subtitle": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Hero Subtitle",
+          "placeholder": "At our core, Smarthinking Inc. is a group of problem solvers...",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        }
+      },
+      "service_intro_title": {
+        "type": "Text",
+        "config": {
+          "label": "Service Intro Title",
+          "placeholder": "Our Services"
+        }
+      },
+      "service_intro_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Service Intro Heading",
+          "placeholder": "Experience across Manhattan’s top hotels..."
+        }
+      },
+      "service_intro_trademark_svg": {
+        "type": "Image",
+        "config": {
+          "label": "Service Intro Trademark SVG",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "service_intro_image": {
+        "type": "Image",
+        "config": {
+          "label": "Service Intro Main Image",
+          "constraint": {},
+          "thumbnails": [
+            {
+              "name": "mobile",
+              "width": 768,
+              "height": 512
+            },
+            {
+              "name": "desktop",
+              "width": 1440,
+              "height": 960
+            }
+          ]
+        }
+      },
+      "service_intro_paragraph_1": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Service Intro Paragraph 1",
+          "placeholder": "Once this strategy is defined and agreed upon...",
+          "allowTargetBlank": false,
+          "multi": "paragraph"
+        }
+      },
+      "service_intro_paragraph_2": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Service Intro Paragraph 2",
+          "placeholder": "Building truly remarkable brands is about much more...",
+          "allowTargetBlank": false,
+          "multi": "paragraph"
+        }
+      },
+      "services_since_year": {
+        "type": "Text",
+        "config": {
+          "label": "Since Year",
+          "placeholder": "2011"
+        }
+      },
+      "testimonials_section_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Testimonials Section Title",
+          "placeholder": "**Word** On The Street",
+          "allowTargetBlank": false,
+          "single": "strong,paragraph"
+        }
+      },
+      "testimonials": {
+        "type": "Group",
+        "config": {
+          "label": "Testimonials",
+          "repeat": true,
+          "fields": {
+            "quote": {
+              "type": "Text",
+              "config": {
+                "label": "Testimonial Quote",
+                "placeholder": "Their ability to understand complex requirements...."
+              }
+            },
+            "author_name": {
+              "type": "Text",
+              "config": {
+                "label": "Author Name",
+                "placeholder": "Damon Salerno"
+              }
+            },
+            "author_title": {
+              "type": "Text",
+              "config": {
+                "label": "Author Title",
+                "placeholder": "Mansion Global"
+              }
+            },
+            "author_company": {
+              "type": "Text",
+              "config": {
+                "label": "Author Company",
+                "placeholder": "The Wall Street Journal"
+              }
+            }
+          }
+        }
+      },
+      "client_logos": {
+        "type": "Group",
+        "config": {
+          "label": "Client Logos",
+          "repeat": true,
+          "fields": {
+            "client_logo": {
+              "type": "Image",
+              "config": {
+                "label": "Client Logo",
+                "constraint": {},
+                "thumbnails": [
+                  {
+                    "name": "mobile",
+                    "width": 200,
+                    "height": 100
+                  },
+                  {
+                    "name": "desktop",
+                    "width": 300,
+                    "height": 150
+                  }
+                ]
+              }
+            },
+            "client_name": {
+              "type": "Text",
+              "config": {
+                "label": "Client Name",
+                "placeholder": "Client Name"
+              }
+            }
+          }
+        }
+      },
+      "work_link_title": {
+        "type": "Text",
+        "config": {
+          "label": "Work Link Title",
+          "placeholder": "Work"
+        }
+      },
+      "work_link_description": {
+        "type": "Text",
+        "config": {
+          "label": "Work Link Description",
+          "placeholder": "Brilliant storytelling is a universal language..."
+        }
+      },
+      "work_link_button_label": {
+        "type": "Text",
+        "config": {
+          "label": "Work Link Button Label",
+          "placeholder": "View Our Work"
+        }
+      },
+      "work_link_button_link": {
+        "type": "Link",
+        "config": {
+          "label": "Work Link Button Link",
+          "select": null,
+          "allowTargetBlank": false
+        }
+      },
+      "work_link_image_left": {
+        "type": "Image",
+        "config": {
+          "label": "Work Link Image Left",
+          "constraint": {},
+          "thumbnails": [
+            {
+              "name": "mobile",
+              "width": 400,
+              "height": 600
+            },
+            {
+              "name": "desktop",
+              "width": 600,
+              "height": 900
+            }
+          ]
+        }
+      },
+      "work_link_image_center": {
+        "type": "Image",
+        "config": {
+          "label": "Work Link Image Center",
+          "constraint": {},
+          "thumbnails": [
+            {
+              "name": "mobile",
+              "width": 800,
+              "height": 600
+            },
+            {
+              "name": "desktop",
+              "width": 1200,
+              "height": 900
+            }
+          ]
+        }
+      },
+      "work_link_image_right": {
+        "type": "Image",
+        "config": {
+          "label": "Work Link Image Right",
+          "constraint": {},
+          "thumbnails": [
+            {
+              "name": "mobile",
+              "width": 400,
+              "height": 600
+            },
+            {
+              "name": "desktop",
+              "width": 600,
+              "height": 900
+            }
+          ]
+        }
+      },
       "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
         "config": {
           "choices": {}
-        },
-        "fieldset": "Slice Zone",
-        "type": "Slices"
+        }
       }
     },
     "SEO & Metadata": {
@@ -38,8 +325,5 @@
         "type": "Image"
       }
     }
-  },
-  "label": "Services",
-  "repeatable": false,
-  "status": true
+  }
 }

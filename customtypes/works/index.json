@@ -1,14 +1,26 @@
 {
   "format": "page",
   "id": "works",
+  "label": "Works",
+  "repeatable": false,
+  "status": true,
   "json": {
     "Main": {
+      "hero_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Hero Title",
+          "placeholder": "Featured **Work**",
+          "allowTargetBlank": false,
+          "single": "strong,paragraph,em"
+        }
+      },
       "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
         "config": {
           "choices": {}
-        },
-        "fieldset": "Slice Zone",
-        "type": "Slices"
+        }
       }
     },
     "SEO & Metadata": {
@@ -38,8 +50,5 @@
         "type": "Image"
       }
     }
-  },
-  "label": "Works",
-  "repeatable": false,
-  "status": true
+  }
 }

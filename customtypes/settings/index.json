@@ -34,6 +34,28 @@
           "constraint": {},
           "thumbnails": []
         }
+      },
+      "instagram_link": {
+        "type": "Link",
+        "config": {
+          "label": "Instagram link",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "linkedin_link": {
+        "type": "Link",
+        "config": {
+          "label": "Linkedin Link",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
       }
     }
   }

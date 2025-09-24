@@ -34,11 +34,45 @@
           "placeholder": ""
         }
       },
+      "author_image": {
+        "type": "Image",
+        "config": {
+          "label": "Author Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "author_name": {
+        "type": "Text",
+        "config": {
+          "label": "Author Name",
+          "placeholder": ""
+        }
+      },
+      "introduction": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Introduction",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "quote_block": {
+              "type": "SharedSlice"
+            },
+            "image_block": {
+              "type": "SharedSlice"
+            },
+            "rich_text_block": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

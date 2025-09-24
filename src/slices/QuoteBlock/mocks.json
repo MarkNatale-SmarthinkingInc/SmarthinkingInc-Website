@@ -1,0 +1,19 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"quote": {
+				"__TYPE__": "FieldContent",
+				"value": "hide",
+				"type": "Text"
+			},
+			"quote_author": {
+				"__TYPE__": "FieldContent",
+				"value": "train",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

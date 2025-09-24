@@ -16,35 +16,13 @@ import type { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
-  const homepage = await client.getSingle("homepage", {
-    fetchLinks: [
-      "work.title",
-      "work.featured_image",
-      "work.uid",
-      "service.title",
-      "blog_post.title",
-      "blog_post.featured_image",
-      "blog_post.excerpt",
-      "blog_post.tags",
-    ],
-  });
+  const homepage = await client.getSingle("homepage");
   return generateMeta(homepage.id);
 }
 
 export default async function Home() {
   const client = createClient();
-  const { data } = await client.getSingle("homepage", {
-    fetchLinks: [
-      "work.title",
-      "work.featured_image",
-      "work.uid",
-      "service.title",
-      "blog_post.title",
-      "blog_post.featured_image",
-      "blog_post.excerpt",
-      "blog_post.tags",
-    ],
-  });
+  const { data } = await client.getSingle("homepage");
   return (
     <main
       id="smooth-wrapper"

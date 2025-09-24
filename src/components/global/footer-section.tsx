@@ -7,6 +7,7 @@ export default async function FooterSection() {
   const client = createClient();
   const navigation = await client.getSingle("navigation");
   const services = await client.getAllByType("service");
+  const settings = await client.getSingle("settings");
   const footer = await client.getSingle("footer");
 
   return (
@@ -93,20 +94,12 @@ export default async function FooterSection() {
             </form>
           </div>
           <div className="social self-end">
-            <a
-              href="https://instagram.com/smarthinkinginc"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <PrismicNextLink field={settings.data.instagram_link}>
               <img src="/img/svg/instagram.svg" alt="Instagram icon" />
-            </a>
-            <a
-              href="https://linkedin.com/company/smarthinkinginc"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            </PrismicNextLink>
+            <PrismicNextLink field={settings.data.linkedin_link}>
               <img src="/img/svg/linkedin.svg" alt="LinkedIn icon" />
-            </a>
+            </PrismicNextLink>
           </div>
         </div>
       </div>

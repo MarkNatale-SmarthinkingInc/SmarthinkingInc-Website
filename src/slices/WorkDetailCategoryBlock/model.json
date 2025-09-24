@@ -1,0 +1,51 @@
+{
+  "id": "work_detail_category_block",
+  "type": "SharedSlice",
+  "name": "WorkDetailCategoryBlock",
+  "description": "WorkDetailCategoryBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "service": {
+          "type": "Link",
+          "config": {
+            "label": "Service",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              {
+                "id": "service",
+                "fields": [
+                  "title"
+                ]
+              }
+            ]
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "caption": {
+          "type": "Text",
+          "config": {
+            "label": "Caption",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -6,6 +6,82 @@
   "status": true,
   "json": {
     "Main": {
+      "hero_image": {
+        "type": "Image",
+        "config": {
+          "label": "Hero Image",
+          "constraint": {},
+          "thumbnails": [
+            {
+              "name": "mobile",
+              "width": 1440,
+              "height": 900
+            },
+            {
+              "name": "desktop",
+              "width": 1920,
+              "height": 1080
+            }
+          ]
+        }
+      },
+      "hero_title": {
+        "type": "Text",
+        "config": {
+          "label": "Hero Title",
+          "placeholder": "Think Tank"
+        }
+      },
+      "podcast_section_title": {
+        "type": "Text",
+        "config": {
+          "label": "Podcast Section Title",
+          "placeholder": "Tune Into the Brand"
+        }
+      },
+      "blog_section_title": {
+        "type": "Text",
+        "config": {
+          "label": "Blog Section Title",
+          "placeholder": "What We’re Thinking"
+        }
+      },
+      "newsletter_subtitle": {
+        "type": "Text",
+        "config": {
+          "label": "Newsletter Subtitle",
+          "placeholder": ""
+        }
+      },
+      "newsletter_title": {
+        "type": "Text",
+        "config": {
+          "label": "Newsletter Title",
+          "placeholder": "Join the Newsletter for Brand Thinking"
+        }
+      },
+      "featured_blog_posts": {
+        "type": "Group",
+        "config": {
+          "label": "Featured Blog Posts",
+          "repeat": true,
+          "fields": {
+            "post": {
+              "type": "Link",
+              "config": {
+                "label": "Blog Post",
+                "select": "document",
+                "customtypes": [
+                  {
+                    "id": "blog_post",
+                    "fields": ["title", "featured_image", "excerpt"]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

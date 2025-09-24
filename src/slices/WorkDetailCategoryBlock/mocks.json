@@ -1,0 +1,33 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"service": {
+				"key": "e2d72a72-c771-456d-ba66-7bbc3f10cfbf",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ipsum pariatur proident deserunt dolor excepteur commodo laborum deserunt est ea nostrud nisi ipsum pariatur incididunt. Id dolor sint reprehenderit non aliquip irure ipsum laborum ad voluptate sunt amet. Minim ex labore aute laboris veniam id irure."
+						}
+					}
+				]
+			},
+			"caption": {
+				"__TYPE__": "FieldContent",
+				"value": "friendly",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

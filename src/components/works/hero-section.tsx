@@ -1,0 +1,41 @@
+import { createClient } from "@/prismicio";
+import type { Content } from "@prismicio/client";
+import { PrismicRichText } from "@prismicio/react";
+
+type HeroSectionProps = {
+  data: Content.WorksDocumentData;
+};
+
+export default async function HeroSection({ data }: HeroSectionProps) {
+  const fullYear = new Date().getFullYear();
+  const client = createClient();
+  const works = await client.getAllByType("work");
+
+  return (
+    <section id="hero" className="grid-margin xl-bottom-2 xs-bottom-3">
+      <div className="st-grid">
+        <div className="st-xl-3">
+          <p className="caption">({works.length})</p>
+        </div>
+        <div className="st-xl-12 center">
+          <h1 className="f-140 upper">
+            <PrismicRichText
+              field={data.hero_title}
+              components={{
+                paragraph: ({ children }) => <span>{children}</span>,
+                strong: ({ children }) => (
+                  <span className="Brown">{children}</span>
+                ),
+              }}
+            />
+          </h1>
+        </div>
+        <div className="st-xl-3 right xs-hidden">
+          <p className="caption">
+            &copy;<span className="year">{fullYear}</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}

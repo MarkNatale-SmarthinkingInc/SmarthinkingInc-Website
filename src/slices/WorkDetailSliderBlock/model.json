@@ -1,0 +1,36 @@
+{
+  "id": "work_detail_slider_block",
+  "type": "SharedSlice",
+  "name": "WorkDetailSliderBlock",
+  "description": "WorkDetailSliderBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "images": {
+          "type": "Group",
+          "config": {
+            "label": "Images",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

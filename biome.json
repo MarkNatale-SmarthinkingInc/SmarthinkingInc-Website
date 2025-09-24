@@ -24,7 +24,8 @@
         "noUnusedImports": "error"
       },
       "a11y": {
-        "useKeyWithClickEvents": "off"
+        "useKeyWithClickEvents": "off",
+        "useMediaCaption": "off"
       },
       "style": {
         "noNonNullAssertion": "off",

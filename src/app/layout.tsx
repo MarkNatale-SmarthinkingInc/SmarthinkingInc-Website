@@ -47,6 +47,8 @@ export default async function RootLayout({
         <Script src="/js/ScrollTrigger.min.js" />
         <Script src="/js/ScrollSmoother.min.js" />
         <Script src="/js/SplitText.min.js" />
+        <Script src="/js/Draggable.min.js" />
+        <Script src="/js/InertiaPlugin.min.js" />
 
         <Script src="/js/vars.js" />
 

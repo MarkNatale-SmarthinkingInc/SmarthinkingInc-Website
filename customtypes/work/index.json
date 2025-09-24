@@ -15,8 +15,22 @@
       "title": {
         "type": "Text",
         "config": {
-          "label": "title",
+          "label": "Title",
           "placeholder": ""
+        }
+      },
+      "attached_service": {
+        "type": "Link",
+        "config": {
+          "label": "Attached Service",
+          "select": "document",
+          "repeat": false,
+          "customtypes": [
+            {
+              "id": "service",
+              "fields": ["title"]
+            }
+          ]
         }
       },
       "homepage_image_1": {
@@ -59,11 +73,130 @@
           "thumbnails": []
         }
       },
+      "location": {
+        "type": "Text",
+        "config": {
+          "label": "Location",
+          "placeholder": ""
+        }
+      },
+      "short_description": {
+        "type": "Text",
+        "config": {
+          "label": "Short Description",
+          "placeholder": ""
+        }
+      },
+      "hero_image": {
+        "type": "Image",
+        "config": {
+          "label": "Hero Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "hero_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Hero Description",
+          "placeholder": "Detailed description for the hero section",
+          "allowTargetBlank": true,
+          "single": "paragraph,strong,em"
+        }
+      },
+      "video_poster": {
+        "type": "Image",
+        "config": {
+          "label": "Video Poster",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "video_external_link": {
+        "type": "Link",
+        "config": {
+          "label": "Video External Link",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "testimonial_quote": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Testimonial Quote",
+          "placeholder": "Client testimonial quote",
+          "allowTargetBlank": true,
+          "single": "paragraph,strong,em"
+        }
+      },
+      "testimonial_client_name": {
+        "type": "Text",
+        "config": {
+          "label": "Testimonial Client Name",
+          "placeholder": "Damon Salerno"
+        }
+      },
+      "testimonial_client_title": {
+        "type": "Text",
+        "config": {
+          "label": "Testimonial Client Title",
+          "placeholder": "CEO, The Vines"
+        }
+      },
+      "cta_background_image": {
+        "type": "Image",
+        "config": {
+          "label": "CTA Background Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "cta_foreground_image": {
+        "type": "Image",
+        "config": {
+          "label": "CTA Foreground Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "cta_email": {
+        "type": "Text",
+        "config": {
+          "label": "CTA Email",
+          "placeholder": "Thinkers@Smarthinkinginc.com"
+        }
+      },
+      "cta_phone": {
+        "type": "Text",
+        "config": {
+          "label": "CTA Phone",
+          "placeholder": "888.315.4056"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "work_detail_slider_block": {
+              "type": "SharedSlice"
+            },
+            "work_detail_category_block": {
+              "type": "SharedSlice"
+            },
+            "work_detail_image_half_half_block": {
+              "type": "SharedSlice"
+            },
+            "work_detail_image_full_block": {
+              "type": "SharedSlice"
+            },
+            "work_detail_challenge_block": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

@@ -1,0 +1,28 @@
+{
+  "id": "work_detail_challenge_block",
+  "type": "SharedSlice",
+  "name": "WorkDetailChallengeBlock",
+  "description": "WorkDetailChallengeBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Content",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

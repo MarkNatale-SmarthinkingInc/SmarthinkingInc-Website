@@ -1,20 +1,32 @@
-export default function Navigation() {
+import { createClient } from "@/prismicio";
+import { isFilled } from "@prismicio/client";
+import { PrismicNextLink } from "@prismicio/next";
+
+export default async function Navigation() {
+  const client = createClient();
+  const navigation = await client.getSingle("navigation");
+  const settings = await client.getSingle("settings");
   return (
     <nav id="nav" className="st-xl-7 st-lg-8 st-sm-10 st-xs-18 st-xs-os-0">
       <div className="nav-links">
-        <a href="services.html">Services</a>
-        <a href="work.html">Work</a>
-        <a href="about.html">About</a>
-        <a href="blog.html">Blog</a>
-        <a href="contact.html">Contact</a>
+        {navigation.data.links.map((link) => {
+          if (link.link && isFilled.link(link.link)) {
+            return (
+              <PrismicNextLink field={link.link} key={link.link.text}>
+                {link.link.text}
+              </PrismicNextLink>
+            );
+          }
+          return null;
+        })}
       </div>
       <div className="nav-social">
-        <a href="#">
+        <PrismicNextLink field={settings.data.instagram_link}>
           <img src="/img/svg/instagram-white.svg" alt="Instagram icon" />
-        </a>
-        <a href="#">
+        </PrismicNextLink>
+        <PrismicNextLink field={settings.data.linkedin_link}>
           <img src="/img/svg/linkedin-white.svg" alt="LinkedIn icon" />
-        </a>
+        </PrismicNextLink>
       </div>
     </nav>
   );

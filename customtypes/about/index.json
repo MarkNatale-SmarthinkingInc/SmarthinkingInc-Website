@@ -1,14 +1,318 @@
 {
   "format": "page",
   "id": "about",
+  "label": "About",
+  "repeatable": false,
+  "status": true,
   "json": {
     "Main": {
+      "hero_background_image": {
+        "type": "Image",
+        "config": {
+          "label": "Hero Background Image",
+          "constraint": {},
+          "thumbnails": [
+            {
+              "name": "mobile",
+              "width": 768,
+              "height": 1024
+            },
+            {
+              "name": "desktop",
+              "width": 1920,
+              "height": 1080
+            }
+          ]
+        }
+      },
+      "hero_left_caption": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Hero Left Caption",
+          "placeholder": "Think Critically. Act Creatively.®",
+          "allowTargetBlank": false,
+          "multi": "paragraph,strong,em"
+        }
+      },
+      "hero_center_caption": {
+        "type": "Text",
+        "config": {
+          "label": "Hero Center Caption",
+          "placeholder": "We are an agency of professional storytellers"
+        }
+      },
+      "hero_main_title": {
+        "type": "Text",
+        "config": {
+          "label": "Hero Main Title",
+          "placeholder": "Where Strategy, Story, and Space Play in Perfect Harmony"
+        }
+      },
+      "hero_bottom_paragraph": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Hero Bottom Paragraph",
+          "placeholder": "Smarthinking Inc. opened in 2006 and was forged...",
+          "allowTargetBlank": false,
+          "multi": "paragraph"
+        }
+      },
+      "about_sup_title": {
+        "type": "Text",
+        "config": {
+          "label": "About Sup Title",
+          "placeholder": "New York Roots"
+        }
+      },
+      "about_left_paragraph_1": {
+        "type": "StructuredText",
+        "config": {
+          "label": "About Left Paragraph 1",
+          "placeholder": "Experience across Manhattan’s top hotels...",
+          "allowTargetBlank": false,
+          "multi": "paragraph"
+        }
+      },
+      "about_left_image_small": {
+        "type": "Image",
+        "config": {
+          "label": "About Left Image Small",
+          "constraint": {},
+          "thumbnails": [
+            {
+              "name": "mobile",
+              "width": 400,
+              "height": 600
+            },
+            {
+              "name": "desktop",
+              "width": 600,
+              "height": 900
+            }
+          ]
+        }
+      },
+      "about_left_image_large": {
+        "type": "Image",
+        "config": {
+          "label": "About Left Image Large",
+          "constraint": {},
+          "thumbnails": [
+            {
+              "name": "mobile",
+              "width": 800,
+              "height": 600
+            },
+            {
+              "name": "desktop",
+              "width": 1200,
+              "height": 900
+            }
+          ]
+        }
+      },
+      "about_right_heading": {
+        "type": "Text",
+        "config": {
+          "label": "About Right Heading",
+          "placeholder": "results in some of the world’s most competitive markets"
+        }
+      },
+      "about_right_paragraph": {
+        "type": "StructuredText",
+        "config": {
+          "label": "About Right Paragraph",
+          "placeholder": "Natale’s early successes in developing and working with luxury brands in NYC...",
+          "allowTargetBlank": false,
+          "multi": "paragraph"
+        }
+      },
+      "belief_title": {
+        "type": "Text",
+        "config": {
+          "label": "Belief Title",
+          "placeholder": "Belief"
+        }
+      },
+      "belief_intro_paragraph": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Belief Intro Paragraph",
+          "placeholder": "What makes Smarthinking Inc. different is the synergistic blend of skills...",
+          "allowTargetBlank": false,
+          "multi": "paragraph"
+        }
+      },
+      "belief_subheading": {
+        "type": "Text",
+        "config": {
+          "label": "Belief Subheading",
+          "placeholder": "A successful brand integrates"
+        }
+      },
+      "belief_circle_words": {
+        "type": "Group",
+        "config": {
+          "label": "Belief Circle Words",
+          "repeat": true,
+          "fields": {
+            "word": {
+              "type": "Text",
+              "config": {
+                "label": "Word",
+                "placeholder": "Images"
+              }
+            }
+          }
+        }
+      },
+      "belief_slider_images": {
+        "type": "Group",
+        "config": {
+          "label": "Belief Slider Images",
+          "repeat": true,
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": [
+                  {
+                    "name": "mobile",
+                    "width": 768,
+                    "height": 512
+                  },
+                  {
+                    "name": "desktop",
+                    "width": 1440,
+                    "height": 960
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "belief_bottom_paragraph": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Belief Bottom Paragraph",
+          "placeholder": "It is the consistent ability to tell a compelling story...",
+          "allowTargetBlank": false,
+          "multi": "paragraph"
+        }
+      },
+      "manifesto_title": {
+        "type": "Text",
+        "config": {
+          "label": "Manifesto Title",
+          "placeholder": "Our Manifesto"
+        }
+      },
+      "manifesto_items": {
+        "type": "Group",
+        "config": {
+          "label": "Manifesto Items",
+          "repeat": true,
+          "fields": {
+            "label": {
+              "type": "Text",
+              "config": {
+                "label": "Item Label",
+                "placeholder": "Everything Communicates. Everything either strengthens or weakens your brand..."
+              }
+            }
+          }
+        }
+      },
+      "testimonials_section_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Testimonials Section Title",
+          "placeholder": "**Word** On The Street",
+          "allowTargetBlank": false,
+          "single": "strong,paragraph"
+        }
+      },
+      "testimonials": {
+        "type": "Group",
+        "config": {
+          "label": "Testimonials",
+          "repeat": true,
+          "fields": {
+            "quote": {
+              "type": "Text",
+              "config": {
+                "label": "Testimonial Quote",
+                "placeholder": "Their ability to understand complex requirements...."
+              }
+            },
+            "author_name": {
+              "type": "Text",
+              "config": {
+                "label": "Author Name",
+                "placeholder": "Damon Salerno"
+              }
+            },
+            "author_title": {
+              "type": "Text",
+              "config": {
+                "label": "Author Title",
+                "placeholder": "Mansion Global"
+              }
+            },
+            "author_company": {
+              "type": "Text",
+              "config": {
+                "label": "Author Company",
+                "placeholder": "The Wall Street Journal"
+              }
+            }
+          }
+        }
+      },
+      "client_logos": {
+        "type": "Group",
+        "config": {
+          "label": "Client Logos",
+          "repeat": true,
+          "fields": {
+            "client_logo": {
+              "type": "Image",
+              "config": {
+                "label": "Client Logo",
+                "constraint": {},
+                "thumbnails": [
+                  {
+                    "name": "mobile",
+                    "width": 200,
+                    "height": 100
+                  },
+                  {
+                    "name": "desktop",
+                    "width": 300,
+                    "height": 150
+                  }
+                ]
+              }
+            },
+            "client_name": {
+              "type": "Text",
+              "config": {
+                "label": "Client Name",
+                "placeholder": "Client Name"
+              }
+            }
+          }
+        }
+      },
       "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
         "config": {
           "choices": {}
-        },
-        "fieldset": "Slice Zone",
-        "type": "Slices"
+        }
       }
     },
     "SEO & Metadata": {
@@ -38,8 +342,5 @@
         "type": "Image"
       }
     }
-  },
-  "label": "About",
-  "repeatable": false,
-  "status": true
+  }
 }

@@ -41,7 +41,7 @@ const routes: Route[] = [
   },
   {
     type: "works",
-    path: "/works",
+    path: "/work",
   },
   {
     type: "work",

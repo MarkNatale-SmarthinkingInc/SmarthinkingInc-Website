@@ -1,0 +1,27 @@
+{
+  "id": "work_detail_image_full_block",
+  "type": "SharedSlice",
+  "name": "WorkDetailImageFullBlock",
+  "description": "WorkDetailImageFullBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

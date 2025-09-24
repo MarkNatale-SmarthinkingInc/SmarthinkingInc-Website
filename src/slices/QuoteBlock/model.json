@@ -1,0 +1,33 @@
+{
+  "id": "quote_block",
+  "type": "SharedSlice",
+  "name": "QuoteBlock",
+  "description": "QuoteBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "quote": {
+          "type": "Text",
+          "config": {
+            "label": "Quote",
+            "placeholder": ""
+          }
+        },
+        "quote_author": {
+          "type": "Text",
+          "config": {
+            "label": "Quote Author",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
