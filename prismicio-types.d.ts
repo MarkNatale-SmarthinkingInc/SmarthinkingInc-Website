@@ -1643,6 +1643,31 @@ export type PodcastDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Service → Service Items*
+ */
+export interface ServiceDocumentDataServiceItemsItem {
+  /**
+   * Item Title field in *Service → Service Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Brand narrative
+   * - **API ID Path**: service.service_items[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Item Description field in *Service → Service Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Every great brand starts with a story—yours...
+   * - **API ID Path**: service.service_items[].description
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  description: prismic.KeyTextField;
+}
+
 type ServiceDocumentDataSlicesSlice = never;
 
 /**
@@ -1659,6 +1684,17 @@ interface ServiceDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
+
+  /**
+   * Hero Title field in *Service*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Where **Hospitality Brands** Are Born
+   * - **API ID Path**: service.hero_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  hero_title: prismic.RichTextField;
 
   /**
    * featured image field in *Service*
@@ -1703,6 +1739,52 @@ interface ServiceDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   digital_image: prismic.ImageField<never>;
+
+  /**
+   * Thinking Section Title field in *Service*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Our thinking
+   * - **API ID Path**: service.thinking_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  thinking_title: prismic.KeyTextField;
+
+  /**
+   * Thinking Description field in *Service*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: At a high level, Brand Strategy is a comprehensive concept...
+   * - **API ID Path**: service.thinking_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  thinking_description: prismic.RichTextField;
+
+  /**
+   * Service Items field in *Service*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.service_items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  service_items: prismic.GroupField<
+    Simplify<ServiceDocumentDataServiceItemsItem>
+  >;
+
+  /**
+   * Contact Text field in *Service*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Big ideas start with a conversation. Leave us your info and we'll follow up fast. In a rush? Call us now at 888.315.4056
+   * - **API ID Path**: service.contact_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  contact_text: prismic.KeyTextField;
 
   /**
    * Slice Zone field in *Service*
@@ -2445,6 +2527,50 @@ interface WorkDocumentData {
   testimonial_client_title: prismic.KeyTextField;
 
   /**
+   * CTA Background Image field in *Work*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.cta_background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  cta_background_image: prismic.ImageField<never>;
+
+  /**
+   * CTA Foreground Image field in *Work*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.cta_foreground_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  cta_foreground_image: prismic.ImageField<never>;
+
+  /**
+   * CTA Email field in *Work*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Thinkers@Smarthinkinginc.com
+   * - **API ID Path**: work.cta_email
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_email: prismic.KeyTextField;
+
+  /**
+   * CTA Phone field in *Work*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 888.315.4056
+   * - **API ID Path**: work.cta_phone
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_phone: prismic.KeyTextField;
+
+  /**
    * Slice Zone field in *Work*
    *
    * - **Field Type**: Slice Zone
@@ -3066,6 +3192,7 @@ declare module "@prismicio/client" {
       PodcastDocumentDataSlicesSlice,
       ServiceDocument,
       ServiceDocumentData,
+      ServiceDocumentDataServiceItemsItem,
       ServiceDocumentDataSlicesSlice,
       ServicesDocument,
       ServicesDocumentData,

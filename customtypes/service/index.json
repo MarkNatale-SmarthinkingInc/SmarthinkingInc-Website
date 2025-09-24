@@ -19,6 +19,15 @@
           "placeholder": ""
         }
       },
+      "hero_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Hero Title",
+          "placeholder": "Where **Hospitality Brands** Are Born",
+          "allowTargetBlank": false,
+          "single": "strong,paragraph,em"
+        }
+      },
       "featured_image": {
         "type": "Image",
         "config": {
@@ -49,6 +58,52 @@
           "label": "digital image",
           "constraint": {},
           "thumbnails": []
+        }
+      },
+      "thinking_title": {
+        "type": "Text",
+        "config": {
+          "label": "Thinking Section Title",
+          "placeholder": "Our thinking"
+        }
+      },
+      "thinking_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Thinking Description",
+          "placeholder": "At a high level, Brand Strategy is a comprehensive concept...",
+          "allowTargetBlank": false,
+          "multi": "paragraph,strong,em"
+        }
+      },
+      "service_items": {
+        "type": "Group",
+        "config": {
+          "label": "Service Items",
+          "repeat": true,
+          "fields": {
+            "title": {
+              "type": "Text",
+              "config": {
+                "label": "Item Title",
+                "placeholder": "Brand narrative"
+              }
+            },
+            "description": {
+              "type": "Text",
+              "config": {
+                "label": "Item Description",
+                "placeholder": "Every great brand starts with a story—yours..."
+              }
+            }
+          }
+        }
+      },
+      "contact_text": {
+        "type": "Text",
+        "config": {
+          "label": "Contact Text",
+          "placeholder": "Big ideas start with a conversation. Leave us your info and we'll follow up fast. In a rush? Call us now at 888.315.4056"
         }
       },
       "slices": {

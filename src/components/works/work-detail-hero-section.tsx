@@ -1,4 +1,4 @@
-import type { Content } from "@prismicio/client";
+import { type Content, isFilled } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 
@@ -9,6 +9,19 @@ interface WorkDetailHeroSectionProps {
 export default function WorkDetailHeroSection({
   work,
 }: WorkDetailHeroSectionProps) {
+  const attachedService = isFilled.contentRelationship(
+    work?.data?.attached_service
+  )
+    ? work?.data?.attached_service
+    : null;
+  const otherServicesFromSlices = work?.data.slices
+    .filter((slice) => slice.slice_type === "work_detail_category_block")
+    .map(
+      (slice) => (slice as Content.WorkDetailCategoryBlockSlice).primary.service
+    )
+    .filter(isFilled.contentRelationship)
+    .filter((service) => service.id !== attachedService?.id);
+
   return (
     <section id="hero">
       <figure className="parallax">
@@ -27,11 +40,10 @@ export default function WorkDetailHeroSection({
           </div>
           <div className="st-xl-4 st-xl-os-4 st-xs-10 st-xs-os-4 center">
             <ul className="caption">
-              <li>Brand Strategy</li>
-              <li>Strategic messaging</li>
-              <li>Photography</li>
-              <li>Graphic & Product design</li>
-              <li>Website & Interactive</li>
+              {attachedService && <li>{attachedService?.data?.title}</li>}
+              {otherServicesFromSlices?.map((service) => (
+                <li key={service.id}>{service.data?.title}</li>
+              ))}
             </ul>
           </div>
           <div className="st-xl-3 st-xl-os-4 right xs-hidden">

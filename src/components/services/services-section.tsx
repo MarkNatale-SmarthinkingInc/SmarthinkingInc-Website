@@ -1,5 +1,5 @@
 import { createClient } from "@/prismicio";
-import { PrismicNextImage } from "@prismicio/next";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 
 interface ServicesSectionProps {
   data: import("@prismicio/client").Content.ServicesDocumentData;
@@ -65,29 +65,23 @@ export default async function ServicesSection({ data }: ServicesSectionProps) {
             >
               {col.map((svc) => (
                 <article className="st-xs-18" key={svc.id}>
-                  <figure>
-                    {svc.data.featured_image?.url ? (
-                      <PrismicNextImage
-                        field={svc.data.featured_image}
-                        className="lazy"
-                      />
-                    ) : (
+                  <PrismicNextLink document={svc}>
+                    <figure>
+                      {svc.data.featured_image?.url ? (
+                        <PrismicNextImage
+                          field={svc.data.featured_image}
+                          className="lazy"
+                        />
+                      ) : null}
+                    </figure>
+                    <h3 className="f-24">
+                      {svc.data.title}
                       <img
-                        className="lazy"
-                        src="/img/services/service-img-1-prel.jpg"
-                        data-src="/img/services/service-img-1@1x.jpg"
-                        data-src-big="/img/services/service-img-1@2x.jpg"
-                        alt="Placeholder"
+                        src="/img/svg/icon-arrow-white.svg"
+                        alt="White arrow icon pointing to right"
                       />
-                    )}
-                  </figure>
-                  <h3 className="f-24">
-                    {svc.data.title || "Service"}
-                    <img
-                      src="/img/svg/icon-arrow-white.svg"
-                      alt="White arrow icon pointing to right"
-                    />
-                  </h3>
+                    </h3>
+                  </PrismicNextLink>
                 </article>
               ))}
             </div>
