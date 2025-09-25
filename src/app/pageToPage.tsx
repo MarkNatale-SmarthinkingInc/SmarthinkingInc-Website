@@ -132,6 +132,7 @@ const PageToPage = () => {
     }
     onEnter();
     const body = document.body;
+    window.scrollTo(0, 0);
 
     const tl = gsapClient.timeline();
     tl.to(body, {

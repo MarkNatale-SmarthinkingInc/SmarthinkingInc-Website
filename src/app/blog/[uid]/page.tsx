@@ -10,7 +10,9 @@ export async function generateMetadata({
   params: Promise<{ uid: string }>;
 }) {
   const { uid } = await params;
+
   const client = createClient();
+
   const blogPost = await client.getByUID("blog_post", uid);
   return generateMeta(blogPost.id);
 }
