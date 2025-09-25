@@ -24,22 +24,29 @@ export default async function HeroSectionPrismic({
         />
       </figure>
 
-      <div className="hero-captions grid-margin">
+      <div className="hero-captions grid-margin fadeUp">
         <div className="st-grid">
           <div className="st-xl-3 st-sm-5">
             {data.hero_left_caption && (
               <p className="caption xs-hidden">{data.hero_left_caption}</p>
             )}
           </div>
-          <div className="st-xl-4 st-xl-os-4 st-sm-6 st-sm-os-1 st-xs-8 st-xs-os-0 center">
+          <div className="st-xl-4 st-xl-os-4 st-sm-6 st-sm-os-1 st-xs-8 st-xs-os-0 center fadeUp">
             {data.hero_center_caption && (
               <p className="caption">{data.hero_center_caption}</p>
             )}
           </div>
-          <div className="st-xl-3 st-xl-os-4 st-sm-5 st-sm-os-1 st-xs-os-0 right">
-            <p className="caption xs-hidden">
-              &copy;<span className="year">{currentYear}</span>
-            </p>
+          <div className="st-xl-3 st-xl-os-4 st-sm-5 st-sm-os-1 st-xs-os-0 right fadeUp">
+            <a
+              href="/contact"
+              className="hero-contact caption st-grid grid-end"
+            >
+              <img
+                src="/img/svg/hero-cta-icon.svg"
+                alt="Red arrow pointing to right"
+              />
+              <span>Contact us</span>
+            </a>
           </div>
         </div>
       </div>
@@ -47,7 +54,9 @@ export default async function HeroSectionPrismic({
       <div className="hero-img-title grid-margin center">
         <i className="v-line"></i>
         {data.hero_main_title && (
-          <h1 className="f-120 upper">{data.hero_main_title}</h1>
+          <h1 className="f-120 upper hero-split chars">
+            {data.hero_main_title}
+          </h1>
         )}
       </div>
 

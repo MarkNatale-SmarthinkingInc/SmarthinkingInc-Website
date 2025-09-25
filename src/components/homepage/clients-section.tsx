@@ -25,12 +25,15 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
           key={`client-row-${rowIndex}-${row.length}`}
           className={`client-row st-grid sm-wrap grid-between ${
             rowIndex >= 2 ? "xs-hidden" : ""
-          }`}
+          }
+          ${rowIndex % 2 ? "client-row-right" : ""}
+          `}
         >
           {row.map((client, clientIndex) => {
             const globalIndex = rowIndex * clientsPerRow + clientIndex;
             return isFilled.image(client.client_logo) ? (
               <figure
+                className="st-xl-4"
                 key={`client-${globalIndex}-${client.client_name || `logo-${globalIndex}`}`}
               >
                 <PrismicNextImage field={client.client_logo} className="lazy" />

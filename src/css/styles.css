@@ -106,6 +106,9 @@
 .st-grid.grid-between {
   justify-content: space-between;
 }
+.st-grid.grid-end {
+  justify-content: flex-end;
+}
 .st-grid.grid-around {
   justify-content: space-around;
 }
@@ -1321,6 +1324,12 @@
     padding-top: 2.77776vw;
   }
 }
+.home #clients .client-row-right {
+  justify-content: flex-end;
+}
+.home #clients figure {
+  flex: 0 0 auto;
+}
 @media only screen and (max-width: 768px) {
   .home #clients .client-row:first-of-type {
     margin-bottom: 0;
@@ -1742,7 +1751,7 @@
 }
 .about .circle-slider {
   position: relative;
-  padding-top: 40vh;
+  padding-top: 30vh;
 }
 .about .circle-slider .arc-path {
   position: absolute;
@@ -1755,6 +1764,10 @@
   -webkit-transform: translateX(-20vw);
   -o-transform: translateX(-20vw);
   -ms-transform: translateX(-20vw);
+}
+.about .circle-slider .arc-path img {
+  width: 100%;
+  height: auto;
 }
 .about .circle-slider .arc-path text {
   font-family: 'Epica Pro';
@@ -1801,8 +1814,16 @@
   position: relative;
 }
 .about .slider-img figure {
-  clip-path: inset(0% round 10px);
   position: relative;
+  transform: scale(0);
+  -moz-transform: scale(0);
+  -webkit-transform: scale(0);
+  -o-transform: scale(0);
+  -ms-transform: scale(0);
+  transform-origin: bottom center;
+  -webkit-transform-origin: bottom center;
+  -o-transform-origin: bottom center;
+  -ms-transform-origin: bottom center;
 }
 .about .slider-img figure:not(:first-of-type) {
   position: absolute;
@@ -1810,6 +1831,13 @@
   height: auto;
   top: 0;
   left: 0;
+}
+.about .slider-img figure:first-of-type {
+  transform: scale(1);
+  -moz-transform: scale(1);
+  -webkit-transform: scale(1);
+  -o-transform: scale(1);
+  -ms-transform: scale(1);
 }
 .about .circle-copy {
   margin-top: 4.16664vw;
@@ -1842,6 +1870,7 @@
 }
 .about #manifesto .m-list-item span {
   opacity: 0.3;
+  display: inline-block;
 }
 @media only screen and (max-width: 768px) {
   .about #manifesto > .grid-margin {
@@ -2469,6 +2498,15 @@
   padding-top: 8.33328vw;
   height: auto;
   padding-bottom: 4.16664vw;
+}
+.work-detail #hero .link-back img {
+  display: inline-block;
+  margin-left: 0.5em;
+  transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
 }
 .work-detail #hero .hero-img-title {
   margin-top: 19.44432vw;
@@ -3247,7 +3285,7 @@
   padding-top: 8.33328vw;
 }
 .contact #hero h1 {
-  font-size: clamp(60px, 22.22vw, 400px);
+  font-size: clamp(60px, 21.5vw, 400px);
   line-height: 0.9;
 }
 @media only screen and (max-width: 768px) {
@@ -3334,6 +3372,32 @@ a {
 }
 .button-wrap {
   display: inline-block;
+}
+.hero-contact img {
+  margin-right: 0.5em;
+  width: 1em;
+}
+#hero a[href="contact.html"] img {
+  animation: rotate 5s infinite linear;
+  -moz-animation: rotate 5s infinite linear;
+  -webkit-animation: rotate 5s infinite linear;
+  -o-animation: rotate 5s infinite linear;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+  }
 }
 a.button {
   background-color: #721444;
@@ -3806,6 +3870,13 @@ input[type="submit"] {
   height: 60px;
   padding: 0 1.38888vw;
   cursor: pointer;
+  transition: background-color 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -webkit-transition: background-color 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -moz-transition: background-color 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition: background-color 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+input[type="submit"]:hover {
+  background-color: #99947E;
 }
 /*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 FOOTER////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -5,7 +5,7 @@ interface ContactHeroProps {
 export default function ContactHeroSection({ data }: ContactHeroProps) {
   return (
     <section id="hero" className="grid-margin">
-      <h1 className="outline upper">{data.hero_title}</h1>
+      <h1 className="outline upper hero-split chars">{data.hero_title}</h1>
     </section>
   );
 }

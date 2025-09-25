@@ -1,6 +1,10 @@
 export default function Header() {
   return (
-    <div id="menu" className="st-xl-7 st-lg-8 st-sm-10 st-xs-18">
+    <div
+      id="menu"
+      className="st-xl-7 st-lg-8 st-sm-10 st-xs-18"
+      style={{ opacity: 0 }}
+    >
       <div className="menu-bg"></div>
       <a href="/" id="logo" className="page-link">
         <img src="/img/svg/logo-white.svg" alt="Smarthinking Inc. white logo" />

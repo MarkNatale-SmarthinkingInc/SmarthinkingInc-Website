@@ -17,10 +17,10 @@ const WorkDetailImageHalfHalfBlock: FC<WorkDetailImageHalfHalfBlockProps> = ({
 }) => {
   return (
     <div className="img-box img-50 st-grid">
-      <figure className="st-xl-8">
+      <figure className="st-xl-8 img-anim">
         <PrismicNextImage field={slice.primary.left_image} className="lazy" />
       </figure>
-      <figure className="st-xl-8 self-start">
+      <figure className="st-xl-8 self-start img-anim">
         <PrismicNextImage field={slice.primary.right_image} className="lazy" />
       </figure>
     </div>

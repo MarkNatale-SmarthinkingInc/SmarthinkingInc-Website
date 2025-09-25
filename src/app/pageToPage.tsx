@@ -3,30 +3,56 @@
 import gsapClient from "@/lib/gsap";
 import { selectGetBreadcrumbs } from "@/stores/ui.selectors";
 import uiStore from "@/stores/ui.store";
-import { useLenis } from "lenis/react";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef } from "react";
 
 const PageToPage = () => {
-  const { setBreadcrumbs, setIsMenuOpen } = uiStore.getState();
+  const { setIsMenuOpen } = uiStore.getState();
 
   const router = useRouter();
   const pathname = usePathname();
   const breadcrumbs = uiStore(selectGetBreadcrumbs);
-  const lenis = useLenis();
   const isPageToPageTransitioningRef = useRef(false);
   const isPopStateRef = useRef(false);
   const targetUrlRef = useRef<string | null>(null);
+  const isFirstMountRef = useRef(true);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  useEffect(() => {
-    // when the route changes, reset the breadcrumbs
-    return () => {
-      setBreadcrumbs([]);
-    };
-  }, [pathname]);
+  // Helper function to determine page namespace from pathname
+  const getPageNamespace = useCallback((pathname: string): string => {
+    if (pathname === "/" || pathname === "") {
+      return "home";
+    }
+    if (pathname === "/about") {
+      return "about";
+    }
+    if (pathname === "/services") {
+      return "services";
+    }
+    if (pathname.startsWith("/services/")) {
+      return "service-detail";
+    }
+    if (pathname === "/work") {
+      return "work";
+    }
+    if (pathname.startsWith("/work/")) {
+      return "work-detail";
+    }
+    if (pathname === "/blog") {
+      return "blog";
+    }
+    if (pathname.startsWith("/blog/")) {
+      return "blog-detail";
+    }
+    if (pathname === "/contact") {
+      return "contact";
+    }
+    return "home"; // fallback
+  }, []);
 
   const onLeave = useCallback(() => {
+    // Dispatch afterLeave event
+    document.dispatchEvent(new CustomEvent("pageToPage:afterLeave"));
+
     if (!isPopStateRef.current) {
       // If it's a normal navigation, push the new state
       window.history.pushState(
@@ -40,54 +66,92 @@ const PageToPage = () => {
     }
     isPageToPageTransitioningRef.current = true;
     isPopStateRef.current = false;
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true, lock: true, force: true });
-      lenis.start();
-    }
-  }, [router, lenis]);
+  }, [router]);
 
   const onEnter = useCallback(() => {
     isPageToPageTransitioningRef.current = false;
-  }, []);
 
-  const leavePathAnimation = useCallback(
+    const pageNamespace = getPageNamespace(window.location.pathname);
+
+    // Dispatch beforeEnter event
+    document.dispatchEvent(
+      new CustomEvent("pageToPage:beforeEnter", {
+        detail: { pageNamespace },
+      })
+    );
+
+    // Dispatch afterEnter event
+    document.dispatchEvent(
+      new CustomEvent("pageToPage:afterEnter", {
+        detail: { pageNamespace },
+      })
+    );
+  }, [getPageNamespace]);
+
+  const onLeavePathAnimation = useCallback(
     (targetUrl: string) => {
       targetUrlRef.current = targetUrl;
 
-      lenis?.stop();
+      // Dispatch beforeLeave event
+      // document.dispatchEvent(new CustomEvent("pageToPage:beforeLeave"));
 
       const body = document.body;
-      gsapClient.to(body, {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power4.out",
+      const tl = gsapClient.timeline({
         onComplete: onLeave,
       });
+
+      tl.to("#menu", {
+        opacity: 0,
+        duration: 0.45,
+        yPercent: -30,
+        ease: "power2.in",
+      })
+        .to(
+          ".page-name",
+          {
+            opacity: 0,
+            yPercent: -50,
+            duration: 0.35,
+            ease: "power4.in",
+          },
+          "<+0.1"
+        )
+        .to(body, {
+          opacity: 0,
+          duration: 1,
+          ease: "power2",
+        });
     },
-    [onLeave, lenis]
+    [onLeave]
   );
 
-  const enterPathAnimation = useCallback(() => {
+  const onEnterPathAnimation = useCallback(() => {
+    if (isFirstMountRef.current) {
+      isFirstMountRef.current = false;
+      return;
+    }
     onEnter();
     const body = document.body;
-    // const appearFadeInAnims = document.querySelectorAll(
-    //   `[data-appear-anim=${animsLib.appearAnims.fadeIn}]`
-    // );
-    // const appearYSlideUpAnims = document.querySelectorAll(
-    //   `[data-appear-anim=${animsLib.appearAnims.ySlideUp}]`
-    // );
-    // const appearTitleAnims = document.querySelectorAll(
-    //   `[data-appear-anim=${animsLib.appearAnims.title}]`
-    // );
-    // const appearCopyAnims = document.querySelectorAll(
-    //   `[data-appear-anim=${animsLib.appearAnims.copy}]`
-    // );
 
-    gsapClient.to(body, {
+    const tl = gsapClient.timeline();
+    tl.to(body, {
       opacity: 1,
-      duration: 0.5,
-      ease: "power4.out",
-    });
+      duration: 1,
+      ease: "power2",
+    }).fromTo(
+      ".page-name",
+      {
+        opacity: 0,
+        yPercent: 50,
+      },
+      {
+        opacity: 1,
+        yPercent: 0,
+        duration: 0.75,
+        ease: "power4.inOut",
+      },
+      "<"
+    );
   }, [onEnter]);
 
   const playPageToPage = useCallback(
@@ -98,9 +162,9 @@ const PageToPage = () => {
       // if (!pageToPage || !pageToPageRef.current) return
 
       const link = e.currentTarget as HTMLAnchorElement;
-      leavePathAnimation(link.href);
+      onLeavePathAnimation(link.href);
     },
-    [leavePathAnimation, setIsMenuOpen]
+    [onLeavePathAnimation, setIsMenuOpen]
   );
 
   /**
@@ -109,9 +173,9 @@ const PageToPage = () => {
    */
   useEffect(() => {
     if (pathname) {
-      enterPathAnimation();
+      onEnterPathAnimation();
     }
-  }, [pathname, enterPathAnimation]);
+  }, [pathname, onEnterPathAnimation]);
   /**
    * Intercept all links and play the page to page animation
    */

@@ -11,10 +11,11 @@ import { generateMeta } from "@/utils/seo";
 export async function generateMetadata({
   params,
 }: {
-  params: { uid: string };
+  params: Promise<{ uid: string }>;
 }) {
+  const { uid } = await params;
   const client = createClient();
-  const service = await client.getByUID("service", params.uid);
+  const service = await client.getByUID("service", uid);
   return generateMeta(service.id);
 }
 
@@ -24,9 +25,14 @@ export async function generateStaticParams() {
   return services.map((service) => ({ uid: service.uid }));
 }
 
-const ServiceDetailPage = async ({ params }: { params: { uid: string } }) => {
+const ServiceDetailPage = async ({
+  params,
+}: {
+  params: Promise<{ uid: string }>;
+}) => {
+  const { uid } = await params;
   const client = createClient();
-  const service = await client.getByUID("service", params.uid);
+  const service = await client.getByUID("service", uid);
   return (
     <main
       id="smooth-wrapper"

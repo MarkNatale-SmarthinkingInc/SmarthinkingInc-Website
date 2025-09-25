@@ -112,7 +112,7 @@ export default function BlogSection({ data }: BlogSectionProps) {
         })}
       </div>
 
-      <div className="blog-wrap st-grid xl-bottom-5/">
+      <div className="blog-wrap st-grid xl-bottom-5 scroll-fix-wrap">
         <div className="st-xl-6 newsletter-box scroll-fix xs-hidden">
           <NewsletterBox
             variant="blog-listing"
@@ -120,7 +120,7 @@ export default function BlogSection({ data }: BlogSectionProps) {
             subtitle={data.newsletter_subtitle}
           />
         </div>
-        <div className="st-xl-12 st-xs-18 blog-listing xl-bottom-5 xs-bottom-10">
+        <div className="st-xl-12 st-xs-18 blog-listing xs-bottom-10">
           {blogPosts.map((post) => (
             <article className="st-grid" key={post.id}>
               <figure className="st-xl-6 st-xs-7 xs-self-start">

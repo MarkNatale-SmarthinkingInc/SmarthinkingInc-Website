@@ -23,9 +23,9 @@ export default function BeliefSection({ data }: BeliefSectionProps) {
           />
         </div>
         <div className="diamonds center xs-both-5">
-          <img src="../img/svg/icon-diamond-red.svg" alt="Red diamond icon" />
-          <img src="../img/svg/icon-diamond-red.svg" alt="Red diamond icon" />
-          <img src="../img/svg/icon-diamond-red.svg" alt="Red diamond icon" />
+          <img src="/img/svg/icon-diamond-red.svg" alt="Red diamond icon" />
+          <img src="/img/svg/icon-diamond-red.svg" alt="Red diamond icon" />
+          <img src="/img/svg/icon-diamond-red.svg" alt="Red diamond icon" />
         </div>
         <div className="st-xl-6 st-xl-os-6 st-xs-12 st-xs-os-3 center xl-bottom-1 xs-bottom-4">
           <h3 className="f-40 upper">{data.belief_subheading}</h3>
@@ -33,28 +33,7 @@ export default function BeliefSection({ data }: BeliefSectionProps) {
       </div>
       <div className="circle-slider xl-bottom-5 xs-bottom-10 grid-margin">
         <div className="arc-path">
-          <svg
-            viewBox="0 0 1906 1905"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-labelledby="beliefArcTitle"
-          >
-            <title id="beliefArcTitle">Belief circular slider arc path</title>
-            <defs>
-              <path
-                id="path"
-                d="M189.173 1209.28C47.4479 787.164 274.534 330.013 696.383 188.2C1118.23 46.3861 1575.1 273.613 1716.83 695.724C1858.55 1117.84 1631.47 1574.99 1209.62 1716.8C787.767 1858.61 330.899 1631.39 189.173 1209.28Z"
-                fill="none"
-              />
-            </defs>
-            <text wordSpacing="100">
-              <textPath className="circle-text" href="#path">
-                {data.belief_circle_words?.map((item) => (
-                  <tspan key={`belief-word-${item.word}`}>{item.word}</tspan>
-                ))}
-              </textPath>
-            </text>
-          </svg>
+          <img src="/img/about/circle-text.svg" alt="Circle text" />
         </div>
         <div className="st-xl-6 st-xl-os-6 st-sm-8 st-sm-os-5 st-xs-12 st-xs-os-3 slider-img">
           {data.belief_slider_images?.map((item) => (

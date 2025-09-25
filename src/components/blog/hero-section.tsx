@@ -11,7 +11,9 @@ export default function BlogHeroSection({ data }: BlogHeroProps) {
         <PrismicNextImage field={data.hero_image} />
       </figure>
       <div className="hero-img-title grid-margin center">
-        <h1 className="st-xl-10 st-xl-os-4 f-180 upper">{data.hero_title}</h1>
+        <h1 className="st-xl-10 st-xl-os-4 f-180 upper hero-split chars">
+          {data.hero_title}
+        </h1>
       </div>
     </section>
   );

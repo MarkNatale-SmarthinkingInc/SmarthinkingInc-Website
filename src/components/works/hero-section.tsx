@@ -14,11 +14,11 @@ export default async function HeroSection({ data }: HeroSectionProps) {
   return (
     <section id="hero" className="grid-margin xl-bottom-2 xs-bottom-3">
       <div className="st-grid">
-        <div className="st-xl-3">
+        <div className="st-xl-3 fadeUp">
           <p className="caption">({works.length})</p>
         </div>
         <div className="st-xl-12 center">
-          <h1 className="f-140 upper">
+          <h1 className="f-140 upper hero-split chars">
             <PrismicRichText
               field={data.hero_title}
               components={{
@@ -30,10 +30,14 @@ export default async function HeroSection({ data }: HeroSectionProps) {
             />
           </h1>
         </div>
-        <div className="st-xl-3 right xs-hidden">
-          <p className="caption">
-            &copy;<span className="year">{fullYear}</span>
-          </p>
+        <div className="st-xl-3 st-xl-os-4 st-sm-5 st-sm-os-1 st-xs-os-0 right fadeUp">
+          <a href="/contact" className="hero-contact caption st-grid grid-end">
+            <img
+              src="/img/svg/hero-cta-icon.svg"
+              alt="Red arrow pointing to right"
+            />
+            <span>Contact us</span>
+          </a>
         </div>
       </div>
     </section>

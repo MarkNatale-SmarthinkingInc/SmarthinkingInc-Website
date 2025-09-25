@@ -8,6 +8,8 @@ import { lazyLoad } from "/js/modules/lazy-load.js";
 // import { navigation } from "/js/modules/hamburger.js";
 // import { ddlMenu } from "/js/modules/ddl-menu.js";
 // import { textAnim } from "/js/modules/text-anim.js";
+import { heroAnimations } from "/js/modules/hero-animations.js";
+import { imgAnim } from "/js/modules/img-anim.js";
 import { menu } from "/js/modules/menu.js";
 import { piano } from "/js/modules/piano.js";
 import { services } from "/js/modules/services.js";
@@ -17,6 +19,9 @@ import { testimonials } from "/js/modules/testimonials.js";
 import { video } from "/js/modules/video.js";
 import { workHover } from "/js/modules/work-hover.js";
 import { work } from "/js/modules/work.js";
+import { scrollFix } from "/js/modules/scroll-fix.js";
+import { button } from "/js/modules/small-hovers.js";
+import { rotateSlider, manifesto } from "/js/modules/about.js";
 
 // import { cursor } from "/js/modules/custom-cursor.js";
 // import { buttons, circleButtons, marquise, accordion, directionSpin, inView, locationView, customSelect} from "/js/modules/small-animations.js";
@@ -29,6 +34,38 @@ import { work } from "/js/modules/work.js";
 // import { locationSlider } from "/js/modules/location-slider.js";
 // import { sharePin } from "/js/modules/blog.js";
 // import { lazyLoad } from "/js/modules/lazy-load.js";
+
+// Helper function to determine page namespace from pathname
+const getPageNamespace = (pathname) => {
+  if (pathname === "/" || pathname === "") {
+    return "home";
+  }
+  if (pathname === "/about") {
+    return "about";
+  }
+  if (pathname === "/services") {
+    return "services";
+  }
+  if (pathname.startsWith("/services/")) {
+    return "service-detail";
+  }
+  if (pathname === "/work") {
+    return "work";
+  }
+  if (pathname.startsWith("/work/")) {
+    return "work-detail";
+  }
+  if (pathname === "/blog") {
+    return "blog";
+  }
+  if (pathname.startsWith("/blog/")) {
+    return "blog-detail";
+  }
+  if (pathname === "/contact") {
+    return "contact";
+  }
+  return "home"; // fallback
+};
 
 window.onbeforeunload = () => {
   window.scrollTo(0, 0);
@@ -43,136 +80,22 @@ window.addEventListener("resize", () => {
   }, 200); // Adjust as needed
 });
 
-// HOME PAGE INTRO ANIMATION ===========================================================================
-const intro = () => {
-  if (
-    document.querySelector(".home") &&
-    document.querySelector("body").classList.contains("loading")
-  ) {
-    bodyTag.classList.remove("loading");
-  } else if (
-    document.querySelector(".home") &&
-    !document.querySelector("body").classList.contains("loading")
-  ) {
-  }
-};
-intro();
-
 // CHANGE NAVIGATION PAGE TITLE //////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// BARBA //////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Initialize Barba.js
-barba.init({
-  debug: true, // Enables detailed debugging logs
-  transitions: [
-    {
-      name: "fade",
-      leave(data) {
-        return gsap.to(data.current.container, {
-          opacity: 0,
-          duration: 1,
-          ease: "power2.in",
-        });
-      },
-
-      enter(data) {
-        return gsap.from(data.next.container, {
-          opacity: 0,
-          duration: 1,
-          ease: "power2",
-        });
-      },
-    },
-  ],
-});
-
-// Global Hook for beforeEnter
-barba.hooks.beforeLeave((data) => {
-  data.current.container.querySelectorAll(".string-canvas").forEach((w) => {
-    w.__stringsDestroy__ && w.__stringsDestroy__();
-  });
-  if (window.pianoDestroy) window.pianoDestroy(); // stops and cleans up
-  if (window.equalizerDestroy) window.equalizerDestroy();
-  gsap.to(".page-name", {
-    opacity: 0,
-    yPercent: -50,
-    duration: 0.35,
-    ease: "power4.in",
-  });
-});
-
-// Global Hook for afterLeave
-barba.hooks.afterLeave((data) => {
+// Custom event listener for afterLeave
+document.addEventListener("pageToPage:afterLeave", () => {
   ScrollTrigger.killAll();
   window.scrollTo(0, 1);
 });
 
-// Global Hook for beforeEnter
-barba.hooks.beforeEnter((data) => {
-  // GET NEW PAGE NAME
-  const thisPage = document.querySelector("#menu .page-name");
-  const pageId = data.next.namespace;
-  thisPage.innerHTML = pageId;
-
-  gsap.set(".page-name", {
-    opacity: 0,
-    yPercent: 50,
-    duration: 0.35,
-    ease: "power4.in",
-  });
-});
-
-// Global Hook for afterEnter
-barba.hooks.afterEnter((data) => {
-  // GET NEW PAGE NAME
-  const thisPage = document.querySelector("#menu .page-name");
-  const pageId = data.next.namespace;
-  thisPage.innerHTML = pageId;
-
-  gsap.to(".page-name", {
-    opacity: 1,
-    yPercent: 0,
-    duration: 0.75,
-    ease: "power4.inOut",
-  });
-
-  if (data.next.namespace === "home") {
-    console.log("after hook triggered for", data.next.namespace);
-    homeScripts();
-  } else if (data.next.namespace === "about") {
-    console.log("after hook triggered for", data.next.namespace);
-    aboutScripts();
-  } else if (data.next.namespace === "services") {
-    console.log("after hook triggered for", data.next.namespace);
-    serviceScripts();
-  } else if (data.next.namespace === "service-detail") {
-    console.log("after hook triggered for", data.next.namespace);
-    serviceDetailScripts();
-  } else if (data.next.namespace === "work") {
-    console.log("after hook triggered for", data.next.namespace);
-    workScripts();
-  } else if (data.next.namespace === "work-detail") {
-    console.log("after hook triggered for", data.next.namespace);
-    workDetailScripts();
-  } else if (data.next.namespace === "blog") {
-    console.log("after hook triggered for", data.next.namespace);
-    blogScripts();
-  } else if (data.next.namespace === "blog-detail") {
-    console.log("after hook triggered for", data.next.namespace);
-    blogDetailScripts();
-  } else if (data.next.namespace === "contact") {
-    console.log("after hook triggered for", data.next.namespace);
-    contactScripts();
-  }
-});
-barba.use(barbaPrefetch);
-
 menu();
+bodyTag.classList.remove("loading");
 const homeScripts = () => {
   setTimeout(() => {
     smoothScroll();
+    heroAnimations();
+    button();
     home();
     strings();
     workHover();
@@ -183,16 +106,21 @@ const homeScripts = () => {
 const aboutScripts = () => {
   setTimeout(() => {
     smoothScroll();
+    heroAnimations();
+    button();
     strings();
     piano();
+    rotateSlider();
+    manifesto();
     testimonials();
     lazyLoad();
   });
 };
 const serviceScripts = () => {
   setTimeout(() => {
-    bodyTag.classList.remove("loading");
     smoothScroll();
+    heroAnimations();
+    button();
     strings();
     services();
     testimonials();
@@ -202,6 +130,8 @@ const serviceScripts = () => {
 const serviceDetailScripts = () => {
   setTimeout(() => {
     smoothScroll();
+    heroAnimations();
+    button();
     strings();
     workHover();
     equalizer();
@@ -212,6 +142,7 @@ const serviceDetailScripts = () => {
 const workScripts = () => {
   setTimeout(() => {
     smoothScroll();
+    heroAnimations();
     work();
     strings();
     lazyLoad();
@@ -220,6 +151,7 @@ const workScripts = () => {
 const workDetailScripts = () => {
   setTimeout(() => {
     smoothScroll();
+    heroAnimations();
     strings();
     workHover();
     drag();
@@ -231,6 +163,9 @@ const workDetailScripts = () => {
 const blogScripts = () => {
   setTimeout(() => {
     smoothScroll();
+    heroAnimations();
+    scrollFix();
+    button();
     strings();
     piano();
     lazyLoad();
@@ -239,6 +174,9 @@ const blogScripts = () => {
 const blogDetailScripts = () => {
   setTimeout(() => {
     smoothScroll();
+    heroAnimations();
+    scrollFix();
+    button();
     strings();
     piano();
     lazyLoad();
@@ -247,7 +185,49 @@ const blogDetailScripts = () => {
 const contactScripts = () => {
   setTimeout(() => {
     smoothScroll();
+    heroAnimations();
+    button();
     strings();
     lazyLoad();
   });
 };
+
+function afterEnter(pageNamespace) {
+  console.log("after hook triggered for", pageNamespace);
+
+  let thisPage = document.querySelector("#menu .page-name");
+  let pageId = pageNamespace;
+  thisPage.innerHTML = pageId;
+
+  if (pageNamespace === "home") {
+    homeScripts();
+  } else if (pageNamespace === "about") {
+    aboutScripts();
+  } else if (pageNamespace === "services") {
+    serviceScripts();
+  } else if (pageNamespace === "service-detail") {
+    serviceDetailScripts();
+  } else if (pageNamespace === "work") {
+    workScripts();
+  } else if (pageNamespace === "work-detail") {
+    workDetailScripts();
+  } else if (pageNamespace === "blog") {
+    blogScripts();
+  } else if (pageNamespace === "blog-detail") {
+    blogDetailScripts();
+  } else if (pageNamespace === "contact") {
+    contactScripts();
+  }
+}
+
+// on event of type "pageToPage:afterEnter", it should retrigger the afterEnter function
+document.addEventListener("pageToPage:afterEnter", (event) => {
+  const pageNamespace = event.detail?.pageNamespace;
+  if (pageNamespace) {
+    afterEnter(pageNamespace);
+  }
+});
+
+// first time page load
+const pageNamespace = getPageNamespace(window.location.pathname);
+afterEnter(pageNamespace);

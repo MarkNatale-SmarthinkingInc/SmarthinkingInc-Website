@@ -22,12 +22,12 @@ export default async function PodcastSection({ data }: PodcastSectionProps) {
 
   return (
     <section id="podcast" className="piano-wrap xs-bottom-6">
-      <canvas id="piano"></canvas>
+      <canvas id="piano" className="fadeIn"></canvas>
       <div className="st-grid grid-margin xs-wrap">
-        <div className="st-xl-9 st-sm-6 st-xs-18 xs-both-2">
+        <div className="st-xl-9 st-sm-6 st-xs-18 xs-both-2 fadeUp">
           <h2 className="sup-title">{data.podcast_section_title}</h2>
         </div>
-        <div className="st-xl-9 st-sm-12 st-xs-18 podcast-list">
+        <div className="st-xl-9 st-sm-12 st-xs-18 podcast-list fadeUp">
           {podcasts.slice(0, 3).map((podcast) => (
             <article key={podcast.id}>
               <PrismicNextLink document={podcast} className="st-grid">

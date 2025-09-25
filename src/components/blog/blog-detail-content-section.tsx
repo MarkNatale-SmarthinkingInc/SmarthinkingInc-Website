@@ -22,7 +22,7 @@ export default async function BlogDetailContentSection({
   });
 
   return (
-    <section className="st-grid grid-margin xs-wrap">
+    <section className="st-grid grid-margin xs-wrap scroll-fix-wrap">
       <div className="st-xl-5 newsletter-wrap sm-hidden">
         <NewsletterBox
           variant="blog-detail"
@@ -44,23 +44,25 @@ export default async function BlogDetailContentSection({
       </div>
 
       <div className="st-xl-5 st-sm-6 st-xs-18 related-articles xs-top-6">
-        <h3 className="caption xs-top-3 xs-bottom-1">More reading</h3>
-        {otherBlogPosts.results.map((post) => (
-          <article key={post.id}>
-            <h3 className="f-20">
-              <PrismicNextLink document={post}>
-                {post.data.title}
-              </PrismicNextLink>
-            </h3>
-            <div className="tags">
-              {post.tags.map((tag) => (
-                <span key={tag} className="tag">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </article>
-        ))}
+        <div className="scroll-fix">
+          <h3 className="caption xs-top-3 xs-bottom-1">More reading</h3>
+          {otherBlogPosts.results.map((post) => (
+            <article key={post.id}>
+              <h3 className="f-20">
+                <PrismicNextLink document={post}>
+                  {post.data.title}
+                </PrismicNextLink>
+              </h3>
+              <div className="tags">
+                {post.tags.map((tag) => (
+                  <span key={tag} className="tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

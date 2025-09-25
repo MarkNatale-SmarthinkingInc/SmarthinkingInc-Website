@@ -16,7 +16,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
 
       <div className="hero-captions grid-margin">
         <div className="st-grid">
-          <div className="st-xl-3 st-sm-5">
+          <div className="st-xl-3 st-sm-5 fadeUp">
             {data.hero_left_caption && (
               <p className="caption xs-hidden">
                 <PrismicRichText
@@ -28,15 +28,22 @@ export default function HeroSection({ data }: HeroSectionProps) {
               </p>
             )}
           </div>
-          <div className="st-xl-4 st-xl-os-4 st-sm-6 st-sm-os-1 st-xs-8 st-xs-os-0 center">
+          <div className="st-xl-4 st-xl-os-4 st-sm-6 st-sm-os-1 st-xs-8 st-xs-os-0 center fadeUp">
             {data.hero_center_caption && (
               <p className="caption">{data.hero_center_caption}</p>
             )}
           </div>
-          <div className="st-xl-3 st-xl-os-4 st-sm-5 st-sm-os-1 st-xs-os-0 right">
-            <p className="caption xs-hidden">
-              &copy;<span className="year">{currentYear}</span>
-            </p>
+          <div className="st-xl-3 st-xl-os-4 st-sm-5 st-sm-os-1 st-xs-os-0 right fadeUp">
+            <a
+              href="/contact"
+              className="hero-contact caption st-grid grid-end"
+            >
+              <img
+                src="/img/svg/hero-cta-icon.svg"
+                alt="Red arrow pointing to right"
+              />
+              <span>Contact us</span>
+            </a>
           </div>
         </div>
       </div>
@@ -44,7 +51,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
       <div className="hero-img-title grid-margin center">
         <i className="v-line"></i>
         {data.hero_main_title && (
-          <h1 className="st-xl-16 st-xl-os-1 st-xs-18 st-xs-os-0 f-140 upper">
+          <h1 className="st-xl-16 st-xl-os-1 st-xs-18 st-xs-os-0 f-140 upper hero-split chars">
             {data.hero_main_title}
           </h1>
         )}

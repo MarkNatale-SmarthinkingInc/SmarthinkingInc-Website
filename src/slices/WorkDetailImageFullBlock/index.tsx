@@ -16,7 +16,7 @@ const WorkDetailImageFullBlock: FC<WorkDetailImageFullBlockProps> = ({
   slice,
 }) => {
   return (
-    <figure className="img-box img-100">
+    <figure className="img-box img-100 img-anim">
       <PrismicNextImage field={slice.primary.image} className="lazy" />
     </figure>
   );

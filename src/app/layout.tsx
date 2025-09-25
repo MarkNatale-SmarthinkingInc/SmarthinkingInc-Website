@@ -2,6 +2,7 @@ import Head from "@/app/head";
 
 import "@/css/normalize.css";
 import "@/css/styles.css";
+import "@/css/styles-overrides.css";
 
 import Globals from "@/app/globals";
 import PageToPage from "@/app/pageToPage";
@@ -32,7 +33,6 @@ export default async function RootLayout({
         <Navigation />
 
         {children}
-        {/* <VideoModal /> */}
 
         {/* Page Transition Libraries */}
         <Script src="/js/barba-prefetch.js" />

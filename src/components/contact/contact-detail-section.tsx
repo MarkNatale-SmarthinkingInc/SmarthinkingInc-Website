@@ -6,12 +6,12 @@ interface ContactDetailProps {
 
 export default function ContactDetailSection({ data }: ContactDetailProps) {
   return (
-    <section id="contact-detail" className="grid-margin st-grid xs-wrap">
+    <section id="contact-detail" className="grid-margin st-grid xs-wrap fadeIn">
       <div className="st-xl-10 st-sm-7 st-xs-18 st-grid sm-wrap ">
         <div className="st-xl-4 st-sm-7 st-xs-18 xs-both-1">
           <h2 className="f-60">{data.contact_title}</h2>
         </div>
-        <div className="st-xl-5 st-xl-os-1 st-sm-7 st-sm-os-0 st-xs-18">
+        <div className="st-xl-5 st-xl-os-1 st-sm-7 st-sm-os-0 st-xs-18 fadeUp">
           <figure className="sm-top-1">
             <PrismicNextImage field={data.contact_image} />
           </figure>
@@ -38,7 +38,7 @@ export default function ContactDetailSection({ data }: ContactDetailProps) {
         </div>
       </div>
       <div id="contact-form" className="st-xl-8 st-sm-11 st-xs-18 xs-top-3">
-        <form action="/action_page.php">
+        <form action="/action_page.php" className="fadeUp">
           <input
             className="text-box"
             type="text"

@@ -29,16 +29,13 @@ export default function WorkDetailHeroSection({
       </figure>
       <div className="hero-captions grid-margin">
         <div className="st-grid">
-          <div className="st-xl-3 xs-hidden">
+          <div className="st-xl-3 xs-hidden fadeUp link-back">
             <PrismicNextLink href="/work" className="caption">
-              <img
-                src="../img/svg/icon-semi-arrow-white.svg"
-                alt="Arrow icon"
-              />
               Back to projects
+              <img src="/img/svg/icon-semi-arrow-white.svg" alt="Arrow icon" />
             </PrismicNextLink>
           </div>
-          <div className="st-xl-4 st-xl-os-4 st-xs-10 st-xs-os-4 center">
+          <div className="st-xl-4 st-xl-os-4 st-xs-10 st-xs-os-4 center fadeUp">
             <ul className="caption">
               {attachedService && <li>{attachedService?.data?.title}</li>}
               {otherServicesFromSlices?.map((service) => (
@@ -46,17 +43,17 @@ export default function WorkDetailHeroSection({
               ))}
             </ul>
           </div>
-          <div className="st-xl-3 st-xl-os-4 right xs-hidden">
+          <div className="st-xl-3 st-xl-os-4 right xs-hidden fadeUp">
             <p className="caption">{work?.data?.location}</p>
           </div>
         </div>
       </div>
       <div className="hero-img-title grid-margin center">
         <i className="v-line"></i>
-        <h1 className="f-180 upper">{work?.data?.title}</h1>
+        <h1 className="f-180 upper hero-split chars">{work?.data?.title}</h1>
       </div>
       <div className="st-grid grid-margin hero-bottom">
-        <div className="st-xl-8 st-xl-os-5 st-xs-16 st-xs-os-1">
+        <div className="st-xl-8 st-xl-os-5 st-xs-16 st-xs-os-1 fadeUp">
           <div className="f-28 center">
             <PrismicRichText
               field={work?.data?.hero_description}
