@@ -2,6 +2,7 @@ import { createClient } from "@/prismicio";
 import { isFilled } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
+import FooterNewsletter from "./footer-newsletter";
 
 export default async function FooterSection() {
   const client = createClient();
@@ -80,18 +81,7 @@ export default async function FooterSection() {
         </div>
         <div className="st-xl-8 st-sm-18 st-grid sm-top-2 xs-top-5 xs-wrap">
           <div className="st-xs-18">
-            <form action="/action_page.php" id="newsletter">
-              <h3 className="caption">Sign up for updates</h3>
-              <div className="input-box">
-                <input
-                  type="email"
-                  placeholder="Your email..."
-                  name="mail"
-                  required
-                />
-                <input type="submit" value="Submit" />
-              </div>
-            </form>
+            <FooterNewsletter />
           </div>
           <div className="social self-end">
             <PrismicNextLink field={settings.data.instagram_link}>
