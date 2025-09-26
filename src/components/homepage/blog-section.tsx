@@ -104,6 +104,12 @@ export default async function BlogSection({ data }: BlogSectionProps) {
                   </h3>
                 )}
               </div>
+              <PrismicNextLink document={blogPost} className="blog-button">
+                <img
+                  src="/img/svg/icon-arrow-white.svg"
+                  alt="Arrow pointing to right"
+                />
+              </PrismicNextLink>
             </article>
           );
         })}

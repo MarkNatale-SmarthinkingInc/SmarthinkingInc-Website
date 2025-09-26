@@ -18,10 +18,10 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
         </p>
       )}
 
-      <div className="st-grid">
-        <div className="st-xl-9 st-xs-8 st-grid img-combo xs-wrap xs-self-start">
+      <div className="st-grid xs-wrap xs-reverse">
+        <div className="st-xl-9 st-xs-18 st-grid img-combo xs-wrap xs-self-start">
           {isFilled.image(data.services_image_small) && (
-            <figure className="st-xl-3 st-xs-8 xl-self-start">
+            <figure className="st-xl-3 st-xs-9 xl-self-start">
               <PrismicNextImage
                 field={data.services_image_small}
                 className="lazy"
@@ -29,7 +29,7 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
             </figure>
           )}
           {isFilled.image(data.services_image_large) && (
-            <figure className="st-xl-6 st-xs-8 xs-self-start">
+            <figure className="st-xl-6 st-xs-9 xs-self-start">
               <PrismicNextImage
                 field={data.services_image_large}
                 className="lazy"
@@ -37,11 +37,11 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
             </figure>
           )}
         </div>
-        <div className="st-xl-9 st-xs-10 st-grid grid-row grid-between">
+        <div className="st-xl-9 st-xs-18 st-grid grid-row grid-between">
           {data.services_outro_text && (
             <p className="f-60 CopyLight">{data.services_outro_text}</p>
           )}
-          <div className="st-xl-os-3 st-sm-os-0 sm-top-2">
+          <div className="st-xl-os-3 st-sm-os-0 sm-top-2 xs-top-4 xs-bottom-4">
             {data.featured_services && data.featured_services.length > 0 && (
               <ul className="f-20">
                 {data.featured_services.map((serviceItem, index) => {
@@ -56,7 +56,7 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
                   return (
                     <li key={`service-${index}-${serviceTitle}`}>
                       <PrismicNextLink field={service}>
-                        {serviceTitle}
+                        <span>{serviceTitle}</span>
                       </PrismicNextLink>
                     </li>
                   );

@@ -8,7 +8,7 @@ type BeliefSectionProps = {
 
 export default function BeliefSection({ data }: BeliefSectionProps) {
   return (
-    <section id="belief" className="xs-top-2">
+    <section id="belief">
       <div className="piano-wrap">
         <canvas id="piano"></canvas>
         <h2 className="outline outline-white work-title center">

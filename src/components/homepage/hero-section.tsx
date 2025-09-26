@@ -36,7 +36,7 @@ export default async function HeroSectionPrismic({
               <p className="caption">{data.hero_center_caption}</p>
             )}
           </div>
-          <div className="st-xl-3 st-xl-os-4 st-sm-5 st-sm-os-1 st-xs-os-0 right fadeUp">
+          <div className="st-xl-3 st-xl-os-4 st-sm-5 st-sm-os-1 st-xs-os-0 right fadeUp xs-hidden">
             <a
               href="/contact"
               className="hero-contact caption st-grid grid-end"
@@ -72,11 +72,14 @@ export default async function HeroSectionPrismic({
           </h2>
         </div>
 
-        <nav className="st-xl-3 st-xl-os-8 st-xs-4 st-xs-os-4 f-18 xs-hidden">
+        <nav className="st-xl-3 st-xl-os-8 st-xs-4 st-xs-os-4 f-18 xs-hidden nav-white">
           {navigation.data.links?.map((item, index) =>
             item.link && isFilled.link(item.link) ? (
               <span key={`nav-${index}-${item.link.text}`}>
-                <PrismicNextLink field={item.link}>
+                <PrismicNextLink
+                  field={item.link}
+                  className="text-link link-white"
+                >
                   {item.link.text}
                 </PrismicNextLink>
                 <br />

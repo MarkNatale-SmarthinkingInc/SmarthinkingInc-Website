@@ -48,7 +48,7 @@ export default function ServicesTestimonialsSection({
                   className={i === 0 ? "active" : undefined}
                   key={`t-item-${i + 1}`}
                 >
-                  <p className="f-32">{t?.quote}</p>
+                  <p className="f-32 split words">{t?.quote}</p>
                   <div className="author">
                     <div className="f-18 upper CopyBold">{t?.author_name}</div>
                     {t?.author_title && (

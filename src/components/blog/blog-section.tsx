@@ -107,6 +107,12 @@ export default function BlogSection({ data }: BlogSectionProps) {
                   {item.data.title}
                 </PrismicNextLink>
               </h3>
+              <PrismicNextLink field={item} className="blog-button">
+                <img
+                  src="/img/svg/icon-arrow-white.svg"
+                  alt="Arrow pointing to right"
+                />
+              </PrismicNextLink>
             </article>
           );
         })}
@@ -144,6 +150,12 @@ export default function BlogSection({ data }: BlogSectionProps) {
                     {post.data.title}
                   </PrismicNextLink>
                 </h2>
+                <PrismicNextLink document={post} className="blog-button">
+                  <img
+                    src="/img/svg/icon-arrow-white.svg"
+                    alt="Arrow pointing to right"
+                  />
+                </PrismicNextLink>
               </div>
             </article>
           ))}
@@ -157,46 +169,10 @@ export default function BlogSection({ data }: BlogSectionProps) {
             >
               <div className="main-bg"></div>
               <div className="icon">
-                <i>
-                  <svg
-                    width="26"
-                    height="22"
-                    viewBox="0 0 26 22"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-labelledby="loadMoreIcon1"
-                  >
-                    <title id="loadMoreIcon1">Load more icon</title>
-                    <path
-                      d="M21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21C13.1987 21 15.2316 20.2904 16.8824 19.0878"
-                      stroke="white"
-                      strokeWidth="2"
-                    />
-                    <path
-                      d="M20 16.3779C20 14.6592 19.2625 12.2388 16.8018 12.2388L16.8036 12.238C16.4385 12.2598 16 12.3445 16 12.3445L16 11C16 11 17.3116 10.9783 18.1753 10.9998L24.2284 10.9998C24.5896 10.9783 26 11 26 11L26 12.3445C26 12.3445 25.5421 12.2602 25.1793 12.2383L25.1804 12.2388C22.7214 12.2388 22 14.6594 22 16.378L20 16.3779Z"
-                      fill="white"
-                    />
-                  </svg>
-                  <svg
-                    width="26"
-                    height="22"
-                    viewBox="0 0 26 22"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-labelledby="loadMoreIcon2"
-                  >
-                    <title id="loadMoreIcon2">Load more icon</title>
-                    <path
-                      d="M21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21C13.1987 21 15.2316 20.2904 16.8824 19.0878"
-                      stroke="white"
-                      strokeWidth="2"
-                    />
-                    <path
-                      d="M20 16.3779C20 14.6592 19.2625 12.2388 16.8018 12.2388L16.8036 12.238C16.4385 12.2598 16 12.3445 16 12.3445L16 11C16 11 17.3116 10.9783 18.1753 10.9998L24.2284 10.9998C24.5896 10.9783 26 11 26 11L26 12.3445C26 12.3445 25.5421 12.2602 25.1793 12.2383L25.1804 12.2388C22.7214 12.2388 22 14.6594 22 16.378L20 16.3779Z"
-                      fill="white"
-                    />
-                  </svg>
-                </i>
+                <img
+                  src="/img/svg/icon-reload.svg"
+                  alt="White circular reload icon"
+                />
               </div>
               <div className="label-wrap">
                 <span>{isLoading ? "Loading..." : "Load More"}</span>

@@ -25,6 +25,9 @@ const WorkDetailSliderBlock: FC<WorkDetailSliderBlockProps> = ({ slice }) => {
           </figure>
         ))}
       </div>
+      <div id="drag-progress">
+        <div className="drag-inner"></div>
+      </div>
     </div>
   );
 };

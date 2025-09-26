@@ -6,7 +6,7 @@ interface WhySectionProps {
 
 export default function WhySection({ data }: WhySectionProps) {
   return (
-    <section id="why" className="xl-top-5 xs-top-10 BgDark White">
+    <section id="why" className="xl-top-5 xs-top-1 BgDark White">
       <div className="grid-margin">
         <div className="st-xl-14 st-xl-os-2 center">
           {data.why_section_title && (
@@ -27,7 +27,7 @@ export default function WhySection({ data }: WhySectionProps) {
             />
           </div>
           {data.why_description && (
-            <p className="f-60 CopyLight">{data.why_description}</p>
+            <p className="f-60 CopyLight split">{data.why_description}</p>
           )}
         </div>
       </div>

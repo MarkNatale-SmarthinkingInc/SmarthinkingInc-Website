@@ -1,11 +1,30 @@
 export function home() {
-  // TESTIMONIAL >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  // LOGOS SIDESCROLL ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  if (!isMobile()) {
+    let clientWrap = document.querySelector("#clients");
+    let clientRow = gsap.utils.toArray("#clients .client-row");
+    let width = clientRow[0].scrollWidth - window.innerWidth;
 
-  // ROTATE IMAGE ///////////////////////////////////////////////////////////
-  const rotateImg = document.querySelector("#testimonials .rotate-img ");
-  const rotateTl = gsap.timeline({
+    clientRow.forEach((cr) => {
+      let id = cr.dataset.direction;
+      gsap.to(cr, {
+        x: () => -width * id,
+        scrollTrigger: {
+          trigger: cr,
+          start: "top bottom",
+          endTrigger: clientWrap,
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    });
+  }
+
+  // TESTIMONIAL SLIDER ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  let rotateImg = document.querySelector("#testimonials .rotate-img ");
+  let rotateTl = gsap.timeline({
     repeat: -1,
     scrollTrigger: {
       trigger: "#testimonials",
@@ -159,4 +178,20 @@ export function home() {
   btnNext.addEventListener("click", () => showSlide(current + 1, "right"));
 
   updateButtons();
+
+  // WHY SECTION ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  let diamonds = gsap.utils.toArray(".diamonds img");
+  gsap.set(diamonds, { yPercent: 250, opacity: 0 });
+  gsap.to(diamonds, {
+    yPercent: 0,
+    opacity: 1,
+    stagger: {
+      amount: 0.25,
+    },
+    scrollTrigger: {
+      trigger: ".diamonds",
+      start: "top 95%",
+    },
+  });
 }

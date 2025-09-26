@@ -2,6 +2,7 @@ import { createClient } from "@/prismicio";
 import { isFilled } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
+import Link from "next/link";
 import FooterNewsletter from "./footer-newsletter";
 
 export default async function FooterSection() {
@@ -20,7 +21,7 @@ export default async function FooterSection() {
             {navigation.data.links?.map((item, index) =>
               item.link && isFilled.link(item.link) ? (
                 <li key={`nav-${index}-${item.link.text}`}>
-                  <PrismicNextLink field={item.link}>
+                  <PrismicNextLink field={item.link} className="text-link">
                     {item.link.text}
                   </PrismicNextLink>
                 </li>
@@ -34,7 +35,7 @@ export default async function FooterSection() {
             {services.map((service, index) =>
               service.data?.title ? (
                 <li key={`service-${index}-${service.data.title}`}>
-                  <PrismicNextLink document={service}>
+                  <PrismicNextLink document={service} className="text-link">
                     {service.data.title}
                   </PrismicNextLink>
                 </li>
@@ -48,14 +49,20 @@ export default async function FooterSection() {
             <div className="st-xl-4 st-sm-7">
               {footer.data.contact_email && (
                 <>
-                  <a href={`mailto:${footer.data.contact_email}`}>
+                  <a
+                    href={`mailto:${footer.data.contact_email}`}
+                    className="text-link"
+                  >
                     {footer.data.contact_email}
                   </a>
                   <br />
                 </>
               )}
               {footer.data.contact_phone && (
-                <a href={`tel:${footer.data.contact_phone.replace(/\D/g, "")}`}>
+                <a
+                  href={`tel:${footer.data.contact_phone.replace(/\D/g, "")}`}
+                  className="text-link"
+                >
                   {footer.data.contact_phone}
                 </a>
               )}
@@ -76,8 +83,12 @@ export default async function FooterSection() {
       <div className="footer-middle st-grid grid-margin sm-wrap sm-reverse">
         <div className="st-xl-10 st-sm-18 f-20 self-end sm-center sm-top-1">
           <span>©2025 Smarthinking Inc. All rights reserved</span>
-          <a href="/privacy">Terms of Service</a>
-          <a href="/privacy">Privacy Policy</a>
+          <Link href="/terms-of-service" className="text-link">
+            Terms of Service
+          </Link>
+          <Link href="/privacy-policy" className="text-link">
+            Privacy Policy
+          </Link>
         </div>
         <div className="st-xl-8 st-sm-18 st-grid sm-top-2 xs-top-5 xs-wrap">
           <div className="st-xs-18">

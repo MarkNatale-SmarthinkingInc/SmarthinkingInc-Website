@@ -1,37 +1,57 @@
 export function drag() {
-     gsap.registerPlugin(Draggable) 
-     let dragSlider = document.querySelector(".slider-inner")
-     let dragWrap = document.querySelector(".drag-slider")
-     let images = dragSlider.querySelectorAll("figure")
-     
-     const tracker = InertiaPlugin.track(dragSlider, "x")[0];
+  gsap.registerPlugin(Draggable);
+  let projectWrap = document.querySelector("#project-content");
+  let dragSlider = document.querySelector(".slider-inner");
+  let dragWrap = document.querySelector(".drag-slider");
+  let images = dragSlider.querySelectorAll("figure");
+  let dragProgress = document.querySelector(".drag-inner");
+  let sliderWidth = dragWrap.clientWidth - dragSlider.scrollWidth;
 
-
-     let pWidth
-     let totalWidth
-
-     let scrollWidth = function() {
-          totalWidth = 0
-          images.forEach(image => {
-               pWidth = image.offsetWidth
-               totalWidth += pWidth
-          })
-          return totalWidth
-     }
-     scrollWidth()
-
-     Draggable.create(dragSlider, {
-          type: "x",
-          bounds: {
-               minX: dragWrap.clientWidth - dragSlider.scrollWidth,
-               maxX: 0
-          },
-          onDrag() {
-               console.log(
-                     InertiaPlugin.getVelocity(this.target, "x")
-               )
-          },
-         
-          inertia: true
-     });
+  let scaleVal;
+  Draggable.create(dragSlider, {
+    type: "x",
+    inertia: true,
+    edgeResistance: 0.85,
+    throwResistance: 2000,
+    bounds: {
+      minX: sliderWidth,
+      maxX: 0,
+    },
+    onDrag() {
+      // console.log(
+      //       InertiaPlugin.getVelocity(this.target, "x")
+      // )
+      scaleVal = parseFloat(
+        ((100 / sliderWidth) *
+          (dragSlider.getBoundingClientRect().left - dragSlider.offsetLeft)) /
+          100
+      ).toFixed(2);
+      gsap.set(dragProgress, {
+        scaleX: scaleVal,
+      });
+      gsap.to(images, {
+        scale: 0.95,
+        duration: 0.5,
+        ease: "power4",
+      });
+    },
+    onThrowUpdate() {
+      scaleVal = parseFloat(
+        ((100 / sliderWidth) *
+          (dragSlider.getBoundingClientRect().left - dragSlider.offsetLeft)) /
+          100
+      ).toFixed(2);
+      gsap.set(dragProgress, {
+        scaleX: scaleVal,
+      });
+      // console.log(scaleVal)
+    },
+    onRelease() {
+      gsap.to(images, {
+        scale: 1,
+        duration: 0.5,
+        ease: "power4",
+      });
+    },
+  });
 }

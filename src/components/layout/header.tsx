@@ -11,7 +11,7 @@ export default function Header() {
         <span>Smarthinking Inc.</span>
       </a>
       <div className="hamburger-wrap st-grid grid-middle">
-        <span className="page-name caption White">Home</span>
+        <span className="page-name caption White"></span>
         <div id="hamburger">
           <img src="/img/svg/icon-plus.svg" alt="white plus icon" />
         </div>

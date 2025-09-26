@@ -36,7 +36,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
           <div className="st-xl-3 st-xl-os-4 st-sm-5 st-sm-os-1 st-xs-os-0 right fadeUp">
             <a
               href="/contact"
-              className="hero-contact caption st-grid grid-end"
+              className="hero-contact caption st-grid grid-end xs-hidden"
             >
               <img
                 src="/img/svg/hero-cta-icon.svg"

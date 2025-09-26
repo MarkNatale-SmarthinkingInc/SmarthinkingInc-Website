@@ -20,8 +20,10 @@ import { video } from "/js/modules/video.js";
 import { workHover } from "/js/modules/work-hover.js";
 import { work } from "/js/modules/work.js";
 import { scrollFix } from "/js/modules/scroll-fix.js";
-import { button } from "/js/modules/small-hovers.js";
+import { button, serviceStack } from "/js/modules/small-hovers.js";
 import { rotateSlider, manifesto } from "/js/modules/about.js";
+import { textAnim } from "/js/modules/text-anim.js";
+import { error } from "/js/modules/error.js";
 
 // import { cursor } from "/js/modules/custom-cursor.js";
 // import { buttons, circleButtons, marquise, accordion, directionSpin, inView, locationView, customSelect} from "/js/modules/small-animations.js";
@@ -64,7 +66,10 @@ const getPageNamespace = (pathname) => {
   if (pathname === "/contact") {
     return "contact";
   }
-  return "home"; // fallback
+  if (pathname === "/terms-of-service" || pathname === "/privacy-policy") {
+    return "legal";
+  }
+  return "error";
 };
 
 window.onbeforeunload = () => {
@@ -86,7 +91,10 @@ window.addEventListener("resize", () => {
 // Custom event listener for afterLeave
 document.addEventListener("pageToPage:afterLeave", () => {
   ScrollTrigger.killAll();
-  window.scrollTo(0, 1);
+  if (!isMobile()) {
+    smoother.kill();
+  }
+  window.scrollTo(0, 0);
 });
 
 menu();
@@ -96,6 +104,7 @@ const homeScripts = () => {
     smoothScroll();
     heroAnimations();
     button();
+    textAnim();
     home();
     strings();
     workHover();
@@ -110,6 +119,7 @@ const aboutScripts = () => {
     button();
     strings();
     piano();
+    textAnim();
     rotateSlider();
     manifesto();
     testimonials();
@@ -121,6 +131,8 @@ const serviceScripts = () => {
     smoothScroll();
     heroAnimations();
     button();
+    textAnim();
+    imgAnim();
     strings();
     services();
     testimonials();
@@ -131,6 +143,7 @@ const serviceDetailScripts = () => {
   setTimeout(() => {
     smoothScroll();
     heroAnimations();
+    serviceStack();
     button();
     strings();
     workHover();
@@ -153,7 +166,9 @@ const workDetailScripts = () => {
     smoothScroll();
     heroAnimations();
     strings();
+    textAnim();
     workHover();
+    button();
     drag();
     equalizer();
     lazyLoad();
@@ -192,12 +207,33 @@ const contactScripts = () => {
   });
 };
 
+let legalScripts = () => {
+  setTimeout(function () {
+    smoothScroll();
+    heroAnimations();
+    strings();
+    scrollFix();
+  });
+};
+let errorScripts = () => {
+  setTimeout(function () {
+    smoothScroll();
+    heroAnimations();
+    error();
+    piano();
+  });
+};
+
 function afterEnter(pageNamespace) {
   console.log("after hook triggered for", pageNamespace);
 
   let thisPage = document.querySelector("#menu .page-name");
   let pageId = pageNamespace;
   thisPage.innerHTML = pageId;
+
+  if (isMobile()) {
+    ScrollTrigger.refresh();
+  }
 
   if (pageNamespace === "home") {
     homeScripts();
@@ -217,6 +253,10 @@ function afterEnter(pageNamespace) {
     blogDetailScripts();
   } else if (pageNamespace === "contact") {
     contactScripts();
+  } else if (pageNamespace === "legal") {
+    legalScripts();
+  } else if (pageNamespace === "error") {
+    errorScripts();
   }
 }
 

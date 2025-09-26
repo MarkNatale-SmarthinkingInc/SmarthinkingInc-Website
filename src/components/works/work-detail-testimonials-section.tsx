@@ -17,7 +17,7 @@ export default function WorkDetailTestimonialsSection({
           </h2>
         </div>
         <div className="st-xl-8 st-xl-os-1 st-xs-16 xs-top-6">
-          <div className="f-32">
+          <div className="f-32 split words">
             <PrismicRichText
               field={work?.data?.testimonial_quote}
               components={{

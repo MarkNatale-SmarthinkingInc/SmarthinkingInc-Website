@@ -28,12 +28,13 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
           }
           ${rowIndex % 2 ? "client-row-right" : ""}
           `}
+          data-direction={rowIndex % 2 ? "-1" : "1"}
         >
           {row.map((client, clientIndex) => {
             const globalIndex = rowIndex * clientsPerRow + clientIndex;
             return isFilled.image(client.client_logo) ? (
               <figure
-                className="st-xl-4"
+                className="st-xl-4 st-xs-6"
                 key={`client-${globalIndex}-${client.client_name || `logo-${globalIndex}`}`}
               >
                 <PrismicNextImage field={client.client_logo} className="lazy" />

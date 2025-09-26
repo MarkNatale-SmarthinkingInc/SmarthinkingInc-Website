@@ -71,7 +71,7 @@ export default function WorkLinkSection({ data }: WorkLinkProps) {
           </div>
         </div>
         <div className="st-grid st-xl-os-3 xl-top-2 st-xs-os-1 xs-top-4">
-          <figure className="st-xl-3 st-xs-4 self-end">
+          <figure className="st-xl-3 st-xs-4 self-end img-anim">
             {data.work_link_image_left?.url ? (
               <PrismicNextImage
                 field={data.work_link_image_left}
@@ -79,7 +79,7 @@ export default function WorkLinkSection({ data }: WorkLinkProps) {
               />
             ) : null}
           </figure>
-          <figure className="st-xl-6 st-xs-8">
+          <figure className="st-xl-6 st-xs-8 img-anim">
             {data.work_link_image_center?.url ? (
               <PrismicNextImage
                 field={data.work_link_image_center}
@@ -87,7 +87,7 @@ export default function WorkLinkSection({ data }: WorkLinkProps) {
               />
             ) : null}
           </figure>
-          <figure className="st-xl-3 st-xs-4 self-end">
+          <figure className="st-xl-3 st-xs-4 self-end img-anim">
             {data.work_link_image_right?.url ? (
               <PrismicNextImage
                 field={data.work_link_image_right}

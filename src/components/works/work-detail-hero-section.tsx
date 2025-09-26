@@ -31,8 +31,8 @@ export default function WorkDetailHeroSection({
         <div className="st-grid">
           <div className="st-xl-3 xs-hidden fadeUp link-back">
             <PrismicNextLink href="/work" className="caption">
-              Back to projects
               <img src="/img/svg/icon-semi-arrow-white.svg" alt="Arrow icon" />
+              <span>Back to projects</span>
             </PrismicNextLink>
           </div>
           <div className="st-xl-4 st-xl-os-4 st-xs-10 st-xs-os-4 center fadeUp">

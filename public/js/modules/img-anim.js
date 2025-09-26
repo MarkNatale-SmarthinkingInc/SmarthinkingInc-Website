@@ -1,43 +1,26 @@
 export function imgAnim() {
-      
-      let imgWrap = gsap.utils.toArray(".img-anim")
-      gsap.set(document.querySelectorAll(".img-anim img"), {yPercent: 50, scale: 1.2})
+  let imgWrap = gsap.utils.toArray(".img-anim");
+  gsap.set(document.querySelectorAll(".img-anim img"), {
+    yPercent: 50,
+    scale: 1.1,
+  });
 
-
-      // imgWrap.forEach(iw => {
-      //       let img = iw.querySelector("img")
-      //       let imgIn = gsap.timeline({
-      //             scrollTrigger: {
-      //                   trigger: iw,
-      //                   start: "top 90%",
-      //             }
-      //       })
-
-      //       imgIn.to(img, {
-      //             yPercent: 0,
-      //             duration: .75,
-      //             ease: "expo"
-      //       })
-
-      // })
-
-      ScrollTrigger.batch(imgWrap, {
-            start: "top 85%",
-            onEnter: (batch) => {
-                  const imgs = batch.flatMap(fig =>
-                        Array.from(fig.querySelectorAll(":scope img"))
-                  );
-                  gsap.to(imgs,{
-                        yPercent: 0, 
-                        scale: 1,
-                        duration:1, 
-                        ease: "power3",
-                        stagger: { 
-                              each: 0.1, 
-                              from: "start" 
-                        }
-                  });
-            }
-        });
-
+  ScrollTrigger.batch(imgWrap, {
+    start: "top 85%",
+    onEnter: (batch) => {
+      const imgs = batch.flatMap((fig) =>
+        Array.from(fig.querySelectorAll(":scope img"))
+      );
+      gsap.to(imgs, {
+        yPercent: 0,
+        scale: 1,
+        duration: 1,
+        ease: "power3",
+        stagger: {
+          each: 0.1,
+          from: "start",
+        },
+      });
+    },
+  });
 }

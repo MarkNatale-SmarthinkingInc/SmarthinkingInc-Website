@@ -19,7 +19,7 @@ const PageToPage = () => {
 
   // Helper function to determine page namespace from pathname
   const getPageNamespace = useCallback((pathname: string): string => {
-    if (pathname === "/" || pathname === "") {
+    if (pathname === "/") {
       return "home";
     }
     if (pathname === "/about") {
@@ -46,7 +46,10 @@ const PageToPage = () => {
     if (pathname === "/contact") {
       return "contact";
     }
-    return "home"; // fallback
+    if (pathname === "/terms-of-service" || pathname === "/privacy-policy") {
+      return "legal";
+    }
+    return "error";
   }, []);
 
   const onLeave = useCallback(() => {
@@ -102,25 +105,17 @@ const PageToPage = () => {
 
       tl.to("#menu", {
         opacity: 0,
-        duration: 0.45,
-        yPercent: -30,
+        duration: 1,
         ease: "power2.in",
-      })
-        .to(
-          ".page-name",
-          {
-            opacity: 0,
-            yPercent: -50,
-            duration: 0.35,
-            ease: "power4.in",
-          },
-          "<+0.1"
-        )
-        .to(body, {
+      }).to(
+        body,
+        {
           opacity: 0,
           duration: 1,
           ease: "power2",
-        });
+        },
+        "<"
+      );
     },
     [onLeave]
   );

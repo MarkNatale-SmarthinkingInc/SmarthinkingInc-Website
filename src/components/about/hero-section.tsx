@@ -31,7 +31,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
               />
             </p>
           </div>
-          <div className="st-xl-4 st-xl-os-4 st-sm-6 st-sm-os-1 st-xs-8 st-xs-os-0 center fadeUp">
+          <div className="st-xl-4 st-xl-os-4 st-sm-6 st-sm-os-1 st-xs-8 st-xs-os-0 center fadeUp xs-hidden">
             <p className="caption">{data.hero_center_caption}</p>
           </div>
           <div className="st-xl-3 st-xl-os-4 st-sm-5 st-sm-os-1 st-xs-os-0 right fadeUp">

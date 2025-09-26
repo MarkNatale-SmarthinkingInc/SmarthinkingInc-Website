@@ -1,4 +1,5 @@
 export function menu() {
+  // console.log("menu")
   let overlay = document.querySelector("#page-overlay"),
     menu = document.querySelector("#menu"),
     nav = document.querySelector("#nav"),
@@ -34,13 +35,19 @@ export function menu() {
     "<"
   );
   openNav.to(
-    hamburger,
+    menuLinks,
     {
-      backgroundColor: "#807B66",
-      duration: 0.75,
-      ease: "power4.inOut",
+      y: "0%",
+      rotateX: 0,
+      opacity: 1,
+      duration: 0.7,
+      stagger: {
+        amount: 0.25,
+        from: "start",
+      },
+      ease: "power4",
     },
-    "<"
+    "-=.4"
   );
   openNav.to(
     social,
@@ -50,22 +57,7 @@ export function menu() {
       duration: 0.5,
       ease: "power4",
     },
-    "-=.4"
-  );
-  openNav.to(
-    menuLinks,
-    {
-      y: "0%",
-      rotateX: 0,
-      opacity: 1,
-      duration: 0.4,
-      stagger: {
-        amount: 0.1,
-        from: "end",
-      },
-      ease: "power4",
-    },
-    "<"
+    "-=.6"
   );
 
   // Close NAV ///////////////////////////////////////////////////////////
@@ -75,29 +67,11 @@ export function menu() {
     ease: "power4.inOut",
   });
   closeNav.to(
-    overlay,
-    {
-      opacity: 0,
-      duration: 0.75,
-      ease: "power4.inOut",
-    },
-    "<"
-  );
-  closeNav.to(
-    hamburger,
-    {
-      backgroundColor: "#99947E",
-      duration: 0.75,
-      ease: "power4.inOut",
-    },
-    "<"
-  );
-  closeNav.to(
     social,
     {
       opacity: 0,
-      duration: 0.2,
-      ease: "power4.in",
+      duration: 0.25,
+      ease: "power4",
     },
     "<"
   );
@@ -105,8 +79,17 @@ export function menu() {
     menuLinks,
     {
       opacity: 0,
-      duration: 0.2,
-      ease: "power4.in",
+      duration: 0.25,
+      ease: "power4",
+    },
+    "<"
+  );
+  closeNav.to(
+    overlay,
+    {
+      opacity: 0,
+      duration: 0.75,
+      ease: "power4.inOut",
       onComplete: () => {
         if (!isMobile()) {
           smoother.paused(false);
@@ -147,5 +130,11 @@ export function menu() {
       nav.classList.remove("active");
       closeNav.restart();
     });
+  });
+  document.querySelector("#logo").addEventListener("click", function () {
+    hamburgerWrap.classList.remove("opened");
+    menu.classList.remove("active");
+    nav.classList.remove("active");
+    closeNav.restart();
   });
 }

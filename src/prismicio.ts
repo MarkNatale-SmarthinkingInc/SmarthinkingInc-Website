@@ -32,6 +32,11 @@ const routes: Route[] = [
     path: "/services/:uid",
   },
   {
+    type: "privacy_policy",
+    path: "/privacy-policy",
+  },
+  { type: "terms_of_service", path: "/terms-of-service" },
+  {
     type: "blog_post",
     path: "/blog/:uid",
   },

@@ -17,7 +17,7 @@ export default async function WorkSection() {
     <section id="work" className="grid-margin">
       {works.map((work, index) => (
         <article key={`work-${work.id}-${index}`}>
-          <PrismicNextLink document={work} className="st-grid">
+          <PrismicNextLink document={work} className="st-grid imgIn">
             <div className="st-xl-6 st-xs-8 imgIn">
               <figure>
                 <PrismicNextImage field={work.data.main_image} />

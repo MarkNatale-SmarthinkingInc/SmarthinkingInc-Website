@@ -3,22 +3,20 @@ export function heroAnimations() {
   let menu = document.querySelector("#menu");
   let line = document.querySelectorAll(".v-line");
   let heroImg = document.querySelectorAll(".parallax");
-  let heroSplit = new SplitText(".hero-split.chars", {
-    type: "lines,words, chars",
-  });
+  let heroSplit = new SplitText(".hero-split.chars", { type: "words, chars" });
   let tl = gsap.timeline();
 
   gsap.set(menu, { opacity: 0, yPercent: 50 });
   gsap.set(fadeUp, { opacity: 0, y: 20 });
   gsap.set(line, { scaleY: 0, transformOrigin: "bottom center" });
   gsap.set(heroImg, { opacity: 0, scale: 1.1 });
+  gsap.set("#smooth-wrapper", { opacity: 1 });
   gsap.set(heroSplit.chars, {
     transformOrigin: "0% 100%",
     yPercent: 100,
     scaleX: 0.25,
     opacity: 0,
   });
-  gsap.set("#smooth-wrapper", { opacity: 1 });
   if (
     document.querySelector(".home") ||
     document.querySelector(".services") ||
@@ -69,11 +67,6 @@ export function heroAnimations() {
           amount: 0.25,
         },
         ease: "power3",
-        onComplete: () => {
-          if (!isMobile()) {
-            smoother.paused(false);
-          }
-        },
       },
       "-=.8"
     );
@@ -84,6 +77,11 @@ export function heroAnimations() {
         yPercent: 0,
         duration: 0.75,
         ease: "power2",
+        onStart: () => {
+          if (!isMobile()) {
+            smoother.paused(false);
+          }
+        },
       },
       "-=1.1"
     );
@@ -93,7 +91,7 @@ export function heroAnimations() {
     let fadeIn = document.querySelector(".fadeIn");
     let imgIn = document.querySelectorAll(".imgIn");
     gsap.set(fadeIn, { opacity: 0 });
-    gsap.set(imgIn, { yPercent: 100 });
+    gsap.set(imgIn, { yPercent: 100, opacity: 0 });
     if (!isMobile()) {
       smoother.paused(true);
     }
@@ -135,16 +133,12 @@ export function heroAnimations() {
       {
         duration: 1,
         yPercent: 0,
+        opacity: 1,
         stagger: {
           from: "center",
           amount: 0.25,
         },
         ease: "power3",
-        onComplete: () => {
-          if (!isMobile()) {
-            smoother.paused(false);
-          }
-        },
       },
       "<"
     );
@@ -155,6 +149,11 @@ export function heroAnimations() {
         yPercent: 0,
         duration: 0.75,
         ease: "power2",
+        onStart: () => {
+          if (!isMobile()) {
+            smoother.paused(false);
+          }
+        },
       },
       "-=1"
     );
@@ -193,11 +192,6 @@ export function heroAnimations() {
         yPercent: 0,
         duration: 0.75,
         ease: "power2",
-        onComplete: () => {
-          if (!isMobile()) {
-            smoother.paused(false);
-          }
-        },
       },
       "-=1"
     );
@@ -212,6 +206,11 @@ export function heroAnimations() {
           amount: 0.4,
         },
         ease: "power3",
+        onStart: () => {
+          if (!isMobile()) {
+            smoother.paused(false);
+          }
+        },
       },
       "<"
     );
@@ -259,11 +258,6 @@ export function heroAnimations() {
         y: 0,
         opacity: 1,
         ease: "power4",
-        onComplete: () => {
-          if (!isMobile()) {
-            smoother.paused(false);
-          }
-        },
       },
       "-=.8"
     );
@@ -274,6 +268,11 @@ export function heroAnimations() {
         yPercent: 0,
         duration: 0.75,
         ease: "power2",
+        onStart: () => {
+          if (!isMobile()) {
+            smoother.paused(false);
+          }
+        },
       },
       "-=1"
     );
@@ -314,11 +313,6 @@ export function heroAnimations() {
         stagger: {
           amount: 0.35,
         },
-        onComplete: () => {
-          if (!isMobile()) {
-            smoother.paused(false);
-          }
-        },
       },
       "-=.8"
     );
@@ -329,6 +323,11 @@ export function heroAnimations() {
         yPercent: 0,
         duration: 0.75,
         ease: "power2",
+        onStart: () => {
+          if (!isMobile()) {
+            smoother.paused(false);
+          }
+        },
       },
       "-=1"
     );
@@ -369,11 +368,6 @@ export function heroAnimations() {
         stagger: {
           amount: 0.2,
         },
-        onComplete: () => {
-          if (!isMobile()) {
-            smoother.paused(false);
-          }
-        },
       },
       "-=.8"
     );
@@ -384,6 +378,39 @@ export function heroAnimations() {
         yPercent: 0,
         duration: 0.75,
         ease: "power2",
+        onStart: () => {
+          if (!isMobile()) {
+            smoother.paused(false);
+          }
+        },
+      },
+      "-=1"
+    );
+  }
+  if (document.querySelector(".error") || document.querySelector(".legal")) {
+    if (!isMobile()) {
+      smoother.paused(true);
+    }
+
+    tl.to(fadeUp, {
+      duration: 1,
+      y: 0,
+      opacity: 1,
+      ease: "power4",
+    });
+
+    tl.to(
+      menu,
+      {
+        opacity: 1,
+        yPercent: 0,
+        duration: 0.75,
+        ease: "power2",
+        onStart: () => {
+          if (!isMobile()) {
+            smoother.paused(false);
+          }
+        },
       },
       "-=1"
     );

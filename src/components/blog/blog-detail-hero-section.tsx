@@ -10,14 +10,14 @@ export default function BlogDetailHeroSection({
 }: BlogDetailHeroSectionProps) {
   return (
     <section id="hero">
-      <div className="hero-title grid-margin center st-xl-14 st-xl-os-2">
+      <div className="hero-title grid-margin center st-xl-14 st-xl-os-2 st-xs-18 st-xs-os-0">
         <PrismicNextLink href="/blog" className="caption fadeUp">
           Back to Blog
         </PrismicNextLink>
         <h1 className="f-80 hero-split chars">{blogPost?.data?.title}</h1>
       </div>
       <div className="piano-wrap fadeIn">
-        <canvas id="piano"></canvas>
+        <canvas id="piano" className="xs-hidden"></canvas>
         <div className="st-grid grid-margin">
           <div className="st-xl-5 st-sm-3 empty-left xs-hidden"></div>
           <div className="st-xl-8 st-sm-12 st-xs-18">
