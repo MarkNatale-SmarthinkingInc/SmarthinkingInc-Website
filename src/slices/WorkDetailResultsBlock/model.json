@@ -1,0 +1,58 @@
+{
+  "id": "work_detail_results_block",
+  "type": "SharedSlice",
+  "name": "WorkDetailResultsBlock",
+  "description": "WorkDetailResultsBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Content",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,list-item,o-list-item,hyperlink"
+          }
+        },
+        "results": {
+          "type": "Group",
+          "config": {
+            "label": "Results",
+            "repeat": true,
+            "fields": {
+              "number": {
+                "type": "Text",
+                "config": {
+                  "label": "Number",
+                  "placeholder": ""
+                }
+              },
+              "stat": {
+                "type": "Text",
+                "config": {
+                  "label": "Stat",
+                  "placeholder": ""
+                }
+              },
+              "explanation": {
+                "type": "Text",
+                "config": {
+                  "label": "Explanation",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

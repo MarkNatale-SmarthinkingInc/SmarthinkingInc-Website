@@ -181,6 +181,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "work_detail_results_block": {
+              "type": "SharedSlice"
+            },
             "work_detail_slider_block": {
               "type": "SharedSlice"
             },

@@ -18,5 +18,6 @@ export const components = {
   work_detail_image_half_half_block: dynamic(
     () => import("./WorkDetailImageHalfHalfBlock"),
   ),
+  work_detail_results_block: dynamic(() => import("./WorkDetailResultsBlock")),
   work_detail_slider_block: dynamic(() => import("./WorkDetailSliderBlock")),
 };

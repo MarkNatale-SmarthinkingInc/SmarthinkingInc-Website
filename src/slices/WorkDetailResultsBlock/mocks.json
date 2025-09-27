@@ -1,0 +1,54 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Exercitation amet amet sint veniam qui."
+						}
+					}
+				]
+			},
+			"results": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"number",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "home",
+									"type": "Text"
+								}
+							],
+							[
+								"stat",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "speech",
+									"type": "Text"
+								}
+							],
+							[
+								"explanation",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "bottom",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

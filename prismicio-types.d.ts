@@ -2484,6 +2484,7 @@ export type TermsOfServiceDocument<Lang extends string = string> =
   >;
 
 type WorkDocumentDataSlicesSlice =
+  | WorkDetailResultsBlockSlice
   | WorkDetailSliderBlockSlice
   | WorkDetailCategoryBlockSlice
   | WorkDetailImageHalfHalfBlockSlice
@@ -3229,6 +3230,98 @@ export type WorkDetailImageHalfHalfBlockSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *WorkDetailResultsBlock → Default → Primary → Results*
+ */
+export interface WorkDetailResultsBlockSliceDefaultPrimaryResultsItem {
+  /**
+   * Number field in *WorkDetailResultsBlock → Default → Primary → Results*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_results_block.default.primary.results[].number
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  number: prismic.KeyTextField;
+
+  /**
+   * Stat field in *WorkDetailResultsBlock → Default → Primary → Results*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_results_block.default.primary.results[].stat
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  stat: prismic.KeyTextField;
+
+  /**
+   * Explanation field in *WorkDetailResultsBlock → Default → Primary → Results*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_results_block.default.primary.results[].explanation
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  explanation: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *WorkDetailResultsBlock → Default → Primary*
+ */
+export interface WorkDetailResultsBlockSliceDefaultPrimary {
+  /**
+   * Content field in *WorkDetailResultsBlock → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_results_block.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * Results field in *WorkDetailResultsBlock → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_results_block.default.primary.results[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  results: prismic.GroupField<
+    Simplify<WorkDetailResultsBlockSliceDefaultPrimaryResultsItem>
+  >;
+}
+
+/**
+ * Default variation for WorkDetailResultsBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailResultsBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<WorkDetailResultsBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *WorkDetailResultsBlock*
+ */
+type WorkDetailResultsBlockSliceVariation = WorkDetailResultsBlockSliceDefault;
+
+/**
+ * WorkDetailResultsBlock Shared Slice
+ *
+ * - **API ID**: `work_detail_results_block`
+ * - **Description**: WorkDetailResultsBlock
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailResultsBlockSlice = prismic.SharedSlice<
+  "work_detail_results_block",
+  WorkDetailResultsBlockSliceVariation
+>;
+
+/**
  * Item in *WorkDetailSliderBlock → Default → Primary → Images*
  */
 export interface WorkDetailSliderBlockSliceDefaultPrimaryImagesItem {
@@ -3396,6 +3489,11 @@ declare module "@prismicio/client" {
       WorkDetailImageHalfHalfBlockSliceDefaultPrimary,
       WorkDetailImageHalfHalfBlockSliceVariation,
       WorkDetailImageHalfHalfBlockSliceDefault,
+      WorkDetailResultsBlockSlice,
+      WorkDetailResultsBlockSliceDefaultPrimaryResultsItem,
+      WorkDetailResultsBlockSliceDefaultPrimary,
+      WorkDetailResultsBlockSliceVariation,
+      WorkDetailResultsBlockSliceDefault,
       WorkDetailSliderBlockSlice,
       WorkDetailSliderBlockSliceDefaultPrimaryImagesItem,
       WorkDetailSliderBlockSliceDefaultPrimary,
