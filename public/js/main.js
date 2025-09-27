@@ -146,7 +146,6 @@ const serviceDetailScripts = () => {
     serviceStack();
     button();
     strings();
-    workHover();
     equalizer();
     stripeHover();
     lazyLoad();
@@ -167,6 +166,7 @@ const workDetailScripts = () => {
     heroAnimations();
     strings();
     textAnim();
+    imgAnim();
     workHover();
     button();
     drag();
@@ -228,7 +228,7 @@ function afterEnter(pageNamespace) {
   console.log("after hook triggered for", pageNamespace);
 
   let thisPage = document.querySelector("#menu .page-name");
-  let pageId = pageNamespace;
+  let pageId = pageNamespace.replace("-", " ");
   thisPage.innerHTML = pageId;
 
   if (isMobile()) {

@@ -1201,6 +1201,23 @@ interface HomepageDocumentData {
   >;
 
   /**
+   * Work CTA field in *Homepage*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage.work_cta
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  work_cta: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
    * Client Logos field in *Homepage*
    *
    * - **Field Type**: Group

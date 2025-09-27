@@ -69,7 +69,10 @@ export default function WorkSection({ data }: WorkSectionProps) {
         })}
         <div className="center">
           <div className="button-wrap xl-top-1">
-            <a href="/work" className="button button-dark">
+            <PrismicNextLink
+              field={data.work_cta}
+              className="button button-dark"
+            >
               <div className="main-bg"></div>
               <div className="icon">
                 <i>
@@ -112,10 +115,10 @@ export default function WorkSection({ data }: WorkSectionProps) {
                 </i>
               </div>
               <div className="label-wrap">
-                <span>View All Work</span>
-                <span>View All Work</span>
+                <span>Contact Us</span>
+                <span>Contact Us</span>
               </div>
-            </a>
+            </PrismicNextLink>
           </div>
         </div>
       </div>

@@ -4026,7 +4026,7 @@ a {
   -o-transform: translateX(-3px);
   -ms-transform: translateX(-3px);
 }
-#hero a[href="contact.html"] img {
+#hero a[href="/contact"] img {
   animation: rotate 5s infinite linear;
   -moz-animation: rotate 5s infinite linear;
   -webkit-animation: rotate 5s infinite linear;

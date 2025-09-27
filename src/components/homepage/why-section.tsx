@@ -27,7 +27,7 @@ export default function WhySection({ data }: WhySectionProps) {
             />
           </div>
           {data.why_description && (
-            <p className="f-60 CopyLight split">{data.why_description}</p>
+            <p className="f-60 CopyLight split words">{data.why_description}</p>
           )}
         </div>
       </div>

@@ -30,7 +30,7 @@ export default async function HeroSection({ data }: HeroSectionProps) {
             />
           </h1>
         </div>
-        <div className="st-xl-3 st-xl-os-4 st-sm-5 st-sm-os-1 st-xs-os-0 right fadeUp">
+        <div className="st-xl-3 right xs-hidden fadeUp">
           <a href="/contact" className="hero-contact caption st-grid grid-end">
             <img
               src="/img/svg/hero-cta-icon-dark.svg"

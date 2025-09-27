@@ -1,5 +1,5 @@
 import { createClient } from "@/prismicio";
-import { type Content, filter, isFilled } from "@prismicio/client";
+import { type Content, filter } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 
 interface WorkDetailRelatedWorkSectionProps {
@@ -9,21 +9,9 @@ interface WorkDetailRelatedWorkSectionProps {
 export default async function WorkDetailRelatedWorkSection({
   work,
 }: WorkDetailRelatedWorkSectionProps) {
-  const workService = isFilled.contentRelationship(work?.data.attached_service)
-    ? work?.data.attached_service
-    : null;
-
-  const workServiceTitle =
-    isFilled.contentRelationship(work?.data.attached_service) &&
-    workService?.data?.title;
   const client = createClient();
   const otherWorks = await client.getByType("work", {
-    filters: [
-      ...(workService?.id
-        ? [filter.at("my.work.attached_service", workService?.id)]
-        : []),
-      ...(work?.id ? [filter.not("document.id", work.id)] : []),
-    ],
+    filters: [...(work?.id ? [filter.not("document.id", work.id)] : [])],
     pageSize: 2,
     fetchLinks: [
       "work.title",
@@ -41,7 +29,7 @@ export default async function WorkDetailRelatedWorkSection({
     <section id="work" className="grid-margin xl-top-4 xs-top-10">
       <div className="st-xl-8 st-xl-os-5 st-sm-12 st-sm-os-3 center">
         <h2 className="f-100">
-          <span className="Brown">{workServiceTitle ?? "Other"}</span> Projects
+          <span className="Brown">More</span> Projects
         </h2>
       </div>
       <div className="work-listing xl-top-2">
