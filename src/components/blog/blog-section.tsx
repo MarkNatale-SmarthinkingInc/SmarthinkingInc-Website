@@ -101,7 +101,13 @@ export default function BlogSection({ data }: BlogSectionProps) {
                   />
                 </PrismicNextLink>
               </figure>
-              <div className="tags"></div>
+              <div className="tags" style={{ zIndex: 2, position: "relative" }}>
+                {item.tags.map((tag) => (
+                  <span key={tag} className="tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
               <h3 className="f-24">
                 <PrismicNextLink field={item}>
                   {item.data.title}
