@@ -1,4 +1,5 @@
 import BlogDetailContentSection from "@/components/blog/blog-detail-content-section";
+import BlogDetailCtaSection from "@/components/blog/blog-detail-cta-section";
 import BlogDetailHeroSection from "@/components/blog/blog-detail-hero-section";
 import FooterSection from "@/components/global/footer-section";
 import { createClient } from "@/prismicio";
@@ -40,6 +41,7 @@ const BlogDetailPage = async ({
       <div id="smooth-content" className="blog-detail" data-page="Blog">
         <BlogDetailHeroSection blogPost={blogPost} />
         <BlogDetailContentSection blogPost={blogPost} />
+        <BlogDetailCtaSection blogPost={blogPost} />
         <FooterSection />
       </div>
     </main>

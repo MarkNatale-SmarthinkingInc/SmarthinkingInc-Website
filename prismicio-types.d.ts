@@ -726,6 +726,28 @@ interface BlogPostDocumentData {
   introduction: prismic.RichTextField;
 
   /**
+   * CTA Title (empty = default) field in *Blog Post*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Want to connect with Smarthinking Inc.? Hit reply, and let's talk!
+   * - **API ID Path**: blog_post.cta_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  cta_title: prismic.RichTextField;
+
+  /**
+   * CTA Subtitle (empty = default) field in *Blog Post*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Call us now at
+   * - **API ID Path**: blog_post.cta_subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  cta_subtitle: prismic.RichTextField;
+
+  /**
    * Slice Zone field in *Blog Post*
    *
    * - **Field Type**: Slice Zone

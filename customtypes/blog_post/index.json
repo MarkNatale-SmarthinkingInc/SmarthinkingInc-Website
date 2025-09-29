@@ -58,6 +58,24 @@
           "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
         }
       },
+      "cta_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "CTA Title (empty = default)",
+          "placeholder": "Want to connect with Smarthinking Inc.? Hit reply, and let's talk!",
+          "allowTargetBlank": true,
+          "single": "paragraph,strong,em"
+        }
+      },
+      "cta_subtitle": {
+        "type": "StructuredText",
+        "config": {
+          "label": "CTA Subtitle (empty = default)",
+          "placeholder": "Call us now at",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em,hyperlink"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
