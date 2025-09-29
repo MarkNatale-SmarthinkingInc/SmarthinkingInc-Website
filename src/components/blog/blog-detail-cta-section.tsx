@@ -1,5 +1,5 @@
 import { createClient } from "@/prismicio";
-import type { Content } from "@prismicio/client";
+import { type Content, isFilled } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 
 type BlogDetailCtaSectionProps = {
@@ -18,7 +18,7 @@ export default async function BlogDetailCtaSection({
       <div className="grid-margin">
         <div className="st-xl-8 st-xl-os-5 st-sm-10 st-sm-os-4 st-xs-16 st-xs-os-1 center">
           <h2 className="f-40">
-            {blogPost.data.cta_title ? (
+            {isFilled.richText(blogPost.data.cta_title) ? (
               <PrismicRichText
                 field={blogPost.data.cta_title}
                 components={{
@@ -30,7 +30,7 @@ export default async function BlogDetailCtaSection({
             )}
           </h2>
           <div className="f-24 xs-both-2">
-            {blogPost.data.cta_subtitle ? (
+            {isFilled.richText(blogPost.data.cta_subtitle) ? (
               <PrismicRichText
                 field={blogPost.data.cta_subtitle}
                 components={{
