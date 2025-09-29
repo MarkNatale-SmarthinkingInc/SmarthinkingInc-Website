@@ -35,22 +35,22 @@ export default async function RootLayout({
         {children}
 
         {/* Page Transition Libraries */}
-        <Script src="/js/barba-prefetch.js" />
-        <Script src="/js/barba.js" />
+        <Script src="/js/barba-prefetch.js" strategy="beforeInteractive" />
+        <Script src="/js/barba.js" strategy="beforeInteractive" />
 
         {/* Utilities */}
-        <Script src="/js/fontfaceobserver.js" />
-        <Script src="/js/gsap.min.js" />
+        <Script src="/js/fontfaceobserver.js" strategy="beforeInteractive" />
+        <Script src="/js/gsap.min.js" strategy="beforeInteractive" />
 
         {/* GSAP Core & Plugins - Load before interactive */}
-        <Script src="/js/CustomEase.min.js" />
-        <Script src="/js/ScrollTrigger.min.js" />
-        <Script src="/js/ScrollSmoother.min.js" />
-        <Script src="/js/SplitText.min.js" />
-        <Script src="/js/Draggable.min.js" />
-        <Script src="/js/InertiaPlugin.min.js" />
+        <Script src="/js/CustomEase.min.js" strategy="beforeInteractive" />
+        <Script src="/js/ScrollTrigger.min.js" strategy="beforeInteractive" />
+        <Script src="/js/ScrollSmoother.min.js" strategy="beforeInteractive" />
+        <Script src="/js/SplitText.min.js" strategy="beforeInteractive" />
+        <Script src="/js/Draggable.min.js" strategy="beforeInteractive" />
+        <Script src="/js/InertiaPlugin.min.js" strategy="beforeInteractive" />
 
-        <Script src="/js/vars.js" />
+        <Script src="/js/vars.js" strategy="afterInteractive" />
 
         {/* Main Application Logic */}
         <Script
