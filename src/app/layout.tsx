@@ -53,7 +53,12 @@ export default async function RootLayout({
         <Script src="/js/vars.js" />
 
         {/* Main Application Logic */}
-        <Script src="/js/main.js" type="module" crossOrigin="anonymous" />
+        <Script
+          src="/js/main.js"
+          type="module"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </body>
       <Globals />
       <PageToPage />
