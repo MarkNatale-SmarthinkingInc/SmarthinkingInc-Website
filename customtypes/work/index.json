@@ -52,7 +52,7 @@
       "main_image": {
         "type": "Image",
         "config": {
-          "label": "main image",
+          "label": "work listing big image",
           "constraint": {},
           "thumbnails": []
         }
@@ -60,7 +60,7 @@
       "medium_image": {
         "type": "Image",
         "config": {
-          "label": "medium image",
+          "label": "work listing medium image",
           "constraint": {},
           "thumbnails": []
         }
@@ -68,7 +68,7 @@
       "small_image": {
         "type": "Image",
         "config": {
-          "label": "small image",
+          "label": "work listing small image",
           "constraint": {},
           "thumbnails": []
         }
@@ -112,15 +112,13 @@
           "thumbnails": []
         }
       },
-      "video_external_link": {
+      "video": {
         "type": "Link",
         "config": {
-          "label": "Video External Link",
+          "label": "video",
           "placeholder": "",
-          "select": null,
-          "allowTargetBlank": true,
-          "allowText": true,
-          "repeat": false
+          "select": "media",
+          "allowText": true
         }
       },
       "testimonial_quote": {

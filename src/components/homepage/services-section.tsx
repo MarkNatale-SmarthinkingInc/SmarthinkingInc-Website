@@ -1,3 +1,4 @@
+import { createClient } from "@/prismicio";
 import { type Content, isFilled } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 
@@ -5,7 +6,9 @@ interface ServicesSectionProps {
   data: Content.HomepageDocumentData;
 }
 
-export default function ServicesSection({ data }: ServicesSectionProps) {
+export default async function ServicesSection({ data }: ServicesSectionProps) {
+  const client = createClient();
+  const services = await client.getAllByType("service");
   return (
     <section id="services" className="grid-margin xl-top-5 xs-top-10">
       {data.services_section_title && (
@@ -42,21 +45,13 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
             <p className="f-60 CopyLight">{data.services_outro_text}</p>
           )}
           <div className="st-xl-os-3 st-sm-os-0 sm-top-2 xs-top-4 xs-bottom-4">
-            {data.featured_services && data.featured_services.length > 0 && (
+            {services && services.length > 0 && (
               <ul className="f-20">
-                {data.featured_services.map((serviceItem, index) => {
-                  const service = serviceItem.service;
-
-                  if (!isFilled.contentRelationship(service) || !service.data) {
-                    return null;
-                  }
-
-                  const serviceTitle = service.data.title;
-
+                {services.map((serviceItem, index) => {
                   return (
-                    <li key={`service-${index}-${serviceTitle}`}>
-                      <PrismicNextLink field={service}>
-                        <span>{serviceTitle}</span>
+                    <li key={`service-${index}-${serviceItem.data.title}`}>
+                      <PrismicNextLink document={serviceItem}>
+                        <span>{serviceItem.data.title}</span>
                       </PrismicNextLink>
                     </li>
                   );

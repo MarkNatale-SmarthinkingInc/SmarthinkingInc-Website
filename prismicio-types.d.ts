@@ -1101,23 +1101,6 @@ export interface HomepageDocumentDataTestimonialsItem {
 }
 
 /**
- * Item in *Homepage → Featured Services*
- */
-export interface HomepageDocumentDataFeaturedServicesItem {
-  /**
-   * Service field in *Homepage → Featured Services*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.featured_services[].service
-   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
-   */
-  service: ContentRelationshipFieldWithData<
-    [{ id: "service"; fields: ["title"] }]
-  >;
-}
-
-/**
  * Item in *Homepage → Featured Blog Posts*
  */
 export interface HomepageDocumentDataFeaturedBlogPostsItem {
@@ -1330,19 +1313,6 @@ interface HomepageDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   services_image_large: prismic.ImageField<"mobile" | "desktop">;
-
-  /**
-   * Featured Services field in *Homepage*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: homepage.featured_services[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-   */
-  featured_services: prismic.GroupField<
-    Simplify<HomepageDocumentDataFeaturedServicesItem>
-  >;
 
   /**
    * Why Section Title field in *Homepage*
@@ -1812,7 +1782,7 @@ interface ServiceDocumentData {
   hero_title: prismic.RichTextField;
 
   /**
-   * featured image field in *Service*
+   * services listing image field in *Service*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -2581,7 +2551,7 @@ interface WorkDocumentData {
   homepage_image_2: prismic.ImageField<never>;
 
   /**
-   * main image field in *Work*
+   * work listing big image field in *Work*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -2592,7 +2562,7 @@ interface WorkDocumentData {
   main_image: prismic.ImageField<never>;
 
   /**
-   * medium image field in *Work*
+   * work listing medium image field in *Work*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -2603,7 +2573,7 @@ interface WorkDocumentData {
   medium_image: prismic.ImageField<never>;
 
   /**
-   * small image field in *Work*
+   * work listing small image field in *Work*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -2669,21 +2639,15 @@ interface WorkDocumentData {
   video_poster: prismic.ImageField<never>;
 
   /**
-   * Video External Link field in *Work*
+   * video field in *Work*
    *
-   * - **Field Type**: Link
+   * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
-   * - **API ID Path**: work.video_external_link
+   * - **API ID Path**: work.video
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/link
+   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
    */
-  video_external_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
+  video: prismic.LinkToMediaField<prismic.FieldState, never>;
 
   /**
    * Testimonial Quote field in *Work*
@@ -3468,7 +3432,6 @@ declare module "@prismicio/client" {
       HomepageDocumentDataFeaturedProjectsItem,
       HomepageDocumentDataClientLogosItem,
       HomepageDocumentDataTestimonialsItem,
-      HomepageDocumentDataFeaturedServicesItem,
       HomepageDocumentDataFeaturedBlogPostsItem,
       NavigationDocument,
       NavigationDocumentData,

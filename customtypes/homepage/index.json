@@ -260,29 +260,6 @@
           ]
         }
       },
-      "featured_services": {
-        "type": "Group",
-        "config": {
-          "label": "Featured Services",
-          "repeat": true,
-          "fields": {
-            "service": {
-              "type": "Link",
-              "config": {
-                "label": "Service",
-                "select": "document",
-                "customtypes": [
-                  {
-                    "id": "service",
-                    "fields": ["title"]
-                  }
-                ],
-                "allowTargetBlank": false
-              }
-            }
-          }
-        }
-      },
       "why_section_title": {
         "type": "Text",
         "config": {

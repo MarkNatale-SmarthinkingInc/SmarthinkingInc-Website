@@ -80,6 +80,8 @@ export function services() {
   // CIRCLE ROTATE LOOP
   gsap.to(circleRotate, {
     rotateZ: 360,
+    yPercent: -50,
+    xPercent: -50,
     repeat: -1,
     duration: 16,
     ease: "linear",

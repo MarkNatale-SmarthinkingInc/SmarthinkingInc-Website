@@ -31,7 +31,7 @@
       "featured_image": {
         "type": "Image",
         "config": {
-          "label": "featured image",
+          "label": "services listing image",
           "constraint": {},
           "thumbnails": []
         }
