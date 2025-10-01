@@ -150,22 +150,6 @@
           "placeholder": "A successful brand integrates"
         }
       },
-      "belief_circle_words": {
-        "type": "Group",
-        "config": {
-          "label": "Belief Circle Words",
-          "repeat": true,
-          "fields": {
-            "word": {
-              "type": "Text",
-              "config": {
-                "label": "Word",
-                "placeholder": "Images"
-              }
-            }
-          }
-        }
-      },
       "belief_slider_images": {
         "type": "Group",
         "config": {

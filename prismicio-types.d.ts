@@ -70,21 +70,6 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 /**
- * Item in *About → Belief Circle Words*
- */
-export interface AboutDocumentDataBeliefCircleWordsItem {
-  /**
-   * Word field in *About → Belief Circle Words*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Images
-   * - **API ID Path**: about.belief_circle_words[].word
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  word: prismic.KeyTextField;
-}
-
-/**
  * Item in *About → Belief Slider Images*
  */
 export interface AboutDocumentDataBeliefSliderImagesItem {
@@ -343,19 +328,6 @@ interface AboutDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   belief_subheading: prismic.KeyTextField;
-
-  /**
-   * Belief Circle Words field in *About*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: about.belief_circle_words[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-   */
-  belief_circle_words: prismic.GroupField<
-    Simplify<AboutDocumentDataBeliefCircleWordsItem>
-  >;
 
   /**
    * Belief Slider Images field in *About*
@@ -3409,7 +3381,6 @@ declare module "@prismicio/client" {
     export type {
       AboutDocument,
       AboutDocumentData,
-      AboutDocumentDataBeliefCircleWordsItem,
       AboutDocumentDataBeliefSliderImagesItem,
       AboutDocumentDataManifestoItemsItem,
       AboutDocumentDataTestimonialsItem,

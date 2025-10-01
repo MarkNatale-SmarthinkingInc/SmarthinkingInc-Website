@@ -228,8 +228,10 @@ function afterEnter(pageNamespace) {
   console.log("after hook triggered for", pageNamespace);
 
   let thisPage = document.querySelector("#menu .page-name");
-  let pageId = pageNamespace.replace("-", " ");
-  thisPage.innerHTML = pageId;
+  const pathname = window.location.pathname;
+  let pageId = pathname.substring(pathname.lastIndexOf("/") + 1);
+  const name = pageId.replaceAll("-", " ");
+  thisPage.innerHTML = name;
 
   if (isMobile()) {
     ScrollTrigger.refresh();
