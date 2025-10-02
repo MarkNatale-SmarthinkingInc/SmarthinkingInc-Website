@@ -157,7 +157,7 @@
   width: calc((95.83334vw - ((18 - 1) * 1.38888vw)) / 18);
 }
 .st-xl-2 {
-  width: calc(calc((95.83334vw - ((18 - 1) * 1.38888vw)) / 18) * 2 + 1.38888vw);
+  width: calc(calc((95.83334vw - ((18 - 1) * 1.38888vw))styles.css / 18) * 2 + 1.38888vw);
 }
 .st-xl-3 {
   width: calc(calc((95.83334vw - ((18 - 1) * 1.38888vw)) / 18) * 3 + (1.38888vw * 2));
@@ -2106,12 +2106,6 @@
   top: 0;
   left: 0;
 }
-.services #hero .parallax {
-  background-color: #1A1417;
-}
-.services #hero .parallax img {
-  opacity: 0.65;
-}
 .services #hero .hero-captions {
   height: 100%;
   padding-top: 8.33328vw;
@@ -3664,6 +3658,30 @@
   line-height: 60px;
   width: 100%;
 }
+.contact #contact-form .success-message {
+  background-color: #fff;
+  border: 1px solid #1A1417;
+  padding: 2.77776vw;
+  color: #1A1417;
+}
+.contact #contact-form .success-message h3 {
+  font-size: clamp(26px, 2.777vw, 52px);
+  line-height: 1em;
+}
+.contact #contact-form .success-message p {
+  font-size: clamp(18px, 1.3888vw, 26px);
+  line-height: 1.4em;
+}
+.contact #contact-form .success-message button {
+  border: none;
+  background-color: #1A1417;
+  color: #fff;
+  line-height: 60px;
+  padding: 0 2.77776vw;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
+}
 .legal #legal-wrap {
   padding-top: 11.11104vw;
   margin-bottom: 16.66656vw;
@@ -4026,7 +4044,7 @@ a {
   -o-transform: translateX(-3px);
   -ms-transform: translateX(-3px);
 }
-#hero a[href="/contact"] img {
+#hero a[href="contact.html"] img {
   animation: rotate 5s infinite linear;
   -moz-animation: rotate 5s infinite linear;
   -webkit-animation: rotate 5s infinite linear;
@@ -4589,7 +4607,11 @@ video {
   border-radius: 5px;
 }
 #hero .parallax {
+  background-color: #1A1417;
   border-radius: 0px;
+}
+#hero .parallax img {
+  opacity: 0.75;
 }
 /*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 FORMS////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4810,6 +4832,19 @@ FOOTER//////////////////////////////////////////////////////////////////////////
 @media only screen and (max-width: 768px) {
   #footer h3.caption {
     margin: 1em 0 1.5em;
+  }
+}
+.newsletter-success {
+  color: #1A1417;
+  border: 1px solid #1A1417;
+  text-align: center;
+  line-height: 60px;
+  padding: 0 1.38888vw;
+}
+@media only screen and (max-width: 768px) {
+  .newsletter-success {
+    line-height: 60px;
+    padding: 0 2.77776vw;
   }
 }
 #newsletter .input-box {

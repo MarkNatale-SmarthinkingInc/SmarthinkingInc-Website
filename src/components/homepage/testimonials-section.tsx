@@ -31,7 +31,7 @@ export default function TestimonialsSection({
                 />
               </button>
             </div>
-            <figure className="st-xl-4 st-xl-os-1 st-sm-6 st-xs-8 t-image">
+            <figure className="st-xl-6 st-xl-os-1 st-sm-6 st-xs-8 t-image">
               {data.testimonials?.map((testimonial, index) =>
                 isFilled.image(testimonial.testimonial_image) ? (
                   <PrismicNextImage
