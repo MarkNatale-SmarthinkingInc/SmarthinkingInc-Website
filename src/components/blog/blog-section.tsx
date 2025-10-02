@@ -13,6 +13,9 @@ type BlogSectionProps = {
 
 export default function BlogSection({ data }: BlogSectionProps) {
   const [blogPosts, setBlogPosts] = useState<Content.BlogPostDocument[]>([]);
+  const [allBlogPosts, setAllBlogPosts] = useState<Content.BlogPostDocument[]>(
+    []
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -25,16 +28,57 @@ export default function BlogSection({ data }: BlogSectionProps) {
     .filter((post) => isFilled.contentRelationship(post) && post.data)
     .slice(0, 3);
 
-  const featuredPostIds = featuredPosts
-    .map((item) =>
-      isFilled.contentRelationship(item) && item.id ? item.id : null
-    )
+  // Combine featured posts with regular posts to fill up to 3
+  const displayedPosts: Array<
+    Content.BlogPostDocument | (typeof featuredPosts)[number]
+  > = [...featuredPosts];
+  const neededPosts = 3 - featuredPosts.length;
+
+  if (neededPosts > 0 && allBlogPosts.length > 0) {
+    const fillerPosts = allBlogPosts.slice(0, neededPosts);
+    displayedPosts.push(...fillerPosts);
+  }
+
+  // Exclude all displayed posts from the main listing
+  const displayedPostIds = displayedPosts
+    .map((item) => {
+      if ("id" in item && item.id) {
+        return item.id;
+      }
+      return null;
+    })
     .filter((item) => item !== null);
 
-  // Create individual filter.not() conditions for each featured post ID
-  const excludeFilters = featuredPostIds.map((id) =>
+  // Create individual filter.not() conditions for each displayed post ID
+  const excludeFilters = displayedPostIds.map((id) =>
     filter.not("document.id", id)
   );
+
+  // Initial fetch to get all blog posts for filling featured section
+  useEffect(() => {
+    const fetchAllPosts = async () => {
+      try {
+        const response = await client.getByType("blog_post", {
+          page: 1,
+          pageSize: 3,
+          orderings: [
+            { field: "document.first_publication_date", direction: "desc" },
+          ],
+          fetchLinks: [
+            "blog_post.title",
+            "blog_post.featured_image",
+            "blog_post.tags",
+            "blog_post.excerpt",
+          ],
+        });
+        setAllBlogPosts(response.results);
+      } catch (error) {
+        console.error("Error fetching all blog posts:", error);
+      }
+    };
+
+    fetchAllPosts();
+  }, [client]);
 
   const fetchBlogPosts = useCallback(
     async (page: number, append = false) => {
@@ -52,7 +96,7 @@ export default function BlogSection({ data }: BlogSectionProps) {
             "blog_post.tags",
             "blog_post.excerpt",
           ],
-          filters: excludeFilters,
+          filters: excludeFilters.length > 0 ? excludeFilters : undefined,
         });
 
         if (append) {
@@ -73,8 +117,10 @@ export default function BlogSection({ data }: BlogSectionProps) {
   );
 
   useEffect(() => {
-    fetchBlogPosts(1);
-  }, [fetchBlogPosts]);
+    if (displayedPostIds.length > 0) {
+      fetchBlogPosts(1);
+    }
+  }, [displayedPostIds.length, fetchBlogPosts]);
 
   const handleLoadMore = () => {
     if (!isLoading && hasMore) {
@@ -88,32 +134,74 @@ export default function BlogSection({ data }: BlogSectionProps) {
     <section id="blog" className="grid-margin">
       <h2 className="sup-title xs-both-2">{data.blog_section_title}</h2>
       <div className="blog-featured st-grid xl-top-1 xs-wrap">
-        {featuredPosts.map((item) => {
-          if (!isFilled.contentRelationship(item) || !item.data) return null;
+        {displayedPosts.map((item) => {
+          // Check if it's a content relationship or a full document
+          // Content relationships have a link_type property
+          if ("link_type" in item && isFilled.contentRelationship(item)) {
+            // Handle content relationship
+            if (!item.data) return null;
+
+            return (
+              <article className="st-xl-6 st-xs-18" key={item.id}>
+                <figure>
+                  <PrismicNextLink field={item}>
+                    <PrismicNextImage
+                      field={item.data.featured_image}
+                      className="lazy"
+                    />
+                  </PrismicNextLink>
+                </figure>
+                <div
+                  className="tags"
+                  style={{ zIndex: 2, position: "relative" }}
+                >
+                  {item.tags.map((tag: string) => (
+                    <span key={tag} className="tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="f-24">
+                  <PrismicNextLink field={item}>
+                    {item.data.title}
+                  </PrismicNextLink>
+                </h3>
+                <PrismicNextLink field={item} className="blog-button">
+                  <img
+                    src="/img/svg/icon-arrow-white.svg"
+                    alt="Arrow pointing to right"
+                  />
+                </PrismicNextLink>
+              </article>
+            );
+          }
+
+          // Handle full document (from allBlogPosts)
+          const post = item as Content.BlogPostDocument;
 
           return (
-            <article className="st-xl-6 st-xs-18" key={item.id}>
+            <article className="st-xl-6 st-xs-18" key={post.id}>
               <figure>
-                <PrismicNextLink field={item}>
+                <PrismicNextLink document={post}>
                   <PrismicNextImage
-                    field={item.data.featured_image}
+                    field={post.data.featured_image}
                     className="lazy"
                   />
                 </PrismicNextLink>
               </figure>
               <div className="tags" style={{ zIndex: 2, position: "relative" }}>
-                {item.tags.map((tag) => (
+                {post.tags.map((tag: string) => (
                   <span key={tag} className="tag">
                     {tag}
                   </span>
                 ))}
               </div>
               <h3 className="f-24">
-                <PrismicNextLink field={item}>
-                  {item.data.title}
+                <PrismicNextLink document={post}>
+                  {post.data.title}
                 </PrismicNextLink>
               </h3>
-              <PrismicNextLink field={item} className="blog-button">
+              <PrismicNextLink document={post} className="blog-button">
                 <img
                   src="/img/svg/icon-arrow-white.svg"
                   alt="Arrow pointing to right"
