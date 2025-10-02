@@ -132,9 +132,11 @@ export function menu() {
     });
   });
   document.querySelector("#logo").addEventListener("click", function () {
-    hamburgerWrap.classList.remove("opened");
-    menu.classList.remove("active");
-    nav.classList.remove("active");
-    closeNav.restart();
+    if (hamburgerWrap.classList.contains("opened")) {
+      hamburgerWrap.classList.remove("opened");
+      menu.classList.remove("active");
+      nav.classList.remove("active");
+      closeNav.restart();
+    }
   });
 }

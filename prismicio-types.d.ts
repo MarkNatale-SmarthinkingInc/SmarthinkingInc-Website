@@ -100,51 +100,6 @@ export interface AboutDocumentDataManifestoItemsItem {
 }
 
 /**
- * Item in *About → Testimonials*
- */
-export interface AboutDocumentDataTestimonialsItem {
-  /**
-   * Testimonial Quote field in *About → Testimonials*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Their ability to understand complex requirements....
-   * - **API ID Path**: about.testimonials[].quote
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  quote: prismic.KeyTextField;
-
-  /**
-   * Author Name field in *About → Testimonials*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Damon Salerno
-   * - **API ID Path**: about.testimonials[].author_name
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  author_name: prismic.KeyTextField;
-
-  /**
-   * Author Title field in *About → Testimonials*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Mansion Global
-   * - **API ID Path**: about.testimonials[].author_title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  author_title: prismic.KeyTextField;
-
-  /**
-   * Author Company field in *About → Testimonials*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: The Wall Street Journal
-   * - **API ID Path**: about.testimonials[].author_company
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  author_company: prismic.KeyTextField;
-}
-
-/**
  * Item in *About → Client Logos*
  */
 export interface AboutDocumentDataClientLogosItem {
@@ -387,17 +342,6 @@ interface AboutDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   testimonials_section_title: prismic.RichTextField;
-
-  /**
-   * Testimonials field in *About*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: about.testimonials[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-   */
-  testimonials: prismic.GroupField<Simplify<AboutDocumentDataTestimonialsItem>>;
 
   /**
    * Client Logos field in *About*
@@ -1903,51 +1847,6 @@ export type ServiceDocument<Lang extends string = string> =
   >;
 
 /**
- * Item in *Services → Testimonials*
- */
-export interface ServicesDocumentDataTestimonialsItem {
-  /**
-   * Testimonial Quote field in *Services → Testimonials*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Their ability to understand complex requirements....
-   * - **API ID Path**: services.testimonials[].quote
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  quote: prismic.KeyTextField;
-
-  /**
-   * Author Name field in *Services → Testimonials*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Damon Salerno
-   * - **API ID Path**: services.testimonials[].author_name
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  author_name: prismic.KeyTextField;
-
-  /**
-   * Author Title field in *Services → Testimonials*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: Mansion Global
-   * - **API ID Path**: services.testimonials[].author_title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  author_title: prismic.KeyTextField;
-
-  /**
-   * Author Company field in *Services → Testimonials*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: The Wall Street Journal
-   * - **API ID Path**: services.testimonials[].author_company
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  author_company: prismic.KeyTextField;
-}
-
-/**
  * Item in *Services → Client Logos*
  */
 export interface ServicesDocumentDataClientLogosItem {
@@ -2120,19 +2019,6 @@ interface ServicesDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   testimonials_section_title: prismic.RichTextField;
-
-  /**
-   * Testimonials field in *Services*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: services.testimonials[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-   */
-  testimonials: prismic.GroupField<
-    Simplify<ServicesDocumentDataTestimonialsItem>
-  >;
 
   /**
    * Client Logos field in *Services*
@@ -2461,6 +2347,85 @@ export type TermsOfServiceDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
     Simplify<TermsOfServiceDocumentData>,
     "terms_of_service",
+    Lang
+  >;
+
+/**
+ * Item in *Testimonials → Testimonials*
+ */
+export interface TestimonialsDocumentDataTestimonialsItem {
+  /**
+   * Quote field in *Testimonials → Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonials.testimonials[].quote
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  quote: prismic.KeyTextField;
+
+  /**
+   * Author Name field in *Testimonials → Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonials.testimonials[].author_name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  author_name: prismic.KeyTextField;
+
+  /**
+   * Author Title field in *Testimonials → Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonials.testimonials[].author_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  author_title: prismic.KeyTextField;
+
+  /**
+   * Author Company field in *Testimonials → Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonials.testimonials[].author_company
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  author_company: prismic.KeyTextField;
+}
+
+/**
+ * Content for Testimonials documents
+ */
+interface TestimonialsDocumentData {
+  /**
+   * Testimonials field in *Testimonials*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonials.testimonials[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  testimonials: prismic.GroupField<
+    Simplify<TestimonialsDocumentDataTestimonialsItem>
+  >;
+}
+
+/**
+ * Testimonials document from Prismic
+ *
+ * - **API ID**: `testimonials`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TestimonialsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<TestimonialsDocumentData>,
+    "testimonials",
     Lang
   >;
 
@@ -2839,6 +2804,7 @@ export type AllDocumentTypes =
   | ServicesDocument
   | SettingsDocument
   | TermsOfServiceDocument
+  | TestimonialsDocument
   | WorkDocument
   | WorksDocument;
 
@@ -3383,7 +3349,6 @@ declare module "@prismicio/client" {
       AboutDocumentData,
       AboutDocumentDataBeliefSliderImagesItem,
       AboutDocumentDataManifestoItemsItem,
-      AboutDocumentDataTestimonialsItem,
       AboutDocumentDataClientLogosItem,
       AboutDocumentDataSlicesSlice,
       BlogDocument,
@@ -3419,7 +3384,6 @@ declare module "@prismicio/client" {
       ServiceDocumentDataSlicesSlice,
       ServicesDocument,
       ServicesDocumentData,
-      ServicesDocumentDataTestimonialsItem,
       ServicesDocumentDataClientLogosItem,
       ServicesDocumentDataSlicesSlice,
       SettingsDocument,
@@ -3427,6 +3391,9 @@ declare module "@prismicio/client" {
       TermsOfServiceDocument,
       TermsOfServiceDocumentData,
       TermsOfServiceDocumentDataSlicesSlice,
+      TestimonialsDocument,
+      TestimonialsDocumentData,
+      TestimonialsDocumentDataTestimonialsItem,
       WorkDocument,
       WorkDocumentData,
       WorkDocumentDataSlicesSlice,

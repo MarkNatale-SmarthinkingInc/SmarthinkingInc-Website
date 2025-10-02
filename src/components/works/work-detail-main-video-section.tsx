@@ -20,7 +20,11 @@ export default function WorkDetailMainVideoSection({
             width="1920"
             height="1080"
             crossOrigin="anonymous"
-            aria-label={work?.data?.video_poster?.alt || "Project video"}
+            aria-label={
+              work?.data?.video_poster?.alt ||
+              work.data.video.text ||
+              "project vide"
+            }
             style={{ display: "block", maxWidth: "100%", height: "auto" }}
           >
             <source src={work.data.video.url} type="video/mp4" />

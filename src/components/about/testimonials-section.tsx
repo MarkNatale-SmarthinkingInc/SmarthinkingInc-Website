@@ -1,13 +1,15 @@
+import { createClient } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
 
 interface AboutTestimonialsProps {
   data: import("@prismicio/client").Content.AboutDocumentData;
 }
 
-export default function AboutTestimonialsSection({
+export default async function AboutTestimonialsSection({
   data,
 }: AboutTestimonialsProps) {
-  const testimonials = data.testimonials || [];
+  const client = createClient();
+  const testimonials = await client.getSingle("testimonials");
 
   return (
     <section id="testimonial-box" className="grid-margin">
@@ -27,7 +29,7 @@ export default function AboutTestimonialsSection({
         </div>
         <div className="st-xl-8 st-xl-os-1 st-xs-os-0 st-xs-18 st-xs-os-0">
           <div className="t-control">
-            {testimonials.slice(0, 3).map((_, i) => (
+            {testimonials.data.testimonials.slice(0, 3).map((_, i) => (
               <button
                 type="button"
                 className={i === 0 ? "active" : undefined}
@@ -38,9 +40,9 @@ export default function AboutTestimonialsSection({
               </button>
             ))}
           </div>
-          {testimonials.length ? (
+          {testimonials.data.testimonials.length ? (
             <div className="testimonial-wrap">
-              {testimonials.slice(0, 3).map((t, i) => (
+              {testimonials.data.testimonials.slice(0, 3).map((t, i) => (
                 <div
                   data-t-item={i + 1}
                   className={i === 0 ? "active" : undefined}

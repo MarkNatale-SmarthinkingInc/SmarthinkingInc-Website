@@ -115,8 +115,8 @@ export default function WorkSection({ data }: WorkSectionProps) {
                 </i>
               </div>
               <div className="label-wrap">
-                <span>Contact Us</span>
-                <span>Contact Us</span>
+                <span>{data.work_cta.text}</span>
+                <span>{data.work_cta.text}</span>
               </div>
             </PrismicNextLink>
           </div>

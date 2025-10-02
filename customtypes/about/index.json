@@ -219,43 +219,6 @@
           "single": "strong,paragraph"
         }
       },
-      "testimonials": {
-        "type": "Group",
-        "config": {
-          "label": "Testimonials",
-          "repeat": true,
-          "fields": {
-            "quote": {
-              "type": "Text",
-              "config": {
-                "label": "Testimonial Quote",
-                "placeholder": "Their ability to understand complex requirements...."
-              }
-            },
-            "author_name": {
-              "type": "Text",
-              "config": {
-                "label": "Author Name",
-                "placeholder": "Damon Salerno"
-              }
-            },
-            "author_title": {
-              "type": "Text",
-              "config": {
-                "label": "Author Title",
-                "placeholder": "Mansion Global"
-              }
-            },
-            "author_company": {
-              "type": "Text",
-              "config": {
-                "label": "Author Company",
-                "placeholder": "The Wall Street Journal"
-              }
-            }
-          }
-        }
-      },
       "client_logos": {
         "type": "Group",
         "config": {
