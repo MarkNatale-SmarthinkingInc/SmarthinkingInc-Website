@@ -26,12 +26,7 @@ export default function FooterNewsletter() {
       <div>
         <h3 className="caption">Sign up for updates</h3>
         <div className="newsletter-success">
-          <p
-            className="f-16"
-            style={{ color: "#28a745", marginBottom: "1rem" }}
-          >
-            ✓ Successfully subscribed to our newsletter!
-          </p>
+          <p className="f-16">✓ Successfully subscribed to our newsletter!</p>
         </div>
       </div>
     );
@@ -55,14 +50,7 @@ export default function FooterNewsletter() {
           disabled={state.isLoading}
         />
       </div>
-      {state.error && (
-        <p
-          className="newsletter-error f-14"
-          style={{ color: "#dc3545", marginTop: "0.5rem" }}
-        >
-          {state.error}
-        </p>
-      )}
+      {state.error && <p className="newsletter-error f-14">{state.error}</p>}
     </form>
   );
 }

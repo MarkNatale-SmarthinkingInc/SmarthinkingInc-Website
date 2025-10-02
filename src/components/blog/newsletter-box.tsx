@@ -49,12 +49,7 @@ export default function NewsletterBox({
 
       {state.isSuccess ? (
         <div className="newsletter-success">
-          <p
-            className="f-16"
-            style={{ color: "#28a745", marginBottom: "1rem" }}
-          >
-            ✓ Successfully subscribed to our newsletter!
-          </p>
+          <p className="f-16">✓ Successfully subscribed to our newsletter!</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="newsletter">
@@ -74,12 +69,7 @@ export default function NewsletterBox({
             />
           </div>
           {state.error && (
-            <p
-              className="newsletter-error f-14"
-              style={{ color: "#dc3545", marginTop: "0.5rem" }}
-            >
-              {state.error}
-            </p>
+            <p className="newsletter-error f-14">{state.error}</p>
           )}
         </form>
       )}

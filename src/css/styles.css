@@ -157,7 +157,7 @@
   width: calc((95.83334vw - ((18 - 1) * 1.38888vw)) / 18);
 }
 .st-xl-2 {
-  width: calc(calc((95.83334vw - ((18 - 1) * 1.38888vw))styles.css / 18) * 2 + 1.38888vw);
+  width: calc(calc((95.83334vw - ((18 - 1) * 1.38888vw)) / 18) * 2 + 1.38888vw);
 }
 .st-xl-3 {
   width: calc(calc((95.83334vw - ((18 - 1) * 1.38888vw)) / 18) * 3 + (1.38888vw * 2));
@@ -3663,6 +3663,7 @@
   border: 1px solid #1A1417;
   padding: 2.77776vw;
   color: #1A1417;
+  text-align: center;
 }
 .contact #contact-form .success-message h3 {
   font-size: clamp(26px, 2.777vw, 52px);
@@ -4838,8 +4839,11 @@ FOOTER//////////////////////////////////////////////////////////////////////////
   color: #1A1417;
   border: 1px solid #1A1417;
   text-align: center;
-  line-height: 60px;
-  padding: 0 1.38888vw;
+  padding: 1.38888vw;
+  border-radius: 5px;
+}
+.newsletter-success p {
+  margin: 0;
 }
 @media only screen and (max-width: 768px) {
   .newsletter-success {

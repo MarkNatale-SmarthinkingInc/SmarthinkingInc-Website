@@ -66,34 +66,13 @@ export default function ContactDetailSection({ data }: ContactDetailProps) {
       <div id="contact-form" className="st-xl-8 st-sm-11 st-xs-18 xs-top-3">
         {state.isSuccess ? (
           <div className="fadeUp">
-            <div
-              className="success-message"
-              style={{
-                padding: "2rem",
-                backgroundColor: "#f0f8f0",
-                borderRadius: "8px",
-                marginBottom: "1rem",
-              }}
-            >
-              <h3 style={{ color: "#2d5a2d", marginBottom: "1rem" }}>
-                Thank you!
-              </h3>
-              <p style={{ color: "#2d5a2d", marginBottom: "1rem" }}>
+            <div className="success-message">
+              <h3>Thank you!</h3>
+              <p>
                 Your message has been sent successfully. We'll get back to you
                 soon.
               </p>
-              <button
-                type="button"
-                onClick={handleReset}
-                style={{
-                  background: "transparent",
-                  border: "2px solid #2d5a2d",
-                  color: "#2d5a2d",
-                  padding: "0.5rem 1rem",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                }}
-              >
+              <button type="button" onClick={handleReset}>
                 Send another message
               </button>
             </div>
