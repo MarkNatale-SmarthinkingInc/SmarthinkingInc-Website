@@ -83,7 +83,7 @@
       "short_description": {
         "type": "Text",
         "config": {
-          "label": "Short Description",
+          "label": "Short Listing Description",
           "placeholder": ""
         }
       },

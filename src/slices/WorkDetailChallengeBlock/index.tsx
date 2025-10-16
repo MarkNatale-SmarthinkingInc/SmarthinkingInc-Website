@@ -16,7 +16,7 @@ const WorkDetailChallengeBlock: FC<WorkDetailChallengeBlockProps> = ({
   slice,
 }) => {
   return (
-    <div className="st-grid xl-bottom-3 xs-bottom-8 xs-wrap">
+    <div className="st-grid xs-bottom-8 xs-wrap">
       <div className="st-xl-5 st-xs-16">
         <h2 className="f-40">The Challenge</h2>
       </div>

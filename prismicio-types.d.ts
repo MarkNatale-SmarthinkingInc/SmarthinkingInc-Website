@@ -2532,7 +2532,7 @@ interface WorkDocumentData {
   location: prismic.KeyTextField;
 
   /**
-   * Short Description field in *Work*
+   * Short Listing Description field in *Work*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*

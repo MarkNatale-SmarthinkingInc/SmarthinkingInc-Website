@@ -17,7 +17,7 @@ const WorkDetailCategoryBlock: FC<WorkDetailCategoryBlockProps> = ({
   slice,
 }) => {
   return (
-    <div className="category st-grid xs-wrap">
+    <div className="category st-grid xs-wrap xl-top-3">
       <div className="st-xl-5 st-xs-16">
         <h3 className="sup-title">
           {isFilled.contentRelationship(slice.primary.service) &&
