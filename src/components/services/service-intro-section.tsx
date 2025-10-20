@@ -23,10 +23,8 @@ export default function ServiceIntroSection({ data }: ServiceIntroProps) {
           {data.service_intro_trademark_svg?.url ? (
             <Image
               alt={data.service_intro_trademark_svg?.alt ?? ""}
-              src={`${data.service_intro_trademark_svg?.url}&fit=clip&w=1440`}
+              src={`${data.service_intro_trademark_svg?.url}`}
               sizes="(max-width: 768px) 100vw, 1440px"
-              blurDataURL={`${data.service_intro_trademark_svg?.url}&w=100&blur=40`}
-              placeholder="blur"
               width={
                 data.service_intro_trademark_svg?.dimensions?.width || 1440
               }
