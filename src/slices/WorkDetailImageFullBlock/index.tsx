@@ -1,5 +1,5 @@
 import type { Content } from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
+import Image from "next/image";
 import type { SliceComponentProps } from "@prismicio/react";
 import type { FC } from "react";
 
@@ -17,7 +17,16 @@ const WorkDetailImageFullBlock: FC<WorkDetailImageFullBlockProps> = ({
 }) => {
   return (
     <figure className="img-box img-100 img-anim">
-      <PrismicNextImage field={slice.primary.image} className="lazy" />
+      <Image
+        alt={slice.primary.image?.alt ?? ""}
+        src={`${slice.primary.image?.url}&fit=clip&w=1440`}
+        sizes="(max-width: 768px) 100vw, 1440px"
+        blurDataURL={`${slice.primary.image?.url}&w=100&blur=40`}
+        placeholder="blur"
+        width={slice.primary.image?.dimensions?.width || 1440}
+        height={slice.primary.image?.dimensions?.height || 810}
+        className="lazy"
+      />
     </figure>
   );
 };

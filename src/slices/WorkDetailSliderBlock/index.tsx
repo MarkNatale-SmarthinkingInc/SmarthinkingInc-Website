@@ -1,5 +1,5 @@
 import type { Content } from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
+import Image from "next/image";
 import type { SliceComponentProps } from "@prismicio/react";
 import type { FC } from "react";
 
@@ -21,7 +21,16 @@ const WorkDetailSliderBlock: FC<WorkDetailSliderBlockProps> = ({ slice }) => {
             key={item.image?.url || `slider-image-${index}`}
             className={`${index === 0 ? "st-xl-12" : "st-xl-8"} img-anim`}
           >
-            <PrismicNextImage field={item.image} className="lazy" />
+            <Image
+              alt={item.image?.alt ?? ""}
+              src={`${item.image?.url}&fit=clip&w=1440`}
+              sizes="(max-width: 768px) 100vw, 1440px"
+              blurDataURL={`${item.image?.url}&w=100&blur=40`}
+              placeholder="blur"
+              width={item.image?.dimensions?.width || 1440}
+              height={item.image?.dimensions?.height || 810}
+              className="lazy"
+            />
           </figure>
         ))}
       </div>

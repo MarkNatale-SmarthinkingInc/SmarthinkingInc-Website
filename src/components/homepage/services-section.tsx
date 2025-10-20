@@ -1,6 +1,7 @@
 import { createClient } from "@/prismicio";
 import { type Content, isFilled } from "@prismicio/client";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import Image from "next/image";
+import { PrismicNextLink } from "@prismicio/next";
 
 interface ServicesSectionProps {
   data: Content.HomepageDocumentData;
@@ -25,16 +26,28 @@ export default async function ServicesSection({ data }: ServicesSectionProps) {
         <div className="st-xl-9 st-xs-18 st-grid img-combo xs-wrap xs-self-start">
           {isFilled.image(data.services_image_small) && (
             <figure className="st-xl-3 st-xs-9 xl-self-start">
-              <PrismicNextImage
-                field={data.services_image_small}
+              <Image
+                alt={data.services_image_small?.alt ?? ""}
+                src={`${data.services_image_small?.url}&fit=clip&w=1440`}
+                sizes="(max-width: 768px) 100vw, 1440px"
+                blurDataURL={`${data.services_image_small?.url}&w=100&blur=40`}
+                placeholder="blur"
+                width={data.services_image_small?.dimensions?.width || 1440}
+                height={data.services_image_small?.dimensions?.height || 810}
                 className="lazy"
               />
             </figure>
           )}
           {isFilled.image(data.services_image_large) && (
             <figure className="st-xl-6 st-xs-9 xs-self-start">
-              <PrismicNextImage
-                field={data.services_image_large}
+              <Image
+                alt={data.services_image_large?.alt ?? ""}
+                src={`${data.services_image_large?.url}&fit=clip&w=1440`}
+                sizes="(max-width: 768px) 100vw, 1440px"
+                blurDataURL={`${data.services_image_large?.url}&w=100&blur=40`}
+                placeholder="blur"
+                width={data.services_image_large?.dimensions?.width || 1440}
+                height={data.services_image_large?.dimensions?.height || 810}
                 className="lazy"
               />
             </figure>

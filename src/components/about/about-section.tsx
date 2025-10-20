@@ -1,5 +1,5 @@
 import type { Content } from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
+import Image from "next/image";
 import { PrismicRichText } from "@prismicio/react";
 
 type AboutSectionProps = {
@@ -24,10 +24,28 @@ export default function AboutSection({ data }: AboutSectionProps) {
         <div className="st-grid">
           <div className="st-xl-9 st-xs-8 st-grid img-combo xs-wrap xs-self-start">
             <figure className="st-xl-3 st-xs-8 xl-self-start">
-              <PrismicNextImage field={data.about_left_image_small} />
+              <Image
+                alt={data.about_left_image_small?.alt ?? ""}
+                src={`${data.about_left_image_small?.url}&fit=clip&w=1440`}
+                sizes="(max-width: 768px) 100vw, 1440px"
+                blurDataURL={`${data.about_left_image_small?.url}&w=100&blur=40`}
+                placeholder="blur"
+                width={data.about_left_image_small?.dimensions?.width || 1440}
+                height={data.about_left_image_small?.dimensions?.height || 810}
+                className="lazy"
+              />
             </figure>
             <figure className="st-xl-6 st-xs-8 xs-self-start">
-              <PrismicNextImage field={data.about_left_image_large} />
+              <Image
+                alt={data.about_left_image_large?.alt ?? ""}
+                src={`${data.about_left_image_large?.url}&fit=clip&w=1440`}
+                sizes="(max-width: 768px) 100vw, 1440px"
+                blurDataURL={`${data.about_left_image_large?.url}&w=100&blur=40`}
+                placeholder="blur"
+                width={data.about_left_image_large?.dimensions?.width || 1440}
+                height={data.about_left_image_large?.dimensions?.height || 810}
+                className="lazy"
+              />
             </figure>
           </div>
           <div className="st-xl-9 st-xs-10 st-grid grid-row grid-between">

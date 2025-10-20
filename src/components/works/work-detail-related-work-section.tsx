@@ -1,6 +1,7 @@
 import { createClient } from "@/prismicio";
 import { type Content, filter } from "@prismicio/client";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import Image from "next/image";
+import { PrismicNextLink } from "@prismicio/next";
 
 interface WorkDetailRelatedWorkSectionProps {
   work?: Content.WorkDocument;
@@ -38,8 +39,18 @@ export default async function WorkDetailRelatedWorkSection({
             <canvas className="equalizer-canvas"></canvas>
             <PrismicNextLink document={relatedWork} className="st-grid">
               <figure className="st-xl-4 st-xs-9 img-left">
-                <PrismicNextImage
-                  field={relatedWork.data.homepage_image_1}
+                <Image
+                  alt={relatedWork.data.homepage_image_1?.alt ?? ""}
+                  src={`${relatedWork.data.homepage_image_1?.url}&fit=clip&w=1440`}
+                  sizes="(max-width: 768px) 100vw, 1440px"
+                  blurDataURL={`${relatedWork.data.homepage_image_1?.url}&w=100&blur=40`}
+                  placeholder="blur"
+                  width={
+                    relatedWork.data.homepage_image_1?.dimensions?.width || 1440
+                  }
+                  height={
+                    relatedWork.data.homepage_image_1?.dimensions?.height || 810
+                  }
                   className="lazy"
                 />
               </figure>
@@ -53,8 +64,18 @@ export default async function WorkDetailRelatedWorkSection({
                 </i>
               </div>
               <figure className="st-xl-4 xs-hidden img-right">
-                <PrismicNextImage
-                  field={relatedWork.data.homepage_image_2}
+                <Image
+                  alt={relatedWork.data.homepage_image_2?.alt ?? ""}
+                  src={`${relatedWork.data.homepage_image_2?.url}&fit=clip&w=1440`}
+                  sizes="(max-width: 768px) 100vw, 1440px"
+                  blurDataURL={`${relatedWork.data.homepage_image_2?.url}&w=100&blur=40`}
+                  placeholder="blur"
+                  width={
+                    relatedWork.data.homepage_image_2?.dimensions?.width || 1440
+                  }
+                  height={
+                    relatedWork.data.homepage_image_2?.dimensions?.height || 810
+                  }
                   className="lazy"
                 />
               </figure>

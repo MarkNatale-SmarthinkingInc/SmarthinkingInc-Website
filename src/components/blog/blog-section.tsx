@@ -2,7 +2,7 @@
 
 import { createClient } from "@/prismicio";
 import { type Content, filter, isFilled } from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
+import Image from "next/image";
 import { PrismicNextLink } from "@prismicio/next";
 import { useCallback, useEffect, useState } from "react";
 import NewsletterBox from "./newsletter-box";
@@ -145,8 +145,18 @@ export default function BlogSection({ data }: BlogSectionProps) {
               <article className="st-xl-6 st-xs-18" key={item.id}>
                 <figure>
                   <PrismicNextLink field={item}>
-                    <PrismicNextImage
-                      field={item.data.featured_image}
+                    <Image
+                      alt={item.data.featured_image?.alt ?? ""}
+                      src={`${item.data.featured_image?.url}&fit=clip&w=1440`}
+                      sizes="(max-width: 768px) 100vw, 1440px"
+                      blurDataURL={`${item.data.featured_image?.url}&w=100&blur=40`}
+                      placeholder="blur"
+                      width={
+                        item.data.featured_image?.dimensions?.width || 1440
+                      }
+                      height={
+                        item.data.featured_image?.dimensions?.height || 810
+                      }
                       className="lazy"
                     />
                   </PrismicNextLink>
@@ -183,8 +193,14 @@ export default function BlogSection({ data }: BlogSectionProps) {
             <article className="st-xl-6 st-xs-18" key={post.id}>
               <figure>
                 <PrismicNextLink document={post}>
-                  <PrismicNextImage
-                    field={post.data.featured_image}
+                  <Image
+                    alt={post.data.featured_image?.alt ?? ""}
+                    src={`${post.data.featured_image?.url}&fit=clip&w=1440`}
+                    sizes="(max-width: 768px) 100vw, 1440px"
+                    blurDataURL={`${post.data.featured_image?.url}&w=100&blur=40`}
+                    placeholder="blur"
+                    width={post.data.featured_image?.dimensions?.width || 1440}
+                    height={post.data.featured_image?.dimensions?.height || 810}
                     className="lazy"
                   />
                 </PrismicNextLink>
@@ -225,8 +241,14 @@ export default function BlogSection({ data }: BlogSectionProps) {
             <article className="st-grid" key={post.id}>
               <figure className="st-xl-6 st-xs-7 xs-self-start">
                 <PrismicNextLink document={post}>
-                  <PrismicNextImage
-                    field={post.data.featured_image}
+                  <Image
+                    alt={post.data.featured_image?.alt ?? ""}
+                    src={`${post.data.featured_image?.url}&fit=clip&w=1440`}
+                    sizes="(max-width: 768px) 100vw, 1440px"
+                    blurDataURL={`${post.data.featured_image?.url}&w=100&blur=40`}
+                    placeholder="blur"
+                    width={post.data.featured_image?.dimensions?.width || 1440}
+                    height={post.data.featured_image?.dimensions?.height || 810}
                     className="lazy"
                   />
                 </PrismicNextLink>

@@ -1,5 +1,5 @@
 import { type Content, isFilled } from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
+import Image from "next/image";
 import { PrismicRichText } from "@prismicio/react";
 
 interface ServiceDetailHeroSectionProps {
@@ -33,17 +33,47 @@ export default function ServiceDetailHeroSection({
         <div className="st-grid grid-margin hero-images xs-wrap">
           {isFilled.image(service.data.physical_image) && (
             <figure className="st-xl-6 self-end xs-self-start st-xs-9 imgIn">
-              <PrismicNextImage field={service.data.physical_image} />
+              <Image
+                alt={service.data.physical_image?.alt ?? ""}
+                src={`${service.data.physical_image?.url}&fit=clip&w=1440`}
+                sizes="(max-width: 768px) 100vw, 1440px"
+                blurDataURL={`${service.data.physical_image?.url}&w=100&blur=40`}
+                placeholder="blur"
+                width={service.data.physical_image?.dimensions?.width || 1440}
+                height={service.data.physical_image?.dimensions?.height || 810}
+                className="lazy"
+                priority
+              />
             </figure>
           )}
           {isFilled.image(service.data.human_image) && (
             <figure className="st-xl-6 st-xs-9 imgIn">
-              <PrismicNextImage field={service.data.human_image} />
+              <Image
+                alt={service.data.human_image?.alt ?? ""}
+                src={`${service.data.human_image?.url}&fit=clip&w=1440`}
+                sizes="(max-width: 768px) 100vw, 1440px"
+                blurDataURL={`${service.data.human_image?.url}&w=100&blur=40`}
+                placeholder="blur"
+                width={service.data.human_image?.dimensions?.width || 1440}
+                height={service.data.human_image?.dimensions?.height || 810}
+                className="lazy"
+                priority
+              />
             </figure>
           )}
           {isFilled.image(service.data.digital_image) && (
             <figure className="st-xl-6 self-start st-xs-12 imgIn">
-              <PrismicNextImage field={service.data.digital_image} />
+              <Image
+                alt={service.data.digital_image?.alt ?? ""}
+                src={`${service.data.digital_image?.url}&fit=clip&w=1440`}
+                sizes="(max-width: 768px) 100vw, 1440px"
+                blurDataURL={`${service.data.digital_image?.url}&w=100&blur=40`}
+                placeholder="blur"
+                width={service.data.digital_image?.dimensions?.width || 1440}
+                height={service.data.digital_image?.dimensions?.height || 810}
+                className="lazy"
+                priority
+              />
             </figure>
           )}
         </div>

@@ -1,5 +1,5 @@
 import { type Content, isFilled } from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
+import Image from "next/image";
 
 interface TestimonialsSectionProps {
   data: Content.HomepageDocumentData;
@@ -34,9 +34,19 @@ export default function TestimonialsSection({
             <figure className="st-xl-6 st-xl-os-1 st-sm-6 st-xs-8 t-image">
               {data.testimonials?.map((testimonial, index) =>
                 isFilled.image(testimonial.testimonial_image) ? (
-                  <PrismicNextImage
+                  <Image
                     key={`testimonial-image-${index}-${testimonial.testimonial_image}`}
-                    field={testimonial.testimonial_image}
+                    alt={testimonial.testimonial_image?.alt ?? ""}
+                    src={`${testimonial.testimonial_image?.url}&fit=clip&w=1440`}
+                    sizes="(max-width: 768px) 100vw, 1440px"
+                    blurDataURL={`${testimonial.testimonial_image?.url}&w=100&blur=40`}
+                    placeholder="blur"
+                    width={
+                      testimonial.testimonial_image?.dimensions?.width || 1440
+                    }
+                    height={
+                      testimonial.testimonial_image?.dimensions?.height || 810
+                    }
                     className="lazy"
                   />
                 ) : null

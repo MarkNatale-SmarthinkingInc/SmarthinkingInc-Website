@@ -1,5 +1,6 @@
 import type { Content } from "@prismicio/client";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { PrismicNextLink } from "@prismicio/next";
+import Image from "next/image";
 
 interface BlogDetailHeroSectionProps {
   blogPost?: Content.BlogPostDocument;
@@ -24,8 +25,18 @@ export default function BlogDetailHeroSection({
             <div className="st-grid grid-middle grid-between author-box xs-wrap">
               <div className="st-xl-3 st-xs-18 st-grid grid-middle grid-start xs-grid-center xs-both-2 fadeUp">
                 <figure>
-                  <PrismicNextImage
-                    field={blogPost?.data.author_image}
+                  <Image
+                    alt={blogPost?.data.author_image?.alt ?? ""}
+                    src={`${blogPost?.data.author_image?.url}&fit=clip&w=1440`}
+                    sizes="(max-width: 768px) 100vw, 1440px"
+                    blurDataURL={`${blogPost?.data.author_image?.url}&w=100&blur=40`}
+                    placeholder="blur"
+                    width={
+                      blogPost?.data.author_image?.dimensions?.width || 1440
+                    }
+                    height={
+                      blogPost?.data.author_image?.dimensions?.height || 810
+                    }
                     className="lazy"
                   />
                 </figure>
@@ -45,7 +56,21 @@ export default function BlogDetailHeroSection({
               </div>
             </div>
             <figure className="hero-img fadeUp">
-              <PrismicNextImage field={blogPost?.data?.featured_image} />
+              <Image
+                alt={blogPost?.data?.featured_image?.alt ?? ""}
+                src={`${blogPost?.data?.featured_image?.url}&fit=clip&w=1440`}
+                sizes="(max-width: 768px) 100vw, 1440px"
+                blurDataURL={`${blogPost?.data?.featured_image?.url}&w=100&blur=40`}
+                placeholder="blur"
+                width={
+                  blogPost?.data?.featured_image?.dimensions?.width || 1440
+                }
+                height={
+                  blogPost?.data?.featured_image?.dimensions?.height || 810
+                }
+                className="lazy"
+                priority
+              />
             </figure>
           </div>
           <div className="st-xl-5 st-sm-3 empty-right xs-hidden"></div>

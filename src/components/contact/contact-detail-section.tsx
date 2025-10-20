@@ -1,7 +1,7 @@
 "use client";
 
 import { useContact } from "@/hooks/use-contact.hook";
-import { PrismicNextImage } from "@prismicio/next";
+import Image from "next/image";
 
 interface ContactDetailProps {
   data: import("@prismicio/client").Content.ContactDocumentData;
@@ -27,7 +27,16 @@ export default function ContactDetailSection({ data }: ContactDetailProps) {
         </div>
         <div className="st-xl-5 st-xl-os-1 st-sm-7 st-sm-os-0 st-xs-18 fadeUp">
           <figure className="sm-top-1">
-            <PrismicNextImage field={data.contact_image} />
+            <Image
+              alt={data.contact_image?.alt ?? ""}
+              src={`${data.contact_image?.url}&fit=clip&w=1440`}
+              sizes="(max-width: 768px) 100vw, 1440px"
+              blurDataURL={`${data.contact_image?.url}&w=100&blur=40`}
+              placeholder="blur"
+              width={data.contact_image?.dimensions?.width || 1440}
+              height={data.contact_image?.dimensions?.height || 810}
+              className="lazy"
+            />
           </figure>
           <address>
             <h3 className="sup-title">General inquiries</h3>

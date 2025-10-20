@@ -1,5 +1,6 @@
 import { type Content, isFilled } from "@prismicio/client";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import Image from "next/image";
+import { PrismicNextLink } from "@prismicio/next";
 
 interface WorkSectionProps {
   data: Content.HomepageDocumentData;
@@ -40,8 +41,20 @@ export default function WorkSection({ data }: WorkSectionProps) {
               <PrismicNextLink field={workItem} className="st-grid">
                 {isFilled.image(workItem.data.homepage_image_1) && (
                   <figure className="st-xl-4 st-xs-9 img-left">
-                    <PrismicNextImage
-                      field={workItem.data.homepage_image_1}
+                    <Image
+                      alt={workItem.data.homepage_image_1?.alt ?? ""}
+                      src={`${workItem.data.homepage_image_1?.url}&fit=clip&w=1440`}
+                      sizes="(max-width: 768px) 100vw, 1440px"
+                      blurDataURL={`${workItem.data.homepage_image_1?.url}&w=100&blur=40`}
+                      placeholder="blur"
+                      width={
+                        workItem.data.homepage_image_1?.dimensions?.width ||
+                        1440
+                      }
+                      height={
+                        workItem.data.homepage_image_1?.dimensions?.height ||
+                        810
+                      }
                       className="lazy"
                     />
                   </figure>
@@ -57,8 +70,20 @@ export default function WorkSection({ data }: WorkSectionProps) {
                 </div>
                 {isFilled.image(workItem.data.homepage_image_2) && (
                   <figure className="st-xl-4 xs-hidden img-right">
-                    <PrismicNextImage
-                      field={workItem.data.homepage_image_2}
+                    <Image
+                      alt={workItem.data.homepage_image_2?.alt ?? ""}
+                      src={`${workItem.data.homepage_image_2?.url}&fit=clip&w=1440`}
+                      sizes="(max-width: 768px) 100vw, 1440px"
+                      blurDataURL={`${workItem.data.homepage_image_2?.url}&w=100&blur=40`}
+                      placeholder="blur"
+                      width={
+                        workItem.data.homepage_image_2?.dimensions?.width ||
+                        1440
+                      }
+                      height={
+                        workItem.data.homepage_image_2?.dimensions?.height ||
+                        810
+                      }
                       className="lazy"
                     />
                   </figure>

@@ -1,5 +1,5 @@
 import { type Content, isFilled } from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
+import Image from "next/image";
 
 interface ClientsSectionProps {
   data: Content.HomepageDocumentData;
@@ -37,7 +37,16 @@ export default function ClientsSection({ data }: ClientsSectionProps) {
                 className="st-xl-4 st-xs-6"
                 key={`client-${globalIndex}-${client.client_name || `logo-${globalIndex}`}`}
               >
-                <PrismicNextImage field={client.client_logo} className="lazy" />
+                <Image
+                  alt={client.client_logo?.alt ?? ""}
+                  src={`${client.client_logo?.url}&fit=clip&w=1440`}
+                  sizes="(max-width: 768px) 100vw, 1440px"
+                  blurDataURL={`${client.client_logo?.url}&w=100&blur=40`}
+                  placeholder="blur"
+                  width={client.client_logo?.dimensions?.width || 1440}
+                  height={client.client_logo?.dimensions?.height || 810}
+                  className="lazy"
+                />
               </figure>
             ) : null;
           })}

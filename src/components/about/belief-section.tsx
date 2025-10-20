@@ -1,5 +1,5 @@
 import type { Content } from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
+import Image from "next/image";
 import { PrismicRichText } from "@prismicio/react";
 
 type BeliefSectionProps = {
@@ -38,7 +38,16 @@ export default function BeliefSection({ data }: BeliefSectionProps) {
         <div className="st-xl-6 st-xl-os-6 st-sm-8 st-sm-os-5 st-xs-12 st-xs-os-3 slider-img">
           {data.belief_slider_images?.map((item) => (
             <figure key={`belief-img-${item.image?.alt || "image"}`}>
-              <PrismicNextImage field={item.image} />
+              <Image
+                alt={item.image?.alt ?? ""}
+                src={`${item.image?.url}&fit=clip&w=1440`}
+                sizes="(max-width: 768px) 100vw, 1440px"
+                blurDataURL={`${item.image?.url}&w=100&blur=40`}
+                placeholder="blur"
+                width={item.image?.dimensions?.width || 1440}
+                height={item.image?.dimensions?.height || 810}
+                className="lazy"
+              />
             </figure>
           ))}
         </div>

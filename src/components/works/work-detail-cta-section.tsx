@@ -1,5 +1,5 @@
 import type { Content } from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
+import Image from "next/image";
 
 interface WorkDetailCtaSectionProps {
   work?: Content.WorkDocument;
@@ -11,15 +11,27 @@ export default function WorkDetailCtaSection({
   return (
     <section id="cta">
       <figure className="parallax">
-        <PrismicNextImage
-          field={work?.data?.cta_background_image}
+        <Image
+          alt={work?.data?.cta_background_image?.alt ?? ""}
+          src={`${work?.data?.cta_background_image?.url}&fit=clip&w=1440`}
+          sizes="(max-width: 768px) 100vw, 1440px"
+          blurDataURL={`${work?.data?.cta_background_image?.url}&w=100&blur=40`}
+          placeholder="blur"
+          width={work?.data?.cta_background_image?.dimensions?.width || 1440}
+          height={work?.data?.cta_background_image?.dimensions?.height || 810}
           className="lazy"
         />
       </figure>
       <div className="st-xl-6 st-lg-8 st-sm-10 st-xs-16 cta-content center">
         <figure className="parallax">
-          <PrismicNextImage
-            field={work?.data?.cta_foreground_image}
+          <Image
+            alt={work?.data?.cta_foreground_image?.alt ?? ""}
+            src={`${work?.data?.cta_foreground_image?.url}&fit=clip&w=1440`}
+            sizes="(max-width: 768px) 100vw, 1440px"
+            blurDataURL={`${work?.data?.cta_foreground_image?.url}&w=100&blur=40`}
+            placeholder="blur"
+            width={work?.data?.cta_foreground_image?.dimensions?.width || 1440}
+            height={work?.data?.cta_foreground_image?.dimensions?.height || 810}
             className="lazy"
           />
           <figcaption className="caption">Contact us</figcaption>

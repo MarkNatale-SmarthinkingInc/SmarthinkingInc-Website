@@ -1,6 +1,7 @@
 import { createClient } from "@/prismicio";
 import { type Content, filter } from "@prismicio/client";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import Image from "next/image";
+import { PrismicNextLink } from "@prismicio/next";
 
 interface ServiceDetailWorkSectionProps {
   service: Content.ServiceDocument;
@@ -36,9 +37,19 @@ export default async function ServiceDetailWorkSection({
               <canvas className="equalizer-canvas"></canvas>
               <PrismicNextLink document={work} className="st-grid">
                 <figure className="st-xl-4 st-xs-9 img-left">
-                  <PrismicNextImage
-                    field={work.data.homepage_image_1}
-                    fallbackAlt=""
+                  <Image
+                    alt={work.data.homepage_image_1?.alt ?? ""}
+                    src={`${work.data.homepage_image_1?.url}&fit=clip&w=1440`}
+                    sizes="(max-width: 768px) 100vw, 1440px"
+                    blurDataURL={`${work.data.homepage_image_1?.url}&w=100&blur=40`}
+                    placeholder="blur"
+                    width={
+                      work.data.homepage_image_1?.dimensions?.width || 1440
+                    }
+                    height={
+                      work.data.homepage_image_1?.dimensions?.height || 810
+                    }
+                    className="lazy"
                   />
                 </figure>
                 <div className="st-xl-10 st-xs-8 st-xs-os-1 center xs-left">
@@ -51,9 +62,19 @@ export default async function ServiceDetailWorkSection({
                   </i>
                 </div>
                 <figure className="st-xl-4 xs-hidden img-right">
-                  <PrismicNextImage
-                    field={work.data.homepage_image_2}
-                    fallbackAlt=""
+                  <Image
+                    alt={work.data.homepage_image_2?.alt ?? ""}
+                    src={`${work.data.homepage_image_2?.url}&fit=clip&w=1440`}
+                    sizes="(max-width: 768px) 100vw, 1440px"
+                    blurDataURL={`${work.data.homepage_image_2?.url}&w=100&blur=40`}
+                    placeholder="blur"
+                    width={
+                      work.data.homepage_image_2?.dimensions?.width || 1440
+                    }
+                    height={
+                      work.data.homepage_image_2?.dimensions?.height || 810
+                    }
+                    className="lazy"
                   />
                 </figure>
               </PrismicNextLink>

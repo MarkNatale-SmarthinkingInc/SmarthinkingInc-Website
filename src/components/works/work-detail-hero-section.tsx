@@ -1,6 +1,7 @@
 import { type Content, isFilled } from "@prismicio/client";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
+import Image from "next/image";
 
 interface WorkDetailHeroSectionProps {
   work?: Content.WorkDocument;
@@ -22,10 +23,21 @@ export default function WorkDetailHeroSection({
     .filter(isFilled.contentRelationship)
     .filter((service) => service.id !== attachedService?.id);
 
+  console.log(work?.data?.hero_image?.url);
   return (
     <section id="hero">
       <figure className="parallax">
-        <PrismicNextImage field={work?.data?.hero_image} className="lazy" />
+        <Image
+          alt={work?.data?.hero_image?.alt ?? ""}
+          src={`${work?.data?.hero_image?.url}&fit=clip&w=1440`}
+          sizes="(max-width: 768px) 100vw, 1440px"
+          blurDataURL={`${work?.data?.hero_image?.url}&w=100&blur=40`}
+          placeholder="blur"
+          priority
+          width={work?.data?.hero_image?.dimensions?.width || 1440}
+          height={work?.data?.hero_image?.dimensions?.height || 810}
+          className="lazy"
+        />
       </figure>
       <div className="hero-captions grid-margin">
         <div className="st-grid">

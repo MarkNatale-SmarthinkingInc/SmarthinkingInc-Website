@@ -1,5 +1,6 @@
 import { createClient } from "@/prismicio";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import Image from "next/image";
+import { PrismicNextLink } from "@prismicio/next";
 
 interface ServicesSectionProps {
   data: import("@prismicio/client").Content.ServicesDocumentData;
@@ -68,8 +69,18 @@ export default async function ServicesSection({ data }: ServicesSectionProps) {
                   <PrismicNextLink document={svc}>
                     <figure>
                       {svc.data.featured_image?.url ? (
-                        <PrismicNextImage
-                          field={svc.data.featured_image}
+                        <Image
+                          alt={svc.data.featured_image?.alt ?? ""}
+                          src={`${svc.data.featured_image?.url}&fit=clip&w=1440`}
+                          sizes="(max-width: 768px) 100vw, 1440px"
+                          blurDataURL={`${svc.data.featured_image?.url}&w=100&blur=40`}
+                          placeholder="blur"
+                          width={
+                            svc.data.featured_image?.dimensions?.width || 1440
+                          }
+                          height={
+                            svc.data.featured_image?.dimensions?.height || 810
+                          }
                           className="lazy"
                         />
                       ) : null}

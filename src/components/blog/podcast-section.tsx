@@ -1,6 +1,6 @@
 import { createClient } from "@/prismicio";
 import type { Content } from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
+import Image from "next/image";
 import { PrismicNextLink } from "@prismicio/next";
 
 type PodcastSectionProps = {
@@ -32,8 +32,14 @@ export default async function PodcastSection({ data }: PodcastSectionProps) {
             <article key={podcast.id}>
               <PrismicNextLink document={podcast} className="st-grid">
                 <figure className="st-xl-3 st-sm-4 st-xs-6 xs-self-start">
-                  <PrismicNextImage
-                    field={podcast.data.image}
+                  <Image
+                    alt={podcast.data.image?.alt ?? ""}
+                    src={`${podcast.data.image?.url}&fit=clip&w=1440`}
+                    sizes="(max-width: 768px) 100vw, 1440px"
+                    blurDataURL={`${podcast.data.image?.url}&w=100&blur=40`}
+                    placeholder="blur"
+                    width={podcast.data.image?.dimensions?.width || 1440}
+                    height={podcast.data.image?.dimensions?.height || 810}
                     className="lazy"
                   />
                 </figure>
