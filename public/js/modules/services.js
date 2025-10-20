@@ -5,7 +5,7 @@ export function services() {
   if (!isMobile() || window.innerWidth > 768) {
     const stage = document.querySelector("#circle-stage");
     const stageInner = document.querySelector(".stage-inner");
-    if (!stage || !stageInner) return;
+
     let circle1 = stage.querySelector(".circle-1");
     let circle2 = stage.querySelector(".circle-2 ");
     let circle3 = stage.querySelector(".circle-3");
@@ -78,10 +78,12 @@ export function services() {
   }
 
   // CIRCLE ROTATE LOOP
+  gsap.set(circleRotate, {
+    xPercent: -50,
+    yPercent: -50,
+  });
   gsap.to(circleRotate, {
     rotateZ: 360,
-    yPercent: -50,
-    xPercent: -50,
     repeat: -1,
     duration: 16,
     ease: "linear",

@@ -3,8 +3,8 @@ export function equalizer() {
           // --- config -------------------------------------------------------------
           const COLS = 80;
           const WAVE_SPREAD = 16;
-          const SMOOTHNESS = 0.035;
-          const MAX_HEIGHT_FACTOR = 0.9; // 80% row height cap
+          const SMOOTHNESS = 0.045;
+          const MAX_HEIGHT_FACTOR = 0.95; // 80% row height cap
 
           // --- state per row ------------------------------------------------------
           const rows = document.querySelectorAll('.row-item');

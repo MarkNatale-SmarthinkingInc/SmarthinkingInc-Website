@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "images.prismic.io",
       },
+      {
+        hostname: "smartthinking-cms.cdn.prismic.io",
+      },
     ],
   },
 

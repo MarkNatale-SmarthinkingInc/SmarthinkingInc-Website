@@ -1074,7 +1074,7 @@
   flex: 0 0 100%;
   padding-right: 1em;
   text-align: right;
-  max-width: 30ch;
+  max-width: 20ch;
   /* limit to ~30 characters width */
   white-space: nowrap;
   overflow: hidden;
@@ -1083,7 +1083,7 @@
 @media only screen and (max-width: 768px) {
   #menu .page-name {
     font-size: 14px;
-    max-width: 18ch;
+    max-width: 12ch;
   }
 }
 #menu #hamburger {
@@ -1915,7 +1915,7 @@
 }
 .about #belief .piano-wrap {
   position: relative;
-  padding: 5.55552vw 0 2.77776vw;
+  padding: 11.11104vw 0 8.33328vw;
 }
 .about #belief .piano-wrap #piano {
   position: absolute;
@@ -2219,11 +2219,6 @@
   left: 50%;
   width: 90%;
   z-index: 2;
-  transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
 }
 .services .service-listing {
   position: relative;

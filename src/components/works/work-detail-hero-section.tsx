@@ -41,13 +41,13 @@ export default function WorkDetailHeroSection({
       </figure>
       <div className="hero-captions grid-margin">
         <div className="st-grid">
-          <div className="st-xl-3 xs-hidden fadeUp link-back">
+          <div className="st-xl-5 xs-hidden fadeUp link-back">
             <PrismicNextLink href="/work" className="caption">
               <img src="/img/svg/icon-semi-arrow-white.svg" alt="Arrow icon" />
               <span>Back to projects</span>
             </PrismicNextLink>
           </div>
-          <div className="st-xl-4 st-xl-os-4 st-xs-10 st-xs-os-4 center fadeUp">
+          <div className="st-xl-4 st-xl-os-2 st-xs-10 st-xs-os-4 center fadeUp">
             <ul className="caption">
               {attachedService && <li>{attachedService?.data?.title}</li>}
               {otherServicesFromSlices?.map((service) => (
@@ -55,7 +55,7 @@ export default function WorkDetailHeroSection({
               ))}
             </ul>
           </div>
-          <div className="st-xl-3 st-xl-os-4 right xs-hidden fadeUp">
+          <div className="st-xl-3 st-xl-os-4 st-sm-4 st-sm-os-3 st-xs-5 st-xs-os-2 right xs-hidden fadeUp">
             <p className="caption">{work?.data?.location}</p>
           </div>
         </div>
