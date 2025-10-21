@@ -169,6 +169,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "work_detail_video_half_half_block": {
+              "type": "SharedSlice"
+            },
+            "work_detail_video_full_block": {
+              "type": "SharedSlice"
+            },
             "work_detail_results_block": {
               "type": "SharedSlice"
             },

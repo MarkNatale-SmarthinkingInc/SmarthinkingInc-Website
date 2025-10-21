@@ -2430,6 +2430,8 @@ export type TestimonialsDocument<Lang extends string = string> =
   >;
 
 type WorkDocumentDataSlicesSlice =
+  | WorkDetailVideoHalfHalfBlockSlice
+  | WorkDetailVideoFullBlockSlice
   | WorkDetailResultsBlockSlice
   | WorkDetailSliderBlockSlice
   | WorkDetailCategoryBlockSlice
@@ -3313,6 +3315,109 @@ export type WorkDetailSliderBlockSlice = prismic.SharedSlice<
   WorkDetailSliderBlockSliceVariation
 >;
 
+/**
+ * Primary content in *WorkDetailVideoFullBlock → Default → Primary*
+ */
+export interface WorkDetailVideoFullBlockSliceDefaultPrimary {
+  /**
+   * Video field in *WorkDetailVideoFullBlock → Default → Primary*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_video_full_block.default.primary.video
+   * - **Documentation**: https://prismic.io/docs/fields/embed
+   */
+  video: prismic.EmbedField;
+}
+
+/**
+ * Default variation for WorkDetailVideoFullBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailVideoFullBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<WorkDetailVideoFullBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *WorkDetailVideoFullBlock*
+ */
+type WorkDetailVideoFullBlockSliceVariation =
+  WorkDetailVideoFullBlockSliceDefault;
+
+/**
+ * WorkDetailVideoFullBlock Shared Slice
+ *
+ * - **API ID**: `work_detail_video_full_block`
+ * - **Description**: WorkDetailVideoFullBlock
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailVideoFullBlockSlice = prismic.SharedSlice<
+  "work_detail_video_full_block",
+  WorkDetailVideoFullBlockSliceVariation
+>;
+
+/**
+ * Primary content in *WorkDetailVideoHalfHalfBlock → Default → Primary*
+ */
+export interface WorkDetailVideoHalfHalfBlockSliceDefaultPrimary {
+  /**
+   * Video 1 field in *WorkDetailVideoHalfHalfBlock → Default → Primary*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_video_half_half_block.default.primary.video_1
+   * - **Documentation**: https://prismic.io/docs/fields/embed
+   */
+  video_1: prismic.EmbedField;
+
+  /**
+   * Video 2 field in *WorkDetailVideoHalfHalfBlock → Default → Primary*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_video_half_half_block.default.primary.video_2
+   * - **Documentation**: https://prismic.io/docs/fields/embed
+   */
+  video_2: prismic.EmbedField;
+}
+
+/**
+ * Default variation for WorkDetailVideoHalfHalfBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailVideoHalfHalfBlockSliceDefault =
+  prismic.SharedSliceVariation<
+    "default",
+    Simplify<WorkDetailVideoHalfHalfBlockSliceDefaultPrimary>,
+    never
+  >;
+
+/**
+ * Slice variation for *WorkDetailVideoHalfHalfBlock*
+ */
+type WorkDetailVideoHalfHalfBlockSliceVariation =
+  WorkDetailVideoHalfHalfBlockSliceDefault;
+
+/**
+ * WorkDetailVideoHalfHalfBlock Shared Slice
+ *
+ * - **API ID**: `work_detail_video_half_half_block`
+ * - **Description**: WorkDetailVideoHalfHalfBlock
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkDetailVideoHalfHalfBlockSlice = prismic.SharedSlice<
+  "work_detail_video_half_half_block",
+  WorkDetailVideoHalfHalfBlockSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -3428,6 +3533,14 @@ declare module "@prismicio/client" {
       WorkDetailSliderBlockSliceDefaultPrimary,
       WorkDetailSliderBlockSliceVariation,
       WorkDetailSliderBlockSliceDefault,
+      WorkDetailVideoFullBlockSlice,
+      WorkDetailVideoFullBlockSliceDefaultPrimary,
+      WorkDetailVideoFullBlockSliceVariation,
+      WorkDetailVideoFullBlockSliceDefault,
+      WorkDetailVideoHalfHalfBlockSlice,
+      WorkDetailVideoHalfHalfBlockSliceDefaultPrimary,
+      WorkDetailVideoHalfHalfBlockSliceVariation,
+      WorkDetailVideoHalfHalfBlockSliceDefault,
     };
   }
 }

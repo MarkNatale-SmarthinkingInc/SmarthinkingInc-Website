@@ -16,13 +16,11 @@ export default function WorkDetailMainVideoSection({
   return (
     <section id="main-video" className="grid-margin">
       <div className="video-wrap st-xl-16 st-xl-os-1 xl-top-3">
-        {work?.data?.video && isFilled.embed(work.data.video) && (
-          <div
-            className="video-embed"
-            // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
-            dangerouslySetInnerHTML={{ __html: work.data.video.html ?? "" }}
-          />
-        )}
+        <div
+          className="video-embed"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+          dangerouslySetInnerHTML={{ __html: work.data.video.html ?? "" }}
+        />
       </div>
     </section>
   );

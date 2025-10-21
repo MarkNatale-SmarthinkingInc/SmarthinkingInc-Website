@@ -1,0 +1,33 @@
+{
+  "id": "work_detail_video_half_half_block",
+  "type": "SharedSlice",
+  "name": "WorkDetailVideoHalfHalfBlock",
+  "description": "WorkDetailVideoHalfHalfBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "video_1": {
+          "type": "Embed",
+          "config": {
+            "label": "Video 1",
+            "placeholder": ""
+          }
+        },
+        "video_2": {
+          "type": "Embed",
+          "config": {
+            "label": "Video 2",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

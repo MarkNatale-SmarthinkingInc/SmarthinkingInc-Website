@@ -20,4 +20,10 @@ export const components = {
   ),
   work_detail_results_block: dynamic(() => import("./WorkDetailResultsBlock")),
   work_detail_slider_block: dynamic(() => import("./WorkDetailSliderBlock")),
+  work_detail_video_full_block: dynamic(
+    () => import("./WorkDetailVideoFullBlock"),
+  ),
+  work_detail_video_half_half_block: dynamic(
+    () => import("./WorkDetailVideoHalfHalfBlock"),
+  ),
 };

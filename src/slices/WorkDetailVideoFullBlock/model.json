@@ -1,0 +1,26 @@
+{
+  "id": "work_detail_video_full_block",
+  "type": "SharedSlice",
+  "name": "WorkDetailVideoFullBlock",
+  "description": "WorkDetailVideoFullBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "video": {
+          "type": "Embed",
+          "config": {
+            "label": "Video",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
