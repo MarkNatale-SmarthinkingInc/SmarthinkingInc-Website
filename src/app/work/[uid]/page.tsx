@@ -7,6 +7,7 @@ import WorkDetailRelatedWorkSection from "@/components/works/work-detail-related
 import WorkDetailTestimonialsSection from "@/components/works/work-detail-testimonials-section";
 import { createClient } from "@/prismicio";
 import { generateMeta } from "@/utils/seo";
+import Script from "next/script";
 
 export async function generateMetadata({
   params,
@@ -34,21 +35,27 @@ const WorkDetailPage = async ({
   const client = createClient();
   const work = await client.getByUID("work", uid);
   return (
-    <main
-      id="smooth-wrapper"
-      data-barba="container"
-      data-barba-namespace="work-detail"
-    >
-      <div id="smooth-content" className="work-detail" data-page="Work">
-        <WorkDetailHeroSection work={work} />
-        <WorkDetailMainVideoSection work={work} />
-        <WorkDetailContentSection work={work} />
-        <WorkDetailTestimonialsSection work={work} />
-        <WorkDetailRelatedWorkSection work={work} />
-        <WorkDetailCtaSection work={work} />
-        <FooterSection />
-      </div>
-    </main>
+    <>
+      <main
+        id="smooth-wrapper"
+        data-barba="container"
+        data-barba-namespace="work-detail"
+      >
+        <div id="smooth-content" className="work-detail" data-page="Work">
+          <WorkDetailHeroSection work={work} />
+          <WorkDetailMainVideoSection work={work} />
+          <WorkDetailContentSection work={work} />
+          <WorkDetailTestimonialsSection work={work} />
+          <WorkDetailRelatedWorkSection work={work} />
+          <WorkDetailCtaSection work={work} />
+          <FooterSection />
+        </div>
+      </main>
+      <Script
+        src="https://player.vimeo.com/api/player.js"
+        strategy="afterInteractive"
+      />
+    </>
   );
 };
 

@@ -7,33 +7,25 @@ interface WorkDetailMainVideoSectionProps {
 export default function WorkDetailMainVideoSection({
   work,
 }: WorkDetailMainVideoSectionProps) {
+  const isFilledVideo = isFilled.embed(work?.data?.video);
+  if (!isFilledVideo) return null;
+
+  const embed = work?.data?.video?.thumbnail_url;
+  console.log(embed);
+
   return (
     <section id="main-video" className="grid-margin">
       <div className="video-wrap st-xl-16 st-xl-os-1 xl-top-3">
-        {work?.data?.video && isFilled.linkToMedia(work.data.video) && (
-          <video
-            id="heroVideo"
-            playsInline
-            loop
-            preload="metadata"
-            poster={work?.data?.video_poster?.url || undefined}
-            width="1920"
-            height="1080"
-            crossOrigin="anonymous"
-            aria-label={
-              work?.data?.video_poster?.alt ||
-              work.data.video.text ||
-              "project vide"
-            }
-            style={{ display: "block", maxWidth: "100%", height: "auto" }}
-          >
-            <source src={work.data.video.url} type="video/mp4" />
-          </video>
+        {work?.data?.video && isFilled.embed(work.data.video) && (
+          <div
+            className="video-embed"
+            dangerouslySetInnerHTML={{ __html: work.data.video.html }}
+          />
         )}
-        <div className="icon-play">
+        {/* <div className="icon-play">
           <span></span>
           <img src="/img/svg/icon-play.svg" alt="White play icon" />
-        </div>
+        </div> */}
       </div>
     </section>
   );

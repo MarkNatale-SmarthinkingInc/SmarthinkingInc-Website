@@ -2565,26 +2565,15 @@ interface WorkDocumentData {
   hero_description: prismic.RichTextField;
 
   /**
-   * Video Poster field in *Work*
+   * Video field in *Work*
    *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: work.video_poster
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  video_poster: prismic.ImageField<never>;
-
-  /**
-   * video field in *Work*
-   *
-   * - **Field Type**: Link to Media
+   * - **Field Type**: Embed
    * - **Placeholder**: *None*
    * - **API ID Path**: work.video
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+   * - **Documentation**: https://prismic.io/docs/fields/embed
    */
-  video: prismic.LinkToMediaField<prismic.FieldState, never>;
+  video: prismic.EmbedField;
 
   /**
    * Testimonial Quote field in *Work*

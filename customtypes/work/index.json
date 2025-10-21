@@ -104,21 +104,11 @@
           "single": "paragraph,strong,em"
         }
       },
-      "video_poster": {
-        "type": "Image",
-        "config": {
-          "label": "Video Poster",
-          "constraint": {},
-          "thumbnails": []
-        }
-      },
       "video": {
-        "type": "Link",
+        "type": "Embed",
         "config": {
-          "label": "video",
-          "placeholder": "",
-          "select": "media",
-          "allowText": true
+          "label": "Video",
+          "placeholder": ""
         }
       },
       "testimonial_quote": {
