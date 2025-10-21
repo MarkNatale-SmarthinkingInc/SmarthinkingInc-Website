@@ -19,7 +19,8 @@ export default function WorkDetailMainVideoSection({
         {work?.data?.video && isFilled.embed(work.data.video) && (
           <div
             className="video-embed"
-            dangerouslySetInnerHTML={{ __html: work.data.video.html }}
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+            dangerouslySetInnerHTML={{ __html: work.data.video.html ?? "" }}
           />
         )}
         {/* <div className="icon-play">
