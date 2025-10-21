@@ -23,10 +23,6 @@ export default function WorkDetailMainVideoSection({
             dangerouslySetInnerHTML={{ __html: work.data.video.html ?? "" }}
           />
         )}
-        {/* <div className="icon-play">
-          <span></span>
-          <img src="/img/svg/icon-play.svg" alt="White play icon" />
-        </div> */}
       </div>
     </section>
   );
