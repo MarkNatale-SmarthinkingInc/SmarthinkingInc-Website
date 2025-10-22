@@ -18,6 +18,14 @@
             "label": "Video",
             "placeholder": ""
           }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
         }
       },
       "items": {}

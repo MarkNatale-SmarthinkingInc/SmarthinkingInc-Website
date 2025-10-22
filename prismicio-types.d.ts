@@ -3328,6 +3328,16 @@ export interface WorkDetailVideoFullBlockSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/embed
    */
   video: prismic.EmbedField;
+
+  /**
+   * Image field in *WorkDetailVideoFullBlock → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_video_full_block.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
 }
 
 /**
@@ -3384,6 +3394,26 @@ export interface WorkDetailVideoHalfHalfBlockSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/embed
    */
   video_2: prismic.EmbedField;
+
+  /**
+   * Image 1 field in *WorkDetailVideoHalfHalfBlock → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_video_half_half_block.default.primary.image_1
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image_1: prismic.ImageField<never>;
+
+  /**
+   * Image 2 field in *WorkDetailVideoHalfHalfBlock → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_video_half_half_block.default.primary.image_2
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image_2: prismic.ImageField<never>;
 }
 
 /**
