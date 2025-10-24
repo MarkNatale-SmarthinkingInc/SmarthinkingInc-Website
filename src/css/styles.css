@@ -1087,8 +1087,8 @@
   }
 }
 #menu #hamburger {
-  flex: 0 0 40px;
-  height: 40px;
+  flex: 0 0 48px;
+  height: 48px;
   background-color: #99947E;
   border-radius: 5px;
   display: flex;
@@ -4503,6 +4503,8 @@ a.text-link {
   -webkit-transition: color 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   -moz-transition: color 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
   -o-transition: color 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding: 8px 4px;
+  display: inline-block;
 }
 a.text-link::before {
   content: "";
