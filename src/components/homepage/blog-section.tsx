@@ -78,20 +78,24 @@ export default async function BlogSection({ data }: BlogSectionProps) {
               {isFilled.image(blogPost.data?.featured_image) && (
                 <figure>
                   <PrismicNextLink document={blogPost}>
-                    <Image
-                      alt={blogPost.data.featured_image?.alt ?? ""}
-                      src={`${blogPost.data.featured_image?.url}&fit=clip&w=1440`}
-                      sizes="(max-width: 768px) 100vw, 1440px"
-                      blurDataURL={`${blogPost.data.featured_image?.url}&w=100&blur=40`}
-                      placeholder="blur"
-                      width={
-                        blogPost.data.featured_image?.dimensions?.width || 1440
-                      }
-                      height={
-                        blogPost.data.featured_image?.dimensions?.height || 810
-                      }
-                      className="lazy"
-                    />
+                    {blogPost.data.featured_image?.url && (
+                      <Image
+                        alt={blogPost.data.featured_image?.alt ?? ""}
+                        src={`${blogPost.data.featured_image?.url}&fit=clip&w=1440`}
+                        sizes="(max-width: 768px) 100vw, 1440px"
+                        blurDataURL={`${blogPost.data.featured_image?.url}&w=100&blur=40`}
+                        placeholder="blur"
+                        width={
+                          blogPost.data.featured_image?.dimensions?.width ||
+                          1440
+                        }
+                        height={
+                          blogPost.data.featured_image?.dimensions?.height ||
+                          810
+                        }
+                        className="lazy"
+                      />
+                    )}
                   </PrismicNextLink>
                 </figure>
               )}

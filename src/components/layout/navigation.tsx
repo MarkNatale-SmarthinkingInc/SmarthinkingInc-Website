@@ -21,10 +21,16 @@ export default async function Navigation() {
         })}
       </div>
       <div className="nav-social">
-        <PrismicNextLink field={settings.data.instagram_link}>
+        <PrismicNextLink
+          field={settings.data.instagram_link}
+          aria-label="Visit our Instagram"
+        >
           <img src="/img/svg/instagram-white.svg" alt="Instagram icon" />
         </PrismicNextLink>
-        <PrismicNextLink field={settings.data.linkedin_link}>
+        <PrismicNextLink
+          field={settings.data.linkedin_link}
+          aria-label="Visit our LinkedIn"
+        >
           <img src="/img/svg/linkedin-white.svg" alt="LinkedIn icon" />
         </PrismicNextLink>
       </div>

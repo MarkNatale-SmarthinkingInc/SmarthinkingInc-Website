@@ -1,7 +1,6 @@
 import { drag } from "/js/modules/drag.js";
 import { equalizer } from "/js/modules/equalizer.js";
 import { home } from "/js/modules/home.js";
-import { lazyLoad } from "/js/modules/lazy-load.js";
 // IMPORT MODULES /////////////////////////////////////////////////////////////////////////////////
 // import { scmoothScroll } from "/js/modules/smooth-scroll.js";
 // import { bgNoise } from "/js/modules/bg-noise.js";
@@ -24,18 +23,6 @@ import { button, serviceStack } from "/js/modules/small-hovers.js";
 import { rotateSlider, manifesto } from "/js/modules/about.js";
 import { textAnim } from "/js/modules/text-anim.js";
 import { error } from "/js/modules/error.js";
-
-// import { cursor } from "/js/modules/custom-cursor.js";
-// import { buttons, circleButtons, marquise, accordion, directionSpin, inView, locationView, customSelect} from "/js/modules/small-animations.js";
-// import { testimonials } from "/js/modules/testimonials.js";
-// import { video } from "/js/modules/video.js";
-// import { spinner } from "/js/modules/spinner.js";
-// import { timeline } from "/js/modules/timeline.js";
-// import { svgLineAnim } from "/js/modules/svg-line-anim.js";
-// import { teamBio } from "/js/modules/team.js";
-// import { locationSlider } from "/js/modules/location-slider.js";
-// import { sharePin } from "/js/modules/blog.js";
-// import { lazyLoad } from "/js/modules/lazy-load.js";
 
 // Helper function to determine page namespace from pathname
 const getPageNamespace = (pathname) => {
@@ -109,7 +96,6 @@ const homeScripts = () => {
     strings();
     workHover();
     equalizer();
-    lazyLoad();
   });
 };
 const aboutScripts = () => {
@@ -123,7 +109,6 @@ const aboutScripts = () => {
     rotateSlider();
     manifesto();
     testimonials();
-    lazyLoad();
   });
 };
 const serviceScripts = () => {
@@ -136,7 +121,6 @@ const serviceScripts = () => {
     strings();
     services();
     testimonials();
-    lazyLoad();
   });
 };
 const serviceDetailScripts = () => {
@@ -148,7 +132,6 @@ const serviceDetailScripts = () => {
     strings();
     equalizer();
     stripeHover();
-    lazyLoad();
   });
 };
 const workScripts = () => {
@@ -157,7 +140,6 @@ const workScripts = () => {
     heroAnimations();
     work();
     strings();
-    lazyLoad();
   });
 };
 const workDetailScripts = () => {
@@ -171,7 +153,6 @@ const workDetailScripts = () => {
     button();
     drag();
     equalizer();
-    lazyLoad();
     video();
   });
 };
@@ -183,7 +164,6 @@ const blogScripts = () => {
     button();
     strings();
     piano();
-    lazyLoad();
   });
 };
 const blogDetailScripts = () => {
@@ -194,7 +174,6 @@ const blogDetailScripts = () => {
     button();
     strings();
     piano();
-    lazyLoad();
   });
 };
 const contactScripts = () => {
@@ -203,7 +182,6 @@ const contactScripts = () => {
     heroAnimations();
     button();
     strings();
-    lazyLoad();
   });
 };
 

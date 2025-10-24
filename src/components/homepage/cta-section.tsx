@@ -58,6 +58,7 @@ export default function CtaSection({ data }: CtaSectionProps) {
               <a
                 href={`mailto:${data.cta_email}`}
                 className="button button-dark"
+                aria-label={`Send email to ${data.cta_email}`}
               >
                 <div className="main-bg" />
                 <div className="icon">

@@ -43,6 +43,7 @@ export default function WorkDetailCtaSection({
           <a
             href={`mailto:${work?.data?.cta_email}`}
             className="button button-dark"
+            aria-label={`Send email to ${work?.data?.cta_email}`}
           >
             <div className="main-bg" />
             <div className="icon">

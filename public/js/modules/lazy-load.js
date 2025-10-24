@@ -45,6 +45,7 @@ export function lazyLoad() {
             newImage.onload = null; // avoid recursion
             newImage.src = image.src; // swap the src
             image.src = newSRC;
+            if (!newSRC) return;
             // place the low-res version on TOP and then fade it out.
             gsap.set(newImage, {
               position: "absolute",

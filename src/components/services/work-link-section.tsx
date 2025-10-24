@@ -21,6 +21,7 @@ export default function WorkLinkSection({ data }: WorkLinkProps) {
               <PrismicNextLink
                 field={data.work_link_button_link}
                 className="button button-white"
+                aria-label={`View work - ${data.work_link_button_label || "View Our Work"}`}
               >
                 <div className="main-bg"></div>
                 <div className="icon">

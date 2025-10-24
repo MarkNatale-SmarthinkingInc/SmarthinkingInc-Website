@@ -1,6 +1,7 @@
 import Head from "@/app/head";
 
 import "@/css/normalize.css";
+import "@/css/vars.css";
 import "@/css/styles.css";
 import "@/css/styles-overrides.css";
 
@@ -34,15 +35,15 @@ export default async function RootLayout({
 
         {children}
 
-        {/* Page Transition Libraries */}
+        {/* Page Transition Libraries - Critical for navigation */}
         <Script src="/js/barba-prefetch.js" strategy="beforeInteractive" />
         <Script src="/js/barba.js" strategy="beforeInteractive" />
 
-        {/* Utilities */}
+        {/* FontFaceObserver - needed before vars.js */}
         <Script src="/js/fontfaceobserver.js" strategy="beforeInteractive" />
-        <Script src="/js/gsap.min.js" strategy="beforeInteractive" />
 
-        {/* GSAP Core & Plugins - Load before interactive */}
+        {/* GSAP Core - Critical for all animations */}
+        <Script src="/js/gsap.min.js" strategy="beforeInteractive" />
         <Script src="/js/CustomEase.min.js" strategy="beforeInteractive" />
         <Script src="/js/ScrollTrigger.min.js" strategy="beforeInteractive" />
         <Script src="/js/ScrollSmoother.min.js" strategy="beforeInteractive" />

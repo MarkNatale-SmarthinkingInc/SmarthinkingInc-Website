@@ -145,20 +145,22 @@ export default function BlogSection({ data }: BlogSectionProps) {
               <article className="st-xl-6 st-xs-18" key={item.id}>
                 <figure>
                   <PrismicNextLink field={item}>
-                    <Image
-                      alt={item.data.featured_image?.alt ?? ""}
-                      src={`${item.data.featured_image?.url}&fit=clip&w=1440`}
-                      sizes="(max-width: 768px) 100vw, 1440px"
-                      blurDataURL={`${item.data.featured_image?.url}&w=100&blur=40`}
-                      placeholder="blur"
-                      width={
-                        item.data.featured_image?.dimensions?.width || 1440
-                      }
-                      height={
-                        item.data.featured_image?.dimensions?.height || 810
-                      }
-                      className="lazy"
-                    />
+                    {item.data.featured_image?.url && (
+                      <Image
+                        alt={item.data.featured_image?.alt ?? ""}
+                        src={`${item.data.featured_image?.url}&fit=clip&w=1440`}
+                        sizes="(max-width: 768px) 100vw, 1440px"
+                        blurDataURL={`${item.data.featured_image?.url}&w=100&blur=40`}
+                        placeholder="blur"
+                        width={
+                          item.data.featured_image?.dimensions?.width || 1440
+                        }
+                        height={
+                          item.data.featured_image?.dimensions?.height || 810
+                        }
+                        className="lazy"
+                      />
+                    )}
                   </PrismicNextLink>
                 </figure>
                 <div
@@ -193,16 +195,22 @@ export default function BlogSection({ data }: BlogSectionProps) {
             <article className="st-xl-6 st-xs-18" key={post.id}>
               <figure>
                 <PrismicNextLink document={post}>
-                  <Image
-                    alt={post.data.featured_image?.alt ?? ""}
-                    src={`${post.data.featured_image?.url}&fit=clip&w=1440`}
-                    sizes="(max-width: 768px) 100vw, 1440px"
-                    blurDataURL={`${post.data.featured_image?.url}&w=100&blur=40`}
-                    placeholder="blur"
-                    width={post.data.featured_image?.dimensions?.width || 1440}
-                    height={post.data.featured_image?.dimensions?.height || 810}
-                    className="lazy"
-                  />
+                  {post.data.featured_image?.url && (
+                    <Image
+                      alt={post.data.featured_image?.alt ?? ""}
+                      src={`${post.data.featured_image?.url}&fit=clip&w=1440`}
+                      sizes="(max-width: 768px) 100vw, 1440px"
+                      blurDataURL={`${post.data.featured_image?.url}&w=100&blur=40`}
+                      placeholder="blur"
+                      width={
+                        post.data.featured_image?.dimensions?.width || 1440
+                      }
+                      height={
+                        post.data.featured_image?.dimensions?.height || 810
+                      }
+                      className="lazy"
+                    />
+                  )}
                 </PrismicNextLink>
               </figure>
               <div className="tags" style={{ zIndex: 2, position: "relative" }}>

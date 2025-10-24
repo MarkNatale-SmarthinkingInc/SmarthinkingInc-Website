@@ -97,6 +97,7 @@ export default function WorkSection({ data }: WorkSectionProps) {
             <PrismicNextLink
               field={data.work_cta}
               className="button button-dark"
+              aria-label={`View more work - ${data.work_cta.text}`}
             >
               <div className="main-bg"></div>
               <div className="icon">

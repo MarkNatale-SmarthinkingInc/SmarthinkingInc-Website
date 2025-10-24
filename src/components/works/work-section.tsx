@@ -21,16 +21,18 @@ export default async function WorkSection() {
           <PrismicNextLink document={work} className="st-grid imgIn">
             <div className="st-xl-6 st-xs-8 imgIn">
               <figure>
-                <Image
-                  alt={work.data.main_image?.alt ?? ""}
-                  src={`${work.data.main_image?.url}&fit=clip&w=1440`}
-                  sizes="(max-width: 768px) 100vw, 1440px"
-                  blurDataURL={`${work.data.main_image?.url}&w=100&blur=40`}
-                  placeholder="blur"
-                  width={work.data.main_image?.dimensions?.width || 1440}
-                  height={work.data.main_image?.dimensions?.height || 810}
-                  className="lazy"
-                />
+                {work.data.main_image?.url && (
+                  <Image
+                    alt={work.data.main_image?.alt ?? ""}
+                    src={`${work.data.main_image?.url}&fit=clip&w=1440`}
+                    sizes="(max-width: 768px) 100vw, 1440px"
+                    blurDataURL={`${work.data.main_image?.url}&w=100&blur=40`}
+                    placeholder="blur"
+                    width={work.data.main_image?.dimensions?.width || 1440}
+                    height={work.data.main_image?.dimensions?.height || 810}
+                    className="lazy"
+                  />
+                )}
               </figure>
             </div>
             <div className="st-xl-12 st-xs-10 st-grid xs-wrap">

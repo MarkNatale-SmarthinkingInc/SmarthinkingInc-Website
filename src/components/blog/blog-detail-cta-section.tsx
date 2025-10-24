@@ -40,12 +40,20 @@ export default async function BlogDetailCtaSection({
             ) : (
               "Call us now at"
             )}{" "}
-            <a href={`tel:${footer.data.contact_phone}`} className="CopyBold">
+            <a
+              href={`tel:${footer.data.contact_phone}`}
+              className="CopyBold"
+              aria-label={`Call us at ${footer.data.contact_phone}`}
+            >
               {footer.data.contact_phone}
             </a>
           </div>
           <div className="button-wrap">
-            <a href="/contact" className="button button-brown">
+            <a
+              href="/contact"
+              className="button button-brown"
+              aria-label="Go to contact form"
+            >
               <div className="main-bg"></div>
               <div className="icon">
                 <i>

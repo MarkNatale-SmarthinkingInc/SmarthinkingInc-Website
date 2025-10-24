@@ -53,7 +53,11 @@ export default function ServiceDetailContentSection({
             <p className="f-32">{service.data.contact_text}</p>
           )}
           <div className="button-wrap">
-            <PrismicNextLink href="/contact" className="button">
+            <PrismicNextLink
+              href="/contact"
+              className="button"
+              aria-label="Go to contact form"
+            >
               <div className="main-bg"></div>
               <div className="icon">
                 <i>

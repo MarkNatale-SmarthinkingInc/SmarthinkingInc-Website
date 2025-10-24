@@ -94,20 +94,26 @@ export default async function FooterSection() {
           <div className="st-xs-18">
             <FooterNewsletter />
           </div>
-          <div className="social self-end">
-            <PrismicNextLink field={settings.data.instagram_link}>
-              <img src="/img/svg/instagram.svg" alt="Instagram icon" />
+          <div className="nav-social">
+            <PrismicNextLink
+              field={settings.data.instagram_link}
+              aria-label="Visit our Instagram"
+            >
+              <img src="/img/svg/instagram-white.svg" alt="Instagram icon" />
             </PrismicNextLink>
-            <PrismicNextLink field={settings.data.linkedin_link}>
-              <img src="/img/svg/linkedin.svg" alt="LinkedIn icon" />
+            <PrismicNextLink
+              field={settings.data.linkedin_link}
+              aria-label="Visit our LinkedIn"
+            >
+              <img src="/img/svg/linkedin-white.svg" alt="LinkedIn icon" />
             </PrismicNextLink>
           </div>
         </div>
       </div>
       <div className="footer-bottom string-canvas">
         <figure>
-          <img src="/img/svg/logo-dark.svg" alt="Smarthinking Inc. dark logo" />
-          <img src="/img/svg/logo-dark.svg" alt="Smarthinking Inc. dark logo" />
+          <img src="/img/svg/logo-dark.svg" alt="Smarthinking Inc. logo" />
+          <img src="/img/svg/logo-dark.svg" alt="" aria-hidden="true" />
         </figure>
         <canvas className="string-lines gridFooter"></canvas>
       </div>

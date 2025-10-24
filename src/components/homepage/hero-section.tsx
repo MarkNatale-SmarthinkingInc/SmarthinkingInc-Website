@@ -18,17 +18,20 @@ export default async function HeroSectionPrismic({
   return (
     <section id="hero">
       <figure className="parallax">
-        <Image
-          alt={data.hero_background_image?.alt ?? ""}
-          src={`${data.hero_background_image?.url}&fit=clip&w=1440`}
-          sizes="(max-width: 768px) 100vw, 1440px"
-          blurDataURL={`${data.hero_background_image?.url}&w=100&blur=40`}
-          placeholder="blur"
-          width={data.hero_background_image?.dimensions?.width || 1440}
-          height={data.hero_background_image?.dimensions?.height || 810}
-          className="lazy"
-          priority
-        />
+        {data.hero_background_image?.url && (
+          <Image
+            alt={data.hero_background_image?.alt ?? ""}
+            src={`${data.hero_background_image?.url}&fit=clip&w=800`}
+            fetchPriority="high"
+            sizes="(max-width: 768px) 100vw, 1440px"
+            blurDataURL={`${data.hero_background_image?.url}&w=100&blur=40`}
+            placeholder="blur"
+            width={data.hero_background_image?.dimensions?.width || 1440}
+            height={data.hero_background_image?.dimensions?.height || 810}
+            className="lazy"
+            priority
+          />
+        )}
       </figure>
 
       <div className="hero-captions grid-margin fadeUp">
@@ -47,6 +50,7 @@ export default async function HeroSectionPrismic({
             <a
               href="/contact"
               className="hero-contact caption st-grid grid-end"
+              aria-label="Contact us"
             >
               <img
                 src="/img/svg/hero-cta-icon.svg"
