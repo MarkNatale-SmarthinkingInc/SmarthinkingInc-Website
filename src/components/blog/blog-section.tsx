@@ -194,7 +194,10 @@ export default function BlogSection({ data }: BlogSectionProps) {
           return (
             <article className="st-xl-6 st-xs-18" key={post.id}>
               <figure>
-                <PrismicNextLink document={post}>
+                <PrismicNextLink
+                  document={post}
+                  aria-label={`Read blog post: ${post.data.title}`}
+                >
                   {post.data.featured_image?.url && (
                     <Image
                       alt={post.data.featured_image?.alt ?? ""}
