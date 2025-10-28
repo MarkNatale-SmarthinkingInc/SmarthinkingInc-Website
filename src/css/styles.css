@@ -4698,6 +4698,16 @@ FOOTER//////////////////////////////////////////////////////////////////////////
 #footer .footer-top ul {
   line-height: 1.2;
 }
+
+@media only screen and (max-width: 768px) {
+  #footer .footer-top li {
+    margin: 0.3em 0;
+  }
+  #footer .footer-top li a {
+    line-height: 24px;
+  }
+}
+
 #footer h3 {
   margin-bottom: 2.08332vw;
 }
