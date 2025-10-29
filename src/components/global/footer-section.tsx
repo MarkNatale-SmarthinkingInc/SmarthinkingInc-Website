@@ -94,18 +94,18 @@ export default async function FooterSection() {
           <div className="st-xs-18">
             <FooterNewsletter />
           </div>
-          <div className="nav-social">
+          <div className="social self-end">
             <PrismicNextLink
               field={settings.data.instagram_link}
               aria-label="Visit our Instagram"
             >
-              <img src="/img/svg/instagram-white.svg" alt="Instagram icon" />
+              <img src="/img/svg/instagram.svg" alt="Instagram icon" />
             </PrismicNextLink>
             <PrismicNextLink
               field={settings.data.linkedin_link}
               aria-label="Visit our LinkedIn"
             >
-              <img src="/img/svg/linkedin-white.svg" alt="LinkedIn icon" />
+              <img src="/img/svg/linkedin.svg" alt="LinkedIn icon" />
             </PrismicNextLink>
           </div>
         </div>
