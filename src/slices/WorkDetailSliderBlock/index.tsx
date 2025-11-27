@@ -19,7 +19,7 @@ const WorkDetailSliderBlock: FC<WorkDetailSliderBlockProps> = ({ slice }) => {
         {slice.primary.images?.map((item, index) => (
           <figure
             key={item.image?.url || `slider-image-${index}`}
-            className={`${index === 0 ? "st-xl-12" : "st-xl-8"} img-anim`}
+            className="st-xl-10 img-anim"
           >
             <Image
               alt={item.image?.alt ?? ""}

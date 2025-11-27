@@ -11,7 +11,7 @@ export default function WorkDetailMainVideoSection({
   if (!isFilledVideo) return null;
 
   const embed = work?.data?.video?.thumbnail_url;
-  console.log(embed);
+  console.log(work?.data?.video);
 
   return (
     <section id="main-video" className="grid-margin">
