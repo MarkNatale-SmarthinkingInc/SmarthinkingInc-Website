@@ -29,13 +29,13 @@ export default function WorkDetailHeroSection({
       <figure className="parallax">
         <Image
           alt={work?.data?.hero_image?.alt ?? ""}
-          src={`${work?.data?.hero_image?.url}&fit=clip&w=1440`}
-          sizes="(max-width: 768px) 100vw, 1440px"
+          src={`${work?.data?.hero_image?.url}&fit=clip&w=1920`}
+          sizes="(max-width: 768px) 100vw, 1920px"
           blurDataURL={`${work?.data?.hero_image?.url}&w=100&blur=40`}
           placeholder="blur"
           priority
-          width={work?.data?.hero_image?.dimensions?.width || 1440}
-          height={work?.data?.hero_image?.dimensions?.height || 810}
+          width={work?.data?.hero_image?.dimensions?.width || 1920}
+          height={work?.data?.hero_image?.dimensions?.height || 1080}
           className="lazy"
         />
       </figure>
