@@ -23,6 +23,7 @@ import { button, serviceStack } from "/js/modules/small-hovers.js";
 import { rotateSlider, manifesto } from "/js/modules/about.js";
 import { textAnim } from "/js/modules/text-anim.js";
 import { error } from "/js/modules/error.js";
+import { lazyLoad } from "/js/modules/lazy-load.js";
 
 // Helper function to determine page namespace from pathname
 const getPageNamespace = (pathname) => {
@@ -88,6 +89,7 @@ menu();
 bodyTag.classList.remove("loading");
 const homeScripts = () => {
   setTimeout(() => {
+    lazyLoad();
     smoothScroll();
     heroAnimations();
     button();
@@ -100,6 +102,7 @@ const homeScripts = () => {
 };
 const aboutScripts = () => {
   setTimeout(() => {
+    lazyLoad();
     smoothScroll();
     heroAnimations();
     button();
@@ -113,6 +116,7 @@ const aboutScripts = () => {
 };
 const serviceScripts = () => {
   setTimeout(() => {
+    lazyLoad();
     smoothScroll();
     heroAnimations();
     button();
@@ -125,6 +129,7 @@ const serviceScripts = () => {
 };
 const serviceDetailScripts = () => {
   setTimeout(() => {
+    lazyLoad();
     smoothScroll();
     heroAnimations();
     serviceStack();
@@ -136,6 +141,7 @@ const serviceDetailScripts = () => {
 };
 const workScripts = () => {
   setTimeout(() => {
+    lazyLoad();
     smoothScroll();
     heroAnimations();
     work();
@@ -144,6 +150,7 @@ const workScripts = () => {
 };
 const workDetailScripts = () => {
   setTimeout(() => {
+    lazyLoad();
     smoothScroll();
     heroAnimations();
     strings();
@@ -158,6 +165,7 @@ const workDetailScripts = () => {
 };
 const blogScripts = () => {
   setTimeout(() => {
+    lazyLoad();
     smoothScroll();
     heroAnimations();
     scrollFix();
@@ -168,6 +176,7 @@ const blogScripts = () => {
 };
 const blogDetailScripts = () => {
   setTimeout(() => {
+    lazyLoad();
     smoothScroll();
     heroAnimations();
     scrollFix();
@@ -178,6 +187,7 @@ const blogDetailScripts = () => {
 };
 const contactScripts = () => {
   setTimeout(() => {
+    lazyLoad();
     smoothScroll();
     heroAnimations();
     button();
@@ -187,6 +197,7 @@ const contactScripts = () => {
 
 let legalScripts = () => {
   setTimeout(function () {
+    lazyLoad();
     smoothScroll();
     heroAnimations();
     strings();
@@ -195,6 +206,7 @@ let legalScripts = () => {
 };
 let errorScripts = () => {
   setTimeout(function () {
+    lazyLoad();
     smoothScroll();
     heroAnimations();
     error();

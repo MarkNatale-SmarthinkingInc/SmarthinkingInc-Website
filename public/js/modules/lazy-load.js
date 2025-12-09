@@ -1,76 +1,64 @@
+const buildBlurSrc = (src) => {
+  try {
+    const url = new URL(src);
+    url.searchParams.set("w", "60");
+    url.searchParams.set("blur", "40");
+    return url.toString();
+  } catch (error) {
+    // Fallback for non-URL-friendly strings
+    const hasQuery = src.includes("?");
+    const widthUpdated = src.replace(/([?&])w=\d+/i, "$1w=60");
+    const withWidth =
+      widthUpdated === src ? `${src}${hasQuery ? "&" : "?"}w=60` : widthUpdated;
+    const blurUpdated = withWidth.replace(/([?&])blur=\d+/i, "$1blur=40");
+    return blurUpdated === withWidth ? `${withWidth}&blur=40` : blurUpdated;
+  }
+};
+
 export function lazyLoad() {
   ScrollTrigger.config({ limitCallbacks: true });
-  gsap.utils.toArray(".lazy").forEach((image) => {
-    // SIZE 1440 and LOWEER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    if (window.innerWidth < 1440) {
-      let newSRC = image.dataset.src,
-        newImage = document.createElement("img"),
-        loadImage = () => {
-          newImage.onload = () => {
-            newImage.onload = null; // avoid recursion
-            newImage.src = image.src; // swap the src
-            image.src = newSRC;
-            // place the low-res version on TOP and then fade it out.
-            gsap.set(newImage, {
-              position: "absolute",
-              top: image.offsetTop,
-              left: image.offsetLeft,
-              width: image.offsetWidth,
-              height: image.offsetHeight,
-            });
-            image.parentNode.appendChild(newImage);
-            gsap.to(newImage, {
-              opacity: 0,
-              duration: 0.15,
-              onComplete: () => newImage.parentNode.removeChild(newImage),
-            });
-            st && st.kill();
-          };
-          newImage.src = newSRC;
-        },
-        st = ScrollTrigger.create({
-          trigger: image,
-          start: "top 170%",
-          onEnter: loadImage,
-          onEnterBack: loadImage, // make sure it works in either direction
-        });
+
+  gsap.utils.toArray("img.lazy").forEach((node) => {
+    const image = node;
+    if (image.dataset.lazyProcessed === "true") return;
+
+    const fullSrc = image.dataset.fullsrc ?? image.getAttribute("src");
+    const fullSrcSet = image.dataset.fullsrcset ?? image.getAttribute("srcset");
+    if (!fullSrc) return;
+
+    image.dataset.fullsrc = fullSrc;
+    if (fullSrcSet) {
+      image.dataset.fullsrcset = fullSrcSet;
+      image.removeAttribute("srcset");
     }
 
-    // SIZE OVER 1440 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    if (window.innerWidth >= 1440) {
-      let newSRC = image.dataset.srcBig,
-        newImage = document.createElement("img"),
-        loadImage = () => {
-          newImage.onload = () => {
-            newImage.onload = null; // avoid recursion
-            newImage.src = image.src; // swap the src
-            image.src = newSRC;
-            if (!newSRC) return;
-            // place the low-res version on TOP and then fade it out.
-            gsap.set(newImage, {
-              position: "absolute",
-              top: image.offsetTop,
-              left: image.offsetLeft,
-              width: image.offsetWidth,
-              height: image.offsetHeight,
-            });
-            image.parentNode.appendChild(newImage);
-            gsap.to(newImage, {
-              opacity: 0,
-              onComplete: () => newImage.parentNode.removeChild(newImage),
-            });
-            st && st.kill();
-          };
-          newImage.src = newSRC;
-        },
-        st = ScrollTrigger.create({
-          trigger: image,
-          start: "top 170%",
-          onEnter: loadImage,
-          onEnterBack: loadImage, // make sure it works in either direction
-        });
+    const placeholderSrc = buildBlurSrc(fullSrc);
+    image.src = placeholderSrc;
+    image.dataset.lazyProcessed = "true";
+
+    const loadHighRes = () => {
+      if (image.dataset.loaded === "true") return;
+
+      const loader = new Image();
+      if (fullSrcSet) loader.srcset = fullSrcSet;
+      loader.src = fullSrc;
+
+      loader.onload = () => {
+        if (fullSrcSet) image.srcset = fullSrcSet;
+        image.src = fullSrc;
+        image.dataset.loaded = "true";
+        image.classList.add("is-loaded");
+      };
+
+      loader.onerror = () => {
+        image.dataset.loaded = "error";
+      };
+    };
+
+    if (image.complete) {
+      loadHighRes();
+    } else {
+      image.addEventListener("load", loadHighRes, { once: true });
     }
   });
-
-  // console.log("lazy load ready")
 }
