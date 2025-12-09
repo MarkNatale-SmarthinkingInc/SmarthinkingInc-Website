@@ -1,6 +1,5 @@
 import { createClient } from "@/prismicio";
 import { type Content, filter } from "@prismicio/client";
-import Image from "next/image";
 import { PrismicNextLink } from "@prismicio/next";
 
 interface WorkDetailRelatedWorkSectionProps {
@@ -39,18 +38,30 @@ export default async function WorkDetailRelatedWorkSection({
             <canvas className="equalizer-canvas"></canvas>
             <PrismicNextLink document={relatedWork} className="st-grid">
               <figure className="st-xl-4 st-xs-9 img-left">
-                <Image
+                <img
                   alt={relatedWork.data.homepage_image_1?.alt ?? ""}
-                  src={`${relatedWork.data.homepage_image_1?.url}&fit=clip&w=1440`}
-                  sizes="(max-width: 768px) 100vw, 1440px"
-                  blurDataURL={`${relatedWork.data.homepage_image_1?.url}&w=100&blur=40`}
-                  placeholder="blur"
+                  src={`${relatedWork.data.homepage_image_1?.url}&fit=clip&w=1920&q=85`}
+                  srcSet={[
+                    `${relatedWork.data.homepage_image_1?.url}&fit=clip&w=768&q=85 768w`,
+                    `${relatedWork.data.homepage_image_1?.url}&fit=clip&w=1024&q=85 1024w`,
+                    `${relatedWork.data.homepage_image_1?.url}&fit=clip&w=1440&q=85 1440w`,
+                    `${relatedWork.data.homepage_image_1?.url}&fit=clip&w=1920&q=85 1920w`,
+                  ].join(", ")}
+                  sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                   width={
                     relatedWork.data.homepage_image_1?.dimensions?.width || 1440
                   }
                   height={
                     relatedWork.data.homepage_image_1?.dimensions?.height || 810
                   }
+                  loading="lazy"
+                  decoding="async"
                   className="lazy"
                 />
               </figure>
@@ -64,18 +75,30 @@ export default async function WorkDetailRelatedWorkSection({
                 </i>
               </div>
               <figure className="st-xl-4 xs-hidden img-right">
-                <Image
+                <img
                   alt={relatedWork.data.homepage_image_2?.alt ?? ""}
-                  src={`${relatedWork.data.homepage_image_2?.url}&fit=clip&w=1440`}
-                  sizes="(max-width: 768px) 100vw, 1440px"
-                  blurDataURL={`${relatedWork.data.homepage_image_2?.url}&w=100&blur=40`}
-                  placeholder="blur"
+                  src={`${relatedWork.data.homepage_image_2?.url}&fit=clip&w=1920&q=85`}
+                  srcSet={[
+                    `${relatedWork.data.homepage_image_2?.url}&fit=clip&w=768&q=85 768w`,
+                    `${relatedWork.data.homepage_image_2?.url}&fit=clip&w=1024&q=85 1024w`,
+                    `${relatedWork.data.homepage_image_2?.url}&fit=clip&w=1440&q=85 1440w`,
+                    `${relatedWork.data.homepage_image_2?.url}&fit=clip&w=1920&q=85 1920w`,
+                  ].join(", ")}
+                  sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                   width={
                     relatedWork.data.homepage_image_2?.dimensions?.width || 1440
                   }
                   height={
                     relatedWork.data.homepage_image_2?.dimensions?.height || 810
                   }
+                  loading="lazy"
+                  decoding="async"
                   className="lazy"
                 />
               </figure>

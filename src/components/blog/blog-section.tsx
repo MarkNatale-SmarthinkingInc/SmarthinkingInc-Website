@@ -2,7 +2,6 @@
 
 import { createClient } from "@/prismicio";
 import { type Content, filter, isFilled } from "@prismicio/client";
-import Image from "next/image";
 import { PrismicNextLink } from "@prismicio/next";
 import { useCallback, useEffect, useState } from "react";
 import NewsletterBox from "./newsletter-box";
@@ -146,18 +145,30 @@ export default function BlogSection({ data }: BlogSectionProps) {
                 <figure>
                   <PrismicNextLink field={item}>
                     {item.data.featured_image?.url && (
-                      <Image
+                      <img
                         alt={item.data.featured_image?.alt ?? ""}
-                        src={`${item.data.featured_image?.url}&fit=clip&w=1440`}
-                        sizes="(max-width: 768px) 100vw, 1440px"
-                        blurDataURL={`${item.data.featured_image?.url}&w=100&blur=40`}
-                        placeholder="blur"
+                        src={`${item.data.featured_image?.url}&fit=clip&w=1920&q=85`}
+                        srcSet={[
+                          `${item.data.featured_image?.url}&fit=clip&w=768&q=85 768w`,
+                          `${item.data.featured_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                          `${item.data.featured_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                          `${item.data.featured_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                        ].join(", ")}
+                        sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                         width={
                           item.data.featured_image?.dimensions?.width || 1440
                         }
                         height={
                           item.data.featured_image?.dimensions?.height || 810
                         }
+                        loading="lazy"
+                        decoding="async"
                         className="lazy"
                       />
                     )}
@@ -199,18 +210,30 @@ export default function BlogSection({ data }: BlogSectionProps) {
                   aria-label={`Read blog post: ${post.data.title}`}
                 >
                   {post.data.featured_image?.url && (
-                    <Image
+                    <img
                       alt={post.data.featured_image?.alt ?? ""}
-                      src={`${post.data.featured_image?.url}&fit=clip&w=1440`}
-                      sizes="(max-width: 768px) 100vw, 1440px"
-                      blurDataURL={`${post.data.featured_image?.url}&w=100&blur=40`}
-                      placeholder="blur"
+                      src={`${post.data.featured_image?.url}&fit=clip&w=1920&q=85`}
+                      srcSet={[
+                        `${post.data.featured_image?.url}&fit=clip&w=768&q=85 768w`,
+                        `${post.data.featured_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                        `${post.data.featured_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                        `${post.data.featured_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                      ].join(", ")}
+                      sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                       width={
                         post.data.featured_image?.dimensions?.width || 1440
                       }
                       height={
                         post.data.featured_image?.dimensions?.height || 810
                       }
+                      loading="lazy"
+                      decoding="async"
                       className="lazy"
                     />
                   )}
@@ -252,14 +275,26 @@ export default function BlogSection({ data }: BlogSectionProps) {
             <article className="st-grid" key={post.id}>
               <figure className="st-xl-6 st-xs-7 xs-self-start">
                 <PrismicNextLink document={post}>
-                  <Image
+                  <img
                     alt={post.data.featured_image?.alt ?? ""}
-                    src={`${post.data.featured_image?.url}&fit=clip&w=1440`}
-                    sizes="(max-width: 768px) 100vw, 1440px"
-                    blurDataURL={`${post.data.featured_image?.url}&w=100&blur=40`}
-                    placeholder="blur"
+                    src={`${post.data.featured_image?.url}&fit=clip&w=1920&q=85`}
+                    srcSet={[
+                      `${post.data.featured_image?.url}&fit=clip&w=768&q=85 768w`,
+                      `${post.data.featured_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                      `${post.data.featured_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                      `${post.data.featured_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                    ].join(", ")}
+                    sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                     width={post.data.featured_image?.dimensions?.width || 1440}
                     height={post.data.featured_image?.dimensions?.height || 810}
+                    loading="lazy"
+                    decoding="async"
                     className="lazy"
                   />
                 </PrismicNextLink>

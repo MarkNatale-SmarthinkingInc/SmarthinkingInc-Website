@@ -1,7 +1,5 @@
 import type { Content } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
-import Image from "next/image";
-
 interface BlogDetailHeroSectionProps {
   blogPost?: Content.BlogPostDocument;
 }
@@ -25,18 +23,30 @@ export default function BlogDetailHeroSection({
             <div className="st-grid grid-middle grid-between author-box xs-wrap">
               <div className="st-xl-3 st-xs-18 st-grid grid-middle grid-start xs-grid-center xs-both-2 fadeUp">
                 <figure>
-                  <Image
+                  <img
                     alt={blogPost?.data.author_image?.alt ?? ""}
-                    src={`${blogPost?.data.author_image?.url}&fit=clip&w=1440`}
-                    sizes="(max-width: 768px) 100vw, 1440px"
-                    blurDataURL={`${blogPost?.data.author_image?.url}&w=100&blur=40`}
-                    placeholder="blur"
+                    src={`${blogPost?.data.author_image?.url}&fit=clip&w=1920&q=85`}
+                    srcSet={[
+                      `${blogPost?.data.author_image?.url}&fit=clip&w=768&q=85 768w`,
+                      `${blogPost?.data.author_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                      `${blogPost?.data.author_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                      `${blogPost?.data.author_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                    ].join(", ")}
+                    sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                     width={
                       blogPost?.data.author_image?.dimensions?.width || 1440
                     }
                     height={
                       blogPost?.data.author_image?.dimensions?.height || 810
                     }
+                    loading="lazy"
+                    decoding="async"
                     className="lazy"
                   />
                 </figure>
@@ -56,20 +66,31 @@ export default function BlogDetailHeroSection({
               </div>
             </div>
             <figure className="hero-img fadeUp">
-              <Image
+              <img
                 alt={blogPost?.data?.featured_image?.alt ?? ""}
-                src={`${blogPost?.data?.featured_image?.url}&fit=clip&w=1440`}
-                sizes="(max-width: 768px) 100vw, 1440px"
-                blurDataURL={`${blogPost?.data?.featured_image?.url}&w=100&blur=40`}
-                placeholder="blur"
+                src={`${blogPost?.data?.featured_image?.url}&fit=clip&w=1920&q=85`}
+                srcSet={[
+                  `${blogPost?.data?.featured_image?.url}&fit=clip&w=768&q=85 768w`,
+                  `${blogPost?.data?.featured_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                  `${blogPost?.data?.featured_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                  `${blogPost?.data?.featured_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                ].join(", ")}
+                sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                 width={
                   blogPost?.data?.featured_image?.dimensions?.width || 1440
                 }
                 height={
                   blogPost?.data?.featured_image?.dimensions?.height || 810
                 }
+                loading="eager"
+                decoding="async"
                 className="lazy"
-                priority
               />
             </figure>
           </div>

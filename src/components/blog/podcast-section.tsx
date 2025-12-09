@@ -1,6 +1,5 @@
 import { createClient } from "@/prismicio";
 import type { Content } from "@prismicio/client";
-import Image from "next/image";
 import { PrismicNextLink } from "@prismicio/next";
 
 type PodcastSectionProps = {
@@ -32,14 +31,26 @@ export default async function PodcastSection({ data }: PodcastSectionProps) {
             <article key={podcast.id}>
               <PrismicNextLink document={podcast} className="st-grid">
                 <figure className="st-xl-3 st-sm-4 st-xs-6 xs-self-start">
-                  <Image
+                  <img
                     alt={podcast.data.image?.alt ?? ""}
-                    src={`${podcast.data.image?.url}&fit=clip&w=1440`}
-                    sizes="(max-width: 768px) 100vw, 1440px"
-                    blurDataURL={`${podcast.data.image?.url}&w=100&blur=40`}
-                    placeholder="blur"
+                    src={`${podcast.data.image?.url}&fit=clip&w=1920&q=85`}
+                    srcSet={[
+                      `${podcast.data.image?.url}&fit=clip&w=768&q=85 768w`,
+                      `${podcast.data.image?.url}&fit=clip&w=1024&q=85 1024w`,
+                      `${podcast.data.image?.url}&fit=clip&w=1440&q=85 1440w`,
+                      `${podcast.data.image?.url}&fit=clip&w=1920&q=85 1920w`,
+                    ].join(", ")}
+                    sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                     width={podcast.data.image?.dimensions?.width || 1440}
                     height={podcast.data.image?.dimensions?.height || 810}
+                    loading="lazy"
+                    decoding="async"
                     className="lazy"
                   />
                 </figure>

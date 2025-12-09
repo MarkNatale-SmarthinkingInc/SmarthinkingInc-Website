@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { PrismicNextLink } from "@prismicio/next";
 
 interface WorkLinkProps {
@@ -75,42 +74,78 @@ export default function WorkLinkSection({ data }: WorkLinkProps) {
         <div className="st-grid st-xl-os-3 xl-top-2 st-xs-os-1 xs-top-4">
           <figure className="st-xl-3 st-xs-4 self-end img-anim">
             {data.work_link_image_left?.url ? (
-              <Image
+              <img
                 alt={data.work_link_image_left?.alt ?? ""}
-                src={`${data.work_link_image_left?.url}&fit=clip&w=1440`}
-                sizes="(max-width: 768px) 100vw, 1440px"
-                blurDataURL={`${data.work_link_image_left?.url}&w=100&blur=40`}
-                placeholder="blur"
+                src={`${data.work_link_image_left?.url}&fit=clip&w=1920&q=85`}
+                srcSet={[
+                  `${data.work_link_image_left?.url}&fit=clip&w=768&q=85 768w`,
+                  `${data.work_link_image_left?.url}&fit=clip&w=1024&q=85 1024w`,
+                  `${data.work_link_image_left?.url}&fit=clip&w=1440&q=85 1440w`,
+                  `${data.work_link_image_left?.url}&fit=clip&w=1920&q=85 1920w`,
+                ].join(", ")}
+                sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                 width={data.work_link_image_left?.dimensions?.width || 1440}
                 height={data.work_link_image_left?.dimensions?.height || 810}
+                loading="lazy"
+                decoding="async"
                 className="lazy"
               />
             ) : null}
           </figure>
           <figure className="st-xl-6 st-xs-8 img-anim">
             {data.work_link_image_center?.url ? (
-              <Image
+              <img
                 alt={data.work_link_image_center?.alt ?? ""}
-                src={`${data.work_link_image_center?.url}&fit=clip&w=1440`}
-                sizes="(max-width: 768px) 100vw, 1440px"
-                blurDataURL={`${data.work_link_image_center?.url}&w=100&blur=40`}
-                placeholder="blur"
+                src={`${data.work_link_image_center?.url}&fit=clip&w=1920&q=85`}
+                srcSet={[
+                  `${data.work_link_image_center?.url}&fit=clip&w=768&q=85 768w`,
+                  `${data.work_link_image_center?.url}&fit=clip&w=1024&q=85 1024w`,
+                  `${data.work_link_image_center?.url}&fit=clip&w=1440&q=85 1440w`,
+                  `${data.work_link_image_center?.url}&fit=clip&w=1920&q=85 1920w`,
+                ].join(", ")}
+                sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                 width={data.work_link_image_center?.dimensions?.width || 1440}
                 height={data.work_link_image_center?.dimensions?.height || 810}
+                loading="lazy"
+                decoding="async"
                 className="lazy"
               />
             ) : null}
           </figure>
           <figure className="st-xl-3 st-xs-4 self-end img-anim">
             {data.work_link_image_right?.url ? (
-              <Image
+              <img
                 alt={data.work_link_image_right?.alt ?? ""}
-                src={`${data.work_link_image_right?.url}&fit=clip&w=1440`}
-                sizes="(max-width: 768px) 100vw, 1440px"
-                blurDataURL={`${data.work_link_image_right?.url}&w=100&blur=40`}
-                placeholder="blur"
+                src={`${data.work_link_image_right?.url}&fit=clip&w=1920&q=85`}
+                srcSet={[
+                  `${data.work_link_image_right?.url}&fit=clip&w=768&q=85 768w`,
+                  `${data.work_link_image_right?.url}&fit=clip&w=1024&q=85 1024w`,
+                  `${data.work_link_image_right?.url}&fit=clip&w=1440&q=85 1440w`,
+                  `${data.work_link_image_right?.url}&fit=clip&w=1920&q=85 1920w`,
+                ].join(", ")}
+                sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                 width={data.work_link_image_right?.dimensions?.width || 1440}
                 height={data.work_link_image_right?.dimensions?.height || 810}
+                loading="lazy"
+                decoding="async"
                 className="lazy"
               />
             ) : null}

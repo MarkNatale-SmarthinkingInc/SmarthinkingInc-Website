@@ -1,8 +1,6 @@
 "use client";
 
 import { useContact } from "@/hooks/use-contact.hook";
-import Image from "next/image";
-
 interface ContactDetailProps {
   data: import("@prismicio/client").Content.ContactDocumentData;
 }
@@ -27,14 +25,26 @@ export default function ContactDetailSection({ data }: ContactDetailProps) {
         </div>
         <div className="st-xl-5 st-xl-os-1 st-sm-7 st-sm-os-0 st-xs-18 fadeUp">
           <figure className="sm-top-1">
-            <Image
+            <img
               alt={data.contact_image?.alt ?? ""}
-              src={`${data.contact_image?.url}&fit=clip&w=1440`}
-              sizes="(max-width: 768px) 100vw, 1440px"
-              blurDataURL={`${data.contact_image?.url}&w=100&blur=40`}
-              placeholder="blur"
+              src={`${data.contact_image?.url}&fit=clip&w=1920&q=85`}
+              srcSet={[
+                `${data.contact_image?.url}&fit=clip&w=768&q=85 768w`,
+                `${data.contact_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                `${data.contact_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                `${data.contact_image?.url}&fit=clip&w=1920&q=85 1920w`,
+              ].join(", ")}
+              sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
               width={data.contact_image?.dimensions?.width || 1440}
               height={data.contact_image?.dimensions?.height || 810}
+              loading="lazy"
+              decoding="async"
               className="lazy"
             />
           </figure>

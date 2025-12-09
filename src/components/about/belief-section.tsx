@@ -1,5 +1,4 @@
 import type { Content } from "@prismicio/client";
-import Image from "next/image";
 import { PrismicRichText } from "@prismicio/react";
 
 type BeliefSectionProps = {
@@ -38,14 +37,26 @@ export default function BeliefSection({ data }: BeliefSectionProps) {
         <div className="st-xl-6 st-xl-os-6 st-sm-8 st-sm-os-5 st-xs-12 st-xs-os-3 slider-img">
           {data.belief_slider_images?.map((item) => (
             <figure key={`belief-img-${item.image?.alt || "image"}`}>
-              <Image
+              <img
                 alt={item.image?.alt ?? ""}
-                src={`${item.image?.url}&fit=clip&w=1440`}
-                sizes="(max-width: 768px) 100vw, 1440px"
-                blurDataURL={`${item.image?.url}&w=100&blur=40`}
-                placeholder="blur"
+                src={`${item.image?.url}&fit=clip&w=1920&q=85`}
+                srcSet={[
+                  `${item.image?.url}&fit=clip&w=768&q=85 768w`,
+                  `${item.image?.url}&fit=clip&w=1024&q=85 1024w`,
+                  `${item.image?.url}&fit=clip&w=1440&q=85 1440w`,
+                  `${item.image?.url}&fit=clip&w=1920&q=85 1920w`,
+                ].join(", ")}
+                sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                 width={item.image?.dimensions?.width || 1440}
                 height={item.image?.dimensions?.height || 810}
+                loading="lazy"
+                decoding="async"
                 className="lazy"
               />
             </figure>

@@ -1,7 +1,6 @@
 import { createClient } from "@/prismicio";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { type Content, isFilled } from "@prismicio/client";
-import Image from "next/image";
 import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 
@@ -79,12 +78,22 @@ export default async function BlogSection({ data }: BlogSectionProps) {
                 <figure>
                   <PrismicNextLink document={blogPost}>
                     {blogPost.data.featured_image?.url && (
-                      <Image
+                      <img
                         alt={blogPost.data.featured_image?.alt ?? ""}
-                        src={`${blogPost.data.featured_image?.url}&fit=clip&w=1440`}
-                        sizes="(max-width: 768px) 100vw, 1440px"
-                        blurDataURL={`${blogPost.data.featured_image?.url}&w=100&blur=40`}
-                        placeholder="blur"
+                        src={`${blogPost.data.featured_image?.url}&fit=clip&w=1920&q=85`}
+                        srcSet={[
+                          `${blogPost.data.featured_image?.url}&fit=clip&w=768&q=85 768w`,
+                          `${blogPost.data.featured_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                          `${blogPost.data.featured_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                          `${blogPost.data.featured_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                        ].join(", ")}
+                        sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                         width={
                           blogPost.data.featured_image?.dimensions?.width ||
                           1440
@@ -93,6 +102,8 @@ export default async function BlogSection({ data }: BlogSectionProps) {
                           blogPost.data.featured_image?.dimensions?.height ||
                           810
                         }
+                        loading="lazy"
+                        decoding="async"
                         className="lazy"
                       />
                     )}

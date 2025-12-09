@@ -1,6 +1,5 @@
 import { createClient } from "@/prismicio";
 import { type Content, isFilled } from "@prismicio/client";
-import Image from "next/image";
 import { PrismicNextLink } from "@prismicio/next";
 
 interface ServicesSectionProps {
@@ -26,28 +25,52 @@ export default async function ServicesSection({ data }: ServicesSectionProps) {
         <div className="st-xl-9 st-xs-18 st-grid img-combo xs-wrap xs-self-start">
           {isFilled.image(data.services_image_small) && (
             <figure className="st-xl-3 st-xs-9 xl-self-start">
-              <Image
+              <img
                 alt={data.services_image_small?.alt ?? ""}
-                src={`${data.services_image_small?.url}&fit=clip&w=1440`}
-                sizes="(max-width: 768px) 100vw, 1440px"
-                blurDataURL={`${data.services_image_small?.url}&w=100&blur=40`}
-                placeholder="blur"
+                src={`${data.services_image_small?.url}&fit=clip&w=1920&q=85`}
+                srcSet={[
+                  `${data.services_image_small?.url}&fit=clip&w=768&q=85 768w`,
+                  `${data.services_image_small?.url}&fit=clip&w=1024&q=85 1024w`,
+                  `${data.services_image_small?.url}&fit=clip&w=1440&q=85 1440w`,
+                  `${data.services_image_small?.url}&fit=clip&w=1920&q=85 1920w`,
+                ].join(", ")}
+                sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                 width={data.services_image_small?.dimensions?.width || 1440}
                 height={data.services_image_small?.dimensions?.height || 810}
+                loading="lazy"
+                decoding="async"
                 className="lazy"
               />
             </figure>
           )}
           {isFilled.image(data.services_image_large) && (
             <figure className="st-xl-6 st-xs-9 xs-self-start">
-              <Image
+              <img
                 alt={data.services_image_large?.alt ?? ""}
-                src={`${data.services_image_large?.url}&fit=clip&w=1440`}
-                sizes="(max-width: 768px) 100vw, 1440px"
-                blurDataURL={`${data.services_image_large?.url}&w=100&blur=40`}
-                placeholder="blur"
+                src={`${data.services_image_large?.url}&fit=clip&w=1920&q=85`}
+                srcSet={[
+                  `${data.services_image_large?.url}&fit=clip&w=768&q=85 768w`,
+                  `${data.services_image_large?.url}&fit=clip&w=1024&q=85 1024w`,
+                  `${data.services_image_large?.url}&fit=clip&w=1440&q=85 1440w`,
+                  `${data.services_image_large?.url}&fit=clip&w=1920&q=85 1920w`,
+                ].join(", ")}
+                sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                 width={data.services_image_large?.dimensions?.width || 1440}
                 height={data.services_image_large?.dimensions?.height || 810}
+                loading="lazy"
+                decoding="async"
                 className="lazy"
               />
             </figure>

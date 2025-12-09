@@ -24,7 +24,7 @@ export function heroAnimations() {
     document.querySelector(".work-detail")
   ) {
     if (!isMobile()) {
-      smoother.paused(true);
+      smoother?.paused(true);
     }
     tl.to(heroImg, {
       opacity: 1,

@@ -1,5 +1,4 @@
 import { type Content, isFilled } from "@prismicio/client";
-import Image from "next/image";
 import { PrismicRichText } from "@prismicio/react";
 
 interface CtaSectionProps {
@@ -11,14 +10,26 @@ export default function CtaSection({ data }: CtaSectionProps) {
     <section id="cta">
       {isFilled.image(data.cta_background_image) && (
         <figure className="parallax">
-          <Image
+          <img
             alt={data.cta_background_image?.alt ?? ""}
-            src={`${data.cta_background_image?.url}&fit=clip&w=1440`}
-            sizes="(max-width: 768px) 100vw, 1440px"
-            blurDataURL={`${data.cta_background_image?.url}&w=100&blur=40`}
-            placeholder="blur"
+            src={`${data.cta_background_image?.url}&fit=clip&w=1920&q=85`}
+            srcSet={[
+              `${data.cta_background_image?.url}&fit=clip&w=768&q=85 768w`,
+              `${data.cta_background_image?.url}&fit=clip&w=1024&q=85 1024w`,
+              `${data.cta_background_image?.url}&fit=clip&w=1440&q=85 1440w`,
+              `${data.cta_background_image?.url}&fit=clip&w=1920&q=85 1920w`,
+            ].join(", ")}
+            sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
             width={data.cta_background_image?.dimensions?.width || 1440}
             height={data.cta_background_image?.dimensions?.height || 810}
+            loading="lazy"
+            decoding="async"
             className="lazy"
           />
         </figure>
@@ -26,14 +37,26 @@ export default function CtaSection({ data }: CtaSectionProps) {
       <div className="st-xl-6 st-sm-10 st-xs-16 cta-content center">
         {isFilled.image(data.cta_inner_image) && (
           <figure className="parallax">
-            <Image
+            <img
               alt={data.cta_inner_image?.alt ?? ""}
-              src={`${data.cta_inner_image?.url}&fit=clip&w=1440`}
-              sizes="(max-width: 768px) 100vw, 1440px"
-              blurDataURL={`${data.cta_inner_image?.url}&w=100&blur=40`}
-              placeholder="blur"
+              src={`${data.cta_inner_image?.url}&fit=clip&w=1920&q=85`}
+              srcSet={[
+                `${data.cta_inner_image?.url}&fit=clip&w=768&q=85 768w`,
+                `${data.cta_inner_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                `${data.cta_inner_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                `${data.cta_inner_image?.url}&fit=clip&w=1920&q=85 1920w`,
+              ].join(", ")}
+              sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
               width={data.cta_inner_image?.dimensions?.width || 1440}
               height={data.cta_inner_image?.dimensions?.height || 810}
+              loading="lazy"
+              decoding="async"
               className="lazy"
             />
             {data.cta_caption && (

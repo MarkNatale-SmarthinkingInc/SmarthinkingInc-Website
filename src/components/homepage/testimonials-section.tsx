@@ -1,6 +1,4 @@
 import { type Content, isFilled } from "@prismicio/client";
-import Image from "next/image";
-
 interface TestimonialsSectionProps {
   data: Content.HomepageDocumentData;
 }
@@ -34,19 +32,31 @@ export default function TestimonialsSection({
             <figure className="st-xl-6 st-xl-os-1 st-sm-6 st-xs-8 t-image">
               {data.testimonials?.map((testimonial, index) =>
                 isFilled.image(testimonial.testimonial_image) ? (
-                  <Image
+                  <img
                     key={`testimonial-image-${index}-${testimonial.testimonial_image}`}
                     alt={testimonial.testimonial_image?.alt ?? ""}
-                    src={`${testimonial.testimonial_image?.url}&fit=clip&w=1440`}
-                    sizes="(max-width: 768px) 100vw, 1440px"
-                    blurDataURL={`${testimonial.testimonial_image?.url}&w=100&blur=40`}
-                    placeholder="blur"
+                    src={`${testimonial.testimonial_image?.url}&fit=clip&w=1920&q=85`}
+                    srcSet={[
+                      `${testimonial.testimonial_image?.url}&fit=clip&w=768&q=85 768w`,
+                      `${testimonial.testimonial_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                      `${testimonial.testimonial_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                      `${testimonial.testimonial_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                    ].join(", ")}
+                    sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                     width={
                       testimonial.testimonial_image?.dimensions?.width || 1440
                     }
                     height={
                       testimonial.testimonial_image?.dimensions?.height || 810
                     }
+                    loading="lazy"
+                    decoding="async"
                     className="lazy"
                   />
                 ) : null

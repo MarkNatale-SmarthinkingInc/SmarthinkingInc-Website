@@ -1,5 +1,4 @@
 import { createClient } from "@/prismicio";
-import Image from "next/image";
 import { PrismicNextLink } from "@prismicio/next";
 
 interface ServicesSectionProps {
@@ -69,18 +68,30 @@ export default async function ServicesSection({ data }: ServicesSectionProps) {
                   <PrismicNextLink document={svc}>
                     <figure>
                       {svc.data.featured_image?.url ? (
-                        <Image
+                        <img
                           alt={svc.data.featured_image?.alt ?? ""}
-                          src={`${svc.data.featured_image?.url}&fit=clip&w=1440`}
-                          sizes="(max-width: 768px) 100vw, 1440px"
-                          blurDataURL={`${svc.data.featured_image?.url}&w=100&blur=40`}
-                          placeholder="blur"
+                          src={`${svc.data.featured_image?.url}&fit=clip&w=1920&q=85`}
+                          srcSet={[
+                            `${svc.data.featured_image?.url}&fit=clip&w=768&q=85 768w`,
+                            `${svc.data.featured_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                            `${svc.data.featured_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                            `${svc.data.featured_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                          ].join(", ")}
+                          sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                           width={
                             svc.data.featured_image?.dimensions?.width || 1440
                           }
                           height={
                             svc.data.featured_image?.dimensions?.height || 810
                           }
+                          loading="lazy"
+                          decoding="async"
                           className="lazy"
                         />
                       ) : null}

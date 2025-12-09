@@ -1,5 +1,4 @@
 import { createClient } from "@/prismicio";
-import Image from "next/image";
 import { PrismicNextLink } from "@prismicio/next";
 
 export default async function WorkSection() {
@@ -22,14 +21,26 @@ export default async function WorkSection() {
             <div className="st-xl-6 st-xs-8 imgIn">
               <figure>
                 {work.data.main_image?.url && (
-                  <Image
+                  <img
                     alt={work.data.main_image?.alt ?? ""}
-                    src={`${work.data.main_image?.url}&fit=clip&w=1440`}
-                    sizes="(max-width: 768px) 100vw, 1440px"
-                    blurDataURL={`${work.data.main_image?.url}&w=100&blur=40`}
-                    placeholder="blur"
+                    src={`${work.data.main_image?.url}&fit=clip&w=1920&q=85`}
+                    srcSet={[
+                      `${work.data.main_image?.url}&fit=clip&w=768&q=85 768w`,
+                      `${work.data.main_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                      `${work.data.main_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                      `${work.data.main_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                    ].join(", ")}
+                    sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                     width={work.data.main_image?.dimensions?.width || 1440}
                     height={work.data.main_image?.dimensions?.height || 810}
+                    loading="lazy"
+                    decoding="async"
                     className="lazy"
                   />
                 )}
@@ -42,26 +53,50 @@ export default async function WorkSection() {
                 </h2>
                 <div className="st-xl-7 st-grid img-2x self-end">
                   <figure className="st-xl-4 xs-hidden scroll-img-1 imgIn">
-                    <Image
+                    <img
                       alt={work.data.medium_image?.alt ?? ""}
-                      src={`${work.data.medium_image?.url}&fit=clip&w=1440`}
-                      sizes="(max-width: 768px) 100vw, 1440px"
-                      blurDataURL={`${work.data.medium_image?.url}&w=100&blur=40`}
-                      placeholder="blur"
+                      src={`${work.data.medium_image?.url}&fit=clip&w=1920&q=85`}
+                      srcSet={[
+                        `${work.data.medium_image?.url}&fit=clip&w=768&q=85 768w`,
+                        `${work.data.medium_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                        `${work.data.medium_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                        `${work.data.medium_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                      ].join(", ")}
+                      sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                       width={work.data.medium_image?.dimensions?.width || 1440}
                       height={work.data.medium_image?.dimensions?.height || 810}
+                      loading="lazy"
+                      decoding="async"
                       className="lazy"
                     />
                   </figure>
                   <figure className="st-xl-3 xs-hidden scroll-img-2 self-start imgIn">
-                    <Image
+                    <img
                       alt={work.data.small_image?.alt ?? ""}
-                      src={`${work.data.small_image?.url}&fit=clip&w=1440`}
-                      sizes="(max-width: 768px) 100vw, 1440px"
-                      blurDataURL={`${work.data.small_image?.url}&w=100&blur=40`}
-                      placeholder="blur"
+                      src={`${work.data.small_image?.url}&fit=clip&w=1920&q=85`}
+                      srcSet={[
+                        `${work.data.small_image?.url}&fit=clip&w=768&q=85 768w`,
+                        `${work.data.small_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                        `${work.data.small_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                        `${work.data.small_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                      ].join(", ")}
+                      sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                       width={work.data.small_image?.dimensions?.width || 1440}
                       height={work.data.small_image?.dimensions?.height || 810}
+                      loading="lazy"
+                      decoding="async"
                       className="lazy"
                     />
                   </figure>

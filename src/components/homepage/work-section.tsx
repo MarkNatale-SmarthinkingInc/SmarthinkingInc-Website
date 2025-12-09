@@ -1,5 +1,4 @@
 import { type Content, isFilled } from "@prismicio/client";
-import Image from "next/image";
 import { PrismicNextLink } from "@prismicio/next";
 
 interface WorkSectionProps {
@@ -41,12 +40,22 @@ export default function WorkSection({ data }: WorkSectionProps) {
               <PrismicNextLink field={workItem} className="st-grid">
                 {isFilled.image(workItem.data.homepage_image_1) && (
                   <figure className="st-xl-4 st-xs-9 img-left">
-                    <Image
+                    <img
                       alt={workItem.data.homepage_image_1?.alt ?? ""}
-                      src={`${workItem.data.homepage_image_1?.url}&fit=clip&w=1440`}
-                      sizes="(max-width: 768px) 100vw, 1440px"
-                      blurDataURL={`${workItem.data.homepage_image_1?.url}&w=100&blur=40`}
-                      placeholder="blur"
+                      src={`${workItem.data.homepage_image_1?.url}&fit=clip&w=1920&q=85`}
+                      srcSet={[
+                        `${workItem.data.homepage_image_1?.url}&fit=clip&w=768&q=85 768w`,
+                        `${workItem.data.homepage_image_1?.url}&fit=clip&w=1024&q=85 1024w`,
+                        `${workItem.data.homepage_image_1?.url}&fit=clip&w=1440&q=85 1440w`,
+                        `${workItem.data.homepage_image_1?.url}&fit=clip&w=1920&q=85 1920w`,
+                      ].join(", ")}
+                      sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                       width={
                         workItem.data.homepage_image_1?.dimensions?.width ||
                         1440
@@ -55,6 +64,8 @@ export default function WorkSection({ data }: WorkSectionProps) {
                         workItem.data.homepage_image_1?.dimensions?.height ||
                         810
                       }
+                      loading="lazy"
+                      decoding="async"
                       className="lazy"
                     />
                   </figure>
@@ -70,12 +81,22 @@ export default function WorkSection({ data }: WorkSectionProps) {
                 </div>
                 {isFilled.image(workItem.data.homepage_image_2) && (
                   <figure className="st-xl-4 xs-hidden img-right">
-                    <Image
+                    <img
                       alt={workItem.data.homepage_image_2?.alt ?? ""}
-                      src={`${workItem.data.homepage_image_2?.url}&fit=clip&w=1440`}
-                      sizes="(max-width: 768px) 100vw, 1440px"
-                      blurDataURL={`${workItem.data.homepage_image_2?.url}&w=100&blur=40`}
-                      placeholder="blur"
+                      src={`${workItem.data.homepage_image_2?.url}&fit=clip&w=1920&q=85`}
+                      srcSet={[
+                        `${workItem.data.homepage_image_2?.url}&fit=clip&w=768&q=85 768w`,
+                        `${workItem.data.homepage_image_2?.url}&fit=clip&w=1024&q=85 1024w`,
+                        `${workItem.data.homepage_image_2?.url}&fit=clip&w=1440&q=85 1440w`,
+                        `${workItem.data.homepage_image_2?.url}&fit=clip&w=1920&q=85 1920w`,
+                      ].join(", ")}
+                      sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                       width={
                         workItem.data.homepage_image_2?.dimensions?.width ||
                         1440
@@ -84,6 +105,8 @@ export default function WorkSection({ data }: WorkSectionProps) {
                         workItem.data.homepage_image_2?.dimensions?.height ||
                         810
                       }
+                      loading="lazy"
+                      decoding="async"
                       className="lazy"
                     />
                   </figure>

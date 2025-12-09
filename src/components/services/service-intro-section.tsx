@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { PrismicRichText } from "@prismicio/react";
 
 interface ServiceIntroProps {
@@ -21,16 +20,30 @@ export default function ServiceIntroSection({ data }: ServiceIntroProps) {
       <div className="st-grid xs-bottom-10">
         <div className="st-xl-7 st-xl-os-1 st-lg-6 st-sm-4 st-sm-os-0 xs-hidden xl-top-2 center">
           {data.service_intro_trademark_svg?.url ? (
-            <Image
+            <img
               alt={data.service_intro_trademark_svg?.alt ?? ""}
-              src={`${data.service_intro_trademark_svg?.url}`}
-              sizes="(max-width: 768px) 100vw, 1440px"
+              src={`${data.service_intro_trademark_svg?.url}&fit=clip&w=1920&q=85`}
+              srcSet={[
+                `${data.service_intro_trademark_svg?.url}&fit=clip&w=768&q=85 768w`,
+                `${data.service_intro_trademark_svg?.url}&fit=clip&w=1024&q=85 1024w`,
+                `${data.service_intro_trademark_svg?.url}&fit=clip&w=1440&q=85 1440w`,
+                `${data.service_intro_trademark_svg?.url}&fit=clip&w=1920&q=85 1920w`,
+              ].join(", ")}
+              sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
               width={
                 data.service_intro_trademark_svg?.dimensions?.width || 1440
               }
               height={
                 data.service_intro_trademark_svg?.dimensions?.height || 810
               }
+              loading="lazy"
+              decoding="async"
               className="lazy"
             />
           ) : (
@@ -43,14 +56,26 @@ export default function ServiceIntroSection({ data }: ServiceIntroProps) {
         <div className="st-xl-9 column-2 xl-top-2 st-lg-10 st-sm-14 st-xs-18 st-xs-os-0 xs-top-5">
           <figure>
             {data.service_intro_image?.url ? (
-              <Image
+              <img
                 alt={data.service_intro_image?.alt ?? ""}
-                src={`${data.service_intro_image?.url}&fit=clip&w=1440`}
-                sizes="(max-width: 768px) 100vw, 1440px"
-                blurDataURL={`${data.service_intro_image?.url}&w=100&blur=40`}
-                placeholder="blur"
+                src={`${data.service_intro_image?.url}&fit=clip&w=1920&q=85`}
+                srcSet={[
+                  `${data.service_intro_image?.url}&fit=clip&w=768&q=85 768w`,
+                  `${data.service_intro_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                  `${data.service_intro_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                  `${data.service_intro_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                ].join(", ")}
+                sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                 width={data.service_intro_image?.dimensions?.width || 1440}
                 height={data.service_intro_image?.dimensions?.height || 810}
+                loading="lazy"
+                decoding="async"
                 className="lazy"
               />
             ) : (

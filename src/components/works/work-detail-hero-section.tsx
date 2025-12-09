@@ -1,7 +1,6 @@
 import { type Content, isFilled } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
-import Image from "next/image";
 
 interface WorkDetailHeroSectionProps {
   work?: Content.WorkDocument;
@@ -27,15 +26,26 @@ export default function WorkDetailHeroSection({
   return (
     <section id="hero">
       <figure className="parallax">
-        <Image
+        <img
           alt={work?.data?.hero_image?.alt ?? ""}
-          src={`${work?.data?.hero_image?.url}&fit=clip&w=1920`}
-          sizes="(max-width: 768px) 100vw, 1920px"
-          blurDataURL={`${work?.data?.hero_image?.url}&w=100&blur=40`}
-          placeholder="blur"
-          priority
+          src={`${work?.data?.hero_image?.url}&fit=clip&w=1920&q=85`}
+          srcSet={[
+            `${work?.data?.hero_image?.url}&fit=clip&w=768&q=85 768w`,
+            `${work?.data?.hero_image?.url}&fit=clip&w=1024&q=85 1024w`,
+            `${work?.data?.hero_image?.url}&fit=clip&w=1440&q=85 1440w`,
+            `${work?.data?.hero_image?.url}&fit=clip&w=1920&q=85 1920w`,
+          ].join(", ")}
+          sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
           width={work?.data?.hero_image?.dimensions?.width || 1920}
           height={work?.data?.hero_image?.dimensions?.height || 1080}
+          loading="eager"
+          decoding="async"
           className="lazy"
         />
       </figure>

@@ -1,5 +1,4 @@
 import type { Content } from "@prismicio/client";
-import Image from "next/image";
 
 interface WorkDetailCtaSectionProps {
   work?: Content.WorkDocument;
@@ -11,27 +10,51 @@ export default function WorkDetailCtaSection({
   return (
     <section id="cta">
       <figure className="parallax">
-        <Image
+        <img
           alt={work?.data?.cta_background_image?.alt ?? ""}
-          src={`${work?.data?.cta_background_image?.url}&fit=clip&w=1440`}
-          sizes="(max-width: 768px) 100vw, 1440px"
-          blurDataURL={`${work?.data?.cta_background_image?.url}&w=100&blur=40`}
-          placeholder="blur"
+          src={`${work?.data?.cta_background_image?.url}&fit=clip&w=1920&q=85`}
+          srcSet={[
+            `${work?.data?.cta_background_image?.url}&fit=clip&w=768&q=85 768w`,
+            `${work?.data?.cta_background_image?.url}&fit=clip&w=1024&q=85 1024w`,
+            `${work?.data?.cta_background_image?.url}&fit=clip&w=1440&q=85 1440w`,
+            `${work?.data?.cta_background_image?.url}&fit=clip&w=1920&q=85 1920w`,
+          ].join(", ")}
+          sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
           width={work?.data?.cta_background_image?.dimensions?.width || 1440}
           height={work?.data?.cta_background_image?.dimensions?.height || 810}
+          loading="lazy"
+          decoding="async"
           className="lazy"
         />
       </figure>
       <div className="st-xl-6 st-lg-8 st-sm-10 st-xs-16 cta-content center">
         <figure className="parallax">
-          <Image
+          <img
             alt={work?.data?.cta_foreground_image?.alt ?? ""}
-            src={`${work?.data?.cta_foreground_image?.url}&fit=clip&w=1440`}
-            sizes="(max-width: 768px) 100vw, 1440px"
-            blurDataURL={`${work?.data?.cta_foreground_image?.url}&w=100&blur=40`}
-            placeholder="blur"
+            src={`${work?.data?.cta_foreground_image?.url}&fit=clip&w=1920&q=85`}
+            srcSet={[
+              `${work?.data?.cta_foreground_image?.url}&fit=clip&w=768&q=85 768w`,
+              `${work?.data?.cta_foreground_image?.url}&fit=clip&w=1024&q=85 1024w`,
+              `${work?.data?.cta_foreground_image?.url}&fit=clip&w=1440&q=85 1440w`,
+              `${work?.data?.cta_foreground_image?.url}&fit=clip&w=1920&q=85 1920w`,
+            ].join(", ")}
+            sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
             width={work?.data?.cta_foreground_image?.dimensions?.width || 1440}
             height={work?.data?.cta_foreground_image?.dimensions?.height || 810}
+            loading="lazy"
+            decoding="async"
             className="lazy"
           />
           <figcaption className="caption">Contact us</figcaption>

@@ -1,5 +1,4 @@
 import type { Content } from "@prismicio/client";
-import Image from "next/image";
 import type { SliceComponentProps } from "@prismicio/react";
 import type { FC } from "react";
 
@@ -15,16 +14,34 @@ export type WorkDetailImageFullBlockProps =
 const WorkDetailImageFullBlock: FC<WorkDetailImageFullBlockProps> = ({
   slice,
 }) => {
+  const image = slice.primary.image;
+
+  if (!image?.url) return null;
+
+  const srcSet = [
+    `${image.url}&fit=clip&w=768&q=85 768w`,
+    `${image.url}&fit=clip&w=1024&q=85 1024w`,
+    `${image.url}&fit=clip&w=1440&q=85 1440w`,
+    `${image.url}&fit=clip&w=1920&q=85 1920w`,
+  ].join(", ");
+
   return (
     <figure className="img-box img-100 img-anim">
-      <Image
-        alt={slice.primary.image?.alt ?? ""}
-        src={`${slice.primary.image?.url}&fit=clip&w=1440`}
-        sizes="(max-width: 768px) 100vw, 1440px"
-        blurDataURL={`${slice.primary.image?.url}&w=100&blur=40`}
-        placeholder="blur"
-        width={slice.primary.image?.dimensions?.width || 1440}
-        height={slice.primary.image?.dimensions?.height || 810}
+      <img
+        alt={image.alt ?? ""}
+        src={`${image.url}&fit=clip&w=1920&q=85`}
+        srcSet={srcSet}
+        sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
+        width={image.dimensions?.width || 1440}
+        height={image.dimensions?.height || 810}
+        loading="lazy"
+        decoding="async"
         className="lazy"
       />
     </figure>

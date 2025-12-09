@@ -1,5 +1,4 @@
 import { type Content, isFilled } from "@prismicio/client";
-import Image from "next/image";
 import { PrismicRichText } from "@prismicio/react";
 
 interface ServiceDetailHeroSectionProps {
@@ -33,46 +32,79 @@ export default function ServiceDetailHeroSection({
         <div className="st-grid grid-margin hero-images xs-wrap">
           {isFilled.image(service.data.physical_image) && (
             <figure className="st-xl-6 self-end xs-self-start st-xs-9 imgIn">
-              <Image
+              <img
                 alt={service.data.physical_image?.alt ?? ""}
-                src={`${service.data.physical_image?.url}&fit=clip&w=1440`}
-                sizes="(max-width: 768px) 100vw, 1440px"
-                blurDataURL={`${service.data.physical_image?.url}&w=100&blur=40`}
-                placeholder="blur"
+                src={`${service.data.physical_image?.url}&fit=clip&w=1920&q=85`}
+                srcSet={[
+                  `${service.data.physical_image?.url}&fit=clip&w=768&q=85 768w`,
+                  `${service.data.physical_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                  `${service.data.physical_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                  `${service.data.physical_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                ].join(", ")}
+                sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                 width={service.data.physical_image?.dimensions?.width || 1440}
                 height={service.data.physical_image?.dimensions?.height || 810}
+                loading="eager"
+                decoding="async"
                 className="lazy"
-                priority
               />
             </figure>
           )}
           {isFilled.image(service.data.human_image) && (
             <figure className="st-xl-6 st-xs-9 imgIn">
-              <Image
+              <img
                 alt={service.data.human_image?.alt ?? ""}
-                src={`${service.data.human_image?.url}&fit=clip&w=1440`}
-                sizes="(max-width: 768px) 100vw, 1440px"
-                blurDataURL={`${service.data.human_image?.url}&w=100&blur=40`}
-                placeholder="blur"
+                src={`${service.data.human_image?.url}&fit=clip&w=1920&q=85`}
+                srcSet={[
+                  `${service.data.human_image?.url}&fit=clip&w=768&q=85 768w`,
+                  `${service.data.human_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                  `${service.data.human_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                  `${service.data.human_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                ].join(", ")}
+                sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                 width={service.data.human_image?.dimensions?.width || 1440}
                 height={service.data.human_image?.dimensions?.height || 810}
+                loading="eager"
+                decoding="async"
                 className="lazy"
-                priority
               />
             </figure>
           )}
           {isFilled.image(service.data.digital_image) && (
             <figure className="st-xl-6 self-start st-xs-12 imgIn">
-              <Image
+              <img
                 alt={service.data.digital_image?.alt ?? ""}
-                src={`${service.data.digital_image?.url}&fit=clip&w=1440`}
-                sizes="(max-width: 768px) 100vw, 1440px"
-                blurDataURL={`${service.data.digital_image?.url}&w=100&blur=40`}
-                placeholder="blur"
+                src={`${service.data.digital_image?.url}&fit=clip&w=1920&q=85`}
+                srcSet={[
+                  `${service.data.digital_image?.url}&fit=clip&w=768&q=85 768w`,
+                  `${service.data.digital_image?.url}&fit=clip&w=1024&q=85 1024w`,
+                  `${service.data.digital_image?.url}&fit=clip&w=1440&q=85 1440w`,
+                  `${service.data.digital_image?.url}&fit=clip&w=1920&q=85 1920w`,
+                ].join(", ")}
+                sizes="
+    (max-width: 767px) 100vw,
+    (max-width: 1023px) 768px,
+    (max-width: 1439px) 1024px,
+    (max-width: 1919px) 1440px,
+    1920px
+  "
                 width={service.data.digital_image?.dimensions?.width || 1440}
                 height={service.data.digital_image?.dimensions?.height || 810}
+                loading="eager"
+                decoding="async"
                 className="lazy"
-                priority
               />
             </figure>
           )}
