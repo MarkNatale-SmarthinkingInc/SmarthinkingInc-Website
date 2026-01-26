@@ -33,6 +33,29 @@
           ]
         }
       },
+      "top_listed_services": {
+        "type": "Group",
+        "config": {
+          "label": "Top listed services",
+          "repeat": true,
+          "fields": {
+            "service": {
+              "type": "Link",
+              "config": {
+                "label": "Service",
+                "select": "document",
+                "repeat": false,
+                "customtypes": [
+                  {
+                    "id": "service",
+                    "fields": ["title"]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
       "homepage_image_1": {
         "type": "Image",
         "config": {

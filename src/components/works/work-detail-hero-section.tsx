@@ -1,4 +1,4 @@
-import { type Content, isFilled } from "@prismicio/client";
+import { isFilled, type Content } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 
@@ -9,20 +9,9 @@ interface WorkDetailHeroSectionProps {
 export default function WorkDetailHeroSection({
   work,
 }: WorkDetailHeroSectionProps) {
-  const attachedService = isFilled.contentRelationship(
-    work?.data?.attached_service
-  )
-    ? work?.data?.attached_service
-    : null;
-  const otherServicesFromSlices = work?.data.slices
-    .filter((slice) => slice.slice_type === "work_detail_category_block")
-    .map(
-      (slice) => (slice as Content.WorkDetailCategoryBlockSlice).primary.service
-    )
-    .filter(isFilled.contentRelationship)
-    .filter((service) => service.id !== attachedService?.id);
 
-  console.log(work?.data?.hero_image?.url);
+
+
   return (
     <section id="hero">
       <figure className="parallax">
@@ -59,10 +48,13 @@ export default function WorkDetailHeroSection({
           </div>
           <div className="st-xl-4 st-xl-os-2 st-xs-10 st-xs-os-4 center fadeUp">
             <ul className="caption">
-              {attachedService && <li>{attachedService?.data?.title}</li>}
-              {otherServicesFromSlices?.map((service) => (
-                <li key={service.id}>{service.data?.title}</li>
-              ))}
+              {work?.data.top_listed_services?.map(({service}) => {
+                if (!isFilled.contentRelationship(service)) return null
+              return (
+              <li key={service.id}>{service.data?.title}</li>
+              )
+              }
+              )}
             </ul>
           </div>
           <div className="st-xl-3 st-xl-os-4 st-sm-4 st-sm-os-3 st-xs-5 st-xs-os-2 right xs-hidden fadeUp">

@@ -3,7 +3,7 @@
 import { createClient } from "@/prismicio";
 import { type Content, filter, isFilled } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import NewsletterBox from "./newsletter-box";
 
 type BlogSectionProps = {
@@ -19,39 +19,46 @@ export default function BlogSection({ data }: BlogSectionProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
-  const client = createClient();
+  const client = useMemo(() => createClient(), []);
   const pageSize = 6;
 
-  const featuredPosts = data.featured_blog_posts
-    .map((item) => item.post)
-    .filter((post) => isFilled.contentRelationship(post) && post.data)
-    .slice(0, 3);
+  const featuredPosts = useMemo(() => {
+    return data.featured_blog_posts
+      .map((item) => item.post)
+      .filter((post) => isFilled.contentRelationship(post) && post.data)
+      .slice(0, 3);
+  }, [data.featured_blog_posts]);
 
   // Combine featured posts with regular posts to fill up to 3
-  const displayedPosts: Array<
-    Content.BlogPostDocument | (typeof featuredPosts)[number]
-  > = [...featuredPosts];
-  const neededPosts = 3 - featuredPosts.length;
+  const displayedPosts = useMemo(() => {
+    const posts: Array<
+      Content.BlogPostDocument | (typeof featuredPosts)[number]
+    > = [...featuredPosts];
+    const neededPosts = 3 - featuredPosts.length;
 
-  if (neededPosts > 0 && allBlogPosts.length > 0) {
-    const fillerPosts = allBlogPosts.slice(0, neededPosts);
-    displayedPosts.push(...fillerPosts);
-  }
+    if (neededPosts > 0 && allBlogPosts.length > 0) {
+      const fillerPosts = allBlogPosts.slice(0, neededPosts);
+      posts.push(...fillerPosts);
+    }
+    return posts;
+  }, [featuredPosts, allBlogPosts]);
 
   // Exclude all displayed posts from the main listing
-  const displayedPostIds = displayedPosts
-    .map((item) => {
-      if ("id" in item && item.id) {
-        return item.id;
-      }
-      return null;
-    })
-    .filter((item) => item !== null);
+  const displayedPostIds = useMemo(() => {
+    return displayedPosts
+      .map((item) => {
+        if ("id" in item && item.id) {
+          return item.id;
+        }
+        return null;
+      })
+      .filter((item): item is string => item !== null);
+  }, [displayedPosts]);
 
   // Create individual filter.not() conditions for each displayed post ID
-  const excludeFilters = displayedPostIds.map((id) =>
-    filter.not("document.id", id)
-  );
+  const excludeFilters = useMemo(() => {
+    return displayedPostIds.map((id) => filter.not("document.id", id));
+  }, [displayedPostIds]);
 
   // Initial fetch to get all blog posts for filling featured section
   useEffect(() => {
@@ -77,7 +84,8 @@ export default function BlogSection({ data }: BlogSectionProps) {
     };
 
     fetchAllPosts();
-  }, [client]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const fetchBlogPosts = useCallback(
     async (page: number, append = false) => {
@@ -110,6 +118,7 @@ export default function BlogSection({ data }: BlogSectionProps) {
         console.error("Error fetching blog posts:", error);
       } finally {
         setIsLoading(false);
+        document.dispatchEvent(new CustomEvent("pageToPage:links:refresh"))
       }
     },
     [client, excludeFilters]
@@ -119,7 +128,8 @@ export default function BlogSection({ data }: BlogSectionProps) {
     if (displayedPostIds.length > 0) {
       fetchBlogPosts(1);
     }
-  }, [displayedPostIds.length, fetchBlogPosts]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [displayedPostIds.length]);
 
   const handleLoadMore = () => {
     if (!isLoading && hasMore) {
@@ -128,6 +138,7 @@ export default function BlogSection({ data }: BlogSectionProps) {
       fetchBlogPosts(nextPage, true);
     }
   };
+
 
   return (
     <section id="blog" className="grid-margin">
@@ -323,10 +334,10 @@ export default function BlogSection({ data }: BlogSectionProps) {
           ))}
 
           {hasMore && (
-            <button
+            <a
               onClick={handleLoadMore}
               className="button button-reload button-dark"
-              disabled={isLoading}
+              data-disabled={isLoading}
               type="button"
             >
               <div className="main-bg"></div>
@@ -340,7 +351,7 @@ export default function BlogSection({ data }: BlogSectionProps) {
                 <span>{isLoading ? "Loading..." : "Load More"}</span>
                 <span>{isLoading ? "Loading..." : "Load More"}</span>
               </div>
-            </button>
+            </a>
           )}
         </div>
       </div>

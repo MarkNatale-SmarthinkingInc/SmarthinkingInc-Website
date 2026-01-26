@@ -22,26 +22,7 @@ export default function ServiceIntroSection({ data }: ServiceIntroProps) {
           {data.service_intro_trademark_svg?.url ? (
             <img
               alt={data.service_intro_trademark_svg?.alt ?? ""}
-              src={`${data.service_intro_trademark_svg?.url}&fit=clip&w=1920&q=85`}
-              srcSet={[
-                `${data.service_intro_trademark_svg?.url}&fit=clip&w=768&q=85 768w`,
-                `${data.service_intro_trademark_svg?.url}&fit=clip&w=1024&q=85 1024w`,
-                `${data.service_intro_trademark_svg?.url}&fit=clip&w=1440&q=85 1440w`,
-                `${data.service_intro_trademark_svg?.url}&fit=clip&w=1920&q=85 1920w`,
-              ].join(", ")}
-              sizes="
-    (max-width: 767px) 100vw,
-    (max-width: 1023px) 768px,
-    (max-width: 1439px) 1024px,
-    (max-width: 1919px) 1440px,
-    1920px
-  "
-              width={
-                data.service_intro_trademark_svg?.dimensions?.width || 1440
-              }
-              height={
-                data.service_intro_trademark_svg?.dimensions?.height || 810
-              }
+              src={`${data.service_intro_trademark_svg?.url}`}
               loading="lazy"
               decoding="async"
               className="lazy"

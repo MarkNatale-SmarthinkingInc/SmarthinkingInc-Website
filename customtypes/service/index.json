@@ -44,6 +44,13 @@
           "thumbnails": []
         }
       },
+      "left_video": {
+        "type": "Embed",
+        "config": {
+          "label": "Left Video",
+          "placeholder": "Will replace left image"
+        }
+      },
       "human_image": {
         "type": "Image",
         "config": {
@@ -58,6 +65,13 @@
           "label": "digital image",
           "constraint": {},
           "thumbnails": []
+        }
+      },
+      "right_video": {
+        "type": "Embed",
+        "config": {
+          "label": "Right Video",
+          "placeholder": "Will replace right image"
         }
       },
       "thinking_title": {

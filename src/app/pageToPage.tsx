@@ -176,37 +176,71 @@ const PageToPage = () => {
    * Intercept all links and play the page to page animation
    */
 
+   const removePageToPageEventListeners = useCallback(() =>{
+     let links: NodeListOf<HTMLAnchorElement> | null = null;
+     let linksToBind: HTMLAnchorElement[] = [];
+
+     // artificial timeout cause some of the links are fetched on client
+     for (const link of linksToBind) {
+       link.removeEventListener("click", playPageToPage);
+     }
+
+     links = document.querySelectorAll("a");
+     linksToBind = Array.from(links).filter((link) => {
+       if (link.href.length === 0) return false;
+       if (link.href.endsWith(pathname)) return false;
+       if (link.href === "#") return false;
+       if (link.href.includes(`${pathname}#`)) return false;
+       if (link.href.startsWith("mailto:")) return false;
+       if (link.href.startsWith("tel:")) return false;
+       if (link.target === "_blank") return false;
+       if (!link.href.includes(window.location.hostname)) return false;
+       return true;
+     });
+
+     for (const link of linksToBind) {
+       link.removeEventListener("click", playPageToPage);
+     }
+   },[])
+
+   const addPageToPageEventListeners = useCallback(() =>{
+     let links: NodeListOf<HTMLAnchorElement> | null = null;
+     let linksToBind: HTMLAnchorElement[] = [];
+
+     // artificial timeout cause some of the links are fetched on client
+     for (const link of linksToBind) {
+       link.removeEventListener("click", playPageToPage);
+     }
+
+     links = document.querySelectorAll("a");
+     linksToBind = Array.from(links).filter((link) => {
+       if (link.href.length === 0) return false;
+       if (link.href.endsWith(pathname)) return false;
+       if (link.href === "#") return false;
+       if (link.href.includes(`${pathname}#`)) return false;
+       if (link.href.startsWith("mailto:")) return false;
+       if (link.href.startsWith("tel:")) return false;
+       if (link.target === "_blank") return false;
+       if (!link.href.includes(window.location.hostname)) return false;
+       return true;
+     });
+
+     removePageToPageEventListeners()
+
+     for (const link of linksToBind) {
+       link.addEventListener("click", playPageToPage);
+     }
+   },[])
+
+
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    let links: NodeListOf<HTMLAnchorElement> | null = null;
-    let linksToBind: HTMLAnchorElement[] = [];
+    addPageToPageEventListeners()
 
-    // artificial timeout cause some of the links are fetched on client
-    for (const link of linksToBind) {
-      link.removeEventListener("click", playPageToPage);
-    }
-
-    links = document.querySelectorAll("a");
-    linksToBind = Array.from(links).filter((link) => {
-      if (link.href.length === 0) return false;
-      if (link.href.endsWith(pathname)) return false;
-      if (link.href === "#") return false;
-      if (link.href.includes(`${pathname}#`)) return false;
-      if (link.href.startsWith("mailto:")) return false;
-      if (link.href.startsWith("tel:")) return false;
-      if (link.target === "_blank") return false;
-      if (!link.href.includes(window.location.hostname)) return false;
-      return true;
-    });
-
-    for (const link of linksToBind) {
-      link.addEventListener("click", playPageToPage);
-    }
+    document.addEventListener("pageToPage:links:refresh", addPageToPageEventListeners)
 
     return () => {
-      for (const link of linksToBind) {
-        link.removeEventListener("click", playPageToPage);
-      }
+      removePageToPageEventListeners()
     };
   }, [pathname, playPageToPage, breadcrumbs]);
   // adding the breadcrumbs as well (because it is links so we need to rebind events)

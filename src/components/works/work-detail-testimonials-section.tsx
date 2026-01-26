@@ -1,4 +1,4 @@
-import type { Content } from "@prismicio/client";
+import { isFilled, type Content } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 
 interface WorkDetailTestimonialsSectionProps {
@@ -8,6 +8,7 @@ interface WorkDetailTestimonialsSectionProps {
 export default function WorkDetailTestimonialsSection({
   work,
 }: WorkDetailTestimonialsSectionProps) {
+  if(!isFilled.richText(work?.data.testimonial_quote)) return null
   return (
     <section id="testimonials" className="xl-top-5 xs-top-6">
       <div className="st-grid grid-margin xs-wrap">

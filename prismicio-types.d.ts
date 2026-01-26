@@ -1720,6 +1720,17 @@ interface ServiceDocumentData {
   physical_image: prismic.ImageField<never>;
 
   /**
+   * Left Video field in *Service*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: Will replace left image
+   * - **API ID Path**: service.left_video
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/embed
+   */
+  left_video: prismic.EmbedField;
+
+  /**
    * human image field in *Service*
    *
    * - **Field Type**: Image
@@ -1740,6 +1751,17 @@ interface ServiceDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   digital_image: prismic.ImageField<never>;
+
+  /**
+   * Right Video field in *Service*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: Will replace right image
+   * - **API ID Path**: service.right_video
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/embed
+   */
+  right_video: prismic.EmbedField;
 
   /**
    * Thinking Section Title field in *Service*
@@ -2429,6 +2451,23 @@ export type TestimonialsDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Work → Top listed services*
+ */
+export interface WorkDocumentDataTopListedServicesItem {
+  /**
+   * Service field in *Work → Top listed services*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.top_listed_services[].service
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  service: ContentRelationshipFieldWithData<
+    [{ id: "service"; fields: ["title"] }]
+  >;
+}
+
 type WorkDocumentDataSlicesSlice =
   | WorkDetailVideoHalfHalfBlockSlice
   | WorkDetailVideoFullBlockSlice
@@ -2465,6 +2504,19 @@ interface WorkDocumentData {
    */
   attached_service: ContentRelationshipFieldWithData<
     [{ id: "service"; fields: ["title"] }]
+  >;
+
+  /**
+   * Top listed services field in *Work*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.top_listed_services[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  top_listed_services: prismic.GroupField<
+    Simplify<WorkDocumentDataTopListedServicesItem>
   >;
 
   /**
@@ -3520,6 +3572,7 @@ declare module "@prismicio/client" {
       TestimonialsDocumentDataTestimonialsItem,
       WorkDocument,
       WorkDocumentData,
+      WorkDocumentDataTopListedServicesItem,
       WorkDocumentDataSlicesSlice,
       WorksDocument,
       WorksDocumentData,
