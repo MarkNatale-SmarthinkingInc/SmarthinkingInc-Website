@@ -1,5 +1,17 @@
-import { type Content, isFilled } from "@prismicio/client";
+import { type Content, type EmbedField, isFilled } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
+
+/**
+ * Extract video ID from Prismic embed field
+ * Tries video_id property first, falls back to parsing the html string
+ */
+function getVideoIdFromEmbed(embed: EmbedField): string | null {
+  if (!embed) return null;
+  if (embed.video_id) return String(embed.video_id);
+  const html = embed.html ?? "";
+  const match = html.match(/video\/(\d+)/);
+  return match ? match[1] : null;
+}
 
 interface ServiceDetailHeroSectionProps {
   service: Content.ServiceDocument;
@@ -30,7 +42,22 @@ export default function ServiceDetailHeroSection({
       <div className="string-canvas xs-top-4">
         <canvas className="string-lines grid80 fadeIn"></canvas>
         <div className="st-grid grid-margin hero-images xs-wrap">
-          {isFilled.image(service.data.physical_image) && (
+          {isFilled.embed(service.data.left_video) ? (
+            <figure className="st-xl-6 self-end xs-self-start st-xs-9 imgIn">
+              <div
+                className="video-embed"
+                style={{ aspectRatio: 16 / 9 }}
+              >
+                <iframe
+                  src={`https://player.vimeo.com/video/${getVideoIdFromEmbed(service.data.left_video)}?background=1`}
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                  title="Background video"
+                  style={{ width: "100%", height: "100%", border: 0 }}
+                />
+              </div>
+            </figure>
+          ) : isFilled.image(service.data.physical_image) && (
             <figure className="st-xl-6 self-end xs-self-start st-xs-9 imgIn">
               <img
                 alt={service.data.physical_image?.alt ?? ""}
@@ -82,7 +109,22 @@ export default function ServiceDetailHeroSection({
               />
             </figure>
           )}
-          {isFilled.image(service.data.digital_image) && (
+          {isFilled.embed(service.data.right_video) ? (
+            <figure className="st-xl-6 self-start st-xs-12 imgIn">
+              <div
+                className="video-embed"
+                style={{ aspectRatio: 16 / 9 }}
+              >
+                <iframe
+                  src={`https://player.vimeo.com/video/${getVideoIdFromEmbed(service.data.right_video)}?background=1`}
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                  title="Background video"
+                  style={{ width: "100%", height: "100%", border: 0 }}
+                />
+              </div>
+            </figure>
+          ) : isFilled.image(service.data.digital_image) && (
             <figure className="st-xl-6 self-start st-xs-12 imgIn">
               <img
                 alt={service.data.digital_image?.alt ?? ""}
