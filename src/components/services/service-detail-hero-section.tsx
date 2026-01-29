@@ -49,7 +49,7 @@ export default function ServiceDetailHeroSection({
                 style={{ aspectRatio: 16 / 9 }}
               >
                 <iframe
-                  src={`https://player.vimeo.com/video/${getVideoIdFromEmbed(service.data.left_video)}?background=1`}
+                  src={`https://player.vimeo.com/video/${getVideoIdFromEmbed(service.data.left_video)}?badge=0&autopause=0&autoplay=1&muted=1&loop=1&background=1`}
                   allow="autoplay; fullscreen"
                   allowFullScreen
                   title="Background video"
@@ -116,7 +116,7 @@ export default function ServiceDetailHeroSection({
                 style={{ aspectRatio: 16 / 9 }}
               >
                 <iframe
-                  src={`https://player.vimeo.com/video/${getVideoIdFromEmbed(service.data.right_video)}?background=1`}
+                  src={`https://player.vimeo.com/video/${getVideoIdFromEmbed(service.data.right_video)}?badge=0&autopause=0&autoplay=1&muted=1&loop=1&background=1`}
                   allow="autoplay; fullscreen"
                   allowFullScreen
                   title="Background video"
