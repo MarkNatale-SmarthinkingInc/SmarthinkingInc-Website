@@ -60,6 +60,12 @@ export default function BlogSection({ data }: BlogSectionProps) {
 		return displayedPostIds.map((id) => filter.not("document.id", id));
 	}, [displayedPostIds]);
 
+	// refresh the pageToPage links when the displayedPostIds change
+	useEffect(() => {
+		document.dispatchEvent(new CustomEvent("pageToPage:links:refresh"));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [displayedPostIds.length]);
+
 	// Initial fetch to get all blog posts for filling featured section
 	useEffect(() => {
 		const fetchAllPosts = async () => {
@@ -80,8 +86,6 @@ export default function BlogSection({ data }: BlogSectionProps) {
 				setAllBlogPosts(response.results);
 			} catch (error) {
 				console.error("Error fetching all blog posts:", error);
-			} finally {
-				document.dispatchEvent(new CustomEvent("pageToPage:links:refresh"));
 			}
 		};
 
@@ -120,7 +124,6 @@ export default function BlogSection({ data }: BlogSectionProps) {
 				console.error("Error fetching blog posts:", error);
 			} finally {
 				setIsLoading(false);
-				document.dispatchEvent(new CustomEvent("pageToPage:links:refresh"));
 			}
 		},
 		[client, excludeFilters],
