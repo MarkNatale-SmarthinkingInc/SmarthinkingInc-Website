@@ -35,7 +35,7 @@ export default function WorkDetailMainVideoSection({
   return (
     <section id="main-video" className="grid-margin">
       <div className="video-wrap st-xl-16 st-xl-os-1 xl-top-3">
-        <div className="video-embed">
+        <div className="video-embed" style={{backgroundColor: 'rgba(0,0,0,0.2)'}}>
           <iframe
             src={`https://player.vimeo.com/video/${extractedVideoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1`}
             frameBorder="0"
