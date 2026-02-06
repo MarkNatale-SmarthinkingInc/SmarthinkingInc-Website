@@ -52,7 +52,7 @@ export default function ServiceDetailContentSection({
           {service.data.contact_text && (
             <p className="f-32">{service.data.contact_text}</p>
           )}
-          <div className="button-wrap">
+          <div className="button-wrap button-dark">
             <PrismicNextLink
               href="/contact"
               className="button"

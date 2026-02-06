@@ -111,7 +111,7 @@ export default async function BlogSection({ data }: BlogSectionProps) {
                 </figure>
               )}
               <div>
-                {blogPost?.tags &&
+                {/*{blogPost?.tags &&
                   Array.isArray(blogPost.tags) &&
                   blogPost.tags.length > 0 && (
                     <div className="tags">
@@ -121,7 +121,7 @@ export default async function BlogSection({ data }: BlogSectionProps) {
                         </span>
                       ))}
                     </div>
-                  )}
+                  )}*/}
                 {blogPost.data?.title && (
                   <h3 className="f-24">
                     <PrismicNextLink document={blogPost}>

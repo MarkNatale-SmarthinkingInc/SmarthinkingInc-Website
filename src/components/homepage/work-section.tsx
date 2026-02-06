@@ -9,15 +9,15 @@ export default function WorkSection({ data }: WorkSectionProps) {
   return (
     <section id="work" className="Top40 grid-margin">
       <div className="st-grid">
-        <div className="st-xl-6 st-sm-5 xs-hidden">
+        <div className="st-xl-4 xs-hidden">
           <h3 className="caption">Featured</h3>
         </div>
-        <div className="st-xl-6 st-sm-8 st-xs-14 st-xs-os-2 center">
+        <div className="st-xl-10 st-sm-8 st-xs-14 st-xs-os-2 center">
           {data.work_section_description && (
             <p className="f-32">{data.work_section_description}</p>
           )}
         </div>
-        <div className="st-xl-6 st-sm-5 right xs-hidden">
+        <div className="st-xl-4 right xs-hidden">
           <h3 className="caption">Projects</h3>
         </div>
       </div>

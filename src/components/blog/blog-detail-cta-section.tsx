@@ -51,7 +51,7 @@ export default async function BlogDetailCtaSection({
           <div className="button-wrap">
             <a
               href="/contact"
-              className="button button-brown"
+              className="button button-accent"
               aria-label="Go to contact form"
             >
               <div className="main-bg"></div>

@@ -45,6 +45,12 @@ const WorkDetailSliderBlock: FC<WorkDetailSliderBlockProps> = ({ slice }) => {
           </figure>
         ))}
       </div>
+      <button className="drag-btn drag-btn--prev" type="button" aria-label="Previous slide">
+        <img src="/img/svg/icon-semi-arrow-white.svg" alt="arrow"/>
+      </button>
+      <button className="drag-btn drag-btn--next" type="button" aria-label="Next slide">
+           <img src="/img/svg/icon-semi-arrow-white.svg" alt="arrow"/>
+      </button>
       <div id="drag-progress">
         <div className="drag-inner"></div>
       </div>

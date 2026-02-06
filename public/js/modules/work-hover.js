@@ -27,6 +27,11 @@ export function workHover() {
         },
       });
 
+      gsap.set(icon, {
+                             opacity: 0,
+                              y: 20,
+                         })
+
       // HOVER FUNCTION ///////////////////////////////
       i.addEventListener("mouseenter", () => {
         gsap.to(icon, {
