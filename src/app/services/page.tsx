@@ -1,15 +1,16 @@
 import FooterSection from "@/components/global/footer-section";
 import {
-  ServiceIntroSection,
-  ServicesClientsSection,
-  ServicesHeroSection,
-  ServicesSection,
-  ServicesTestimonialsSection,
-  WorkLinkSection,
+    ServiceIntroSection,
+    ServicesClientsSection,
+    ServicesHeroSection,
+    ServicesSection,
+    ServicesTestimonialsSection,
+    WorkLinkSection,
 } from "@/components/services";
 import { createClient } from "@/prismicio";
 import { generateMeta } from "@/utils/seo";
 import type { Metadata } from "next";
+import Script from "next/script";
 // import { components } from "@/slices";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -22,6 +23,7 @@ export default async function Home() {
   const client = createClient();
   const { data } = await client.getSingle("services");
   return (
+    <>
     <main
       id="smooth-wrapper"
       data-barba="container"
@@ -37,5 +39,10 @@ export default async function Home() {
         <FooterSection />
       </div>
     </main>
+    <Script
+      src="https://player.vimeo.com/api/player.js"
+      strategy="afterInteractive"
+    />
+    </>
   );
 }

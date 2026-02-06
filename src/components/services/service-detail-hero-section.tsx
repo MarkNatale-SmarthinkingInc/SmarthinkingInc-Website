@@ -46,7 +46,7 @@ export default function ServiceDetailHeroSection({
             <figure className="st-xl-6 self-end xs-self-start st-xs-9 imgIn">
               <div
                 className="video-embed"
-                style={{ aspectRatio: 16 / 9 }}
+                style={{ aspectRatio: 16 / 9, backgroundColor: 'rgba(0,0,0,0.2)' }}
               >
                 <iframe
                   src={`https://player.vimeo.com/video/${getVideoIdFromEmbed(service.data.left_video)}?badge=0&autopause=0&autoplay=1&muted=1&loop=1&background=1`}
@@ -113,7 +113,7 @@ export default function ServiceDetailHeroSection({
             <figure className="st-xl-6 self-start st-xs-12 imgIn">
               <div
                 className="video-embed"
-                style={{ aspectRatio: 16 / 9 }}
+                style={{ aspectRatio: 16 / 9, backgroundColor: 'rgba(0,0,0,0.2)' }}
               >
                 <iframe
                   src={`https://player.vimeo.com/video/${getVideoIdFromEmbed(service.data.right_video)}?badge=0&autopause=0&autoplay=1&muted=1&loop=1&background=1`}
