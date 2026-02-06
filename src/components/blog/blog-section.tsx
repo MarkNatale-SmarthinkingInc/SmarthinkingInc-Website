@@ -62,9 +62,11 @@ export default function BlogSection({ data }: BlogSectionProps) {
 
 	// refresh the pageToPage links when the displayedPostIds change
 	useEffect(() => {
-		document.dispatchEvent(new CustomEvent("pageToPage:links:refresh"));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [displayedPostIds.length]);
+		setTimeout(() => {
+			document.dispatchEvent(new CustomEvent("pageToPage:links:refresh"));
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		}, 200);
+	}, [displayedPosts]);
 
 	// Initial fetch to get all blog posts for filling featured section
 	useEffect(() => {
