@@ -1687,6 +1687,17 @@ interface ServiceDocumentData {
   title: prismic.KeyTextField;
 
   /**
+   * Order field in *Service*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.order
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  order: prismic.NumberField;
+
+  /**
    * Hero Title field in *Service*
    *
    * - **Field Type**: Rich Text
@@ -2492,6 +2503,17 @@ interface WorkDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
+
+  /**
+   * Order field in *Work*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work.order
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  order: prismic.NumberField;
 
   /**
    * Attached Service field in *Work*

@@ -5,10 +5,16 @@ interface ServicesSectionProps {
   data: import("@prismicio/client").Content.ServicesDocumentData;
 }
 
-export default async function ServicesSection({ data }: ServicesSectionProps) {
-  const sinceYear = data.services_since_year || "2011";
+export default async function ServicesSection({ }: ServicesSectionProps) {
   const client = createClient();
-  const services = await client.getAllByType("service");
+  const services = await client.getAllByType("service", {
+    orderings: [
+      {
+        field: "my.service.order",
+        direction: "asc",
+      },
+    ],
+  });
 
   const columns: (typeof services)[] = [[], [], []];
   services.forEach((svc, index) => {

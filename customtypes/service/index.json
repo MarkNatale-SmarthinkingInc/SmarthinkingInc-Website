@@ -19,6 +19,13 @@
           "placeholder": ""
         }
       },
+      "order": {
+        "type": "Number",
+        "config": {
+          "label": "Order",
+          "placeholder": ""
+        }
+      },
       "hero_title": {
         "type": "StructuredText",
         "config": {

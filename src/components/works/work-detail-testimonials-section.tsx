@@ -14,7 +14,7 @@ export default function WorkDetailTestimonialsSection({
       <div className="st-grid grid-margin xs-wrap">
         <div className="st-xl-7 st-xl-os-1 st-xs-16">
           <h2 className="f-100">
-            The <span className="Brown">Client</span>
+            Word <span className="Brown">on Street</span>
           </h2>
         </div>
         <div className="st-xl-8 st-xl-os-1 st-xs-16 xs-top-6">

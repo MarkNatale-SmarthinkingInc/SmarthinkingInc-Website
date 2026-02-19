@@ -13,6 +13,12 @@ export default async function ServiceDetailWorkSection({
 
   // Get work items to display
   const workItems = await client.getAllByType("work", {
+    orderings: [
+      {
+        field: "my.work.order",
+        direction: "asc",
+      },
+    ],
     fetchLinks: ["work.title", "work.featured_image"],
     filters: [filter.at("my.work.attached_service", service.id)],
     limit: 2,

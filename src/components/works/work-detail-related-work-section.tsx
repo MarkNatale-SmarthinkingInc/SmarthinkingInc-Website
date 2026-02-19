@@ -1,5 +1,5 @@
 import { createClient } from "@/prismicio";
-import { type Content, filter } from "@prismicio/client";
+import { BuildQueryURLArgs, type Content } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 
 interface WorkDetailRelatedWorkSectionProps {
@@ -10,16 +10,34 @@ export default async function WorkDetailRelatedWorkSection({
   work,
 }: WorkDetailRelatedWorkSectionProps) {
   const client = createClient();
-  const otherWorks = await client.getByType("work", {
-    filters: [...(work?.id ? [filter.not("document.id", work.id)] : [])],
+  console.log(work)
+
+  const defaultParams:Partial<BuildQueryURLArgs> =  {
     pageSize: 2,
+    orderings: [
+      {
+        field: "my.work.order",
+        direction: "asc",
+      },
+    ],
     fetchLinks: [
       "work.title",
       "work.attached_service",
       "work.homepage_image_1",
       "work.homepage_image_2",
     ],
+  }
+  let otherWorks = await client.getByType("work", {
+    ...defaultParams,
+    after: work?.id,
   });
+
+  // If no results after this work (e.g., last work), fetch the first 2 works
+  if (otherWorks.results.length === 0) {
+    otherWorks = await client.getByType("work", {
+      ...defaultParams,
+    });
+  }
 
   if (otherWorks.results.length === 0) {
     return null;
@@ -33,7 +51,7 @@ export default async function WorkDetailRelatedWorkSection({
         </h2>
       </div>
       <div className="work-listing xl-top-2">
-        {otherWorks.results.map((relatedWork, index) => (
+        {otherWorks.results.map((relatedWork) => (
           <article key={relatedWork.id} className="row-item">
             <canvas className="equalizer-canvas"></canvas>
             <PrismicNextLink document={relatedWork} className="st-grid">

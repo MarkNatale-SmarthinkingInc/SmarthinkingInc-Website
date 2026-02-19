@@ -10,7 +10,14 @@ export default async function ServiceDetailOtherServicesSection({
   service,
 }: ServiceDetailOtherServicesSectionProps) {
   const client = createClient();
-  const allServices = await client.getAllByType("service");
+  const allServices = await client.getAllByType("service", {
+    orderings: [
+      {
+        field: "my.service.order",
+        direction: "asc",
+      },
+    ],
+  });
 
   // Filter out the current service
   const otherServices = allServices.filter((s) => s.uid !== service.uid);

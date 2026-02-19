@@ -8,7 +8,14 @@ interface ServicesSectionProps {
 
 export default async function ServicesSection({ data }: ServicesSectionProps) {
   const client = createClient();
-  const services = await client.getAllByType("service");
+  const services = await client.getAllByType("service", {
+    orderings: [
+      {
+        field: "my.service.order",
+        direction: "asc",
+      },
+    ],
+  });
   return (
     <section id="services" className="grid-margin xl-top-5 xs-top-10">
       {data.services_section_title && (

@@ -4,6 +4,12 @@ import { PrismicNextLink } from "@prismicio/next";
 export default async function WorkSection() {
   const client = createClient();
   const works = await client.getAllByType("work", {
+    orderings: [
+      {
+        field: "my.work.order",
+        direction: "asc",
+      },
+    ],
     fetchLinks: [
       "work.title",
       "work.main_image",

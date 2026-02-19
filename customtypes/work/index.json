@@ -19,6 +19,13 @@
           "placeholder": ""
         }
       },
+      "order": {
+        "type": "Number",
+        "config": {
+          "label": "Order",
+          "placeholder": ""
+        }
+      },
       "attached_service": {
         "type": "Link",
         "config": {
