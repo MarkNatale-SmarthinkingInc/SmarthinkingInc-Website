@@ -188,9 +188,11 @@ const PageToPage = () => {
      links = document.querySelectorAll("a");
      linksToBind = Array.from(links).filter((link) => {
        if (link.href.length === 0) return false;
-       if (link.href.endsWith(pathname)) return false;
+       // Extract the pathname from the full href
+       const linkPathname = new URL(link.href, window.location.origin).pathname;
+       // Skip links to the exact same page
+       if (linkPathname === window.location.pathname) return false;
        if (link.href === "#") return false;
-       if (link.href.includes(`${pathname}#`)) return false;
        if (link.href.startsWith("mailto:")) return false;
        if (link.href.startsWith("tel:")) return false;
        if (link.target === "_blank") return false;
@@ -215,9 +217,11 @@ const PageToPage = () => {
      links = document.querySelectorAll("a");
      linksToBind = Array.from(links).filter((link) => {
        if (link.href.length === 0) return false;
-       if (link.href.endsWith(pathname)) return false;
+       // Extract the pathname from the full href
+       const linkPathname = new URL(link.href, window.location.origin).pathname;
+       // Skip links to the exact same page
+       if (linkPathname === window.location.pathname) return false;
        if (link.href === "#") return false;
-       if (link.href.includes(`${pathname}#`)) return false;
        if (link.href.startsWith("mailto:")) return false;
        if (link.href.startsWith("tel:")) return false;
        if (link.target === "_blank") return false;
