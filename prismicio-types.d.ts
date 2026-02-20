@@ -3023,6 +3023,16 @@ export type RichTextBlockSlice = prismic.SharedSlice<
  */
 export interface WorkDetailCategoryBlockSliceDefaultPrimary {
   /**
+   * Name field in *WorkDetailCategoryBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: work_detail_category_block.default.primary.name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name: prismic.KeyTextField;
+
+  /**
    * Service field in *WorkDetailCategoryBlock → Default → Primary*
    *
    * - **Field Type**: Content Relationship

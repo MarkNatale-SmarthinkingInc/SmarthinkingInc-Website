@@ -3,14 +3,6 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"service": {
-				"key": "e2d72a72-c771-456d-ba66-7bbc3f10cfbf",
-				"__TYPE__": "LinkContent",
-				"value": {
-					"__TYPE__": "DocumentLink",
-					"id": "mock_document_id"
-				}
-			},
 			"description": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
@@ -25,6 +17,19 @@
 			"caption": {
 				"__TYPE__": "FieldContent",
 				"value": "friendly",
+				"type": "Text"
+			},
+			"service": {
+				"key": "4c2f77ce-65ac-4c41-abc5-43862e869f28",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			},
+			"name": {
+				"__TYPE__": "FieldContent",
+				"value": "direct",
 				"type": "Text"
 			}
 		},
