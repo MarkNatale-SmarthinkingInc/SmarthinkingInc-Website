@@ -22,7 +22,7 @@ export default function TestimonialsSection({
         <div className="st-xl-8 st-xl-os-5 st-sm-10 st-sm-os-4 st-xs-16 st-xs-os-1">
           <div className="st-grid t-controls grid-middle">
             <div className="st-xl-1">
-              <button type="button" className="arrow arrow-left">
+              <button type="button" className="arrow arrow-left" style={{visibility: data.testimonials?.length > 1 ? "visible" : "hidden"}}>
                 <img
                   src="/img/svg/icon-semi-arrow-white.svg"
                   alt="Arrow icon"
@@ -63,7 +63,7 @@ export default function TestimonialsSection({
               )}
             </figure>
             <div className="st-xl-1 st-xl-os-1">
-              <button type="button" className="arrow arrow-right">
+              <button type="button" className="arrow arrow-right" style={{visibility: data.testimonials?.length > 1 ? "visible" : "hidden"}}>
                 <img
                   src="/img/svg/icon-semi-arrow-white.svg"
                   alt="Arrow icon"

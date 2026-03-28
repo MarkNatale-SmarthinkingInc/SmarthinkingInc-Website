@@ -8,7 +8,14 @@ import FooterNewsletter from "./footer-newsletter";
 export default async function FooterSection() {
   const client = createClient();
   const navigation = await client.getSingle("navigation");
-  const services = await client.getAllByType("service");
+  const services = await client.getAllByType("service", {
+    orderings: [
+      {
+        field: "my.service.order",
+        direction: "asc",
+      },
+    ],
+  });
   const settings = await client.getSingle("settings");
   const footer = await client.getSingle("footer");
 

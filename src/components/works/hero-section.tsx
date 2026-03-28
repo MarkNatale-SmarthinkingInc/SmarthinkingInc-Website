@@ -7,15 +7,13 @@ type HeroSectionProps = {
 };
 
 export default async function HeroSection({ data }: HeroSectionProps) {
-  const fullYear = new Date().getFullYear();
   const client = createClient();
-  const works = await client.getAllByType("work");
 
   return (
     <section id="hero" className="grid-margin xl-bottom-2 xs-bottom-3">
       <div className="st-grid xs-wrap">
         <div className="st-xl-3 fadeUp st-xs-18 xs-center xs-bottom-2">
-          <p className="caption">({works.length})</p>
+          {/*<p className="caption">({works.length})</p>*/}
         </div>
         <div className="st-xl-12 st-xs-18 center">
           <h1 className="f-140 upper hero-split chars">
