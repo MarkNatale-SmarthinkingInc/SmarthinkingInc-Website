@@ -103,7 +103,6 @@ export async function POST(request: NextRequest) {
         COMPANY: companyName,
         PHONE: phone,
         MESSAGE: message,
-        SUBMITTED: new Date().toISOString(),
         SOURCE: "Website Contact Form",
       },
     });

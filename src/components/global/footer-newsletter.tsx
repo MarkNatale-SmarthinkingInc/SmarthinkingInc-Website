@@ -26,7 +26,7 @@ export default function FooterNewsletter() {
       <div>
         <h3 className="caption">Sign up for updates</h3>
         <div className="newsletter-success">
-          <p className="f-16">✓ Successfully subscribed to our newsletter!</p>
+          <p className="f-16" style={{lineHeight: 0.9}}>✓ Successfully subscribed to our newsletter!</p>
         </div>
       </div>
     );
