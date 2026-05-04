@@ -29,7 +29,7 @@ export default async function PodcastSection({ data }: PodcastSectionProps) {
         <div className="st-xl-9 st-sm-12 st-xs-18 podcast-list fadeUp">
           {podcasts.slice(0, 3).map((podcast) => (
             <article key={podcast.id}>
-              <PrismicNextLink document={podcast} className="st-grid">
+              <PrismicNextLink field={podcast.data.link} className="st-grid">
                 <figure className="st-xl-3 st-sm-4 st-xs-6 xs-self-start">
                   <img
                     alt={podcast.data.image?.alt ?? ""}
