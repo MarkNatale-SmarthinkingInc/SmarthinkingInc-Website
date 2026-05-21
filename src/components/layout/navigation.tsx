@@ -1,41 +1,34 @@
-"use client";
-
 import { createClient } from "@/prismicio";
+import { isFilled } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
-import { usePathname } from "next/navigation";
+import NavLinks from "./nav-links";
 
-const NAV_LINKS = [
-  { text: "Services", href: "/services" },
-  { text: "Work", href: "/work" },
-  { text: "About", href: "/about" },
-  { text: "Blog", href: "/blog" },
-  { text: "Contact", href: "/contact" },
-];
+export default async function Navigation() {
+  const client = createClient();
+  const navigation = await client.getSingle("navigation");
+  const settings = await client.getSingle("settings");
 
-export default function Navigation({ instagramLink, linkedinLink }: {
-  instagramLink: any;
-  linkedinLink: any;
-}) {
-  const pathname = usePathname();
+  const links = navigation.data.links
+    .filter((link) => link.link && isFilled.link(link.link))
+    .map((link) => ({
+      field: link.link,
+      text: link.link.text,
+    }));
 
   return (
     <nav id="nav" className="st-xl-7 st-lg-8 st-sm-10 st-xs-18 st-xs-os-0">
-      <div className="nav-links">
-        {NAV_LINKS.map((link) => (
-          
-            key={link.href}
-            href={link.href === pathname ? "#" : link.href}
-            onClick={link.href === pathname ? (e) => e.preventDefault() : undefined}
-          >
-            {link.text}
-          </a>
-        ))}
-      </div>
+      <NavLinks links={links} />
       <div className="nav-social">
-        <PrismicNextLink field={instagramLink} aria-label="Visit our Instagram">
+        <PrismicNextLink
+          field={settings.data.instagram_link}
+          aria-label="Visit our Instagram"
+        >
           <img src="/img/svg/instagram-white.svg" alt="Instagram icon" />
         </PrismicNextLink>
-        <PrismicNextLink field={linkedinLink} aria-label="Visit our LinkedIn">
+        <PrismicNextLink
+          field={settings.data.linkedin_link}
+          aria-label="Visit our LinkedIn"
+        >
           <img src="/img/svg/linkedin-white.svg" alt="LinkedIn icon" />
         </PrismicNextLink>
       </div>
