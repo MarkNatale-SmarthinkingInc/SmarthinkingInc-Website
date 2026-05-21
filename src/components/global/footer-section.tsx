@@ -89,7 +89,7 @@ export default async function FooterSection() {
       </div>
       <div className="footer-middle st-grid grid-margin sm-wrap sm-reverse">
         <div className="st-xl-10 st-sm-18 f-20 self-end sm-center sm-top-1">
-          <span>©2025 Smarthinking Inc. All rights reserved</span>
+          <span>©{new Date().getFullYear()} Smarthinking Inc. All rights reserved</span>
           <Link href="/terms-of-service" className="text-link">
             Terms of Service
           </Link>

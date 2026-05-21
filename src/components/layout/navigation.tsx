@@ -1,25 +1,23 @@
 import { createClient } from "@/prismicio";
 import { isFilled } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
+import NavLinks from "./nav-links";
 
 export default async function Navigation() {
   const client = createClient();
   const navigation = await client.getSingle("navigation");
   const settings = await client.getSingle("settings");
+
+  const links = navigation.data.links
+    .filter((link) => link.link && isFilled.link(link.link))
+    .map((link) => ({
+      href: (link.link as { url: string }).url,
+      text: link.link.text,
+    }));
+
   return (
     <nav id="nav" className="st-xl-7 st-lg-8 st-sm-10 st-xs-18 st-xs-os-0">
-      <div className="nav-links">
-        {navigation.data.links.map((link) => {
-          if (link.link && isFilled.link(link.link)) {
-            return (
-              <PrismicNextLink field={link.link} key={link.link.text}>
-                {link.link.text}
-              </PrismicNextLink>
-            );
-          }
-          return null;
-        })}
-      </div>
+      <NavLinks links={links} />
       <div className="nav-social">
         <PrismicNextLink
           field={settings.data.instagram_link}

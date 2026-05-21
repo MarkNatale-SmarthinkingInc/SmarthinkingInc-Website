@@ -39,7 +39,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }}
       />
       {/* End Google Tag Manager */}
-      <body className="loading" data-barba="wrapper">
+      <body className="loading">
         {/* Google Tag Manager - noscript fallback */}
         <noscript>
           <iframe
