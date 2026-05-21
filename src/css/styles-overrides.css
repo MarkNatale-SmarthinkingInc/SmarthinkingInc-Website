@@ -91,9 +91,3 @@ figure {
   align-items: center;
   gap: 20px;
 }
-
-/* Visually disable active nav link */
-#nav .nav-links span[aria-current="page"] {
-  cursor: default;
-  opacity: 0.5;
-}
