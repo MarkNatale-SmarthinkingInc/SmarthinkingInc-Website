@@ -11,7 +11,7 @@ export default async function Navigation() {
   const links = navigation.data.links
     .filter((link) => link.link && isFilled.link(link.link))
     .map((link) => ({
-      field: link.link,
+      href: (link.link as { url: string }).url,
       text: link.link.text,
     }));
 

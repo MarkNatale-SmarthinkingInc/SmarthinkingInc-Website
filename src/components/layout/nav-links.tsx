@@ -1,11 +1,9 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { PrismicNextLink } from "@prismicio/next";
-import type { LinkField } from "@prismicio/client";
 
 type NavLink = {
-	field: LinkField;
+	href: string;
 	text: string | null | undefined;
 };
 
@@ -15,11 +13,10 @@ export default function NavLinks({ links }: { links: NavLink[] }) {
 	return (
 		<div className="nav-links">
 			{links.map((link) => {
-				// Prismic fills `url` on the resolved link field
-				const href = (link.field as { url?: string }).url ?? "";
-				const linkPathname = href.startsWith("http")
-					? new URL(href).pathname
-					: href;
+				// Extract just the pathname portion, handling both relative and absolute URLs
+				const linkPathname = link.href.startsWith("http")
+					? new URL(link.href).pathname
+					: link.href;
 
 				const isActive = linkPathname === pathname;
 
@@ -32,9 +29,9 @@ export default function NavLinks({ links }: { links: NavLink[] }) {
 				}
 
 				return (
-					<PrismicNextLink key={link.text} field={link.field}>
+					<a key={link.text} href={link.href}>
 						{link.text}
-					</PrismicNextLink>
+					</a>
 				);
 			})}
 		</div>
