@@ -13,7 +13,11 @@ export default function NavLinks({ links }: { links: NavLink[] }) {
 	return (
 		<div className="nav-links">
 			{links.map((link) => {
-				const linkPathname = new URL(link.href).pathname;
+				// Extract just the pathname portion, handling both relative and absolute URLs
+				const linkPathname = link.href.startsWith("http")
+					? new URL(link.href).pathname
+					: link.href;
+
 				const isActive = linkPathname === pathname;
 
 				if (isActive) {
