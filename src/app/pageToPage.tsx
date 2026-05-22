@@ -151,16 +151,19 @@ const PageToPage = () => {
   }, [onEnter]);
 
   const playPageToPage = useCallback(
-    (e: MouseEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setIsMenuOpen(false);
-      // if (!pageToPage || !pageToPageRef.current) return
-
-      const link = e.currentTarget as HTMLAnchorElement;
-      onLeavePathAnimation(link.href);
-    },
-    [onLeavePathAnimation, setIsMenuOpen]
+      (e: MouseEvent) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const link = e.currentTarget as HTMLAnchorElement;
+          const linkPathname = new URL(link.href).pathname;
+          if (linkPathname === window.location.pathname) {
+              setIsMenuOpen(false);
+              return;
+          }
+          setIsMenuOpen(false);
+          onLeavePathAnimation(link.href);
+      },
+      [onLeavePathAnimation, setIsMenuOpen]
   );
 
   /**
