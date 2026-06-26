@@ -53,6 +53,8 @@ export default function NewsletterBox({
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="newsletter">
+          <input type="hidden" name="acton_form_id" value="505767b6-e8f0-4573-9dec-af7437642c50" />
+          <input type="hidden" name="form_name" value="Contact" />
           <div className="input-box">
             <input
               type="email"
