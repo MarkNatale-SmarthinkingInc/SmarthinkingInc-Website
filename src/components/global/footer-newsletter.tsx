@@ -34,8 +34,8 @@ export default function FooterNewsletter() {
 
   return (
     <form onSubmit={handleSubmit} id="newsletter">
-      <input type="hidden" name="acton_form_id" value="505767b6-e8f0-4573-9dec-af7437642c50" />
-      <input type="hidden" name="form_name" value="Contact" />
+      <input type="hidden" name="acton_form_id" value="fd7409c0-79ec-4d10-8e8e-a7d327b7cfaa" />
+      <input type="hidden" name="form_name" value="Email Signup" />
       <h3 className="caption">Sign up for updates</h3>
       <div className="input-box">
         <input
