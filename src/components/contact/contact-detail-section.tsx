@@ -98,6 +98,8 @@ export default function ContactDetailSection({ data }: ContactDetailProps) {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="fadeUp">
+            <input type="hidden" name="acton_form_id" value="505767b6-e8f0-4573-9dec-af7437642c50" />
+            <input type="hidden" name="form_name" value="Contact" />
             {state.error && (
               <div
                 className="error-message"

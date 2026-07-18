@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the strategy for migrating all JavaScript files and script tags from `html-version/index.html` to the Next.js 15 application following modern practices.
+This document kinda outlines the strategy for migrating all JavaScript files and script tags from `html-version/index.html` to the Next.js 15 application following modern practices.
 
 ## Current Scripts Analysis
 

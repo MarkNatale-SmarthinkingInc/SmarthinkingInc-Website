@@ -71,6 +71,7 @@ export default async function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+
       </body>
       <Globals />
       <PageToPage />
