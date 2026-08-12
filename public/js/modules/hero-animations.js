@@ -20,6 +20,7 @@ export function heroAnimations() {
   if (
     document.querySelector(".home") ||
     document.querySelector(".services") ||
+    document.querySelector(".services-old") ||
     document.querySelector(".about") ||
     document.querySelector(".work-detail")
   ) {

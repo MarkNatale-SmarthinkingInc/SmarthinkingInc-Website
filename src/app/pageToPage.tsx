@@ -28,6 +28,9 @@ const PageToPage = () => {
     if (pathname === "/services") {
       return "services";
     }
+    if (pathname === "/services-old") {
+      return "services-old";
+    }
     if (pathname.startsWith("/services/")) {
       return "service-detail";
     }

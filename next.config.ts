@@ -1,5 +1,13 @@
 import type { NextConfig } from "next";
 
+// These paths are served under unversioned filenames, so an immutable year-long
+// cache means an edit to e.g. /js/main.js never reaches a returning visitor.
+// Kept for production; disabled in dev so local changes are actually picked up.
+const staticAssetCacheControl =
+  process.env.NODE_ENV === "production"
+    ? "public, max-age=31536000, immutable"
+    : "no-cache, no-store, must-revalidate";
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -26,7 +34,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            value: staticAssetCacheControl,
           },
         ],
       },
@@ -35,7 +43,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            value: staticAssetCacheControl,
           },
         ],
       },
@@ -44,7 +52,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            value: staticAssetCacheControl,
           },
         ],
       },

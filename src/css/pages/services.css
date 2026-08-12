@@ -1,3 +1,526 @@
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+SERVICES (redesign)
+Scoped to .services — see .services-old for the previous page.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
 .services #hero {
-  padding-bottom: 0;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.services #hero figure {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.services #hero .hero-captions {
+  height: 100%;
+  padding-top: 8.33328vw;
+  height: auto;
+  padding-bottom: 4.16664vw;
+}
+.services #hero .hero-img-title {
+  margin-top: 19.44432vw;
+  padding-top: 1.38888vw;
+  border-top: 1px solid #1A1417;
+  border-color: #fff;
+  position: relative;
+}
+.services #hero .hero-img-title .v-line {
+  position: absolute;
+  top: -19.44432vw;
+  left: 50%;
+  width: 1px;
+  height: 19.44432vw;
+  background-color: #fff;
+}
+.services #hero .hero-bottom {
+  padding-top: 5.55552vw;
+  padding-bottom: 8.33328vw;
+}
+.services #hero a {
+  color: #fff;
+}
+@media only screen and (max-width: 1024px) {
+  .services #hero .hero-captions {
+    padding-top: 11.11104vw;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .services #hero {
+    min-height: 100vh;
+  }
+  .services #hero .hero-captions {
+    padding-top: 22.22208vw;
+  }
+  .services #hero .hero-img-title {
+    padding-top: 5.55552vw;
+    margin-top: 40vh;
+  }
+  .services #hero .hero-img-title .v-line {
+    top: -40vh;
+    height: 40vh;
+  }
+  .services #hero .hero-bottom {
+    padding-top: 11.11104vw;
+    padding-bottom: 22.22208vw;
+  }
+  .services #hero .hero-bottom .f-28 {
+    font-size: 18px;
+  }
+}
+
+/* Five priority services, stacked in place of the single centre caption.
+   The comp sets these at 16px / line-height 1 — i.e. .caption untouched — so
+   there is no type override here on purpose. */
+@media only screen and (max-width: 768px) {
+  /* The left and right captions are xs-hidden, so hand the whole row to the
+     list rather than let "Graphic & Product Design" wrap onto a second line
+     and read as a sixth service. */
+  .services #hero .hero-captions .st-grid > div:not(.center) {
+    display: none;
+  }
+  .services #hero .hero-captions .center {
+    width: 100%;
+  }
+}
+
+/*  LABELLED COPY  ───────────────────────────────────────────────────────────
+    Shared by "Our Services" and "How The Services Interplay" — same layout,
+    the latter on .BgFade. Comp measures (1440 artboard): label 39.8px, which
+    .f-40 lands on at 39.99px; body 21.5px, nearest step .f-20 at 20px.
+    Columns are 6 and 10 of 18 after a one-column offset.                     */
+.services .labelled-copy {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+/* Small orange diamond set against the large serif label. The diamond keeps
+   the 11px it has at .sup-title's 0.7em/16px rather than scaling to .f-40.
+   Epica Pro caps run 0.082em–0.668em from the top of the line box, so the cap
+   centre is 0.416em down; offsetting by half the diamond centres it on the
+   caps rather than on the line box (which sits low, under the baseline). */
+.services .section-label {
+  padding-left: 0.95em;
+  background: url("/img/svg/icon-diamond-red.svg") no-repeat 0 0.276em;
+  background-size: 0.28em 0.28em;
+}
+.services .section-copy strong {
+  font-weight: 600;
+}
+/* The grid's full-width column (st-sm-18) is 95.83334vw, and vw is measured
+   against the viewport *including* the scrollbar — so once a scrollbar exists
+   the column is ~15px wider than its .grid-margin parent and the copy runs
+   past the margin. Filling the parent instead keeps it inside the grid. */
+@media only screen and (max-width: 1024px) {
+  .services .labelled-copy .st-grid > div,
+  .services #capabilities .st-grid > div,
+  .services #three-services .service-card {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+/* A touch more breathing room on either side at phone widths — the grid's
+   2.08333vw margin alone is only ~8px at 375. */
+@media only screen and (max-width: 768px) {
+  .services .labelled-copy > .grid-margin {
+    padding-left: 2.08333vw;
+    padding-right: 2.08333vw;
+  }
+}
+
+/*  THREE SERVICES (dark)  ────────────────────────────────────────────────────
+    Comp (1440): heading 81.7px → .f-80; card titles 39.9px → .f-40;
+    card copy 18.9px → .f-18. Cards are three 5-column blocks, each offset one
+    column, which is how the comp's ~446px column pitch falls out.            */
+.services #three-services {
+  padding-top: 8.33328vw;
+  padding-bottom: 11.11104vw;
+  overflow: hidden;
+}
+.services #three-services .three-services-title {
+  margin: 0 auto;
+}
+.services .service-card h3 {
+  line-height: 1.1em;
+}
+/* Square 578x578 line-art marks; the comp draws them ~235px on a 1440 artboard. */
+.services .service-card-mark {
+  margin: 2.77776vw 0;
+}
+.services .service-card-mark img {
+  display: block;
+  width: 16.66656vw;
+  max-width: 100%;
+  height: auto;
+}
+/* Cards stretch to equal height in the flex row, so pushing the button to the
+   bottom keeps the three aligned while leaving the smallest gap the longest
+   copy allows — no min-height guesswork. */
+.services .service-card {
+  display: flex;
+  flex-direction: column;
+  will-change: transform, opacity; /* scroll reveal, see public/js/modules/service-cards.js */
+}
+.services .service-card .button-wrap {
+  margin-top: auto;
+  padding-top: 1.38888vw;
+}
+/* The comp's button is plain orange with centred copy — no arrow, so the
+   space-between that a.button uses for its icon variant is overridden. */
+.services .service-card-button {
+  justify-content: center;
+  width: 15.9722vw;
+  max-width: 100%;
+  transition:
+    background-color 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    color 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.services .service-card-button:hover,
+.services .service-card-button:focus-visible {
+  background-color: #fff;
+  color: #f26722;
+}
+/* Once the cards stack they become centred blocks rather than full-width
+   sprawl — one alignment top to bottom instead of the left/centre/left zigzag,
+   and the copy keeps a readable measure instead of running the whole viewport.
+   Generous space between them so each reads as its own element. */
+@media only screen and (max-width: 1024px) {
+  .services .service-card {
+    align-items: center;
+    text-align: center;
+  }
+  .services .service-card + .service-card {
+    margin-top: 11.11104vw;
+  }
+  .services .service-card h3,
+  .services .service-card p {
+    max-width: 55vw;
+  }
+  /* Explicit width: as a flex item under align-items: center the figure would
+     otherwise shrink to its content, leaving the image's own % width with
+     nothing to resolve against. */
+  .services .service-card-mark {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .services .service-card-mark img {
+    width: 40vw;
+  }
+  .services .service-card .button-wrap {
+    align-self: center;
+  }
+  .services .service-card-button {
+    width: auto;
+  }
+}
+@media only screen and (max-width: 768px) {
+  /* Match the side breathing room the labelled-copy sections get. */
+  .services #three-services > .grid-margin {
+    padding-left: 2.08333vw;
+    padding-right: 2.08333vw;
+  }
+  /* A phone is already a narrow measure — let the card use its full width. */
+  .services .service-card h3,
+  .services .service-card p {
+    max-width: 100%;
+  }
+  .services .service-card-mark img {
+    width: 100%;
+  }
+  .services .service-card + .service-card {
+    margin-top: 16.66656vw;
+  }
+}
+
+/*  CAPABILITIES PER SERVICE  ─────────────────────────────────────────────────
+    Comp (1440): title 91.5px → .f-100; column headers ~32px → .f-32;
+    row labels and panel copy 18.4px → .f-18. Accordion rows sit on a ~45px
+    rhythm with a hairline rule beneath, sampled at #131313 in the comp.      */
+.services #capabilities {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+.services .capability-group-title {
+  font-weight: 600; /* comp sets a bold serif — see the Epica Pro Bold note */
+  line-height: 1.1em;
+  margin-bottom: 2.77776vw;
+}
+.services .capability {
+  border-bottom: 1px solid #1a1417;
+}
+/* The row is the toggle, so it carries the full width and the hit area. */
+.services .capability-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  padding: 0.7em 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  color: #1a1417;
+  cursor: pointer;
+  font-family: inherit;
+}
+/* A plus that rotates into a cross — one element, one transform. */
+.services .capability-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 0.85em;
+  height: 0.85em;
+  transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.services .capability-icon::before,
+.services .capability-icon::after {
+  content: "";
+  position: absolute;
+  background-color: #1a1417;
+}
+.services .capability-icon::before {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  transform: translateY(-50%);
+}
+.services .capability-icon::after {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  transform: translateX(-50%);
+}
+.services .capability.is-open .capability-icon {
+  transform: rotate(45deg);
+}
+/* Height is driven by GSAP — see public/js/modules/capabilities.js. The
+   closed state is set there too so the panel is never visible pre-hydration. */
+.services .capability-panel {
+  overflow: hidden;
+}
+.services .capability-panel p {
+  padding: 0 0 1.38888vw 1.38888vw;
+}
+/* Stacked, the last rule of one group sits right on top of the next group's
+   heading. Open the gap so each service reads as its own block — sm-top-2
+   alone is only ~21px at phone widths. */
+@media only screen and (max-width: 1024px) {
+  .services .capability-group + .capability-group {
+    margin-top: 11.11104vw;
+  }
+}
+@media only screen and (max-width: 768px) {
+  /* Same side breathing room as the sections above. Accordion rows stay
+     left-aligned when stacked — a centred list of toggles reads poorly. */
+  .services #capabilities > .grid-margin {
+    padding-left: 2.08333vw;
+    padding-right: 2.08333vw;
+  }
+}
+
+/*  PROOF  ────────────────────────────────────────────────────────────────────
+    Full-bleed band carrying an inverted .string-canvas. The comp samples the
+    background at #040404 rather than the palette's #1A1417 — the same JPEG
+    reads the three-services band as #1A1416, so this darker black is deliberate.
+    The word reuses .outline (Epica Pro, uppercase, 0.005em tracking) with the
+    outline text-shadow removed, leaving solid white, and is sized in vw so it
+    spans the container the way "WORK" does on the old page — 29.75vw here vs
+    34.027vw there, because PROOF is five characters rather than four.         */
+.services #proof {
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+  padding: 5.55552vw 0;
+}
+.services #proof .string-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.services #proof .proof-inner {
+  position: relative; /* above the canvas; pointer events still reach the wrapper */
+}
+.services .proof-title {
+  font-size: 29.75vw;
+  line-height: 1em;
+  text-shadow: none;
+  /* Optical centring. Epica Pro puts its cap top 0.082em below the line-box
+     top, but leaves a 0.25em descender well beneath the baseline — and PROOF
+     has no descenders, so the word rides high by half that difference. A
+     relative nudge recentres the caps without changing the band's height, and
+     stays correct as the vw font-size scales. */
+  position: relative;
+  top: 0.084em;
+}
+
+/*  RESULTS (stats + quote)  ──────────────────────────────────────────────────
+    Comp (1440): intro 21.5px → .f-20 (matching the other body copy); stat
+    numbers ~70px → .f-60; labels ~44px → .f-40; captions ~35px → .f-32;
+    quote 57.6px → .f-60; attribution 28px → .f-28.
+    Circles are 331.5px (23.02vw) with a double ring 7px apart. Everything in
+    them is live text so the figures stay editable and readable — no SVG.     */
+.services #results {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+.services .stat-circle {
+  position: relative;
+  width: 23.02vw;
+  max-width: 100%;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border: 1px solid rgba(26, 20, 23, 0.35);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* The comp draws a second ring just inside the first. */
+.services .stat-circle::before {
+  content: "";
+  position: absolute;
+  inset: 0.486vw;
+  border: 1px solid rgba(26, 20, 23, 0.35);
+  border-radius: 50%;
+}
+.services .stat-value {
+  line-height: 1em;
+}
+.services .stat-value sup {
+  font-size: 0.5em;
+  vertical-align: super;
+  line-height: 0;
+}
+.services .stat-label {
+  font-weight: 600; /* comp sets a bold serif — see the Epica Pro Bold note */
+  line-height: 1.1em;
+  margin-top: 0.1em;
+}
+/* Rule between the label and the caption, 62% of the circle in the comp. */
+.services .stat-caption {
+  position: relative;
+  line-height: 1.15em;
+  margin-top: 0.5em;
+  padding-top: 0.5em;
+}
+.services .stat-caption::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 62%;
+  height: 1px;
+  background-color: rgba(26, 20, 23, 0.35);
+}
+.services .quote p {
+  line-height: 1.1em;
+}
+.services .quote-attribution {
+  display: block;
+  font-style: normal;
+  margin-top: 1.5em;
+}
+@media only screen and (max-width: 1024px) {
+  /* Stacked, the circle sizes off the column rather than the viewport. */
+  .services .stat-circle {
+    width: 60vw;
+  }
+  .services .stat-circle::before {
+    inset: 1.2vw;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .services #results > .grid-margin {
+    padding-left: 2.08333vw;
+    padding-right: 2.08333vw;
+  }
+  .services .stat-circle {
+    width: 78vw;
+  }
+  .services .stat-circle::before {
+    inset: 1.6vw;
+  }
+}
+
+/*  CTA BAR  ──────────────────────────────────────────────────────────────────
+    Comp (1440): copy 40.5px → .f-40 on ~1.55em leading; band 363px tall, which
+    the 8.33328vw padding lands on. The button is the site's a.button with its
+    arrow, scaled up from the standard 60px to the comp's 90px.               */
+.services #services-cta {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+.services .cta-row {
+  align-items: center;
+}
+.services .cta-copy {
+  line-height: 1.55em;
+}
+/* a.button hardcodes font-size: 1em and justify-content: space-between, which
+   leaves a 16px label pinned to the right edge. The comp sets it at ~38px with
+   the arrow and label centred as one group — the clamp below is .f-40's, so
+   this still rides the type scale rather than inventing a size. */
+.services .cta-button {
+  height: 90px;
+  width: 31.53vw;
+  justify-content: center;
+  font-size: clamp(26px, 2.777vw, 52px);
+}
+.services .cta-button .icon {
+  margin-right: 0.98em;
+}
+.services .cta-button .icon svg {
+  width: 0.66em;
+  height: auto;
+}
+@media only screen and (max-width: 1024px) {
+  /* Back to the standard button once the bar stacks. */
+  .services .cta-button {
+    height: 60px;
+    width: auto;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .services #services-cta > .grid-margin {
+    padding-left: 2.08333vw;
+    padding-right: 2.08333vw;
+  }
+}
+
+/*  WORK LINK  ────────────────────────────────────────────────────────────────
+    Carried over from the previous services page unchanged. #testimonial-box
+    and #clients are already styled globally in styles.css, so only this block
+    needed re-scoping from .services-old to .services.                        */
+.services #work-link {
+  padding-top: 2.77776vw;
+  color: #fff;
+}
+.services #work-link .outline {
+  font-size: 34.027vw;
+  line-height: 0.8;
+}
+.services #work-link p {
+  margin-top: -1em;
+}
+.services #work-link figure {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+@media only screen and (max-width: 768px) {
+  .services #work-link {
+    padding-top: 5.55552vw;
+  }
+  .services #work-link p {
+    margin: 1em 0;
+  }
 }

@@ -4,7 +4,7 @@ import {
   ServiceDetailHeroSection,
   ServiceDetailOtherServicesSection,
   ServiceDetailWorkSection,
-} from "@/components/services";
+} from "@/components/services-old";
 import { createClient } from "@/prismicio";
 import { generateMeta } from "@/utils/seo";
 

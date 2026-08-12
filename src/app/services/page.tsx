@@ -1,29 +1,33 @@
 import FooterSection from "@/components/global/footer-section";
 import {
-    ServiceIntroSection,
-    ServicesClientsSection,
-    ServicesHeroSection,
-    ServicesSection,
-    ServicesTestimonialsSection,
-    WorkLinkSection,
+  CapabilitiesSection,
+  CtaSection,
+  InterplaySection,
+  OurServicesSection,
+  ProofSection,
+  ResultsSection,
+  ServicesHeroSection,
+  ServicesClientsSection,
+  ServicesTestimonialsSection,
+  ThreeServicesSection,
+  WorkLinkSection,
 } from "@/components/services";
 import { createClient } from "@/prismicio";
 import { generateMeta } from "@/utils/seo";
 import type { Metadata } from "next";
-import Script from "next/script";
-// import { components } from "@/slices";
+
+import "@/css/pages/services.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
-  const homepage = await client.getSingle("services");
-  return generateMeta(homepage.id);
+  const services = await client.getSingle("services");
+  return generateMeta(services.id);
 }
 
-export default async function Home() {
+export default async function ServicesPage() {
   const client = createClient();
   const { data } = await client.getSingle("services");
   return (
-    <>
     <main
       id="smooth-wrapper"
       data-barba="container"
@@ -31,18 +35,19 @@ export default async function Home() {
     >
       <div id="smooth-content" className="services" data-page="Services">
         <ServicesHeroSection data={data} />
-        <ServiceIntroSection data={data} />
-        <ServicesSection data={data} />
+        <OurServicesSection />
+        <ThreeServicesSection />
+        <InterplaySection />
+        <CapabilitiesSection />
+        <ProofSection />
+        <ResultsSection />
+        <CtaSection />
         <ServicesTestimonialsSection data={data} />
         <ServicesClientsSection data={data} />
         <WorkLinkSection data={data} />
+        {/* Sections are added here one at a time. */}
         <FooterSection />
       </div>
     </main>
-    <Script
-      src="https://player.vimeo.com/api/player.js"
-      strategy="afterInteractive"
-    />
-    </>
   );
 }

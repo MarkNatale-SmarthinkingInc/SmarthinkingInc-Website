@@ -8,6 +8,12 @@ export function strings() {
       if (!canvas) return;
       const ctx = canvas.getContext("2d");
 
+      // Opt-in inversion for dark-background instances (see #proof on /services).
+      // Defaults to the original ink so every existing canvas is unchanged.
+      const inkColor = canvas.classList.contains("string-invert")
+        ? "#fff"
+        : "#1A1417";
+
       // ---- State ------------------------------------------------------------
       let isActive = false;
       let rafId = null;
@@ -36,7 +42,12 @@ export function strings() {
         const rect = wrapper.getBoundingClientRect();
         cssW = Math.ceil(rect.width);
 
-        if (canvas.classList.contains("gridFooter")) {
+        if (canvas.classList.contains("gridProof")) {
+          // Sized to the band itself rather than the viewport, and a much
+          // wider string spacing than the other instances.
+          cssH = Math.ceil(rect.height);
+          numStrings = 25;
+        } else if (canvas.classList.contains("gridFooter")) {
           cssH = Math.ceil(window.innerHeight / 2);
           numStrings = 80;
         } else if (canvas.classList.contains("grid80")) {
@@ -110,7 +121,7 @@ export function strings() {
 
       function drawParticles() {
         // Set once
-        ctx.fillStyle = "#1A1417";
+        ctx.fillStyle = inkColor;
 
         // Fast removal (swap with last, pop)
         for (let i = particles.length - 1; i >= 0; i--) {
@@ -164,7 +175,7 @@ export function strings() {
         ctx.clearRect(0, 0, cssW, cssH);
 
         // Batch state once per frame
-        ctx.strokeStyle = "#1A1417";
+        ctx.strokeStyle = inkColor;
         ctx.lineWidth = 1;
 
         const segments = getSegments();
@@ -364,7 +375,11 @@ export function strings() {
       ctx.clearRect(0, 0, cssW, cssH);
 
       const numStrings = 40;
-      ctx.strokeStyle = "#D0CFCF";
+      // Same opt-in as the desktop branch: a muted white reads against a dark
+      // band the way #D0CFCF does against a light one.
+      ctx.strokeStyle = canvas.classList.contains("string-invert")
+        ? "rgba(255, 255, 255, 0.3)"
+        : "#D0CFCF";
       ctx.lineWidth = 1;
 
       for (let i = 0; i < numStrings; i++) {

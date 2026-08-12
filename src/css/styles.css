@@ -2096,12 +2096,12 @@
     margin-bottom: 1.38888vw;
   }
 }
-.services #hero {
+.services-old #hero {
   position: relative;
   overflow: hidden;
   color: #fff;
 }
-.services #hero figure {
+.services-old #hero figure {
   z-index: -1;
   width: 100%;
   height: 100%;
@@ -2109,20 +2109,20 @@
   top: 0;
   left: 0;
 }
-.services #hero .hero-captions {
+.services-old #hero .hero-captions {
   height: 100%;
   padding-top: 8.33328vw;
   height: auto;
   padding-bottom: 4.16664vw;
 }
-.services #hero .hero-img-title {
+.services-old #hero .hero-img-title {
   margin-top: 19.44432vw;
   padding-top: 1.38888vw;
   border-top: 1px solid #1A1417;
   border-color: #fff;
   position: relative;
 }
-.services #hero .hero-img-title .v-line {
+.services-old #hero .hero-img-title .v-line {
   position: absolute;
   top: -19.44432vw;
   left: 50%;
@@ -2130,74 +2130,74 @@
   height: 19.44432vw;
   background-color: #fff;
 }
-.services #hero .hero-bottom {
+.services-old #hero .hero-bottom {
   padding-top: 5.55552vw;
   padding-bottom: 8.33328vw;
 }
-.services #hero a {
+.services-old #hero a {
   color: #fff;
 }
 @media only screen and (max-width: 1024px) {
-  .services #hero .hero-captions {
+  .services-old #hero .hero-captions {
     padding-top: 11.11104vw;
   }
 }
 @media only screen and (max-width: 768px) {
-  .services #hero {
+  .services-old #hero {
     min-height: 100vh;
   }
-  .services #hero .hero-captions {
+  .services-old #hero .hero-captions {
     padding-top: 22.22208vw;
   }
-  .services #hero .hero-img-title {
+  .services-old #hero .hero-img-title {
     padding-top: 5.55552vw;
     margin-top: 40vh;
   }
-  .services #hero .hero-img-title .v-line {
+  .services-old #hero .hero-img-title .v-line {
     top: -40vh;
     height: 40vh;
   }
-  .services #hero .hero-bottom {
+  .services-old #hero .hero-bottom {
     padding-top: 11.11104vw;
     padding-bottom: 22.22208vw;
   }
-  .services #hero .hero-bottom .f-28 {
+  .services-old #hero .hero-bottom .f-28 {
     font-size: 18px;
   }
 }
-.services #services {
+.services-old #services {
   overflow: hidden;
   border-bottom: 1px solid #1A1417;
   border-color: #1A1417;
   padding-bottom: 11.11104vw;
 }
-.services #circle-stage {
+.services-old #circle-stage {
   z-index: 2;
   line-height: 0;
   width: 100%;
   height: 50vw;
 }
-.services #circle-stage .stage-inner {
+.services-old #circle-stage .stage-inner {
   position: relative;
   width: 100%;
   height: 100%;
 }
-.services #circle-stage .circle-wrap {
+.services-old #circle-stage .circle-wrap {
   position: relative;
   height: 100%;
   overflow: hidden;
 }
-.services #circle-stage .circle-wrap img {
+.services-old #circle-stage .circle-wrap img {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
 }
-.services #circle-stage .circle-shape {
+.services-old #circle-stage .circle-shape {
   width: 100%;
   height: auto;
 }
-.services #circle-stage .circle-target {
+.services-old #circle-stage .circle-target {
   z-index: 5;
   position: absolute;
   width: 33.333vw;
@@ -2209,28 +2209,28 @@
   -o-transform: translate(-50%, 50%);
   -ms-transform: translate(-50%, 50%);
 }
-.services #circle-stage .circle-target img {
+.services-old #circle-stage .circle-target img {
   position: relative;
   width: 100%;
   height: auto;
   display: block;
   z-index: 1;
 }
-.services #circle-stage .circle-target .circle-rotate {
+.services-old #circle-stage .circle-target .circle-rotate {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 90%;
   z-index: 2;
 }
-.services .service-listing {
+.services-old .service-listing {
   position: relative;
   padding-top: 11.11104vw;
   border-top: 1px solid #1A1417;
   border-color: #1A1417;
   background-color: #fff;
 }
-.services .service-listing .canvas-wrap {
+.services-old .service-listing .canvas-wrap {
   position: absolute;
   top: 0;
   left: 0;
@@ -2238,69 +2238,69 @@
   will-change: transform;
   height: 100%;
 }
-.services .service-listing .canvas-wrap .string-lines {
+.services-old .service-listing .canvas-wrap .string-lines {
   position: relative;
 }
-.services .service-listing .service-col {
+.services-old .service-listing .service-col {
   flex-wrap: wrap;
   flex: 0 0 calc(calc((100vw - 4px) / 18) * 4);
 }
 @media only screen and (max-width: 768px) {
-  .services .service-listing .service-col {
+  .services-old .service-listing .service-col {
     display: block;
     padding: 0 2.08333vw;
     width: 100%;
   }
 }
-.services .service-listing .service-grid {
+.services-old .service-listing .service-grid {
   margin: 0 calc((100vw - 4px) / 18);
   display: flex;
   justify-content: space-between;
 }
 @media only screen and (max-width: 768px) {
-  .services .service-listing .service-grid {
+  .services-old .service-listing .service-grid {
     display: block;
     width: 100%;
     margin: 0;
     padding: 8.33328vw 0;
   }
 }
-.services .service-listing canvas {
+.services-old .service-listing canvas {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
 }
-.services .service-listing article {
+.services-old .service-listing article {
   width: 100%;
   margin-top: 11.11104vw;
 }
-.services .service-listing article a {
+.services-old .service-listing article a {
   position: relative;
   display: block;
   width: 100%;
   height: 100%;
 }
 @media only screen and (min-width: 768px) {
-  .services .service-listing article a h3,
-  .services .service-listing article a h3 img {
+  .services-old .service-listing article a h3,
+  .services-old .service-listing article a h3 img {
     transition: all 600ms cubic-bezier(0.19, 1, 0.22, 1);
     -webkit-transition: all 600ms cubic-bezier(0.19, 1, 0.22, 1);
     -moz-transition: all 600ms cubic-bezier(0.19, 1, 0.22, 1);
     -o-transition: all 600ms cubic-bezier(0.19, 1, 0.22, 1);
   }
-  .services .service-listing article a figure img {
+  .services-old .service-listing article a figure img {
     will-change: transform;
     transition: transform 600ms cubic-bezier(0.19, 1, 0.22, 1);
     -webkit-transition: transform 600ms cubic-bezier(0.19, 1, 0.22, 1);
     -moz-transition: transform 600ms cubic-bezier(0.19, 1, 0.22, 1);
     -o-transition: transform 600ms cubic-bezier(0.19, 1, 0.22, 1);
   }
-  .services .service-listing article a:hover h3 {
+  .services-old .service-listing article a:hover h3 {
     background-color: #f26722;
   }
-  .services .service-listing article a:hover h3 img {
+  .services-old .service-listing article a:hover h3 img {
     transform: translate(0%, -50%);
     -moz-transform: translate(0%, -50%);
     -webkit-transform: translate(0%, -50%);
@@ -2308,7 +2308,7 @@
     -ms-transform: translate(0%, -50%);
     opacity: 1;
   }
-  .services .service-listing article a:hover figure img {
+  .services-old .service-listing article a:hover figure img {
     transform: scale(1.025);
     -moz-transform: scale(1.025);
     -webkit-transform: scale(1.025);
@@ -2316,7 +2316,7 @@
     -ms-transform: scale(1.025);
   }
 }
-.services .service-listing article h3 {
+.services-old .service-listing article h3 {
   position: relative;
   margin-top: 0.69444vw;
   padding: 5px 10px 5px 10px;
@@ -2324,7 +2324,7 @@
   color: #fff;
   border-radius: 5px;
 }
-.services .service-listing article h3 img {
+.services-old .service-listing article h3 img {
   position: absolute;
   top: 50%;
   right: 0.69444vw;
@@ -2338,14 +2338,14 @@
   opacity: 0;
 }
 @media only screen and (max-width: 768px) {
-  .services .service-listing article h3 {
+  .services-old .service-listing article h3 {
     position: absolute;
     bottom: 2.77776vw;
     left: 2.77776vw;
     right: 2.77776vw;
     width: calc(100% - 2.77776vw * 2);
   }
-  .services .service-listing article h3 img {
+  .services-old .service-listing article h3 img {
     right: 2.77776vw;
     transform: translate(0, -50%);
     -moz-transform: translate(0, -50%);
@@ -2356,12 +2356,12 @@
   }
 }
 @media only screen and (max-width: 768px) {
-  .services .service-listing article {
+  .services-old .service-listing article {
     flex: 0 0 auto;
     margin-top: 1.38888vw;
     margin-right: 1.38888vw;
   }
-  .services .service-listing article h3 {
+  .services-old .service-listing article h3 {
     opacity: 1;
     transform: scale(1);
     -moz-transform: scale(1);
@@ -2370,18 +2370,18 @@
     -ms-transform: scale(1);
   }
 }
-.services #belief {
+.services-old #belief {
   overflow: hidden;
 }
-.services #belief .outline {
+.services-old #belief .outline {
   font-size: 30.027vw;
   line-height: 0.8;
 }
-.services .circle-slider {
+.services-old .circle-slider {
   position: relative;
   padding-top: 40vh;
 }
-.services .circle-slider .arc-path {
+.services-old .circle-slider .arc-path {
   position: absolute;
   top: 0;
   left: 0;
@@ -2392,58 +2392,58 @@
   -o-transform: translateX(-20vw);
   -ms-transform: translateX(-20vw);
 }
-.services .circle-slider .arc-path text {
+.services-old .circle-slider .arc-path text {
   font-family: 'Epica Pro';
   font-weight: 300;
   font-style: normal;
   font-size: clamp(66px, 9.1112vw, 240px);
   fill: #1A1417;
 }
-.services .circle-slider .labels {
+.services-old .circle-slider .labels {
   width: 100vw;
 }
-.services .slider-img {
+.services-old .slider-img {
   position: relative;
 }
-.services .slider-img figure {
+.services-old .slider-img figure {
   clip-path: inset(0% round 10px);
   position: relative;
 }
-.services .slider-img figure:not(:first-of-type) {
+.services-old .slider-img figure:not(:first-of-type) {
   position: absolute;
   width: 100%;
   height: auto;
   top: 0;
   left: 0;
 }
-.services .circle-copy {
+.services-old .circle-copy {
   margin-top: 4.16664vw;
 }
 @media only screen and (max-width: 768px) {
-  .services #service-intro figure {
+  .services-old #service-intro figure {
     margin-bottom: 2.77776vw;
   }
 }
-.services #work-link {
+.services-old #work-link {
   padding-top: 2.77776vw;
   color: #fff;
 }
-.services #work-link .outline {
+.services-old #work-link .outline {
   font-size: 34.027vw;
   line-height: 0.8;
 }
-.services #work-link p {
+.services-old #work-link p {
   margin-top: -1em;
 }
-.services #work-link figure {
+.services-old #work-link figure {
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
 }
 @media only screen and (max-width: 768px) {
-  .services #work-link {
+  .services-old #work-link {
     padding-top: 5.55552vw;
   }
-  .services #work-link p {
+  .services-old #work-link p {
     margin: 1em 0;
   }
 }

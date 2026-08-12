@@ -19,6 +19,8 @@ import { video } from "/js/modules/video.js";
 import { workHover } from "/js/modules/work-hover.js";
 import { work } from "/js/modules/work.js";
 import { scrollFix } from "/js/modules/scroll-fix.js";
+import { serviceCards } from "/js/modules/service-cards.js";
+import { capabilities } from "/js/modules/capabilities.js";
 import { button, serviceStack } from "/js/modules/small-hovers.js";
 import { rotateSlider, manifesto } from "/js/modules/about.js";
 import { textAnim } from "/js/modules/text-anim.js";
@@ -35,6 +37,9 @@ const getPageNamespace = (pathname) => {
   }
   if (pathname === "/services") {
     return "services";
+  }
+  if (pathname === "/services-old") {
+    return "services-old";
   }
   if (pathname.startsWith("/services/")) {
     return "service-detail";
@@ -96,6 +101,7 @@ const homeScripts = () => {
     textAnim();
     home();
     strings();
+    testimonials();
     workHover();
     equalizer();
   });
@@ -107,13 +113,15 @@ const aboutScripts = () => {
     heroAnimations();
     button();
     strings();
+    testimonials();
     piano();
     textAnim();
     rotateSlider();
     manifesto();
-    testimonials();
+
   });
 };
+// New (redesigned) services page. Modules are added here as sections land.
 const serviceScripts = () => {
   setTimeout(() => {
     lazyLoad();
@@ -122,9 +130,25 @@ const serviceScripts = () => {
     button();
     textAnim();
     imgAnim();
+    serviceCards();
+    capabilities();
     strings();
-    services();
     testimonials();
+  });
+};
+// Previous services page, preserved at /services-old for reference.
+const serviceOldScripts = () => {
+  setTimeout(() => {
+    lazyLoad();
+    smoothScroll();
+    heroAnimations();
+    button();
+    textAnim();
+    imgAnim();
+    strings();
+    testimonials();
+    services();
+
   });
 };
 const serviceDetailScripts = () => {
@@ -135,6 +159,7 @@ const serviceDetailScripts = () => {
     serviceStack();
     button();
     strings();
+    testimonials();
     equalizer();
     stripeHover();
   });
@@ -146,6 +171,7 @@ const workScripts = () => {
     heroAnimations();
     work();
     strings();
+    testimonials();
   });
 };
 const workDetailScripts = () => {
@@ -154,6 +180,7 @@ const workDetailScripts = () => {
     smoothScroll();
     heroAnimations();
     strings();
+    testimonials();
     textAnim();
     imgAnim();
     workHover();
@@ -171,6 +198,7 @@ const blogScripts = () => {
     scrollFix();
     button();
     strings();
+    testimonials();
     piano();
   });
 };
@@ -182,6 +210,7 @@ const blogDetailScripts = () => {
     scrollFix();
     button();
     strings();
+    testimonials();
     piano();
   });
 };
@@ -192,6 +221,7 @@ const contactScripts = () => {
     heroAnimations();
     button();
     strings();
+    testimonials();
   });
 };
 
@@ -201,6 +231,7 @@ let legalScripts = () => {
     smoothScroll();
     heroAnimations();
     strings();
+    testimonials();
     scrollFix();
   });
 };
@@ -233,6 +264,8 @@ function afterEnter(pageNamespace) {
     aboutScripts();
   } else if (pageNamespace === "services") {
     serviceScripts();
+  } else if (pageNamespace === "services-old") {
+    serviceOldScripts();
   } else if (pageNamespace === "service-detail") {
     serviceDetailScripts();
   } else if (pageNamespace === "work") {
