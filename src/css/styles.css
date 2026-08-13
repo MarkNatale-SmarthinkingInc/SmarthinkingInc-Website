@@ -3359,10 +3359,11 @@
   position: relative;
   z-index: 2;
 }
-.blog-detail #hero .piano-wrap .st-xl-8 {
+/* PREVIEW: image column widened from st-xl-8 to st-xl-12 to match content below */
+.blog-detail #hero .piano-wrap .st-xl-12 {
   position: relative;
 }
-.blog-detail #hero .piano-wrap .st-xl-8::before {
+.blog-detail #hero .piano-wrap .st-xl-12::before {
   content: "";
   background-color: #fff;
   position: absolute;
