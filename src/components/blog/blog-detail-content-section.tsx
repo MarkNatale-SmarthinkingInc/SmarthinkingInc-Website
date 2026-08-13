@@ -1,8 +1,10 @@
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { type Content, filter } from "@prismicio/client";
+// biome-ignore lint/correctness/noUnusedImports: PREVIEW - used by temporarily hidden column
 import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
+// biome-ignore lint/correctness/noUnusedImports: PREVIEW - used by temporarily hidden column
 import NewsletterBox from "./newsletter-box";
 
 type BlogDetailContentSectionProps = {
@@ -23,15 +25,16 @@ export default async function BlogDetailContentSection({
 
   return (
     <section className="st-grid grid-margin xs-wrap scroll-fix-wrap">
-      <div className="st-xl-5 newsletter-wrap sm-hidden">
+      {/* PREVIEW: left newsletter column temporarily hidden */}
+      {/* <div className="st-xl-5 newsletter-wrap sm-hidden">
         <NewsletterBox
           variant="blog-detail"
           title={data.newsletter_title}
           subtitle={data.newsletter_subtitle}
         />
-      </div>
+      </div> */}
 
-      <div id="blog-content" className="st-xl-8 st-sm-12 st-xs-18">
+      <div id="blog-content" className="st-xl-18 st-sm-18 st-xs-18">
         <p className="f-24">
           <PrismicRichText
             field={blogPost.data.introduction}
@@ -43,7 +46,8 @@ export default async function BlogDetailContentSection({
         <SliceZone slices={blogPost.data.slices} components={components} />
       </div>
 
-      <div className="st-xl-5 st-sm-6 st-xs-18 related-articles xs-top-6">
+      {/* PREVIEW: right "More reading" column temporarily hidden */}
+      {/* <div className="st-xl-5 st-sm-6 st-xs-18 related-articles xs-top-6">
         <div className="scroll-fix">
           <h3 className="caption xs-top-3 xs-bottom-1">More reading</h3>
           {otherBlogPosts.results.map((post) => (
@@ -63,7 +67,7 @@ export default async function BlogDetailContentSection({
             </article>
           ))}
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }
