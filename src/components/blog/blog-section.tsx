@@ -191,16 +191,7 @@ export default function BlogSection({ data }: BlogSectionProps) {
 										)}
 									</PrismicNextLink>
 								</figure>
-								<div
-									className="tags"
-									style={{ zIndex: 2, position: "relative" }}
-								>
-									{item.tags.map((tag: string) => (
-										<span key={tag} className="tag">
-											{tag}
-										</span>
-									))}
-								</div>
+								{/* PREVIEW: category tags removed (used to half-overlay the image) */}
 								<h3 className="f-24">
 									<PrismicNextLink field={item}>
 										{item.data.title}
@@ -256,13 +247,7 @@ export default function BlogSection({ data }: BlogSectionProps) {
 									)}
 								</PrismicNextLink>
 							</figure>
-							<div className="tags" style={{ zIndex: 2, position: "relative" }}>
-								{post.tags.map((tag: string) => (
-									<span key={tag} className="tag">
-										{tag}
-									</span>
-								))}
-							</div>
+							{/* PREVIEW: category tags removed (used to half-overlay the image) */}
 							<h3 className="f-24">
 								<PrismicNextLink document={post}>
 									{post.data.title}
@@ -317,13 +302,7 @@ export default function BlogSection({ data }: BlogSectionProps) {
 								</PrismicNextLink>
 							</figure>
 							<div className="st-xl-6 st-xs-11">
-								<div className="tags">
-									{post.tags.map((tag) => (
-										<span key={tag} className="tag">
-											{tag}
-										</span>
-									))}
-								</div>
+								{/* PREVIEW: category tags removed from the right-hand listing */}
 								<h2 className="f-24">
 									<PrismicNextLink document={post}>
 										{post.data.title}

@@ -111,17 +111,7 @@ export default async function BlogSection({ data }: BlogSectionProps) {
 								</figure>
 							)}
 							<div>
-								{blogPost?.tags &&
-									Array.isArray(blogPost.tags) &&
-									blogPost.tags.length > 0 && (
-										<div className="tags">
-											{blogPost.tags.map((tag: string) => (
-												<span key={`tag-${tag}`} className="tag">
-													{tag}
-												</span>
-											))}
-										</div>
-									)}
+								{/* PREVIEW: category tags removed */}
 								{blogPost.data?.title && (
 									<h3 className="f-24">
 										<PrismicNextLink document={blogPost}>

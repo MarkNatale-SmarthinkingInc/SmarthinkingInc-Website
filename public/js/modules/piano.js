@@ -24,14 +24,95 @@ export function piano() {
   let W = 0,
     H = 0,
     dpr = 1,
-    xs = [],
-    spacing = 0;
+    lines = [], // x of every vertical rule
+    cells = []; // { x1, x2, cx } of every bar slot
   let heights, targets, yOffsets, active;
   let mousePageX = -9999,
     mousePageY = 0,
     running = false,
     rafId = null,
     observer = null;
+
+  // ---- Optional gap ------------------------------------------------------
+  // An element marked [data-piano-gap] carves a hole out of the string field so
+  // no rule or bar is ever clipped by content sitting on top of the canvas. The
+  // attribute value is extra overhang in vw on each side (0 if omitted).
+  // With no such element the layout is identical to a plain N-column field.
+  function getGap() {
+    const el = canvas.parentElement?.querySelector("[data-piano-gap]");
+    if (!el) return null;
+    const gapRect = el.getBoundingClientRect();
+    if (!gapRect.width) return null;
+    const canvasRect = canvas.getBoundingClientRect();
+    const pad =
+      ((parseFloat(el.dataset.pianoGap) || 0) / 100) *
+      document.documentElement.clientWidth;
+    return {
+      left: gapRect.left - canvasRect.left - pad,
+      right: gapRect.right - canvasRect.left + pad,
+      // "fit" (default) stretches each band so a rule lands exactly on the gap.
+      // "trim" keeps the ideal column width and drops the leftover part-column.
+      mode: el.dataset.pianoGapMode === "trim" ? "trim" : "fit",
+    };
+  }
+
+  // ---- Layout ------------------------------------------------------------
+  // Each band is divided into a whole number of columns, so a rule always lands
+  // exactly on the band's edges and column widths stay within half a step of the
+  // ideal. That is what keeps a bar from being half-covered at the gap.
+  function buildLayout() {
+    lines = [];
+    cells = [];
+    if (!(W > 0)) return;
+
+    const ideal = W / N;
+    const gap = getGap();
+    const trim = gap?.mode === "trim";
+
+    // The gap may sit against either edge, leaving a single band.
+    let bands;
+    if (gap) {
+      bands = [];
+      const gapL = Math.max(0, gap.left);
+      const gapR = Math.min(W, gap.right);
+      if (gapL > 0) bands.push([0, gapL]);
+      if (gapR < W) bands.push([gapR, W]);
+    } else {
+      bands = [[0, W]];
+    }
+
+    for (const [start, end] of bands) {
+      const span = end - start;
+      let count, step, from;
+      if (trim) {
+        // Keep the ideal column width and drop the leftover part-column. Anchor
+        // to the canvas edge so the trimmed side is the one facing the gap.
+        count = Math.floor(span / ideal);
+        if (count < 1) continue;
+        step = ideal;
+        from = start === 0 ? start : end - count * step;
+      } else {
+        // Stretch so a rule lands exactly on both of the band's edges.
+        if (span < ideal * 0.5) continue;
+        count = Math.max(1, Math.round(span / ideal));
+        step = span / count;
+        from = start;
+      }
+
+      // A rule sitting exactly on a gap's edge rounds onto a pixel the overlaying
+      // content already covers, so it never shows. Pull that one rule 1px back
+      // inside the band. The canvas's own outer edge is left as-is.
+      const close = from + count * step;
+      for (let i = 0; i <= count; i++) {
+        const atClose = i === count;
+        lines.push(atClose && close < W - 0.001 ? close - 1 : from + i * step);
+      }
+      for (let i = 0; i < count; i++) {
+        const x1 = from + i * step;
+        cells.push({ x1, x2: x1 + step, cx: x1 + step / 2 });
+      }
+    }
+  }
 
   // ---- Resize ------------------------------------------------------------
   function resize() {
@@ -42,13 +123,13 @@ export function piano() {
     canvas.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    spacing = W / N;
-    xs = Array.from({ length: N }, (_, i) => (i + 0.5) * spacing);
+    buildLayout();
 
-    heights = new Float32Array(N);
-    targets = new Float32Array(N);
-    yOffsets = new Float32Array(N).fill(0.5);
-    active = new Array(N).fill(false);
+    const n = cells.length;
+    heights = new Float32Array(n);
+    targets = new Float32Array(n);
+    yOffsets = new Float32Array(n).fill(0.5);
+    active = new Array(n).fill(false);
 
     if (isMobile) {
       drawGrid(); // redraw static grid on resize
@@ -73,10 +154,15 @@ export function piano() {
   // ---- Draw only the vertical lines (mobile) ------------------------------
   function drawGrid() {
     ctx.clearRect(0, 0, W, H);
+    strokeLines();
+  }
+
+  // ---- Vertical rules ----------------------------------------------------
+  function strokeLines() {
     ctx.strokeStyle = "#1A1417";
     ctx.lineWidth = 1;
-    for (let i = 0; i <= N; i++) {
-      const x = Math.round(i * spacing) + 0.5;
+    for (const line of lines) {
+      const x = Math.round(line) + 0.5;
       ctx.beginPath();
       ctx.moveTo(x, 0);
       ctx.lineTo(x, H);
@@ -101,15 +187,7 @@ export function piano() {
     ctx.clearRect(0, 0, W, H);
 
     // grid
-    ctx.strokeStyle = "#1A1417";
-    ctx.lineWidth = 1;
-    for (let i = 0; i <= N; i++) {
-      const x = Math.round(i * spacing) + 0.5;
-      ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, H);
-      ctx.stroke();
-    }
+    strokeLines();
 
     // bars
     const { x: mouseX, y: mouseY } = getRelativeMouse();
@@ -117,11 +195,11 @@ export function piano() {
     const yRatio = mouseY / H;
     ctx.fillStyle = "#1A1417";
 
-    for (let i = 0; i < N; i++) {
+    for (let i = 0; i < cells.length; i++) {
       // --- Height from X
       let targetH = 0;
       if (mouseX !== -9999) {
-        const dist = Math.abs(xs[i] - mouseX);
+        const dist = Math.abs(cells[i].cx - mouseX);
         if (dist < falloff) {
           const t = dist / falloff,
             fall = (1 + Math.cos(Math.PI * t)) / 2;
@@ -148,8 +226,8 @@ export function piano() {
       if (rectY < 0) rectY = 0;
       else if (rectY + rectH > H) rectY = H - rectH;
 
-      const x1 = Math.round(i * spacing),
-        x2 = Math.round((i + 1) * spacing);
+      const x1 = Math.round(cells[i].x1),
+        x2 = Math.round(cells[i].x2);
       const rectX = x1 + marginX,
         rectW = x2 - x1 - marginX * 2;
 

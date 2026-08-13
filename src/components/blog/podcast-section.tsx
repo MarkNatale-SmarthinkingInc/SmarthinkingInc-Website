@@ -22,6 +22,14 @@ export default async function PodcastSection({ data }: PodcastSectionProps) {
   return (
     <section id="podcast" className="piano-wrap xs-bottom-6">
       <canvas id="piano" className="fadeIn xs-hidden"></canvas>
+      {/* PREVIEW: was #podcast::before. A real element so the piano can measure
+          it. mode="trim" keeps the natural key rhythm and drops the leftover
+          part-key rather than stretching it to meet the content. */}
+      <div
+        className="podcast-mask"
+        data-piano-gap="0"
+        data-piano-gap-mode="trim"
+      ></div>
       <div className="st-grid grid-margin xs-wrap">
         <div className="st-xl-9 st-sm-6 st-xs-18 xs-both-2 fadeUp">
           <h2 className="sup-title">{data.podcast_section_title}</h2>
