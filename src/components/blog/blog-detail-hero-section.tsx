@@ -18,8 +18,8 @@ export default function BlogDetailHeroSection({
       <div className="piano-wrap fadeIn">
         <canvas id="piano" className="xs-hidden"></canvas>
         <div className="st-grid grid-margin">
-          <div className="st-xl-5 st-sm-3 empty-left xs-hidden"></div>
-          <div className="st-xl-8 st-sm-12 st-xs-18">
+          <div className="st-xl-3 st-sm-1 empty-left xs-hidden"></div>
+          <div className="st-xl-12 st-sm-16 st-xs-18">
             {/* PREVIEW: author-box (author photo/name + tags) temporarily hidden */}
             {/* <div className="st-grid grid-middle grid-between author-box xs-wrap">
               <div className="st-xl-3 st-xs-18 st-grid grid-middle grid-start xs-grid-center xs-both-2 fadeUp">
@@ -95,7 +95,7 @@ export default function BlogDetailHeroSection({
               />
             </figure>
           </div>
-          <div className="st-xl-5 st-sm-3 empty-right xs-hidden"></div>
+          <div className="st-xl-3 st-sm-1 empty-right xs-hidden"></div>
         </div>
       </div>
     </section>
