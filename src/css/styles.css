@@ -3300,21 +3300,33 @@
   overflow: hidden;
   border-bottom: 1px solid #1A1417;
 }
+/* PREVIEW: title moved below the image.
+   .hero-title now holds only the "Back to Blog" link and keeps the nav clearance;
+   .hero-title-below holds the h1 and owns the spacing under the image. */
 .blog-detail #hero .hero-title {
   padding-top: 8.33328vw;
 }
 .blog-detail #hero .hero-title a {
   margin: 1.38888vw 0 2.77776vw 0;
 }
-.blog-detail #hero .hero-title h1 {
+.blog-detail #hero .hero-title-below {
+  padding-top: 2.77776vw;
+}
+.blog-detail #hero .hero-title-below h1 {
   margin-bottom: 2.77776vw;
 }
 @media only screen and (max-width: 768px) {
   .blog-detail #hero .hero-title {
-    padding: 27.7776vw 0 11.11104vw;
+    padding: 27.7776vw 0 0;
   }
   .blog-detail #hero .hero-title a {
     margin-bottom: 5.55552vw;
+  }
+  .blog-detail #hero .hero-title-below {
+    padding-top: 5.55552vw;
+  }
+  .blog-detail #hero .hero-title-below h1 {
+    margin-bottom: 11.11104vw;
   }
 }
 .blog-detail #hero #piano {
