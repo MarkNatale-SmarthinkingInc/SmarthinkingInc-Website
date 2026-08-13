@@ -3298,7 +3298,8 @@
 .blog-detail #hero {
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid #1A1417;
+  /* PREVIEW: rule under the title removed */
+  /* border-bottom: 1px solid #1A1417; */
 }
 /* PREVIEW: title moved below the image.
    .hero-title now holds only the "Back to Blog" link and keeps the nav clearance;
@@ -3315,6 +3316,15 @@
 .blog-detail #hero .hero-title-below h1 {
   margin-bottom: 2.77776vw;
 }
+/* PREVIEW: subtitle split off the title on the first colon */
+.blog-detail #hero .hero-title-below h1:has(+ .hero-subtitle) {
+  margin-bottom: 1.38888vw;
+}
+.blog-detail #hero .hero-title-below .hero-subtitle {
+  color: #99947E;
+  max-width: 34em;
+  margin: 0 auto 2.77776vw;
+}
 @media only screen and (max-width: 768px) {
   .blog-detail #hero .hero-title {
     padding: 27.7776vw 0 0;
@@ -3326,6 +3336,12 @@
     padding-top: 5.55552vw;
   }
   .blog-detail #hero .hero-title-below h1 {
+    margin-bottom: 11.11104vw;
+  }
+  .blog-detail #hero .hero-title-below h1:has(+ .hero-subtitle) {
+    margin-bottom: 4.16664vw;
+  }
+  .blog-detail #hero .hero-title-below .hero-subtitle {
     margin-bottom: 11.11104vw;
   }
 }

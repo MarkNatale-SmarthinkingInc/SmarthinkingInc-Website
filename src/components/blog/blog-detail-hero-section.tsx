@@ -7,6 +7,15 @@ interface BlogDetailHeroSectionProps {
 export default function BlogDetailHeroSection({
   blogPost,
 }: BlogDetailHeroSectionProps) {
+  // PREVIEW: `title` is a single plain-text field in Prismic, so there is no
+  // separate subtitle to target. Posts that use a "Title: Subtitle" pattern are
+  // split on the first colon so the two halves can be styled apart.
+  const rawTitle = blogPost?.data?.title ?? "";
+  const colonIndex = rawTitle.indexOf(":");
+  const hasSubtitle = colonIndex > -1;
+  const titleText = hasSubtitle ? rawTitle.slice(0, colonIndex).trim() : rawTitle;
+  const subtitleText = hasSubtitle ? rawTitle.slice(colonIndex + 1).trim() : "";
+
   return (
     <section id="hero">
       {/* PREVIEW: "Back to Blog" stays above the image (it keeps the nav clearance);
@@ -103,7 +112,10 @@ export default function BlogDetailHeroSection({
       </div>
       <div className="st-grid grid-margin">
         <div className="hero-title-below center st-xl-12 st-xl-os-3 st-xs-18 st-xs-os-0">
-          <h1 className="f-80 hero-split chars">{blogPost?.data?.title}</h1>
+          <h1 className="f-60 hero-split chars">{titleText}</h1>
+          {hasSubtitle && (
+            <p className="f-24 hero-subtitle fadeUp">{subtitleText}</p>
+          )}
         </div>
       </div>
     </section>
