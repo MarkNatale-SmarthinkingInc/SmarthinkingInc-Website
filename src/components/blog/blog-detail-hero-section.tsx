@@ -31,7 +31,10 @@ export default function BlogDetailHeroSection({
         <canvas id="piano" className="xs-hidden"></canvas>
         <div className="st-grid grid-margin">
           <div className="st-xl-3 st-sm-1 empty-left xs-hidden"></div>
-          <div className="st-xl-12 st-sm-16 st-xs-18">
+          {/* data-piano-gap="0": the string field ends exactly on this column's
+              edges, so the bars butt right up against the image with no ragged
+              part-column of white on either side. */}
+          <div className="st-xl-12 st-sm-16 st-xs-18" data-piano-gap="0">
             {/* PREVIEW: author-box (author photo/name + tags) temporarily hidden */}
             {/* <div className="st-grid grid-middle grid-between author-box xs-wrap">
               <div className="st-xl-3 st-xs-18 st-grid grid-middle grid-start xs-grid-center xs-both-2 fadeUp">

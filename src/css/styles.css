@@ -1714,12 +1714,15 @@
 }
 .home #blog .articles {
   display: flex;
-  min-height: 80vh;
+  /* PREVIEW: was min-height: 80vh (800px at a 1000px-tall window), which left
+     ~370px of dead space under the cards. Height now follows the content. */
 }
 .home #blog article {
   text-align: center;
   flex: 0 0 33.333%;
-  padding: 2.08332vw;
+  /* PREVIEW: bottom padding reserves room for the 60px .blog-button that slides
+     up on hover, which the old 80vh min-height used to provide incidentally. */
+  padding: 2.08332vw 2.08332vw 5.55552vw;
   position: relative;
   overflow: hidden;
 }
@@ -1749,6 +1752,12 @@
   -o-transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 @media only screen and (min-width: 768px) {
+  /* PREVIEW: the tags used to sit between image and title and supply this gap
+     (2.77776vw sat directly above the title). Desktop only — the tags were
+     already display:none under 768px, where the card is laid out side by side. */
+  .home #blog article h3 {
+    margin-top: 2.77776vw;
+  }
   .home #blog article h3:hover a {
     color: #f26722;
     transform: translateY(-5px);
@@ -3142,6 +3151,17 @@
 .blog #podcast {
   position: relative;
   overflow: hidden;
+  /* PREVIEW: full-bleed, so it meets the piano's outermost strings at both ends */
+  border-bottom: 1px solid #1A1417;
+}
+/* PREVIEW: black caption on a white band vanished when a black bar rose behind
+   it. Small white plate hugging the text; the diamond icon is nudged by the
+   same amount as the padding so it stays put. */
+.blog #podcast .sup-title {
+  display: inline-block;
+  background-color: #fff;
+  padding: 0.4em 0.6em 0.4em 1.9em;
+  background-position: 0.6em 0.4em;
 }
 .blog #podcast #piano {
   position: absolute;
@@ -3151,8 +3171,9 @@
   top: 0;
   left: 0;
 }
-.blog #podcast::before {
-  content: "";
+/* PREVIEW: was #podcast::before — now a real element so the piano can measure
+   it and stop the keys short of it. Same geometry, same media query. */
+.blog #podcast .podcast-mask {
   display: block;
   position: absolute;
   top: 0;
@@ -3162,7 +3183,7 @@
   background-color: #fff;
 }
 @media only screen and (max-width: 1024px) {
-  .blog #podcast::before {
+  .blog #podcast .podcast-mask {
     width: 66%;
   }
 }
@@ -3220,7 +3241,9 @@
   }
 }
 .blog #blog {
-  border-top: 1px solid #1A1417;
+  /* PREVIEW: this rule was inset by grid-margin, so it stopped ~30px short of
+     the piano band's outer strings. Moved onto #podcast (full-bleed) instead. */
+  /* border-top: 1px solid #1A1417; */
   padding-top: 1.38888vw;
 }
 .blog #blog .blog-featured article {
@@ -3239,6 +3262,12 @@
 .blog #blog .blog-featured .tags {
   margin: -0.69444vw 0 1.38888vw;
 }
+/* PREVIEW: the tags used to sit between image and title and supply this gap.
+   With them gone the title was flush against the image. (Placed before the
+   768px block below so the mobile margin still wins there.) */
+.blog #blog .blog-featured article h3 {
+  margin-top: 1.38888vw;
+}
 @media only screen and (max-width: 768px) {
   .blog #blog .blog-featured .tags {
     margin-top: -2.77776vw;
@@ -3254,6 +3283,12 @@
   margin-top: 1.38888vw;
 }
 .blog #blog .blog-listing article {
+  /* PREVIEW: the tags used to sit above the title; without them the h2 starts at
+     the article's top edge, and the 5px translateY on hover was clipped by the
+     article's overflow: hidden. Fixed px, because the transform it clears is a
+     fixed 5px — a vw value would fall under 5px on narrower screens.
+     On the article (not the h2) so image and title stay top-aligned. */
+  padding-top: 8px;
   padding-bottom: 1.38888vw;
   margin-bottom: 1.38888vw;
   border-bottom: 1px solid #1A1417;
@@ -3318,7 +3353,7 @@
 }
 /* PREVIEW: subtitle split off the title on the first colon */
 .blog-detail #hero .hero-title-below h1:has(+ .hero-subtitle) {
-  margin-bottom: 1.38888vw;
+  margin-bottom: 0.55555vw; /* 8px at the 1440 design width */
 }
 .blog-detail #hero .hero-title-below .hero-subtitle {
   color: #99947E;
@@ -3339,7 +3374,7 @@
     margin-bottom: 11.11104vw;
   }
   .blog-detail #hero .hero-title-below h1:has(+ .hero-subtitle) {
-    margin-bottom: 4.16664vw;
+    margin-bottom: 1.66666vw; /* same 0.4x reduction, keeping the mobile rhythm */
   }
   .blog-detail #hero .hero-title-below .hero-subtitle {
     margin-bottom: 11.11104vw;
@@ -3373,15 +3408,20 @@
 .blog-detail #hero .author-box .caption {
   margin-left: 10px;
 }
-.blog-detail #hero .empty-left {
+/* PREVIEW: these two 1px rules sat a few px away from a canvas string, which read
+   as a doubled string on each side. The canvas grid is now the only vertical line. */
+/* .blog-detail #hero .empty-left {
   border-right: 1px solid #1A1417;
 }
 .blog-detail #hero .empty-right {
   border-left: 1px solid #1A1417;
-}
+} */
 .blog-detail #hero .piano-wrap {
   position: relative;
   border-top: 1px solid #1A1417;
+  /* PREVIEW: closes the strings band at the bottom, where the old #hero
+     border-bottom used to sit before the title moved below the image */
+  border-bottom: 1px solid #1A1417;
 }
 .blog-detail #hero .piano-wrap > .st-grid {
   position: relative;
@@ -3391,7 +3431,10 @@
 .blog-detail #hero .piano-wrap .st-xl-12 {
   position: relative;
 }
-.blog-detail #hero .piano-wrap .st-xl-12::before {
+/* PREVIEW: white mask removed so the strings run full-bleed under the image.
+   The image column is already above the canvas (.st-grid is z-index 2), so the
+   opaque image hides the strings behind it with no white band on either side. */
+/* .blog-detail #hero .piano-wrap .st-xl-12::before {
   content: "";
   background-color: #fff;
   position: absolute;
@@ -3400,7 +3443,7 @@
   width: calc(100% + (1.38888vw * 2));
   height: 100%;
   z-index: -1;
-}
+} */
 @media (hover: hover) {
   .blog-detail .scroll-fix article h3 a {
     transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
