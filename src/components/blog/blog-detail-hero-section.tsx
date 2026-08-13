@@ -9,11 +9,14 @@ export default function BlogDetailHeroSection({
 }: BlogDetailHeroSectionProps) {
   return (
     <section id="hero">
-      <div className="hero-title grid-margin center st-xl-14 st-xl-os-2 st-xs-18 st-xs-os-0">
-        <PrismicNextLink href="/blog" className="caption fadeUp">
-          Back to Blog
-        </PrismicNextLink>
-        <h1 className="f-80 hero-split chars">{blogPost?.data?.title}</h1>
+      {/* PREVIEW: "Back to Blog" stays above the image (it keeps the nav clearance);
+          the h1 moved below the image into .hero-title-below */}
+      <div className="st-grid grid-margin">
+        <div className="hero-title center st-xl-12 st-xl-os-3 st-xs-18 st-xs-os-0">
+          <PrismicNextLink href="/blog" className="caption fadeUp">
+            Back to Blog
+          </PrismicNextLink>
+        </div>
       </div>
       <div className="piano-wrap fadeIn">
         <canvas id="piano" className="xs-hidden"></canvas>
@@ -96,6 +99,11 @@ export default function BlogDetailHeroSection({
             </figure>
           </div>
           <div className="st-xl-3 st-sm-1 empty-right xs-hidden"></div>
+        </div>
+      </div>
+      <div className="st-grid grid-margin">
+        <div className="hero-title-below center st-xl-12 st-xl-os-3 st-xs-18 st-xs-os-0">
+          <h1 className="f-80 hero-split chars">{blogPost?.data?.title}</h1>
         </div>
       </div>
     </section>
