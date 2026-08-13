@@ -20,7 +20,8 @@ export default function BlogDetailHeroSection({
         <div className="st-grid grid-margin">
           <div className="st-xl-5 st-sm-3 empty-left xs-hidden"></div>
           <div className="st-xl-8 st-sm-12 st-xs-18">
-            <div className="st-grid grid-middle grid-between author-box xs-wrap">
+            {/* PREVIEW: author-box (author photo/name + tags) temporarily hidden */}
+            {/* <div className="st-grid grid-middle grid-between author-box xs-wrap">
               <div className="st-xl-3 st-xs-18 st-grid grid-middle grid-start xs-grid-center xs-both-2 fadeUp">
                 <figure>
                   <img
@@ -64,7 +65,7 @@ export default function BlogDetailHeroSection({
                   ))}
                 </div>
               </div>
-            </div>
+            </div> */}
             <figure className="hero-img fadeUp">
               <img
                 alt={blogPost?.data?.featured_image?.alt ?? ""}
