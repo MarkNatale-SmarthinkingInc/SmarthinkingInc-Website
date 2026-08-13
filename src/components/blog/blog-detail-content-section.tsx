@@ -34,7 +34,10 @@ export default async function BlogDetailContentSection({
         />
       </div> */}
 
-      <div id="blog-content" className="st-xl-18 st-sm-18 st-xs-18">
+      <div
+        id="blog-content"
+        className="st-xl-12 st-xl-os-3 st-sm-16 st-sm-os-1 st-xs-18 st-xs-os-0"
+      >
         <p className="f-24">
           <PrismicRichText
             field={blogPost.data.introduction}
