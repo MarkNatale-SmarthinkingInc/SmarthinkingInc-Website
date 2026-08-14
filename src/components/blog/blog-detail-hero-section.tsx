@@ -115,8 +115,10 @@ export default function BlogDetailHeroSection({
         <div className="st-grid grid-margin">
           <div className="hero-title-below center st-xl-12 st-xl-os-3 st-xs-18 st-xs-os-0">
             {hasTitle && <h1 className="f-60 hero-split chars">{titleText}</h1>}
+            {/* `Copy` restores the body face here: the global h1-h6 rule switches
+                headings to 'Epica Pro', but this subtitle is set in 'Epica Sans Pro'. */}
             {hasSubtitle && (
-              <p className="f-24 hero-subtitle fadeUp">{subtitleText}</p>
+              <h2 className="f-24 Copy hero-subtitle fadeUp">{subtitleText}</h2>
             )}
           </div>
         </div>
