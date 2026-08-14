@@ -192,11 +192,13 @@ export default function BlogSection({ data }: BlogSectionProps) {
 									</PrismicNextLink>
 								</figure>
 								{/* PREVIEW: category tags removed (used to half-overlay the image) */}
-								<h3 className="f-24">
-									<PrismicNextLink field={item}>
-										{item.data.title}
-									</PrismicNextLink>
-								</h3>
+								{item.data.title && (
+									<h3 className="f-24">
+										<PrismicNextLink field={item}>
+											{item.data.title}
+										</PrismicNextLink>
+									</h3>
+								)}
 								<PrismicNextLink field={item} className="blog-button">
 									<img
 										src="/img/svg/icon-arrow-white.svg"
@@ -248,11 +250,13 @@ export default function BlogSection({ data }: BlogSectionProps) {
 								</PrismicNextLink>
 							</figure>
 							{/* PREVIEW: category tags removed (used to half-overlay the image) */}
-							<h3 className="f-24">
-								<PrismicNextLink document={post}>
-									{post.data.title}
-								</PrismicNextLink>
-							</h3>
+							{post.data.title && (
+								<h3 className="f-24">
+									<PrismicNextLink document={post}>
+										{post.data.title}
+									</PrismicNextLink>
+								</h3>
+							)}
 							<PrismicNextLink document={post} className="blog-button">
 								<img
 									src="/img/svg/icon-arrow-white.svg"
@@ -303,11 +307,13 @@ export default function BlogSection({ data }: BlogSectionProps) {
 							</figure>
 							<div className="st-xl-6 st-xs-11">
 								{/* PREVIEW: category tags removed from the right-hand listing */}
-								<h2 className="f-24">
-									<PrismicNextLink document={post}>
-										{post.data.title}
-									</PrismicNextLink>
-								</h2>
+								{post.data.title && (
+									<h2 className="f-24">
+										<PrismicNextLink document={post}>
+											{post.data.title}
+										</PrismicNextLink>
+									</h2>
+								)}
 								<PrismicNextLink document={post} className="blog-button">
 									<img
 										src="/img/svg/icon-arrow-white.svg"
