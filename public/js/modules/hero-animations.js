@@ -81,7 +81,7 @@ export function heroAnimations() {
         ease: "power2",
         onStart: () => {
           if (!isMobile()) {
-            smoother.paused(false);
+            smoother?.paused(false);
           }
         },
       },
@@ -95,7 +95,7 @@ export function heroAnimations() {
     gsap.set(fadeIn, { opacity: 0 });
     gsap.set(imgIn, { yPercent: 100, opacity: 0 });
     if (!isMobile()) {
-      smoother.paused(true);
+      smoother?.paused(true);
     }
 
     tl.to(heroSplit.chars, {
@@ -153,7 +153,7 @@ export function heroAnimations() {
         ease: "power2",
         onStart: () => {
           if (!isMobile()) {
-            smoother.paused(false);
+            smoother?.paused(false);
           }
         },
       },
@@ -164,7 +164,7 @@ export function heroAnimations() {
     let imgIn = document.querySelectorAll(".imgIn");
     gsap.set(imgIn, { yPercent: 100, opacity: 0 });
     if (!isMobile()) {
-      smoother.paused(true);
+      smoother?.paused(true);
     }
 
     tl.to(heroSplit.chars, {
@@ -210,7 +210,7 @@ export function heroAnimations() {
         ease: "power3",
         onStart: () => {
           if (!isMobile()) {
-            smoother.paused(false);
+            smoother?.paused(false);
           }
         },
       },
@@ -221,7 +221,7 @@ export function heroAnimations() {
     let fadeIn = document.querySelectorAll(".fadeIn");
     gsap.set(fadeIn, { opacity: 0 });
     if (!isMobile()) {
-      smoother.paused(true);
+      smoother?.paused(true);
     }
     tl.to(heroImg, {
       opacity: 1,
@@ -272,7 +272,7 @@ export function heroAnimations() {
         ease: "power2",
         onStart: () => {
           if (!isMobile()) {
-            smoother.paused(false);
+            smoother?.paused(false);
           }
         },
       },
@@ -283,7 +283,7 @@ export function heroAnimations() {
     let fadeIn = document.querySelectorAll(".fadeIn");
     gsap.set(fadeIn, { opacity: 0 });
     if (!isMobile()) {
-      smoother.paused(true);
+      smoother?.paused(true);
     }
     tl.to(heroSplit.chars, {
       duration: 1,
@@ -327,7 +327,7 @@ export function heroAnimations() {
         ease: "power2",
         onStart: () => {
           if (!isMobile()) {
-            smoother.paused(false);
+            smoother?.paused(false);
           }
         },
       },
@@ -338,7 +338,7 @@ export function heroAnimations() {
     let fadeIn = document.querySelectorAll(".fadeIn");
     gsap.set(fadeIn, { opacity: 0 });
     if (!isMobile()) {
-      smoother.paused(true);
+      smoother?.paused(true);
     }
     tl.to(heroSplit.chars, {
       duration: 1,
@@ -382,7 +382,7 @@ export function heroAnimations() {
         ease: "power2",
         onStart: () => {
           if (!isMobile()) {
-            smoother.paused(false);
+            smoother?.paused(false);
           }
         },
       },
@@ -391,7 +391,7 @@ export function heroAnimations() {
   }
   if (document.querySelector(".error") || document.querySelector(".legal")) {
     if (!isMobile()) {
-      smoother.paused(true);
+      smoother?.paused(true);
     }
 
     tl.to(fadeUp, {
@@ -410,7 +410,7 @@ export function heroAnimations() {
         ease: "power2",
         onStart: () => {
           if (!isMobile()) {
-            smoother.paused(false);
+            smoother?.paused(false);
           }
         },
       },

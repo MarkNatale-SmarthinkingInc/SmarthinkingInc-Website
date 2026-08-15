@@ -1,4 +1,5 @@
 import { createClient } from "@/prismicio";
+import { getBlogDisplayTitle } from "@/utils/prismic";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { type Content, isFilled } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
@@ -19,6 +20,7 @@ export default async function BlogSection({ data }: BlogSectionProps) {
 		],
 		fetchLinks: [
 			"blog_post.title",
+			"blog_post.subtitle",
 			"blog_post.featured_image",
 			"blog_post.tags",
 		],
@@ -112,10 +114,10 @@ export default async function BlogSection({ data }: BlogSectionProps) {
 							)}
 							<div>
 								{/* PREVIEW: category tags removed */}
-								{blogPost.data?.title && (
+								{getBlogDisplayTitle(blogPost.data) && (
 									<h3 className="f-24">
 										<PrismicNextLink document={blogPost}>
-											{blogPost.data.title}
+											{getBlogDisplayTitle(blogPost.data)}
 										</PrismicNextLink>
 									</h3>
 								)}

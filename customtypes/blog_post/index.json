@@ -15,7 +15,14 @@
       "title": {
         "type": "Text",
         "config": {
-          "label": "title",
+          "label": "Title (mirror the entry name here)",
+          "placeholder": ""
+        }
+      },
+      "subtitle": {
+        "type": "Text",
+        "config": {
+          "label": "Subtitle",
           "placeholder": ""
         }
       },

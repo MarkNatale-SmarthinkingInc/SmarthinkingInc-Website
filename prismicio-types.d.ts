@@ -576,7 +576,7 @@ type BlogPostDocumentDataSlicesSlice =
  */
 interface BlogPostDocumentData {
   /**
-   * title field in *Blog Post*
+   * Title (mirror the entry name here) field in *Blog Post*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -585,6 +585,17 @@ interface BlogPostDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
+
+  /**
+   * Subtitle field in *Blog Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  subtitle: prismic.KeyTextField;
 
   /**
    * featured image field in *Blog Post*

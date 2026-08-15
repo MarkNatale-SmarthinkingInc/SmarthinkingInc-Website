@@ -1,8 +1,10 @@
 import type { NextConfig } from "next";
 
-// These paths are served under unversioned filenames, so an immutable year-long
-// cache means an edit to e.g. /js/main.js never reaches a returning visitor.
-// Kept for production; disabled in dev so local changes are actually picked up.
+// Images and the favicon are served under unversioned filenames, so a
+// year-long immutable cache means replacing one at the same path never reaches
+// a returning visitor. Production keeps the long cache (replacements there are
+// rare and usually land under a new filename); dev turns it off so local edits
+// show up. /js does not use this — see the headers() comment below.
 const staticAssetCacheControl =
   process.env.NODE_ENV === "production"
     ? "public, max-age=31536000, immutable"
@@ -28,15 +30,43 @@ const nextConfig: NextConfig = {
   },
 
   async headers() {
+    // `immutable` promises the URL's bytes will never change, so it is only
+    // safe on content-addressed URLs. Nothing under /js carries a hash, so it
+    // is split by how often the file actually changes:
+    //
+    //   - our own code changes every deploy, so it must revalidate. The
+    //     browser still caches it and still sends If-None-Match; an unchanged
+    //     file costs a 304 with an empty body, not a re-download.
+    //   - the vendored libraries change only when we upgrade them by hand,
+    //     and an upgrade lands under a new filename, so they stay immutable.
+    const revalidate = "public, max-age=0, must-revalidate";
+    const immutable = "public, max-age=31536000, immutable";
+
     return [
       {
+        // Vendored libraries (gsap, barba, fontfaceobserver, …). Broad on
+        // purpose: when several entries match one path the LAST one wins, so
+        // this baseline is stated first and the entries below override it for
+        // our own files.
         source: "/js/:path*",
         headers: [
           {
             key: "Cache-Control",
-            value: staticAssetCacheControl,
+            value: immutable,
           },
         ],
+      },
+      {
+        source: "/js/main.js",
+        headers: [{ key: "Cache-Control", value: revalidate }],
+      },
+      {
+        source: "/js/vars.js",
+        headers: [{ key: "Cache-Control", value: revalidate }],
+      },
+      {
+        source: "/js/modules/:path*",
+        headers: [{ key: "Cache-Control", value: revalidate }],
       },
       {
         source: "/img/:path*",

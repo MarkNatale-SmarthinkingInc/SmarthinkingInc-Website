@@ -7,14 +7,12 @@ interface BlogDetailHeroSectionProps {
 export default function BlogDetailHeroSection({
   blogPost,
 }: BlogDetailHeroSectionProps) {
-  // PREVIEW: `title` is a single plain-text field in Prismic, so there is no
-  // separate subtitle to target. Posts that use a "Title: Subtitle" pattern are
-  // split on the first colon so the two halves can be styled apart.
-  const rawTitle = blogPost?.data?.title ?? "";
-  const colonIndex = rawTitle.indexOf(":");
-  const hasSubtitle = colonIndex > -1;
-  const titleText = hasSubtitle ? rawTitle.slice(0, colonIndex).trim() : rawTitle;
-  const subtitleText = hasSubtitle ? rawTitle.slice(colonIndex + 1).trim() : "";
+  // `title` mirrors the Prismic entry name (the Content API does not expose the
+  // entry name itself); `subtitle` is optional and is omitted entirely when empty.
+  const titleText = blogPost?.data?.title ?? "";
+  const subtitleText = blogPost?.data?.subtitle ?? "";
+  const hasTitle = titleText.trim().length > 0;
+  const hasSubtitle = subtitleText.trim().length > 0;
 
   return (
     <section id="hero">
@@ -113,14 +111,18 @@ export default function BlogDetailHeroSection({
           <div className="st-xl-3 st-sm-1 empty-right xs-hidden"></div>
         </div>
       </div>
-      <div className="st-grid grid-margin">
-        <div className="hero-title-below center st-xl-12 st-xl-os-3 st-xs-18 st-xs-os-0">
-          <h1 className="f-60 hero-split chars">{titleText}</h1>
-          {hasSubtitle && (
-            <p className="f-24 hero-subtitle fadeUp">{subtitleText}</p>
-          )}
+      {(hasTitle || hasSubtitle) && (
+        <div className="st-grid grid-margin">
+          <div className="hero-title-below center st-xl-12 st-xl-os-3 st-xs-18 st-xs-os-0">
+            {hasTitle && <h1 className="f-60 hero-split chars">{titleText}</h1>}
+            {/* `Copy` restores the body face here: the global h1-h6 rule switches
+                headings to 'Epica Pro', but this subtitle is set in 'Epica Sans Pro'. */}
+            {hasSubtitle && (
+              <h2 className="f-24 Copy hero-subtitle fadeUp">{subtitleText}</h2>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
