@@ -80,7 +80,7 @@ window.addEventListener("resize", () => {
 document.addEventListener("pageToPage:afterLeave", () => {
   ScrollTrigger.killAll();
   if (!isMobile()) {
-    smoother.kill();
+    smoother?.kill();
   }
   window.scrollTo(0, 0);
 });

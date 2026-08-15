@@ -21,7 +21,7 @@ export function menu() {
     ease: "power4.inOut",
     onStart: () => {
       if (!isMobile()) {
-        smoother.paused(true);
+        smoother?.paused(true);
       }
     },
   });
@@ -92,7 +92,7 @@ export function menu() {
       ease: "power4.inOut",
       onComplete: () => {
         if (!isMobile()) {
-          smoother.paused(false);
+          smoother?.paused(false);
         }
       },
     },

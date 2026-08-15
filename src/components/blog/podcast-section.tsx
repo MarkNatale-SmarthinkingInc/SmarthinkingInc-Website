@@ -8,14 +8,13 @@ type PodcastSectionProps = {
 
 export default async function PodcastSection({ data }: PodcastSectionProps) {
   const client = createClient();
+  // Newest episode first. Without an explicit ordering the API returns podcasts
+  // roughly in the order they were first published, so a newly added episode
+  // landed last and was cut off by the three-episode slice below.
   const podcasts = await client.getAllByType("podcast", {
-    fetchLinks: [
-      "podcast.title",
-      "podcast.image",
-      "podcast.date",
-      "podcast.episode",
-      "podcast.time",
-      "podcast.link",
+    orderings: [
+      { field: "my.podcast.date", direction: "desc" },
+      { field: "document.first_publication_date", direction: "desc" },
     ],
   });
 

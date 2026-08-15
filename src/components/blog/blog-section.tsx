@@ -1,6 +1,7 @@
 "use client";
 
 import { createClient } from "@/prismicio";
+import { getBlogDisplayTitle } from "@/utils/prismic";
 import { type Content, filter, isFilled } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -80,6 +81,7 @@ export default function BlogSection({ data }: BlogSectionProps) {
 					],
 					fetchLinks: [
 						"blog_post.title",
+						"blog_post.subtitle",
 						"blog_post.featured_image",
 						"blog_post.tags",
 						"blog_post.excerpt",
@@ -107,6 +109,7 @@ export default function BlogSection({ data }: BlogSectionProps) {
 					],
 					fetchLinks: [
 						"blog_post.title",
+						"blog_post.subtitle",
 						"blog_post.featured_image",
 						"blog_post.tags",
 						"blog_post.excerpt",
@@ -192,10 +195,10 @@ export default function BlogSection({ data }: BlogSectionProps) {
 									</PrismicNextLink>
 								</figure>
 								{/* PREVIEW: category tags removed (used to half-overlay the image) */}
-								{item.data.title && (
+								{getBlogDisplayTitle(item.data) && (
 									<h3 className="f-24">
 										<PrismicNextLink field={item}>
-											{item.data.title}
+											{getBlogDisplayTitle(item.data)}
 										</PrismicNextLink>
 									</h3>
 								)}
@@ -217,7 +220,7 @@ export default function BlogSection({ data }: BlogSectionProps) {
 							<figure>
 								<PrismicNextLink
 									document={post}
-									aria-label={`Read blog post: ${post.data.title}`}
+									aria-label={`Read blog post: ${getBlogDisplayTitle(post.data)}`}
 								>
 									{post.data.featured_image?.url && (
 										<img
@@ -250,10 +253,10 @@ export default function BlogSection({ data }: BlogSectionProps) {
 								</PrismicNextLink>
 							</figure>
 							{/* PREVIEW: category tags removed (used to half-overlay the image) */}
-							{post.data.title && (
+							{getBlogDisplayTitle(post.data) && (
 								<h3 className="f-24">
 									<PrismicNextLink document={post}>
-										{post.data.title}
+										{getBlogDisplayTitle(post.data)}
 									</PrismicNextLink>
 								</h3>
 							)}
@@ -307,10 +310,10 @@ export default function BlogSection({ data }: BlogSectionProps) {
 							</figure>
 							<div className="st-xl-6 st-xs-11">
 								{/* PREVIEW: category tags removed from the right-hand listing */}
-								{post.data.title && (
+								{getBlogDisplayTitle(post.data) && (
 									<h2 className="f-24">
 										<PrismicNextLink document={post}>
-											{post.data.title}
+											{getBlogDisplayTitle(post.data)}
 										</PrismicNextLink>
 									</h2>
 								)}

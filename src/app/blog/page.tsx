@@ -15,7 +15,11 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Home() {
   const client = createClient();
   const { data } = await client.getSingle("blog", {
-    fetchLinks: ["blog_post.title", "blog_post.featured_image"],
+    fetchLinks: [
+      "blog_post.title",
+      "blog_post.subtitle",
+      "blog_post.featured_image",
+    ],
   });
   return (
     <main
