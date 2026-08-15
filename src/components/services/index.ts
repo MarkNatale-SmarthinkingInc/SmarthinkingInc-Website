@@ -6,6 +6,7 @@ export { default as CapabilitiesSection } from "./capabilities-section";
 export { default as ProofSection } from "./proof-section";
 export { default as ResultsSection } from "./results-section";
 export { default as CtaSection } from "./cta-section";
+export { default as SubpageHeroSection } from "./subpage-hero-section";
 export { default as ServicesTestimonialsSection } from "./testimonials-section";
 export { default as ServicesClientsSection } from "./clients-section";
 export { default as WorkLinkSection } from "./work-link-section";

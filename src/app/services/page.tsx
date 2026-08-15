@@ -16,6 +16,7 @@ import { createClient } from "@/prismicio";
 import { generateMeta } from "@/utils/seo";
 import type { Metadata } from "next";
 
+import "@/css/components/cta.css";
 import "@/css/pages/services.css";
 
 export async function generateMetadata(): Promise<Metadata> {

@@ -40,3 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Compiled comp-measuring tools (sources tracked, binaries not)
+/tools/comp/crop
+/tools/comp/measure

@@ -32,12 +32,26 @@ already Prismic-driven off the existing `services` document.
 
 ---
 
-## Next up
+## Subpages
 
-- **Prismic wiring** for sections 2–8 (see ⑧ below for the capabilities shape).
-- **The three subpages**: Brand Foundation, Brand Activation, Marketing Orchestration.
-  Their LEARN MORE buttons in section 3 are `href="#"` placeholders right now.
-  Note the existing `/services/[uid]` template is a *different* design and stays as-is.
+**Brand Foundation is built** at `/services/brand-foundation` — all 10 sections.
+Components in `src/components/brand-foundation/`, styles in
+`src/css/pages/service-subpage.css`, imagery in
+`public/img/services-new/brand-foundation/`.
+
+Reused rather than rebuilt: the header and footer (global), `CtaSection`, and the three
+generative SVG marks. `SubpageHeroSection` lives in `src/components/services/` and is
+written generically so Brand Activation and Marketing Orchestration can use it — pass
+`title` lines and an `image`.
+
+Namespace `service-subpage` is wired in `main.js`, `pageToPage.tsx` and
+`hero-animations.js`, and matches **before** the `/services/` catch-all so it doesn't
+fall through to the Prismic `[uid]` detail template. `SERVICE_SUBPAGES` is declared in
+both `main.js` and `pageToPage.tsx` and the two must stay in sync.
+
+Still to do: Brand Activation and Marketing Orchestration (their cards on the services
+page and the What's Next cards already point at the routes, which 404 until built), then
+Prismic wiring for all of it.
 
 ---
 
@@ -126,6 +140,19 @@ component groups, letting the client add a capability to any column without a sc
 change. Panel `id`s derive from the label via `slug()`, so `aria-controls` stays correct
 as copy is edited. No markup change needed; just swap the constant for document data.
 
+### ⑩ Brand Foundation — decisions and placeholders
+- **The collage is an approximation.** The comp arranges those seven Cove pieces as a
+  loose editorial collage; I built it as a full-width render, the brand sketch riding up
+  over it, then a two-column grid with the right column offset lower. Close in feel, not
+  pixel-matched — worth a look.
+- **Imagery was resized** to max 2400px at quality 82 (9.3MB → ~7MB for the folder).
+  Originals were not kept, so re-export from the design source if you want them back.
+  Note `Service-Brand-Foundation-1.jpg` is the hero and stayed at its native 1972px.
+- **Bold serif again** — the eyebrow, the deliverable terms and "Brand Foundation" in the
+  intro all want Epica Pro Bold (see ①). Faux-bolded until the files land.
+- Copy was transcribed from the comp at full resolution and should be accurate, but it
+  is worth a proofread against the source document.
+
 ### ⑨ Optimise `marketing-orchestration.svg`
 **838KB** (the other two marks are 42KB and 71KB). SVGO or a lower path count on export
 would likely cut it ~10× with no visible difference.
@@ -166,8 +193,18 @@ would likely cut it ~10× with no visible difference.
 
 ## Notes / non-blocking
 
-- Browser-pane screenshots return blank frames in this environment, so I verify layout by
-  measuring the DOM rather than by eye. **Your screenshots have caught things I couldn't**
-  — the low diamond, the cramped mobile spacing, the small button label. Keep them coming.
+- **Browser-pane screenshots DO work — solved 2026-08-14.** They were never broken. The
+  preview tab runs with `visibilityState: "hidden"`, which throttles `requestAnimationFrame`,
+  so the GSAP intro never finishes: `#smooth-wrapper` and `.parallax` sit at ~0–3% opacity
+  and the capture looks blank/washed out. Settle the page first and it captures correctly:
+
+  ```js
+  gsap.globalTimeline.getChildren(true, true, true).forEach(t => { try { t.progress(1) } catch (e) {} });
+  if (typeof smoother !== 'undefined' && smoother) { smoother.paused(false); smoother.scrollTop(0); }
+  ```
+
+  Run that via `javascript_tool`, then screenshot. Give the hero image a beat — the first
+  frame after settling can catch it mid-paint; a second capture is clean. This should cut
+  the review round-trips substantially.
 - Comp masters live in `~/Downloads/Service Page_master.jpeg` (4000×24730) plus the
   separate hero JPG and a PDF.

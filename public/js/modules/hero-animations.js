@@ -21,6 +21,7 @@ export function heroAnimations() {
     document.querySelector(".home") ||
     document.querySelector(".services") ||
     document.querySelector(".services-old") ||
+    document.querySelector(".service-subpage") ||
     document.querySelector(".about") ||
     document.querySelector(".work-detail")
   ) {

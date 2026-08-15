@@ -452,50 +452,9 @@ Scoped to .services — see .services-old for the previous page.
   }
 }
 
-/*  CTA BAR  ──────────────────────────────────────────────────────────────────
-    Comp (1440): copy 40.5px → .f-40 on ~1.55em leading; band 363px tall, which
-    the 8.33328vw padding lands on. The button is the site's a.button with its
-    arrow, scaled up from the standard 60px to the comp's 90px.               */
-.services #services-cta {
-  padding-top: 8.33328vw;
-  padding-bottom: 8.33328vw;
-}
-.services .cta-row {
-  align-items: center;
-}
-.services .cta-copy {
-  line-height: 1.55em;
-}
-/* a.button hardcodes font-size: 1em and justify-content: space-between, which
-   leaves a 16px label pinned to the right edge. The comp sets it at ~38px with
-   the arrow and label centred as one group — the clamp below is .f-40's, so
-   this still rides the type scale rather than inventing a size. */
-.services .cta-button {
-  height: 90px;
-  width: 31.53vw;
-  justify-content: center;
-  font-size: clamp(26px, 2.777vw, 52px);
-}
-.services .cta-button .icon {
-  margin-right: 0.98em;
-}
-.services .cta-button .icon svg {
-  width: 0.66em;
-  height: auto;
-}
-@media only screen and (max-width: 1024px) {
-  /* Back to the standard button once the bar stacks. */
-  .services .cta-button {
-    height: 60px;
-    width: auto;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .services #services-cta > .grid-margin {
-    padding-left: 2.08333vw;
-    padding-right: 2.08333vw;
-  }
-}
+/*  CTA BAR — moved to src/css/components/cta.css, shared with the service
+    subpages. Next scopes CSS imports per route, so a component reused across
+    routes needs its styles in a file both routes import.                    */
 
 /*  WORK LINK  ────────────────────────────────────────────────────────────────
     Carried over from the previous services page unchanged. #testimonial-box

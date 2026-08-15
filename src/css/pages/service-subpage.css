@@ -1,0 +1,379 @@
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+SERVICE SUBPAGES
+Scoped to .service-subpage — shared by Brand Foundation, Brand Activation and
+Marketing Orchestration. Page-specific rules sit under the page's own class.
+
+Comp is the same 1440 artboard at 2.778x as the main services page. Type snaps
+to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*  HERO  — same anatomy as .services #hero, without the subtitle block.       */
+.service-subpage #hero {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.service-subpage #hero figure {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.service-subpage #hero .hero-captions {
+  padding-top: 8.33328vw;
+  padding-bottom: 4.16664vw;
+}
+.service-subpage #hero .hero-img-title {
+  margin-top: 19.44432vw;
+  padding-top: 1.38888vw;
+  padding-bottom: 11.11104vw;
+  border-top: 1px solid #fff;
+  position: relative;
+}
+.service-subpage #hero .hero-img-title .v-line {
+  position: absolute;
+  top: -19.44432vw;
+  left: 50%;
+  width: 1px;
+  height: 19.44432vw;
+  background-color: #fff;
+}
+.service-subpage #hero a {
+  color: #fff;
+}
+.service-subpage .subpage-hero-title {
+  line-height: 1.05em;
+}
+.service-subpage .hero-services {
+  /* .caption is line-height 1 — matches the comp, no override needed. */
+  list-style: none;
+}
+
+/*  SHARED SECTION FURNITURE                                                   */
+.service-subpage .subpage-eyebrow {
+  font-weight: 600; /* comp sets a bold serif — see the Epica Pro Bold note */
+  letter-spacing: 0.02em;
+}
+/* Three-dot divider under the eyebrow. */
+.service-subpage .dot-rule {
+  display: flex;
+  justify-content: center;
+  gap: 1.38888vw;
+  margin: 1.38888vw 0 2.77776vw;
+}
+.service-subpage .dot-rule span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #1a1417;
+}
+.service-subpage .subpage-lead strong {
+  font-weight: 600;
+}
+
+.service-subpage #bf-intro {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+
+/*  ELEMENTAL QUESTIONS (dark)                                                 */
+.service-subpage #bf-questions {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+.service-subpage .questions-mark {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5.55552vw;
+}
+.service-subpage .questions-mark img {
+  display: block;
+  width: 13.88888vw;
+  max-width: 100%;
+  height: auto;
+}
+/* The rows keep their natural width; the block centres as a group. */
+.service-subpage .question-list {
+  list-style: none;
+  width: fit-content;
+  margin: 0 auto;
+}
+.service-subpage .question-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 5.55552vw;
+  margin-bottom: 2.77776vw;
+}
+/* Both the numeral and the question are Epica Pro in the comp; without this
+   they inherit the body sans. */
+.service-subpage .question-number,
+.service-subpage .question-text {
+  font-family: "Epica Pro";
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1em;
+}
+/* Outlined numerals: transparent fill with an orange stroke. */
+.service-subpage .question-number {
+  flex: 0 0 auto;
+  min-width: 2.2em;
+  color: transparent;
+  -webkit-text-stroke: 1px #f26722;
+}
+/* The comp leaves a clear gap between the lead word and the rest. */
+.service-subpage .question-text .f-40 {
+  margin-left: 0.15em;
+}
+.service-subpage .questions-note {
+  margin-top: 5.55552vw;
+  text-align: center;
+}
+
+/*  WHY BRAND FOUNDATION                                                       */
+.service-subpage #bf-why {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+.service-subpage .why-title {
+  line-height: 1em;
+  margin-bottom: 4.16664vw;
+}
+
+/*  DELIVERABLES                                                               */
+.service-subpage #bf-deliverables {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+.service-subpage .deliverables-title {
+  line-height: 1em;
+  margin-bottom: 5.55552vw;
+}
+.service-subpage .deliverables-list {
+  border-top: 1px solid #1a1417;
+}
+.service-subpage .deliverable-row {
+  border-bottom: 1px solid #1a1417;
+  padding: 1.04166vw 0;
+}
+/* Term and description sit on one line, optically centred against each other,
+   rather than both aligning to the top of a two-line description. */
+.service-subpage .deliverable-row .st-grid {
+  align-items: center;
+}
+.service-subpage .deliverable-term {
+  font-weight: 600; /* comp sets a bold serif — see the Epica Pro Bold note */
+}
+.service-subpage .deliverable-description {
+  text-align: right;
+}
+
+/*  PROOF — outlined on flat black, no string canvas on this page.            */
+.service-subpage #bf-proof {
+  background-color: #000;
+  padding: 5.55552vw 0;
+}
+.service-subpage .bf-proof-title {
+  font-size: 29.75vw;
+  line-height: 1em;
+  /* .outline-white fills the glyphs with #1A1417, which reads as grey on this
+     band's pure black. Matching the ground leaves a true hollow outline. */
+  color: #000;
+  /* Same optical centring as the services PROOF: Epica Pro leaves a 0.25em
+     descender well that these caps never use. */
+  position: relative;
+  top: 0.084em;
+}
+
+/*  WORK COLLAGE                                                               */
+.service-subpage #bf-work {
+  padding-bottom: 0;
+}
+.service-subpage .bf-work-wide img,
+.service-subpage .bf-work-band img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* Parallax frames clip, and the image is oversized so there is travel for the
+   scrub in public/js/modules/collage.js to move through. */
+.service-subpage .bf-parallax {
+  overflow: hidden;
+}
+.service-subpage .bf-work-wide.bf-parallax {
+  aspect-ratio: 2400 / 1552;
+}
+.service-subpage .bf-work-band.bf-parallax {
+  aspect-ratio: 2400 / 1182;
+}
+.service-subpage .bf-parallax img {
+  width: 100%;
+  height: 114%;
+  object-fit: cover;
+}
+/* Reveal start state, in case the module has not run yet. */
+.service-subpage .bf-reveal {
+  will-change: transform, opacity;
+}
+/* The brand sketch rides up over the render above it and carries a thick white
+   mat, which is what separates it from the photograph behind. Width matches the
+   two-column grid below so its edges line up with the items beneath it. */
+.service-subpage .bf-work-sketch {
+  width: calc(95.83334vw - 4.16666vw);
+  max-width: 100%;
+  margin: -8.33328vw auto 0;
+  position: relative;
+  border: 2.4vw solid #fff;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.service-subpage .bf-work-sketch img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.service-subpage .bf-work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.77776vw;
+  align-items: start;
+  margin-top: 5.55552vw;
+  margin-bottom: 5.55552vw;
+}
+.service-subpage .bf-work-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* Right column sits lower than the left, the way the comp staggers them. */
+.service-subpage .bf-work-offset {
+  margin-top: 5.55552vw;
+}
+
+/*  WHAT'S NEXT                                                                */
+.service-subpage #bf-next {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+.service-subpage .whats-next-title {
+  line-height: 1em;
+  margin-bottom: 2.77776vw;
+}
+.service-subpage .whats-next-copy {
+  max-width: 34em;
+}
+.service-subpage .next-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #000;
+  border-radius: 5px;
+  padding: 2.77776vw;
+  min-height: 20.83332vw;
+  text-decoration: none;
+  transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.service-subpage .next-card:hover,
+.service-subpage .next-card:focus-visible {
+  transform: translateY(-4px);
+}
+.service-subpage .next-card-mark {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.77776vw;
+}
+.service-subpage .next-card-mark img {
+  display: block;
+  width: 11.11104vw;
+  max-width: 100%;
+  height: auto;
+}
+.service-subpage .next-card-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.38888vw;
+}
+.service-subpage .next-card-title {
+  line-height: 1.1em;
+}
+.service-subpage .next-card-arrow svg {
+  width: 1.6em;
+  height: auto;
+}
+
+/*  RESPONSIVE                                                                 */
+@media only screen and (max-width: 1024px) {
+  /* Same vw/scrollbar guard the services page needs: a full-width column is
+     95.83334vw of the viewport, which overflows its .grid-margin parent once a
+     scrollbar takes layout space. .st-grid is flex-wrap: nowrap by default, so
+     the rows have to be told to wrap or two 100% columns sit side by side. */
+  .service-subpage .st-grid {
+    flex-wrap: wrap;
+  }
+  .service-subpage .st-grid > div {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .service-subpage .bf-work-grid {
+    grid-template-columns: 1fr;
+    gap: 5.55552vw;
+  }
+  .service-subpage .bf-work-offset {
+    margin-top: 0;
+  }
+  .service-subpage .bf-work-sketch {
+    width: 86%;
+  }
+  .service-subpage .next-card {
+    min-height: 0;
+    padding: 5.55552vw;
+  }
+  .service-subpage .next-card-mark img {
+    width: 30vw;
+  }
+  .service-subpage .question-list li {
+    gap: 4.16664vw;
+  }
+  /* Deliverables are the exception to the stacking rule above: on tablet the
+     term and description stay side by side and vertically centred. Letting
+     them wrap produced a staircase — each description dropping below its term. */
+  .service-subpage .deliverable-row .st-grid {
+    flex-wrap: nowrap;
+  }
+  .service-subpage .deliverable-row .st-grid > div:first-child {
+    width: 40%;
+  }
+  .service-subpage .deliverable-row .st-grid > div:last-child {
+    width: 60%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .service-subpage #hero .hero-captions .st-grid > div:not(.center) {
+    display: none;
+  }
+  .service-subpage #hero .hero-captions .center {
+    width: 100%;
+  }
+  /* Below tablet there is not enough room for two columns — stack them. */
+  .service-subpage .deliverable-row .st-grid {
+    flex-wrap: wrap;
+  }
+  .service-subpage .deliverable-row .st-grid > div:first-child,
+  .service-subpage .deliverable-row .st-grid > div:last-child {
+    width: 100%;
+  }
+  .service-subpage .deliverable-description {
+    text-align: left;
+    margin-top: 0.35em;
+  }
+  .service-subpage .bf-work-sketch {
+    width: 100%;
+    margin-top: -4.16664vw;
+  }
+  .service-subpage .next-card-mark img {
+    width: 44vw;
+  }
+}

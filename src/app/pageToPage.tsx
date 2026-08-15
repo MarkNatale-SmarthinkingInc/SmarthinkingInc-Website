@@ -6,6 +6,13 @@ import uiStore from "@/stores/ui.store";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef } from "react";
 
+// Keep in sync with SERVICE_SUBPAGES in public/js/main.js.
+const SERVICE_SUBPAGES = [
+  "/services/brand-foundation",
+  "/services/brand-activation",
+  "/services/marketing-orchestration",
+];
+
 const PageToPage = () => {
   const { setIsMenuOpen } = uiStore.getState();
 
@@ -30,6 +37,11 @@ const PageToPage = () => {
     }
     if (pathname === "/services-old") {
       return "services-old";
+    }
+    // Redesigned service subpages — matched before the /services/ catch-all,
+    // which belongs to the Prismic [uid] detail template.
+    if (SERVICE_SUBPAGES.includes(pathname)) {
+      return "service-subpage";
     }
     if (pathname.startsWith("/services/")) {
       return "service-detail";

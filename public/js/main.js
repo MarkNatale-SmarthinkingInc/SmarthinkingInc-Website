@@ -21,6 +21,7 @@ import { work } from "/js/modules/work.js";
 import { scrollFix } from "/js/modules/scroll-fix.js";
 import { serviceCards } from "/js/modules/service-cards.js";
 import { capabilities } from "/js/modules/capabilities.js";
+import { collage } from "/js/modules/collage.js";
 import { button, serviceStack } from "/js/modules/small-hovers.js";
 import { rotateSlider, manifesto } from "/js/modules/about.js";
 import { textAnim } from "/js/modules/text-anim.js";
@@ -28,6 +29,15 @@ import { error } from "/js/modules/error.js";
 import { lazyLoad } from "/js/modules/lazy-load.js";
 
 // Helper function to determine page namespace from pathname
+// The three redesigned service subpages. They live under /services/ but are a
+// different design from the Prismic-driven [uid] detail template, so they must
+// be matched before the /services/ catch-all below.
+const SERVICE_SUBPAGES = [
+  "/services/brand-foundation",
+  "/services/brand-activation",
+  "/services/marketing-orchestration",
+];
+
 const getPageNamespace = (pathname) => {
   if (pathname === "/" || pathname === "") {
     return "home";
@@ -40,6 +50,9 @@ const getPageNamespace = (pathname) => {
   }
   if (pathname === "/services-old") {
     return "services-old";
+  }
+  if (SERVICE_SUBPAGES.includes(pathname)) {
+    return "service-subpage";
   }
   if (pathname.startsWith("/services/")) {
     return "service-detail";
@@ -134,6 +147,20 @@ const serviceScripts = () => {
     capabilities();
     strings();
     testimonials();
+  });
+};
+// Brand Foundation / Brand Activation / Marketing Orchestration.
+// Modules get added here as the sections land, same as serviceScripts did.
+const serviceSubpageScripts = () => {
+  setTimeout(() => {
+    lazyLoad();
+    smoothScroll();
+    heroAnimations();
+    button();
+    textAnim();
+    imgAnim();
+    collage();
+    strings(); // footer string canvas
   });
 };
 // Previous services page, preserved at /services-old for reference.
@@ -266,6 +293,8 @@ function afterEnter(pageNamespace) {
     serviceScripts();
   } else if (pageNamespace === "services-old") {
     serviceOldScripts();
+  } else if (pageNamespace === "service-subpage") {
+    serviceSubpageScripts();
   } else if (pageNamespace === "service-detail") {
     serviceDetailScripts();
   } else if (pageNamespace === "work") {

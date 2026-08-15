@@ -4,7 +4,7 @@ const SERVICES = [
     title: ["Brand", "Foundation"],
     copy: "Where brands are born, the formulation of the essential elements needed to create a remarkable brand.",
     mark: "/img/services-new/brand-foundation.svg",
-    href: "#",
+    href: "/services/brand-foundation",
   },
   {
     title: ["Brand", "Activation"],
