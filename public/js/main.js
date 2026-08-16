@@ -22,6 +22,7 @@ import { scrollFix } from "/js/modules/scroll-fix.js";
 import { serviceCards } from "/js/modules/service-cards.js";
 import { capabilities } from "/js/modules/capabilities.js";
 import { collage } from "/js/modules/collage.js";
+import { reveal } from "/js/modules/reveal.js";
 import { button, serviceStack } from "/js/modules/small-hovers.js";
 import { rotateSlider, manifesto } from "/js/modules/about.js";
 import { textAnim } from "/js/modules/text-anim.js";
@@ -160,6 +161,7 @@ const serviceSubpageScripts = () => {
     textAnim();
     imgAnim();
     collage();
+    reveal();
     strings(); // footer string canvas
   });
 };

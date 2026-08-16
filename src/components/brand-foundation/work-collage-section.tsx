@@ -30,9 +30,14 @@ export default function WorkCollageSection() {
         />
       </figure>
 
-      <div className="grid-margin">
-        <div className="bf-work-grid">
-          <figure className="bf-work-item bf-work-tall bf-reveal">
+      {/* Two columns that pack independently, which is what gives the comp its
+          masonry rhythm — a single 2x2 grid ties each row to its tallest tile
+          and opens a hole under the short one. Column membership is fixed
+          rather than flowed, because the comp art-directs which piece sits
+          where. Widths and offsets come from the comp; see the CSS. */}
+      <div className="bf-work-grid">
+        <div className="bf-work-col">
+          <figure className="bf-work-item bf-work-paddles bf-reveal">
             <img
               src={`${DIR}/Service-Brand-Foundation-7.jpg`}
               alt="Reception area with a wall of vintage paddles"
@@ -42,17 +47,7 @@ export default function WorkCollageSection() {
               decoding="async"
             />
           </figure>
-          <figure className="bf-work-item bf-work-offset bf-reveal">
-            <img
-              src={`${DIR}/Service-Brand-Foundation-6.jpg`}
-              alt="Printed treatment brochure spread"
-              width={2400}
-              height={1600}
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-          <figure className="bf-work-item bf-reveal">
+          <figure className="bf-work-item bf-work-magazine bf-reveal">
             <img
               src={`${DIR}/Service-Brand-Foundation-5.jpg`}
               alt="Magazine advertisement spread, A Midsummer Night's Dream"
@@ -62,7 +57,20 @@ export default function WorkCollageSection() {
               decoding="async"
             />
           </figure>
-          <figure className="bf-work-item bf-work-offset bf-reveal">
+        </div>
+
+        <div className="bf-work-col">
+          <figure className="bf-work-item bf-work-brochure bf-reveal">
+            <img
+              src={`${DIR}/Service-Brand-Foundation-6.jpg`}
+              alt="Printed treatment brochure spread"
+              width={2400}
+              height={1600}
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure className="bf-work-item bf-work-folded bf-reveal">
             <img
               src={`${DIR}/Service-Brand-Foundation-8.jpg`}
               alt="Folded treatment menu"

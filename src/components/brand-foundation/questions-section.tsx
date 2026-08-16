@@ -23,7 +23,7 @@ export default function QuestionsSection() {
           <div className="st-xl-12 st-xl-os-3 st-sm-18 st-sm-os-0">
             <ol className="question-list">
               {QUESTIONS.map((q) => (
-                <li key={q.n}>
+                <li key={q.n} className="reveal">
                   <span className="question-number f-80 upper" aria-hidden="true">
                     {q.n}
                   </span>

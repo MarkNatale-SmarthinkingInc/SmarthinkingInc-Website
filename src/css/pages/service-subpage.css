@@ -219,11 +219,24 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
 /* The brand sketch rides up over the render above it and carries a thick white
    mat, which is what separates it from the photograph behind. Width matches the
    two-column grid below so its edges line up with the items beneath it. */
+/* Sized so the collage below overhangs it on both sides — the comp uses that
+   overlap to break the block out of a plain stack. Measured off the comp: the
+   sheet's paper spans 20.68vw to 84.33vw (63.65vw wide) while the collage runs
+   12.5vw to 93vw, giving 8.18vw of overhang on the left and 8.67vw on the
+   right. Values here are the border box, so they carry the 2.4vw mat either
+   side: 20.68 - 2.4 = 18.28vw left, 63.65 + 4.8 = 68.45vw wide.
+
+   Not centred, deliberately — the comp sits this block about 2.5vw right of
+   the viewport centre, and the collage is offset to match. */
 .service-subpage .bf-work-sketch {
-  width: calc(95.83334vw - 4.16666vw);
+  width: 68.45vw;
   max-width: 100%;
-  margin: -8.33328vw auto 0;
+  margin: -8.33328vw 0 0 18.28vw;
   position: relative;
+  /* Keeps the sheet (and its white mat) painting over the collage tiles that
+     now tuck up underneath it. Positioned elements already paint above static
+     siblings, so this is belt-and-braces against a later position change. */
+  z-index: 2;
   border: 2.4vw solid #fff;
   background-color: #fff;
   box-sizing: border-box;
@@ -233,22 +246,77 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
   width: 100%;
   height: auto;
 }
+/* Collage grid. Every number below is measured off the comp (4000px artboard,
+   so comp px / 40 = vw) rather than eyeballed:
+
+     tile       left     width    aspect (w/h)
+     paddles    16.6vw   31.4vw   0.872
+     magazine   12.5vw   35.5vw   1.219
+     brochure   50.0vw   43.0vw   1.662
+     folded     50.0vw   36.5vw   0.827
+
+   Those give column heights of 65.8vw and 70.9vw, matching the comp's 66 and
+   70.9 — the check that the readings are self-consistent.
+
+   The gaps are the point of the exercise: the comp packs these at 0.9vw
+   vertically and 2vw between columns. The old 2x2 grid used 2.78vw plus a
+   5.56vw offset, which is where the whitespace came from. */
 .service-subpage .bf-work-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.77776vw;
-  align-items: start;
-  margin-top: 5.55552vw;
+  display: flex;
+  align-items: flex-start;
+  /* 12.5vw is the magazine's left edge — the leftmost thing in the collage.
+     Deliberately not .grid-margin: the comp hangs this block off its own
+     measurements, not the page gutter. */
+  padding-left: 12.5vw;
+  gap: 2vw;
+  /* Negative, so the tile tops slide up behind the brand sheet and read as
+     continuing underneath it. Measured against the sheet's visible artwork
+     edge, not the element box: the sheet carries a 2.4vw white mat, and an
+     overlap smaller than that would hide the tiles under white-on-white and
+     produce no tucked-under effect at all. -1vw puts ~20px of tile behind the
+     artwork at 1440 and scales with the rest of the page. */
+  margin-top: -1vw;
   margin-bottom: 5.55552vw;
+}
+.service-subpage .bf-work-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9vw;
+}
+/* Column boxes are as wide as their widest tile; narrower tiles inset from
+   there, which is how the left column gets its ragged left edge. */
+.service-subpage .bf-work-col:first-child {
+  width: 35.5vw;
+}
+.service-subpage .bf-work-col:last-child {
+  width: 43vw;
 }
 .service-subpage .bf-work-item img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  /* The comp crops all four of these — the three mockups ship as identical
+     2400x1600 exports but appear at three different aspect ratios. Cover
+     against the ratios below reproduces those crops without re-exporting. */
+  object-fit: cover;
+  object-position: center;
 }
-/* Right column sits lower than the left, the way the comp staggers them. */
-.service-subpage .bf-work-offset {
-  margin-top: 5.55552vw;
+.service-subpage .bf-work-paddles {
+  width: 31.4vw;
+  margin-left: 4.1vw;
+  aspect-ratio: 0.872;
+}
+.service-subpage .bf-work-magazine {
+  width: 35.5vw;
+  aspect-ratio: 1.219;
+}
+.service-subpage .bf-work-brochure {
+  width: 43vw;
+  aspect-ratio: 1.662;
+}
+.service-subpage .bf-work-folded {
+  width: 36.5vw;
+  aspect-ratio: 0.827;
 }
 
 /*  WHAT'S NEXT                                                                */
@@ -317,15 +385,40 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
     margin-left: 0;
     margin-right: 0;
   }
+  /* Below 1024 the two-column collage stacks. The comp's offsets and crops are
+     a desktop composition, so drop back to one column at the page gutter and
+     let each image keep its natural aspect ratio. */
   .service-subpage .bf-work-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    padding-left: 0;
+    margin-left: 2.08333vw;
+    margin-right: 2.08333vw;
     gap: 5.55552vw;
   }
-  .service-subpage .bf-work-offset {
-    margin-top: 0;
+  .service-subpage .bf-work-col,
+  .service-subpage .bf-work-col:first-child,
+  .service-subpage .bf-work-col:last-child {
+    width: 100%;
+    gap: 5.55552vw;
   }
+  .service-subpage .bf-work-paddles,
+  .service-subpage .bf-work-magazine,
+  .service-subpage .bf-work-brochure,
+  .service-subpage .bf-work-folded {
+    width: 100%;
+    margin-left: 0;
+    aspect-ratio: auto;
+  }
+  .service-subpage .bf-work-item img {
+    height: auto;
+    object-fit: fill;
+  }
+  /* The desktop rule offsets the sheet right to set up the collage overhang;
+     stacked, it just centres. */
   .service-subpage .bf-work-sketch {
     width: 86%;
+    margin-left: auto;
+    margin-right: auto;
   }
   .service-subpage .next-card {
     min-height: 0;
