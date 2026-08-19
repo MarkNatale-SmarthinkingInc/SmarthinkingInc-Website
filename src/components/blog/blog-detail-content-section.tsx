@@ -1,6 +1,6 @@
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
-import { type Content, filter } from "@prismicio/client";
+import { type Content, filter, isFilled } from "@prismicio/client";
 // biome-ignore lint/correctness/noUnusedImports: PREVIEW - used by temporarily hidden column
 import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
@@ -38,14 +38,16 @@ export default async function BlogDetailContentSection({
         id="blog-content"
         className="st-xl-12 st-xl-os-3 st-sm-16 st-sm-os-1 st-xs-18 st-xs-os-0"
       >
-        <p className="f-24">
-          <PrismicRichText
-            field={blogPost.data.introduction}
-            components={{
-              paragraph: ({ children }) => <span>{children}</span>,
-            }}
-          />
-        </p>
+        {isFilled.richText(blogPost.data.introduction) && (
+          <p className="f-24">
+            <PrismicRichText
+              field={blogPost.data.introduction}
+              components={{
+                paragraph: ({ children }) => <span>{children}</span>,
+              }}
+            />
+          </p>
+        )}
         <SliceZone slices={blogPost.data.slices} components={components} />
       </div>
 
