@@ -73,7 +73,9 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
   font-weight: 600;
 }
 
-.service-subpage #bf-intro {
+.service-subpage #bf-intro,
+.service-subpage #ba-intro,
+.service-subpage #mo-intro {
   padding-top: 8.33328vw;
   padding-bottom: 8.33328vw;
 }
@@ -131,8 +133,25 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
   text-align: center;
 }
 
-/*  WHY BRAND FOUNDATION                                                       */
-.service-subpage #bf-why {
+/* The generative mark above the WHY title. Without an explicit width the SVG
+   stretches to the column — the global img rule sizes it — which is what blew
+   the dark band up. 13.88888vw matches .questions-mark on Brand Foundation. */
+.service-subpage .subpage-mark {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5.55552vw;
+}
+.service-subpage .subpage-mark img {
+  display: block;
+  width: 13.88888vw;
+  max-width: 100%;
+  height: auto;
+}
+
+/*  WHY <SERVICE> — dark band, shared by all three subpages                    */
+.service-subpage #bf-why,
+.service-subpage #ba-why,
+.service-subpage #mo-why {
   padding-top: 8.33328vw;
   padding-bottom: 8.33328vw;
 }
@@ -140,9 +159,18 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
   line-height: 1em;
   margin-bottom: 4.16664vw;
 }
+/* .BgDark only sets a background colour, so headings inside it keep the
+   inherited near-black and vanish. Brand Foundation's WHY band is on white and
+   never hit this; Activation and Orchestration set theirs on the dark ground.
+   The .Brown span inside keeps its own colour. */
+.service-subpage .BgDark .why-title {
+  color: #fff;
+}
 
 /*  DELIVERABLES                                                               */
-.service-subpage #bf-deliverables {
+.service-subpage #bf-deliverables,
+.service-subpage #ba-deliverables,
+.service-subpage #mo-deliverables {
   padding-top: 8.33328vw;
   padding-bottom: 8.33328vw;
 }
@@ -169,12 +197,16 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
   text-align: right;
 }
 
-/*  PROOF — outlined on flat black, no string canvas on this page.            */
-.service-subpage #bf-proof {
+/*  PROOF — outlined on flat black, no string canvas on these pages.          */
+.service-subpage #bf-proof,
+.service-subpage #ba-proof,
+.service-subpage #mo-proof {
   background-color: #000;
   padding: 5.55552vw 0;
 }
-.service-subpage .bf-proof-title {
+.service-subpage .bf-proof-title,
+.service-subpage .ba-proof-title,
+.service-subpage .mo-proof-title {
   font-size: 29.75vw;
   line-height: 1em;
   /* .outline-white fills the glyphs with #1A1417, which reads as grey on this
@@ -468,5 +500,264 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
   }
   .service-subpage .next-card-mark img {
     width: 44vw;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BRAND ACTIVATION
+   Sections shared with Brand Foundation (intro, deliverables, proof, next
+   cards) inherit the rules above; only what differs is set here.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* The HOW heading sits closer to its explainer than the WHY bands do — half
+   the shared .why-title gap. Scoped to the how sections so the WHY bands on
+   all three pages keep their original spacing. */
+.service-subpage #ba-how .why-title,
+.service-subpage #mo-how .why-title {
+  margin-bottom: 2.08332vw;
+}
+
+/*  HOW THIS WORKS + circle podium                                           */
+/* No overflow:hidden here. The circle stage sits inside this section, and
+   clipping an ancestor of a ScrollTrigger-pinned element is what cut the
+   circle in half. Clipping is scoped to the strings band below instead. */
+.service-subpage #ba-how {
+  position: relative;
+  padding-top: 8.33328vw;
+  /* No bottom padding. The stage is pinned, and ScrollTrigger's pin-spacer
+     already reserves the full pin distance (1080px at 1440x900) beneath it —
+     which covers the medallion's overhang many times over. Adding padding here
+     stacks on top of that reservation and opens a visible gap under the
+     circle. */
+}
+/* Strings band — its own section between the circle and DELIVERABLES. It used
+   to be absolutely positioned inside #ba-how, behind the circle, but the stage
+   starts translated down and rises as it animates, so the strings showed
+   around its edges before the animation ran. */
+.service-subpage #ba-strings {
+  position: relative;
+  width: 100%;
+  height: 21vw;
+  overflow: hidden;
+}
+.service-subpage #ba-strings .canvas-wrap,
+.service-subpage #ba-strings canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Circle podium — values carried over from `.services-old #circle-stage` in
+   styles.css. Duplicated rather than widening that selector so the old page
+   stays untouched until sign-off. */
+.service-subpage #circle-stage {
+  position: relative;
+  z-index: 2;
+  line-height: 0;
+  width: 100%;
+  height: 50vw;
+}
+.service-subpage #circle-stage .stage-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.service-subpage #circle-stage .circle-wrap {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.service-subpage #circle-stage .circle-wrap img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.service-subpage #circle-stage .circle-shape {
+  width: 100%;
+  height: auto;
+}
+.service-subpage #circle-stage .circle-target {
+  z-index: 5;
+  position: absolute;
+  width: 33.333vw;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+.service-subpage #circle-stage .circle-target img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+  z-index: 1;
+}
+.service-subpage #circle-stage .circle-target .circle-rotate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  z-index: 2;
+}
+
+/*  WORK COLLAGE                                                             */
+.service-subpage #ba-work {
+  padding-top: 5.55552vw;
+}
+.service-subpage .ba-work-band {
+  width: 100%;
+  margin-bottom: 0.9vw;
+}
+.service-subpage .ba-work-band img,
+.service-subpage .ba-work-band video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.service-subpage .ba-work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9vw;
+  align-items: start;
+}
+.service-subpage .ba-work-item img,
+.service-subpage .ba-work-item video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.service-subpage .ba-reveal {
+  will-change: transform, opacity;
+}
+
+/*  TAKE NOTE                                                                */
+.service-subpage #ba-note {
+  padding-top: 8.33328vw;
+  padding-bottom: 5.55552vw;
+}
+.service-subpage .ba-note-title {
+  line-height: 1em;
+  margin-bottom: 2.77776vw;
+  color: #fff;
+}
+.service-subpage .ba-note-diagram {
+  position: relative;
+  width: 55vw;
+  margin: 5.55552vw auto 0;
+}
+.service-subpage .ba-note-mark img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.service-subpage .ba-note-label {
+  position: absolute;
+  text-align: center;
+  line-height: 1.2em;
+}
+.service-subpage .ba-note-label-top {
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.service-subpage .ba-note-label-left {
+  bottom: 8%;
+  left: 0;
+}
+.service-subpage .ba-note-label-right {
+  bottom: 8%;
+  right: 0;
+}
+
+@media only screen and (max-width: 1024px) {
+  .service-subpage .ba-work-grid {
+    grid-template-columns: 1fr;
+    gap: 5.55552vw;
+  }
+  .service-subpage #ba-strings {
+    height: 30vw;
+  }
+  .service-subpage .ba-note-diagram {
+    width: 86%;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   MARKETING ORCHESTRATION
+   Reuses the shared furniture; only the differences are set here.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Only #mo-how needs its own rule; intro/why/deliverables are covered by the
+   shared selectors above. */
+.service-subpage #mo-how {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+/* This page runs two body paragraphs in the why band where the others run one. */
+.service-subpage .mo-why-second {
+  margin-top: 2.22221vw;
+}
+.service-subpage .mo-deliverables-lead {
+  margin-bottom: 4.16664vw;
+}
+
+/*  WORK COLLAGE — full-bleed bands with one paired row                      */
+.service-subpage #mo-work {
+  padding-top: 0;
+}
+.service-subpage .mo-work-band {
+  width: 100%;
+  margin-bottom: 0.9vw;
+}
+.service-subpage .mo-work-band img,
+.service-subpage .mo-work-band video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.service-subpage .mo-work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9vw;
+  align-items: start;
+  margin-bottom: 0.9vw;
+}
+.service-subpage .mo-work-item img,
+.service-subpage .mo-work-item video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* The film is a vertical 1080x2048 source. Cropping it to the row's landscape
+   proportion keeps the pair the same height without letterboxing the phone. */
+.service-subpage .mo-work-film {
+  aspect-ratio: 2400 / 1600;
+  overflow: hidden;
+}
+.service-subpage .mo-work-film video {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.service-subpage .mo-reveal {
+  will-change: transform, opacity;
+}
+
+/*  NEXT CARDS — light ground on this page                                   */
+.service-subpage #mo-next {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+
+@media only screen and (max-width: 1024px) {
+  .service-subpage .mo-work-grid {
+    grid-template-columns: 1fr;
+    gap: 5.55552vw;
+  }
+  .service-subpage .mo-work-film {
+    aspect-ratio: auto;
+  }
+  .service-subpage .mo-work-film video {
+    height: auto;
   }
 }

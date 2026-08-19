@@ -10,13 +10,13 @@ const SERVICES = [
     title: ["Brand", "Activation"],
     copy: "A beautiful amalgamation of brochures, websites, renderings, films, preopening collateral and more.",
     mark: "/img/services-new/brand-activation.svg",
-    href: "#",
+    href: "/services/brand-activation",
   },
   {
     title: ["Marketing", "Orchestration"],
     copy: "Plan the work. Work the plan. Smarthinking Inc. develops and executes your integrated annual marketing communications.",
     mark: "/img/services-new/marketing-orchestration.svg",
-    href: "#",
+    href: "/services/marketing-orchestration",
   },
 ];
 

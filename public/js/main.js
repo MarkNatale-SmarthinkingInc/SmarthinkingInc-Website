@@ -23,6 +23,7 @@ import { serviceCards } from "/js/modules/service-cards.js";
 import { capabilities } from "/js/modules/capabilities.js";
 import { collage } from "/js/modules/collage.js";
 import { reveal } from "/js/modules/reveal.js";
+import { circleStage } from "/js/modules/circle-stage.js";
 import { button, serviceStack } from "/js/modules/small-hovers.js";
 import { rotateSlider, manifesto } from "/js/modules/about.js";
 import { textAnim } from "/js/modules/text-anim.js";
@@ -162,7 +163,9 @@ const serviceSubpageScripts = () => {
     imgAnim();
     collage();
     reveal();
-    strings(); // footer string canvas
+    // Brand Activation only — both no-op on pages without #circle-stage.
+    circleStage();
+    strings(); // footer string canvas, plus the strings band under the circle
   });
 };
 // Previous services page, preserved at /services-old for reference.
