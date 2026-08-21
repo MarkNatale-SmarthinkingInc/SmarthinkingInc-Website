@@ -1,6 +1,8 @@
 "use client";
 
-import { type Content, isFilled } from "@prismicio/client";
+import type { Content } from "@prismicio/client";
+
+import { getVimeoEmbedUrl } from "@/utils/vimeo";
 
 interface WorkDetailMainVideoSectionProps {
 	work?: Content.WorkDocument;
@@ -9,28 +11,9 @@ interface WorkDetailMainVideoSectionProps {
 export default function WorkDetailMainVideoSection({
 	work,
 }: WorkDetailMainVideoSectionProps) {
-	const isFilledVideo = isFilled.embed(work?.data?.video);
-	if (!isFilledVideo) return null;
-
-	const videoData = work?.data?.video;
-	const videoId = videoData?.video_id;
-
-	// Extract video ID from embed URL or video_id field
-	const getVideoId = (): string | null => {
-		if (videoId) return String(videoId);
-		// Try to extract from embed HTML
-		const html = videoData?.html ?? "";
-		const htmlMatch = html.match(/video\/(\d+)/);
-		if (htmlMatch) return htmlMatch[1];
-		// Try to extract from embed_url
-		const embedUrl = videoData?.embed_url ?? "";
-		const urlMatch = embedUrl.match(/vimeo\.com\/(\d+)/);
-		return urlMatch ? urlMatch[1] : null;
-	};
-
-	const extractedVideoId = getVideoId();
-
-	if (!extractedVideoId) return null;
+	const video = work?.data?.video;
+	const embedUrl = video ? getVimeoEmbedUrl(video) : null;
+	if (!embedUrl) return null;
 
 	return (
 		<section id="main-video" className="grid-margin">
@@ -40,7 +23,7 @@ export default function WorkDetailMainVideoSection({
 					style={{ backgroundColor: "rgba(0,0,0,0.2)" }}
 				>
 					<iframe
-						src={`https://player.vimeo.com/video/${extractedVideoId}?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1`}
+						src={embedUrl}
 						frameBorder="0"
 						allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
 						title="Work Video"

@@ -3604,6 +3604,22 @@
 .blog-detail #blog-content .quote .caption {
   margin-top: var(--flow);
 }
+
+/* Author-written links have to read as links inside a wall of body copy:
+   underlined in flow, and hovering to the same orange the footer uses. The
+   colour transition comes from the base `a` rule, so it matches the footer's
+   timing without restating it.
+   `display: inline` undoes the global inline-block on `a` — as an atomic box a
+   link phrase can't break across lines, so one near a line end jumps whole to
+   the next and leaves a gap. */
+.blog-detail #blog-content a:not(.button) {
+  display: inline;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.blog-detail #blog-content a:not(.button):hover {
+  color: #f26722;
+}
 .blog-detail #contact {
   padding: 8.33328vw 0;
   background-color: #1A1417;

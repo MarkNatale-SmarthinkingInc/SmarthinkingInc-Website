@@ -12,6 +12,14 @@ figure {
   position: relative;
 }
 
+/* These players are decorative: they autoplay, loop and never show controls.
+   `background=1` used to make the iframe inert for us, but it locks out videos
+   on free Vimeo accounts, so the flag is gone and the player is a normal
+   clickable one underneath — without this a click would pause it. */
+.video-embed iframe {
+  pointer-events: none;
+}
+
 #main-video .video-embed iframe {
   width: 100%;
   height: auto;
