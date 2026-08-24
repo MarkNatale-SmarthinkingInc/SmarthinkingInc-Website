@@ -1,17 +1,7 @@
-import { type Content, type EmbedField, isFilled } from "@prismicio/client";
+import { type Content, isFilled } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 
-/**
- * Extract video ID from Prismic embed field
- * Tries video_id property first, falls back to parsing the html string
- */
-function getVideoIdFromEmbed(embed: EmbedField): string | null {
-  if (!embed) return null;
-  if (embed.video_id) return String(embed.video_id);
-  const html = embed.html ?? "";
-  const match = html.match(/video\/(\d+)/);
-  return match ? match[1] : null;
-}
+import { getVimeoEmbedUrl } from "@/utils/vimeo";
 
 interface ServiceDetailHeroSectionProps {
   service: Content.ServiceDocument;
@@ -20,6 +10,11 @@ interface ServiceDetailHeroSectionProps {
 export default function ServiceDetailHeroSection({
   service,
 }: ServiceDetailHeroSectionProps) {
+  // Resolved up front so a video that doesn't come back as a playable Vimeo
+  // embed falls through to the still image instead of an empty iframe.
+  const leftVideoUrl = getVimeoEmbedUrl(service.data.left_video);
+  const rightVideoUrl = getVimeoEmbedUrl(service.data.right_video);
+
   return (
     <section id="hero">
       <div className="hero-title grid-margin center">
@@ -42,14 +37,14 @@ export default function ServiceDetailHeroSection({
       <div className="string-canvas xs-top-4">
         <canvas className="string-lines grid80 fadeIn"></canvas>
         <div className="st-grid grid-margin hero-images xs-wrap">
-          {isFilled.embed(service.data.left_video) ? (
+          {leftVideoUrl ? (
             <figure className="st-xl-6 self-end xs-self-start st-xs-9 imgIn">
               <div
                 className="video-embed"
                 style={{ aspectRatio: 16 / 9, backgroundColor: 'rgba(0,0,0,0.2)' }}
               >
                 <iframe
-                  src={`https://player.vimeo.com/video/${getVideoIdFromEmbed(service.data.left_video)}?badge=0&autopause=0&autoplay=1&muted=1&loop=1&background=1`}
+                  src={leftVideoUrl}
                   allow="autoplay; fullscreen"
                   allowFullScreen
                   title="Background video"
@@ -109,14 +104,14 @@ export default function ServiceDetailHeroSection({
               />
             </figure>
           )}
-          {isFilled.embed(service.data.right_video) ? (
+          {rightVideoUrl ? (
             <figure className="st-xl-6 self-start st-xs-12 imgIn">
               <div
                 className="video-embed"
                 style={{ aspectRatio: 16 / 9, backgroundColor: 'rgba(0,0,0,0.2)' }}
               >
                 <iframe
-                  src={`https://player.vimeo.com/video/${getVideoIdFromEmbed(service.data.right_video)}?badge=0&autopause=0&autoplay=1&muted=1&loop=1&background=1`}
+                  src={rightVideoUrl}
                   allow="autoplay; fullscreen"
                   allowFullScreen
                   title="Background video"
