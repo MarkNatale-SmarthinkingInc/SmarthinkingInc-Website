@@ -1,8 +1,11 @@
 const DIR = "/img/services-new/marketing-orchestration";
 
 /**
- * Work collage: three full-bleed bands, a paired row, then a closing band,
- * following the comp's order.
+ * Work collage. The comp does NOT run these edge to edge — only the opening
+ * plan and the closing report bleed full width, and the three pieces between
+ * them step inward at different insets, which is what gives the block its
+ * rhythm. Widths and insets are measured off the comp; see `#mo-work` in
+ * service-subpage.css.
  *
  * The paired row carries the vertical phone film. Per the site-wide rule it
  * autoplays muted, looped and inline, with no controls.
@@ -10,7 +13,7 @@ const DIR = "/img/services-new/marketing-orchestration";
 export default function WorkCollageSection() {
   return (
     <section id="mo-work">
-      <figure className="mo-work-band mo-reveal">
+      <figure className="mo-work-band mo-work-plan mo-reveal">
         <img
           src={`${DIR}/asset-1.jpg`}
           alt="Printed annual marketing plan and strategy covers"
@@ -21,7 +24,7 @@ export default function WorkCollageSection() {
         />
       </figure>
 
-      <figure className="mo-work-band mo-reveal">
+      <figure className="mo-work-band mo-work-laptop mo-reveal">
         <img
           src={`${DIR}/asset-2.jpg`}
           alt="Property website open on a laptop"
@@ -32,7 +35,7 @@ export default function WorkCollageSection() {
         />
       </figure>
 
-      <figure className="mo-work-band mo-reveal">
+      <figure className="mo-work-band mo-work-booklet mo-reveal">
         <img
           src={`${DIR}/asset-3.jpg`}
           alt="Open brochure spread showing a coastal photograph"
@@ -55,7 +58,7 @@ export default function WorkCollageSection() {
             aria-label="Vertical social film playing on a phone"
           />
         </figure>
-        <figure className="mo-work-item mo-reveal">
+        <figure className="mo-work-item mo-work-phones mo-reveal">
           <img
             src={`${DIR}/asset-5.jpg`}
             alt="Social media feeds on two phones"
@@ -67,7 +70,7 @@ export default function WorkCollageSection() {
         </figure>
       </div>
 
-      <figure className="mo-work-band mo-reveal">
+      <figure className="mo-work-band mo-work-report mo-reveal">
         <img
           src={`${DIR}/asset-6.jpg`}
           alt="Quarterly report covers"

@@ -4835,10 +4835,30 @@ FOOTER//////////////////////////////////////////////////////////////////////////
 }
 #footer .footer-bottom {
   position: relative;
-  margin-top: 2.77776vw;
+  margin-top: 1.38888vw;
   line-height: 0;
   overflow: hidden;
 }
+/* The wordmark is meant to be cut off by the bottom of the page — only the
+   upper half of the letterforms shows. It is clipped by POSITION rather than by
+   being enlarged: at its natural 200% width the wordmark is 200/6.087 =
+   32.857vw tall (the SVG's viewBox is 980x161), so dropping the figure to
+   `bandHeight - half that` puts its midline exactly on the band's bottom edge,
+   and the band's overflow takes the rest.
+
+   The band is the footer string canvas, which strings.js builds at
+   innerHeight/2 (see its gridFooter branch) — hence the 50vh term.
+
+   The 21.3571vw is 65% of the wordmark's height — the cut line Andrew marked.
+   For reference, from a raster probe of the SVG: x-height top is at 0.326 of
+   the box, the baseline at 0.758, the `g` descender ends at 0.994. So 65% cuts
+   through the letter bodies about a quarter above the baseline, leaving the
+   feet below the fold. This one number sets the crop: raise it to show more.
+
+   max(0px, ...) matters on wide, short viewports: there the band (50vh) is
+   shorter than 80% of the wordmark, and without the clamp the offset goes
+   negative and crops the TOPS of the letters too. Clamped, it simply shows as
+   much as the band allows, still cut only along the bottom. */
 #footer .footer-bottom figure {
   width: 100vw;
   overflow: hidden;
@@ -4846,7 +4866,7 @@ FOOTER//////////////////////////////////////////////////////////////////////////
   position: absolute;
   pointer-events: none;
   left: 0;
-  top: 15vh;
+  top: max(0px, calc(50vh - 21.3571vw));
 }
 #footer .footer-bottom figure img {
   width: 200%;
@@ -4878,12 +4898,16 @@ FOOTER//////////////////////////////////////////////////////////////////////////
     height: 30vh;
     min-height: 300px;
   }
+  /* Same idea, with this breakpoint's own numbers: the band is
+     `height: 30vh; min-height: 300px`, and at 350% the wordmark is
+     350/6.087 = 57.5vw tall, so half of it is 28.75vw. */
   #footer .footer-bottom figure {
-    top: auto;
-    bottom: -70px;
+    top: max(0px, calc(max(30vh, 300px) - 37.375vw));
+    bottom: auto;
   }
   #footer .footer-bottom figure img {
     width: 350%;
+    height: auto;
   }
 }
 @media only screen and (max-width: 768px) {

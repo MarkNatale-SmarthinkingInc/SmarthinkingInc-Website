@@ -1,9 +1,14 @@
 const DIR = "/img/services-new/brand-activation";
 
 /**
- * Work collage. Two full-bleed bands, then two paired rows, following the
- * comp's order: magazine spread, site plan, signage + portrait, interior +
- * tablet.
+ * Work collage. Two full-bleed bands, then an interlocking four-tile block,
+ * following the comp's order: magazine spread, site plan, signage + portrait,
+ * interior + tablet.
+ *
+ * The four-tile block is NOT a grid. Its two columns pack to the same total
+ * height but split it differently, and the signage overlaps the video
+ * horizontally by 1.3vw — so each tile is placed absolutely from comp
+ * measurements. See `.ba-work-grid` in service-subpage.css.
  *
  * Two of these are video. Per the site-wide rule they autoplay: muted (browsers
  * block autoplay with sound), looped, inline (iOS Safari otherwise takes them
@@ -38,7 +43,7 @@ export default function WorkCollageSection() {
       </figure>
 
       <div className="ba-work-grid">
-        <figure className="ba-work-item ba-reveal">
+        <figure className="ba-work-item ba-work-signage ba-reveal">
           <img
             src={`${DIR}/asset-3.jpg`}
             alt="Freestanding digital signage displays in a sales gallery"
@@ -58,7 +63,7 @@ export default function WorkCollageSection() {
             decoding="async"
           />
         </figure>
-        <figure className="ba-work-item ba-reveal">
+        <figure className="ba-work-item ba-work-interior ba-reveal">
           <img
             src={`${DIR}/asset-5.jpg`}
             alt="Photorealistic rendering of a residence interior"
@@ -68,7 +73,10 @@ export default function WorkCollageSection() {
             decoding="async"
           />
         </figure>
-        <figure className="ba-work-item ba-reveal">
+        {/* The video is shown whole — never cropped — so its box takes the
+            file's own aspect ratio and the other three tiles absorb the
+            difference. */}
+        <figure className="ba-work-item ba-work-film ba-reveal">
           <video
             className="ba-work-video"
             src={`${DIR}/asset-6.mp4`}

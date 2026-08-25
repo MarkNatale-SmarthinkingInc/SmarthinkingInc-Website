@@ -2,13 +2,12 @@
  * TAKE NOTE — dark band placing Brand Activation between the other two
  * services.
  *
- * NOTE: the comp draws a generative triangular mark here with the three
- * service names set around its points. That artwork is NOT among the supplied
- * assets — the folder ships the three individual service marks only. The
- * activation mark stands in for now so the section reads correctly; swap
- * `MARK` for the real export when it arrives.
+ * The triangular mark places Brand Activation at the apex with the other two
+ * services at the base. Label positions are measured off the comp and
+ * expressed as percentages of the diagram box, so the whole group scales
+ * together — see `.ba-note-diagram` in service-subpage.css.
  */
-const MARK = "/img/services-new/brand-activation.svg";
+const MARK = "/img/services-new/takenote-triangle.svg";
 
 export default function TakeNoteSection() {
   return (
@@ -36,23 +35,23 @@ export default function TakeNoteSection() {
             <img
               src={MARK}
               alt=""
-              width={578}
-              height={578}
+              width={1571}
+              height={1437}
               loading="lazy"
               decoding="async"
             />
           </figure>
-          <span className="ba-note-label ba-note-label-top f-20 White upper">
+          <span className="ba-note-label ba-note-label-top f-32 White upper">
             Brand
             <br />
             Activation
           </span>
-          <span className="ba-note-label ba-note-label-left f-20 White upper">
+          <span className="ba-note-label ba-note-label-left f-32 White upper">
             Brand
             <br />
             Foundation
           </span>
-          <span className="ba-note-label ba-note-label-right f-20 White upper">
+          <span className="ba-note-label ba-note-label-right f-32 White upper">
             Marketing
             <br />
             Orchestration

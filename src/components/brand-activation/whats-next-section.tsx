@@ -34,12 +34,13 @@ const NEXT = [
 
 /**
  * The two onward cards. Brand Foundation sets these on .BgFade under a
- * "What's Next" heading; here the comp runs them straight on black beneath
- * TAKE NOTE, with no heading of their own.
+ * "What's Next" heading; here the comp runs them on a white band directly
+ * beneath TAKE NOTE, with no heading of their own — the white is what
+ * separates them from the black band above and the CTA below.
  */
 export default function WhatsNextSection() {
   return (
-    <section id="ba-next" className="BgDark">
+    <section id="ba-next">
       <div className="grid-margin">
         <div className="st-grid sm-wrap">
           {NEXT.map((item) => (
