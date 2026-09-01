@@ -1,5 +1,5 @@
 import { createClient } from "@/prismicio";
-import { BuildQueryURLArgs, type Content } from "@prismicio/client";
+import type { BuildQueryURLArgs, Content } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 
 interface WorkDetailRelatedWorkSectionProps {
@@ -10,7 +10,6 @@ export default async function WorkDetailRelatedWorkSection({
   work,
 }: WorkDetailRelatedWorkSectionProps) {
   const client = createClient();
-  console.log(work)
 
   const defaultParams:Partial<BuildQueryURLArgs> =  {
     pageSize: 2,

@@ -7,11 +7,18 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["node_modules", ".vscode", ".idea", ".next", "public"]
+    "ignore": [
+      "node_modules",
+      ".vscode",
+      ".idea",
+      ".next",
+      "public"
+    ]
   },
   "formatter": {
     "enabled": true,
-    "indentStyle": "tab"
+    "indentStyle": "space",
+    "indentWidth": 2
   },
   "organizeImports": {
     "enabled": true

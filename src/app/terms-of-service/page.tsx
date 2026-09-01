@@ -1,3 +1,4 @@
+import FooterSection from "@/components/global/footer-section";
 import { createClient } from "@/prismicio";
 import { PrismicRichText } from "@prismicio/react";
 import Link from "next/link";
@@ -39,6 +40,7 @@ export default async function PrivacyPolicyPage() {
           </div>
         </div>
       </section>
+      <FooterSection />
     </div>
   );
 }
