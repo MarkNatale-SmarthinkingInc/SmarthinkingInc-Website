@@ -1,12 +1,12 @@
 // Static for now — becomes a repeatable Prismic group when the page is wired up.
-// Only "Brand Strategy" has real copy in the comp; the rest is placeholder.
+// Copy is final, from Servivces_Home_Capabilities-Final.docx.
 const CAPABILITY_GROUPS = [
   {
     title: ["Brand", "Foundation"],
     items: [
       {
         label: "Brand Strategy",
-        copy: "Defining who you are, what you do, and (most importantly) why it matters!",
+        copy: "Encompassing elements like Brand Narrative, Brand Promise, Brand Hierarchy, Brand Identity, and more. It ultimately aims to define who you are, what you do, and (most importantly) why it matters.",
       },
     ],
   },
@@ -15,31 +15,29 @@ const CAPABILITY_GROUPS = [
     items: [
       {
         label: "Marketing Collateral",
-        copy: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt labore.",
+        copy: "The whole is greater than the sum of its parts. Marketing Collateral is a broad range of products that ultimately serve to enhance the sale. As complicated as a digital destination and as simple as the napkins you use at your coffee bar. The possibilities, and therefore the results, are endless.",
       },
       {
         label: "Advertising",
-        copy: "Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip ex commodo.",
+        copy: "Equal parts strategy, logic, and charm combine to give rise to an audience of qualified prospects. Our creative campaigns are targeted at the intended audience and delivered through digital, print, and custom content pieces, to name a few.",
       },
       {
         label: "Websites",
-        copy: "Duis aute irure dolor in reprehenderit voluptate velit esse cillum dolore eu fugiat nulla.",
+        copy: "Fresh, immersive experiences that transport the viewer and create demand. Everything from design and user experience to programming and optimization. We also develop creative, interactive multimedia that fully immerses viewers in the brand, making it a powerful tool in our marketing strategy.",
       },
+      // The comp listed Email Marketing and Social Media separately; the final
+      // copy merges them into one row.
       {
-        label: "Email Marketing",
-        copy: "Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim.",
-      },
-      {
-        label: "Social Media",
-        copy: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam.",
+        label: "Email + Social Media Marketing",
+        copy: "We provide the daily dose of information to keep your audience informed. Our team specializes in creating captivating, engaging campaigns, collaborations, and event activations that deliver strong ROI.",
       },
       {
         label: "Film + Photography",
-        copy: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit consequuntur magni.",
+        copy: "High-impact motion pictures and still images that effectively, vividly, and precisely convey your story while staying true to your brand. Bringing your brand and location to life is essential when marketing real estate and hospitality, at all stages of development.",
       },
       {
         label: "Photorealistic Renderings",
-        copy: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur adipisci velit.",
+        copy: "Give people the proper vision, and they will take it from there. Exceed the viewer’s expectations, transporting them to where imagination merges with reality. Our renderings, crafted with precision and artistry, have the power to ignite the spark of inspiration within the viewer.",
       },
     ],
   },
@@ -48,7 +46,7 @@ const CAPABILITY_GROUPS = [
     items: [
       {
         label: "Communications Planning + Execution",
-        copy: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.",
+        copy: "Plan the work. Work the plan. Our comprehensive research process and market analysis enable us to achieve marketing objectives successfully. We meticulously identify project objectives, key audiences, target markets, and the competitive landscape, then develop a comprehensive marketing strategy and budget to ensure successful execution of the plan.",
       },
     ],
   },
