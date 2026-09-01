@@ -4134,12 +4134,28 @@ a.button .icon {
   position: relative;
   margin-right: 1.38888vw;
 }
+/* The two arrows swap on hover, so they have to occupy the same spot. They
+   used to be positioned two different ways: the resting arrow sat in normal
+   flow inside an inline <i>, so it was baseline-aligned and rode ~4px below
+   centre, while the incoming one was absolutely centred with a hand-tuned
+   `- 3px`. Net, the arrow jumped ~7px on hover.
+   The baseline offset scales with font-size, so a fixed px nudge could only
+   ever be right for one button — it was tuned for the standard 16px one and
+   was furthest off on the 40px CTA. Making <i> a flex box and the svgs blocks
+   takes the text baseline out of it entirely, so both arrows centre on the
+   same point at any size and the pixel fudge is no longer needed. */
+a.button .icon i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 a.button .icon svg {
   position: relative;
+  display: block;
 }
 a.button .icon svg:first-of-type {
   position: absolute;
-  top: calc(50% - 3px);
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }

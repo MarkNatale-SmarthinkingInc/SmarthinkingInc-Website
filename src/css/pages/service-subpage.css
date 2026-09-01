@@ -713,8 +713,10 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
 }
 
 /*  WORK COLLAGE                                                             */
+/* Flush to the PROOF band above, matching #bf-work and #mo-work — this page
+   was the only one still holding the collage off with a top pad. */
 .service-subpage #ba-work {
-  padding-top: 5.55552vw;
+  padding-top: 0;
 }
 .service-subpage .ba-work-band {
   width: 100%;
