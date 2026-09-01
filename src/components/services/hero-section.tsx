@@ -4,9 +4,16 @@ interface HeroSectionProps {
   data: import("@prismicio/client").Content.ServicesDocumentData;
 }
 
-export default function HeroSection({ data }: HeroSectionProps) {
-  const currentYear = new Date().getFullYear();
+// Static for now — becomes a repeatable Prismic group when the page is wired up.
+const PRIORITY_SERVICES = [
+  "Brand Strategy",
+  "Strategic Messaging",
+  "Photography",
+  "Graphic & Product Design",
+  "Website & Interactive",
+];
 
+export default function HeroSection({ data }: HeroSectionProps) {
   return (
     <section id="hero">
       <figure className="parallax">
@@ -49,9 +56,11 @@ export default function HeroSection({ data }: HeroSectionProps) {
             )}
           </div>
           <div className="st-xl-4 st-xl-os-4 st-sm-6 st-sm-os-1 st-xs-8 st-xs-os-0 center fadeUp">
-            {data.hero_center_caption && (
-              <p className="caption">{data.hero_center_caption}</p>
-            )}
+            <ul className="caption hero-services">
+              {PRIORITY_SERVICES.map((service) => (
+                <li key={service}>{service}</li>
+              ))}
+            </ul>
           </div>
           <div className="st-xl-3 st-xl-os-4 st-sm-5 st-sm-os-1 st-xs-os-0 right fadeUp">
             <a

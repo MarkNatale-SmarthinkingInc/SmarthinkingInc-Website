@@ -1,0 +1,9 @@
+export { default as BrandActivationIntroSection } from "./intro-section";
+export { default as BrandActivationWhySection } from "./why-section";
+export { default as BrandActivationHowSection } from "./how-section";
+export { default as BrandActivationStringsSection } from "./strings-section";
+export { default as BrandActivationDeliverablesSection } from "./deliverables-section";
+export { default as BrandActivationProofSection } from "./proof-section";
+export { default as BrandActivationWorkSection } from "./work-collage-section";
+export { default as BrandActivationTakeNoteSection } from "./take-note-section";
+export { default as BrandActivationWhatsNextSection } from "./whats-next-section";

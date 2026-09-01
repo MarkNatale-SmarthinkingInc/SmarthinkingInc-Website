@@ -1,5 +1,15 @@
 import type { NextConfig } from "next";
 
+// Images and the favicon are served under unversioned filenames, so a
+// year-long immutable cache means replacing one at the same path never reaches
+// a returning visitor. Production keeps the long cache (replacements there are
+// rare and usually land under a new filename); dev turns it off so local edits
+// show up. /js does not use this — see the headers() comment below.
+const staticAssetCacheControl =
+  process.env.NODE_ENV === "production"
+    ? "public, max-age=31536000, immutable"
+    : "no-cache, no-store, must-revalidate";
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -63,7 +73,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            value: staticAssetCacheControl,
           },
         ],
       },
@@ -72,7 +82,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            value: staticAssetCacheControl,
           },
         ],
       },

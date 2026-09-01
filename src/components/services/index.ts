@@ -1,12 +1,12 @@
 export { default as ServicesHeroSection } from "./hero-section";
-export { default as ServiceIntroSection } from "./service-intro-section";
-export { default as ServicesSection } from "./services-section";
+export { default as OurServicesSection } from "./our-services-section";
+export { default as ThreeServicesSection } from "./three-services-section";
+export { default as InterplaySection } from "./interplay-section";
+export { default as CapabilitiesSection } from "./capabilities-section";
+export { default as ProofSection } from "./proof-section";
+export { default as ResultsSection } from "./results-section";
+export { default as SubpageHeroSection } from "./subpage-hero-section";
+export { default as SubpageDotNav } from "./subpage-dot-nav";
 export { default as ServicesTestimonialsSection } from "./testimonials-section";
 export { default as ServicesClientsSection } from "./clients-section";
 export { default as WorkLinkSection } from "./work-link-section";
-
-// Service Detail Components
-export { default as ServiceDetailContentSection } from "./service-detail-content-section";
-export { default as ServiceDetailHeroSection } from "./service-detail-hero-section";
-export { default as ServiceDetailOtherServicesSection } from "./service-detail-other-services-section";
-export { default as ServiceDetailWorkSection } from "./service-detail-work-section";

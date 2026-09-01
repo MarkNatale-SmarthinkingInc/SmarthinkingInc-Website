@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start --port 3005",
-    "lint": "next lint",
+    "lint": "biome lint src",
+    "format": "biome format --write src",
+    "check": "biome check src",
     "slicemachine": "start-slicemachine"
   },
   "dependencies": {

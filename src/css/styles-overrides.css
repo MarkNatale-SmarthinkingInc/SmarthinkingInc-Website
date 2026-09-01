@@ -99,3 +99,67 @@ figure {
   align-items: center;
   gap: 20px;
 }
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+GRID: full-width columns vs. the scrollbar
+
+Column widths are authored in vw, and vw is measured against the viewport
+*including* the scrollbar, while .grid-margin uses margins and so correctly
+shrinks to the content box. A full-width (18/18) column therefore comes out
+wider than its own parent by exactly the scrollbar width, and content overlaps
+the scrollbar. It is a fixed ~15px at every viewport width, so it is most
+visible when narrow. Real mobile browsers use overlay scrollbars and are
+unaffected; Windows desktop is affected everywhere.
+
+Resolving these against the parent instead fixes it. Scoped to .grid-margin so
+the fixed #menu overlay — whose full-width columns are deliberately sized off
+the viewport, not a padded parent — keeps its existing behaviour. Each rule is
+kept inside the breakpoint its class belongs to so it cannot override a wider
+st-xl-* width on desktop.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.grid-margin .st-xl-18 {
+  width: 100%;
+  margin-right: 0;
+}
+@media only screen and (max-width: 1280px) {
+  .grid-margin .st-lg-18 {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .grid-margin .st-sm-18 {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .grid-margin .st-xs-18 {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BODY WIDTH above the mobile breakpoint
+
+styles.css sets `body { width: 100vw }`. 100vw counts the scrollbar, so body is
+scrollbar-width wider than the viewport and that sliver shows body's white
+background beside any full-bleed coloured section.
+
+Only applied above 768px on purpose. The mobile block in styles.css (line 4626)
+also sets `body { overflow-y: scroll }`, which forces a body scrollbar that is
+invisible only because `width: 100vw` parks it off-screen — correcting the width
+there surfaces it as a literal second scrollbar. That pair needs deciding
+together; above 768px there is no forced scrollbar, so the width fix stands
+alone safely.
+
+Visibility depends on whether the browser gives the scrollbar layout space:
+macOS Chrome/Firefox use overlay scrollbars and never showed the strip, Safari
+does show it. Windows reserves scrollbar space in every browser.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+@media only screen and (min-width: 769px) {
+  body {
+    width: 100%;
+  }
+}

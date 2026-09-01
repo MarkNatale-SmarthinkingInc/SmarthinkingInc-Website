@@ -8,6 +8,15 @@
 }
 
 @font-face {
+    font-family: 'Epica Pro';
+    src: url('EpicaPro-Bold.woff2') format('woff2'),
+        url('EpicaPro-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
     font-family: 'Epica Sans Pro';
     src: url('EpicaSansPro-Light.woff2') format('woff2'),
         url('EpicaSansPro-Light.woff') format('woff');

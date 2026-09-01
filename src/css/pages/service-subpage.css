@@ -1,0 +1,1033 @@
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+SERVICE SUBPAGES
+Scoped to .service-subpage — shared by Brand Foundation, Brand Activation and
+Marketing Orchestration. Page-specific rules sit under the page's own class.
+
+Comp is the same 1440 artboard at 2.778x as the main services page. Type snaps
+to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*  HERO  — same anatomy as .services #hero, without the subtitle block.       */
+.service-subpage #hero {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.service-subpage #hero figure {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.service-subpage #hero .hero-captions {
+  padding-top: 8.33328vw;
+  padding-bottom: 4.16664vw;
+}
+.service-subpage #hero .hero-img-title {
+  margin-top: 19.44432vw;
+  padding-top: 1.38888vw;
+  padding-bottom: 11.11104vw;
+  border-top: 1px solid #fff;
+  position: relative;
+}
+.service-subpage #hero .hero-img-title .v-line {
+  position: absolute;
+  top: -19.44432vw;
+  left: 50%;
+  width: 1px;
+  height: 19.44432vw;
+  background-color: #fff;
+}
+.service-subpage #hero a {
+  color: #fff;
+}
+.service-subpage .subpage-hero-title {
+  line-height: 1.05em;
+}
+.service-subpage .hero-services {
+  /* .caption is line-height 1 — matches the comp, no override needed. */
+  list-style: none;
+}
+
+/*  SHARED SECTION FURNITURE                                                   */
+/* 30px at the 1440 comp, expressed as a vw step so it rides the type scale
+   like the .f-* classes do (2.0833vw x 1440 = 30px). The element no longer
+   carries .f-18 — its size lives here. */
+.service-subpage .subpage-eyebrow {
+  font-size: clamp(22px, 2.0833vw, 38px);
+  line-height: 1.333em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+/* Diamond row under the eyebrow — see src/components/services/subpage-dot-nav.tsx.
+   Construction is lifted from #testimonial-box .t-control ("Word On The
+   Street"): a diamond SVG drawn at 30% of a square box, brown by default,
+   swapped to red and scaled 1.6 for the current page, on the same 1000ms
+   easing. Only the scale differs — the comp draws these at roughly a 9.5px
+   diamond against that section's 18px, so the box is 32px rather than 60px.
+   The box is much larger than the diamond on purpose: it is the click target. */
+.service-subpage .dot-rule {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin: 1.38888vw 0 3vw;
+}
+.service-subpage .dot-rule a {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: url("/img/svg/icon-diamond-brown.svg") no-repeat 50% 50%;
+  background-size: 30%;
+  transition: transform 1000ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+/* Not on .active — that already sits at 1.6 and must not shrink on hover. */
+.service-subpage .dot-rule a:not(.active):hover,
+.service-subpage .dot-rule a:not(.active):focus-visible {
+  transform: scale(1.35);
+}
+.service-subpage .dot-rule a.active {
+  background-image: url("/img/svg/icon-diamond-red.svg");
+  transform: scale(1.6);
+}
+/* Each dot needs an accessible name, but the label must not show. */
+.service-subpage .dot-rule a span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* Comp sets this copy at 36/58 — a 1.611 ratio, ported as a ratio so it holds
+   as .f-40 scales. Our type is 40px here against the comp's 36px; the leading
+   was the ask, so the size is left alone. */
+.service-subpage .subpage-lead {
+  line-height: 1.611em;
+}
+.service-subpage .subpage-lead strong {
+  font-weight: 600;
+}
+
+.service-subpage #bf-intro,
+.service-subpage #ba-intro,
+.service-subpage #mo-intro {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+
+/*  ELEMENTAL QUESTIONS (dark)                                                 */
+.service-subpage #bf-questions {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+.service-subpage .questions-mark {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5.55552vw;
+}
+.service-subpage .questions-mark img {
+  display: block;
+  width: 13.88888vw;
+  max-width: 100%;
+  height: auto;
+}
+/* The rows keep their natural width; the block centres as a group. */
+.service-subpage .question-list {
+  list-style: none;
+  width: fit-content;
+  margin: 0 auto;
+}
+.service-subpage .question-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 5.55552vw;
+  margin-bottom: 2.77776vw;
+}
+/* Both the numeral and the question are Epica Pro in the comp; without this
+   they inherit the body sans. */
+.service-subpage .question-number,
+.service-subpage .question-text {
+  font-family: "Epica Pro";
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1em;
+}
+/* Outlined numerals: transparent fill with an orange stroke. */
+.service-subpage .question-number {
+  flex: 0 0 auto;
+  min-width: 2.2em;
+  color: transparent;
+  -webkit-text-stroke: 1px #f26722;
+}
+/* The comp leaves a clear gap between the lead word and the rest. */
+.service-subpage .question-text .f-40 {
+  margin-left: 0.15em;
+}
+.service-subpage .questions-note {
+  margin-top: 5.55552vw;
+  text-align: center;
+}
+
+/* The generative mark above the WHY title. Without an explicit width the SVG
+   stretches to the column — the global img rule sizes it — which is what blew
+   the dark band up. 13.88888vw matches .questions-mark on Brand Foundation. */
+.service-subpage .subpage-mark {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5.55552vw;
+}
+.service-subpage .subpage-mark img {
+  display: block;
+  width: 13.88888vw;
+  max-width: 100%;
+  height: auto;
+}
+
+/*  WHY <SERVICE> — dark band, shared by all three subpages                    */
+.service-subpage #bf-why,
+.service-subpage #ba-why,
+.service-subpage #mo-why {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+.service-subpage .why-title {
+  line-height: 1em;
+  margin-bottom: 4.16664vw;
+}
+/* .BgDark only sets a background colour, so headings inside it keep the
+   inherited near-black and vanish. Brand Foundation's WHY band is on white and
+   never hit this; Activation and Orchestration set theirs on the dark ground.
+   The .Brown span inside keeps its own colour. */
+.service-subpage .BgDark .why-title {
+  color: #fff;
+}
+
+/*  DELIVERABLES                                                               */
+.service-subpage #bf-deliverables,
+.service-subpage #ba-deliverables,
+.service-subpage #mo-deliverables {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+.service-subpage .deliverables-title {
+  line-height: 1em;
+  margin-bottom: 5.55552vw;
+}
+.service-subpage .deliverables-list {
+  border-top: 1px solid #1a1417;
+}
+.service-subpage .deliverable-row {
+  border-bottom: 1px solid #1a1417;
+  padding: 1.04166vw 0;
+}
+/* The comp holds these rows to roughly the width of the DELIVERABLES title
+   instead of letting them run the full grid, so the description's right edge
+   lands just past the title's rather than out at the page margin.
+
+   The clamp mirrors .f-100's own clamp(60px, 6.9444vw, 140px) multiplied by 7,
+   so the block tracks the title at every viewport instead of drifting apart
+   once the title hits its 140px cap. The 7 comes from measurement: the title's
+   glyphs run 6.78x their font-size, so 7 puts the rows just beyond it. */
+.service-subpage .deliverable-row > .grid-margin {
+  max-width: clamp(420px, 48.61vw, 980px);
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Term and description sit on one line, optically centred against each other,
+   rather than both aligning to the top of a two-line description. */
+.service-subpage .deliverable-row .st-grid {
+  align-items: center;
+  justify-content: space-between;
+}
+/* The 6/10 column split pinned the two to opposite ends of the full grid and
+   opened the gap the comp closes. Inside the narrower block they take their
+   natural widths instead, held apart by space-between. */
+.service-subpage .deliverable-row .st-grid > div:first-child,
+.service-subpage .deliverable-row .st-grid > div:last-child {
+  width: auto;
+  margin-left: 0;
+  margin-right: 0;
+}
+/* Keeps a long description off the term when the row runs full. */
+.service-subpage .deliverable-row .st-grid > div:last-child {
+  padding-left: 1.38888vw;
+}
+.service-subpage .deliverable-term {
+  font-weight: 600; /* comp sets a bold serif — see the Epica Pro Bold note */
+}
+.service-subpage .deliverable-description {
+  text-align: right;
+}
+
+/*  PROOF — outlined on flat black, no string canvas on these pages.          */
+.service-subpage #bf-proof,
+.service-subpage #ba-proof,
+.service-subpage #mo-proof {
+  background-color: #000;
+  padding: 5.55552vw 0;
+}
+.service-subpage .bf-proof-title,
+.service-subpage .ba-proof-title,
+.service-subpage .mo-proof-title {
+  font-size: 29.75vw;
+  line-height: 1em;
+  /* .outline-white fills the glyphs with #1A1417, which reads as grey on this
+     band's pure black. Matching the ground leaves a true hollow outline. */
+  color: #000;
+  /* Same optical centring as the services PROOF: Epica Pro leaves a 0.25em
+     descender well that these caps never use. */
+  position: relative;
+  top: 0.084em;
+}
+
+/*  WORK COLLAGE                                                               */
+.service-subpage #bf-work {
+  padding-bottom: 0;
+}
+.service-subpage .bf-work-wide img,
+.service-subpage .bf-work-band img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* Parallax frames clip, and the image is oversized so there is travel for the
+   scrub in public/js/modules/collage.js to move through. */
+.service-subpage .bf-parallax {
+  overflow: hidden;
+}
+.service-subpage .bf-work-wide.bf-parallax {
+  aspect-ratio: 2400 / 1552;
+}
+.service-subpage .bf-work-band.bf-parallax {
+  aspect-ratio: 2400 / 1182;
+}
+.service-subpage .bf-parallax img {
+  width: 100%;
+  height: 114%;
+  object-fit: cover;
+}
+/* Reveal start state, in case the module has not run yet. */
+.service-subpage .bf-reveal {
+  will-change: transform, opacity;
+}
+/* The brand sketch rides up over the render above it and carries a thick white
+   mat, which is what separates it from the photograph behind. Width matches the
+   two-column grid below so its edges line up with the items beneath it. */
+/* Sized so the collage below overhangs it on both sides — the comp uses that
+   overlap to break the block out of a plain stack. Measured off the comp: the
+   sheet's paper spans 20.68vw to 84.33vw (63.65vw wide) while the collage runs
+   12.5vw to 93vw, giving 8.18vw of overhang on the left and 8.67vw on the
+   right. Values here are the border box, so they carry the 2.4vw mat either
+   side: 20.68 - 2.4 = 18.28vw left, 63.65 + 4.8 = 68.45vw wide.
+
+   Not centred, deliberately — the comp sits this block about 2.5vw right of
+   the viewport centre, and the collage is offset to match. */
+.service-subpage .bf-work-sketch {
+  width: 68.45vw;
+  max-width: 100%;
+  margin: -8.33328vw 0 0 18.28vw;
+  position: relative;
+  /* Keeps the sheet (and its white mat) painting over the collage tiles that
+     now tuck up underneath it. Positioned elements already paint above static
+     siblings, so this is belt-and-braces against a later position change. */
+  z-index: 2;
+  border: 2.4vw solid #fff;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.service-subpage .bf-work-sketch img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* Collage grid. Every number below is measured off the comp (4000px artboard,
+   so comp px / 40 = vw) rather than eyeballed:
+
+     tile       left     width    aspect (w/h)
+     paddles    16.6vw   31.4vw   0.872
+     magazine   12.5vw   35.5vw   1.219
+     brochure   50.0vw   43.0vw   1.662
+     folded     50.0vw   36.5vw   0.827
+
+   Those give column heights of 65.8vw and 70.9vw, matching the comp's 66 and
+   70.9 — the check that the readings are self-consistent.
+
+   The gaps are the point of the exercise: the comp packs these at 0.9vw
+   vertically and 2vw between columns. The old 2x2 grid used 2.78vw plus a
+   5.56vw offset, which is where the whitespace came from. */
+.service-subpage .bf-work-grid {
+  display: flex;
+  align-items: flex-start;
+  /* 12.5vw is the magazine's left edge — the leftmost thing in the collage.
+     Deliberately not .grid-margin: the comp hangs this block off its own
+     measurements, not the page gutter. */
+  padding-left: 12.5vw;
+  gap: 2vw;
+  /* Negative, so the tile tops slide up behind the brand sheet and read as
+     continuing underneath it. Measured against the sheet's visible artwork
+     edge, not the element box: the sheet carries a 2.4vw white mat, and an
+     overlap smaller than that would hide the tiles under white-on-white and
+     produce no tucked-under effect at all. -1vw puts ~20px of tile behind the
+     artwork at 1440 and scales with the rest of the page. */
+  margin-top: -1vw;
+  margin-bottom: 5.55552vw;
+}
+.service-subpage .bf-work-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9vw;
+}
+/* Column boxes are as wide as their widest tile; narrower tiles inset from
+   there, which is how the left column gets its ragged left edge. */
+.service-subpage .bf-work-col:first-child {
+  width: 35.5vw;
+}
+.service-subpage .bf-work-col:last-child {
+  width: 43vw;
+}
+.service-subpage .bf-work-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* The comp crops all four of these — the three mockups ship as identical
+     2400x1600 exports but appear at three different aspect ratios. Cover
+     against the ratios below reproduces those crops without re-exporting. */
+  object-fit: cover;
+  object-position: center;
+}
+.service-subpage .bf-work-paddles {
+  width: 31.4vw;
+  margin-left: 4.1vw;
+  aspect-ratio: 0.872;
+}
+.service-subpage .bf-work-magazine {
+  width: 35.5vw;
+  aspect-ratio: 1.219;
+}
+.service-subpage .bf-work-brochure {
+  width: 43vw;
+  aspect-ratio: 1.662;
+}
+.service-subpage .bf-work-folded {
+  width: 36.5vw;
+  aspect-ratio: 0.827;
+}
+
+/*  WHAT'S NEXT                                                                */
+.service-subpage #bf-next {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+.service-subpage .whats-next-title {
+  line-height: 1em;
+  margin-bottom: 2.77776vw;
+}
+.service-subpage .whats-next-copy {
+  max-width: 34em;
+}
+/* The two cards as one centred row. They used to be st-xl-8 columns each
+   carrying st-xl-os-1, which spent 1+8+1+8 = all 18 columns: a gutter on the
+   left, none on the right, and the second card 5px past its container. They now
+   share the 16-column block the copy above uses, so the pair is centred with a
+   matching margin either side.
+
+   flex: 1 1 0 (not 1 1 auto) makes the two exactly equal regardless of how much
+   copy each carries. The gap is 5% of the block, measured off the comp — that
+   ratio is independent of whatever scale the screenshot was captured at. */
+.service-subpage .next-cards {
+  display: flex;
+  gap: 4.25vw;
+}
+.service-subpage .next-cards .next-card {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.service-subpage .next-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #000;
+  border-radius: 16px;
+  padding: 2.77776vw;
+  min-height: 20.83332vw;
+  text-decoration: none;
+  /* Barely-there lift from the comp: a wide, low-opacity blur rather than a
+     visible drop, so on .BgFade it reads as the card sitting just off the
+     ground. Tinted with the ink colour instead of pure black so it stays warm
+     against the tinted band. */
+  box-shadow: 0 6px 24px rgba(26, 20, 23, 0.1);
+  transition:
+    transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+/* The card already rises 4px on hover; the shadow deepens with it so the lift
+   reads as movement rather than the card sliding under a fixed shadow. */
+.service-subpage .next-card:hover,
+.service-subpage .next-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(26, 20, 23, 0.16);
+}
+.service-subpage .next-card-mark {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.77776vw;
+}
+.service-subpage .next-card-mark img {
+  display: block;
+  width: 11.11104vw;
+  max-width: 100%;
+  height: auto;
+}
+.service-subpage .next-card-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.38888vw;
+}
+/* Serif, per the comp. The element carries .f-40 but not .Title, so it was
+   inheriting the Epica Sans Pro body face. */
+.service-subpage .next-card-title {
+  font-family: "Epica Pro";
+  line-height: 1.1em;
+}
+.service-subpage .next-card-arrow svg {
+  width: 1.6em;
+  height: auto;
+}
+
+/*  RESPONSIVE                                                                 */
+@media only screen and (max-width: 1024px) {
+  /* Same vw/scrollbar guard the services page needs: a full-width column is
+     95.83334vw of the viewport, which overflows its .grid-margin parent once a
+     scrollbar takes layout space. .st-grid is flex-wrap: nowrap by default, so
+     the rows have to be told to wrap or two 100% columns sit side by side. */
+  .service-subpage .st-grid {
+    flex-wrap: wrap;
+  }
+  .service-subpage .st-grid > div {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  /* Below 1024 the two-column collage stacks. The comp's offsets and crops are
+     a desktop composition, so drop back to one column at the page gutter and
+     let each image keep its natural aspect ratio. */
+  .service-subpage .bf-work-grid {
+    flex-direction: column;
+    padding-left: 0;
+    margin-left: 2.08333vw;
+    margin-right: 2.08333vw;
+    gap: 5.55552vw;
+  }
+  .service-subpage .bf-work-col,
+  .service-subpage .bf-work-col:first-child,
+  .service-subpage .bf-work-col:last-child {
+    width: 100%;
+    gap: 5.55552vw;
+  }
+  .service-subpage .bf-work-paddles,
+  .service-subpage .bf-work-magazine,
+  .service-subpage .bf-work-brochure,
+  .service-subpage .bf-work-folded {
+    width: 100%;
+    margin-left: 0;
+    aspect-ratio: auto;
+  }
+  .service-subpage .bf-work-item img {
+    height: auto;
+    object-fit: fill;
+  }
+  /* The desktop rule offsets the sheet right to set up the collage overhang;
+     stacked, it just centres. */
+  .service-subpage .bf-work-sketch {
+    width: 86%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* Stack the pair once there is no room for two across. */
+  .service-subpage .next-cards {
+    flex-wrap: wrap;
+    gap: 5.55552vw;
+  }
+  .service-subpage .next-cards .next-card {
+    flex: 1 1 100%;
+  }
+  .service-subpage .next-card {
+    min-height: 0;
+    padding: 5.55552vw;
+  }
+  .service-subpage .next-card-mark img {
+    width: 30vw;
+  }
+  .service-subpage .question-list li {
+    gap: 4.16664vw;
+  }
+  /* Deliverables are the exception to the stacking rule above: on tablet the
+     term and description stay side by side and vertically centred. Letting
+     them wrap produced a staircase — each description dropping below its term. */
+  .service-subpage .deliverable-row .st-grid {
+    flex-wrap: nowrap;
+  }
+  /* The title-width constraint is a desktop composition — once the columns go
+     percentage-based there is not the room for it. */
+  .service-subpage .deliverable-row > .grid-margin {
+    max-width: none;
+    margin-left: 2.08333vw;
+    margin-right: 2.08333vw;
+  }
+  .service-subpage .deliverable-row .st-grid > div:first-child {
+    width: 40%;
+  }
+  .service-subpage .deliverable-row .st-grid > div:last-child {
+    width: 60%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .service-subpage #hero .hero-captions .st-grid > div:not(.center) {
+    display: none;
+  }
+  .service-subpage #hero .hero-captions .center {
+    width: 100%;
+  }
+  /* Below tablet there is not enough room for two columns — stack them. */
+  .service-subpage .deliverable-row .st-grid {
+    flex-wrap: wrap;
+  }
+  .service-subpage .deliverable-row .st-grid > div:first-child,
+  .service-subpage .deliverable-row .st-grid > div:last-child {
+    width: 100%;
+  }
+  .service-subpage .deliverable-description {
+    text-align: left;
+    margin-top: 0.35em;
+  }
+  .service-subpage .bf-work-sketch {
+    width: 100%;
+    margin-top: -4.16664vw;
+  }
+  .service-subpage .next-card-mark img {
+    width: 44vw;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BRAND ACTIVATION
+   Sections shared with Brand Foundation (intro, deliverables, proof, next
+   cards) inherit the rules above; only what differs is set here.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* The HOW heading sits closer to its explainer than the WHY bands do — half
+   the shared .why-title gap. Scoped to the how sections so the WHY bands on
+   all three pages keep their original spacing. */
+.service-subpage #ba-how .why-title,
+.service-subpage #mo-how .why-title {
+  margin-bottom: 2.08332vw;
+}
+
+/*  HOW THIS WORKS + circle podium                                           */
+/* No overflow:hidden here. The circle stage sits inside this section, and
+   clipping an ancestor of a ScrollTrigger-pinned element is what cut the
+   circle in half. Clipping is scoped to the strings band below instead. */
+.service-subpage #ba-how {
+  position: relative;
+  padding-top: 8.33328vw;
+  /* No bottom padding. The stage is pinned, and ScrollTrigger's pin-spacer
+     already reserves the full pin distance (1080px at 1440x900) beneath it —
+     which covers the medallion's overhang many times over. Adding padding here
+     stacks on top of that reservation and opens a visible gap under the
+     circle. */
+}
+/* Strings band — its own section between the circle and DELIVERABLES. It used
+   to be absolutely positioned inside #ba-how, behind the circle, but the stage
+   starts translated down and rises as it animates, so the strings showed
+   around its edges before the animation ran. */
+.service-subpage #ba-strings {
+  position: relative;
+  width: 100%;
+  height: 21vw;
+  overflow: hidden;
+}
+.service-subpage #ba-strings .canvas-wrap,
+.service-subpage #ba-strings canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Circle podium — values carried over from `.services-old #circle-stage` in
+   styles.css. Duplicated rather than widening that selector so the old page
+   stays untouched until sign-off. */
+.service-subpage #circle-stage {
+  position: relative;
+  z-index: 2;
+  line-height: 0;
+  width: 100%;
+  height: 50vw;
+}
+.service-subpage #circle-stage .stage-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.service-subpage #circle-stage .circle-wrap {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.service-subpage #circle-stage .circle-wrap img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.service-subpage #circle-stage .circle-shape {
+  width: 100%;
+  height: auto;
+}
+.service-subpage #circle-stage .circle-target {
+  z-index: 5;
+  position: absolute;
+  width: 33.333vw;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+.service-subpage #circle-stage .circle-target img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+  z-index: 1;
+}
+.service-subpage #circle-stage .circle-target .circle-rotate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  z-index: 2;
+}
+
+/*  WORK COLLAGE                                                             */
+/* Flush to the PROOF band above, matching #bf-work and #mo-work — this page
+   was the only one still holding the collage off with a top pad. */
+.service-subpage #ba-work {
+  padding-top: 0;
+}
+.service-subpage .ba-work-band {
+  width: 100%;
+  margin-bottom: 0.9vw;
+}
+.service-subpage .ba-work-band img,
+.service-subpage .ba-work-band video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* The four-tile block. Deliberately NOT a grid: the two columns pack to the
+   same total height but split it differently, and the signage tile overlaps
+   the video horizontally by 1.3vw — a grid cell cannot do that. Each tile is
+   placed absolutely from comp measurements (4000px artboard, px/40 = vw):
+
+     tile      left    width    top     height   comp a/r
+     signage   10.12   46.17    0       59.00    0.783
+     interior   0      54.25    60.25   33.00    1.644
+     portrait  57.38   32.38    0       51.00    0.635
+     video     55.00   45.00    52.00   41.25    native
+
+   Both columns therefore bottom out at 93.25vw — tops and bottoms flush.
+
+   The comp's columns are 98.50vw. Ours are 5.25vw shorter because the video
+   is shown WHOLE at its own 1200/1100 aspect rather than cropped to the comp's
+   box; the three stills absorb that difference. */
+.service-subpage .ba-work-grid {
+  position: relative;
+  width: 100%;
+  height: 93.25vw;
+}
+.service-subpage .ba-work-item {
+  position: absolute;
+  overflow: hidden;
+}
+/* Stills fill their box by cover — the comp crops all three. */
+.service-subpage .ba-work-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.service-subpage .ba-work-signage {
+  left: 10.12vw;
+  width: 46.17vw;
+  top: 0;
+  height: 59vw;
+}
+.service-subpage .ba-work-interior {
+  left: 0;
+  width: 54.25vw;
+  top: 60.25vw;
+  height: 33vw;
+}
+.service-subpage .ba-work-portrait {
+  left: 57.38vw;
+  width: 32.38vw;
+  top: 0;
+  height: 51vw;
+}
+/* No height: the video sizes itself from its own aspect ratio, uncropped.
+   Anchored by `right: 0` rather than `left: 55vw`, because 55vw + 45vw is
+   exactly 100vw and vw includes the scrollbar gutter — that overflowed the
+   page by the scrollbar's width. Anchoring right keeps the width at 45vw, so
+   the derived height stays 41.25vw and the columns stay flush. */
+.service-subpage .ba-work-film {
+  right: 0;
+  width: 45vw;
+  top: 52vw;
+}
+.service-subpage .ba-work-film video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.service-subpage .ba-reveal {
+  will-change: transform, opacity;
+}
+
+/*  TAKE NOTE                                                                */
+/* The comp samples this band at pure #000, not .BgDark's #1A1417. It has to
+   match, because the labels below carry the same black as a solid box — that
+   is what makes them read as occluding the triangle rather than as visible
+   rectangles. */
+/*  NEXT CARDS — white band between the black TAKE NOTE band and the CTA.
+    Comp: band 28190..29460 (31.75vw), cards 28300..29360, leaving 2.75vw above
+    and 2.50vw below. Both round to the site's 2.77776vw spacing unit. */
+.service-subpage #ba-next {
+  background-color: #fff;
+  padding-top: 2.77776vw;
+  padding-bottom: 2.77776vw;
+}
+
+.service-subpage #ba-note {
+  background-color: #000;
+  padding-top: 8.33328vw;
+  padding-bottom: 5.55552vw;
+}
+.service-subpage .ba-note-title {
+  line-height: 1em;
+  margin-bottom: 2.77776vw;
+  color: #fff;
+}
+/* TAKE NOTE diagram. The box is the whole composition — the mark plus the three
+   labels, which reach wider than the mark itself. Everything inside is a
+   percentage of that box, so the group scales as one unit.
+
+   Measured off the comp (4000px artboard): composition 2323x1629 px, mark
+   1781 px wide at its own 1571/1437 aspect, centred within it. */
+.service-subpage .ba-note-diagram {
+  position: relative;
+  width: 58.08vw;
+  aspect-ratio: 2323 / 1629;
+  margin: 5.55552vw auto 0;
+}
+.service-subpage .ba-note-mark {
+  position: absolute;
+  top: 0;
+  left: 11.7%;
+  width: 76.7%;
+}
+.service-subpage .ba-note-mark img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.service-subpage .ba-note-label {
+  position: absolute;
+  /* Solid black box knocks the triangle's strokes out from behind the text.
+     Same #000 as the band, so only the interrupted lines give it away. */
+  background-color: #000;
+  padding: 0.1em 0.35em;
+  /* Display serif — the labels are Epica Pro in the comp, not the body sans.
+     Light (300) is the only Epica Pro weight the site ships. */
+  font-family: "Epica Pro";
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.2em;
+  white-space: nowrap;
+}
+/* Each label anchors on the edge its text aligns to, so the ragged edge falls
+   away from the mark: centred at the apex, right-aligned on the left point,
+   left-aligned on the right point. */
+.service-subpage .ba-note-label-top {
+  left: 42.8%;
+  top: 18.5%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.service-subpage .ba-note-label-left {
+  left: 29.7%;
+  top: 72.1%;
+  transform: translateX(-100%);
+  text-align: right;
+}
+.service-subpage .ba-note-label-right {
+  left: 62.4%;
+  top: 72.1%;
+  text-align: left;
+}
+
+@media only screen and (max-width: 1024px) {
+  /* The interlocking block is a desktop composition; stacked, each tile keeps
+     its natural aspect at full width. */
+  .service-subpage .ba-work-grid {
+    position: static;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5.55552vw;
+  }
+  .service-subpage .ba-work-item {
+    position: static;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: auto;
+  }
+  .service-subpage .ba-work-item img {
+    height: auto;
+    object-fit: fill;
+  }
+  .service-subpage #ba-strings {
+    height: 30vw;
+  }
+  .service-subpage .ba-note-diagram {
+    width: 92%;
+  }
+  .service-subpage .ba-note-label {
+    /* Labels would collide at this width if they stayed on one line. */
+    white-space: normal;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   MARKETING ORCHESTRATION
+   Reuses the shared furniture; only the differences are set here.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Only #mo-how needs its own rule; intro/why/deliverables are covered by the
+   shared selectors above. */
+.service-subpage #mo-how {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+/* This page runs two body paragraphs in the why band where the others run one. */
+.service-subpage .mo-why-second {
+  margin-top: 2.22221vw;
+}
+.service-subpage .mo-deliverables-lead {
+  margin-bottom: 4.16664vw;
+}
+
+/*  WORK COLLAGE — measured off the comp (4000px artboard, px/40 = vw).
+
+    Only the opening plan and closing report bleed full width; the three pieces
+    between step inward at different insets, which is what gives the block its
+    rhythm. Before this they were all edge to edge.
+
+      tile      left     width    height   comp a/r   source a/r
+      plan       0      100.00    64.00     1.562      1.500
+      laptop    11.75    74.75    46.25     1.616      1.488
+      booklet    3.50    93.00    43.75     2.126      1.500
+      film      15.12    30.12    36.25     0.831      0.527
+      phones    46.12    38.62    36.25     1.066      1.500
+      report     0      100.00    64.00     1.562      1.500
+
+    Widths use % / vw under 100 rather than a 100vw figure, so nothing is sized
+    against the scrollbar gutter. */
+.service-subpage #mo-work {
+  padding-top: 0;
+}
+.service-subpage .mo-work-band {
+  margin-bottom: 1.5vw;
+}
+.service-subpage .mo-work-band img,
+.service-subpage .mo-work-item img,
+.service-subpage .mo-work-item video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* The comp crops every one of these; cover reproduces that without
+     re-exporting the files. */
+  object-fit: cover;
+  object-position: center;
+}
+.service-subpage .mo-work-plan,
+.service-subpage .mo-work-report {
+  width: 100%;
+  aspect-ratio: 100 / 64;
+}
+.service-subpage .mo-work-laptop {
+  width: 74.75vw;
+  margin-left: 11.75vw;
+  aspect-ratio: 74.75 / 46.25;
+}
+.service-subpage .mo-work-booklet {
+  width: 93vw;
+  margin-left: 3.5vw;
+  aspect-ratio: 93 / 43.75;
+}
+/* The paired row sits inset as a unit; the two tiles keep their own widths. */
+.service-subpage .mo-work-grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.87vw;
+  margin-left: 15.12vw;
+  margin-bottom: 1.5vw;
+}
+.service-subpage .mo-work-film {
+  width: 30.12vw;
+  aspect-ratio: 30.12 / 36.25;
+  overflow: hidden;
+}
+.service-subpage .mo-work-phones {
+  width: 38.62vw;
+  aspect-ratio: 38.62 / 36.25;
+  overflow: hidden;
+}
+.service-subpage .mo-reveal {
+  will-change: transform, opacity;
+}
+
+/*  NEXT CARDS — light ground on this page                                   */
+.service-subpage #mo-next {
+  padding-top: 8.33328vw;
+  padding-bottom: 8.33328vw;
+}
+
+@media only screen and (max-width: 1024px) {
+  /* The insets are a desktop composition; stacked, everything runs full width
+     at its natural aspect. */
+  .service-subpage .mo-work-grid {
+    flex-direction: column;
+    margin-left: 0;
+    gap: 5.55552vw;
+  }
+  .service-subpage .mo-work-laptop,
+  .service-subpage .mo-work-booklet,
+  .service-subpage .mo-work-film,
+  .service-subpage .mo-work-phones {
+    width: 100%;
+    margin-left: 0;
+    aspect-ratio: auto;
+  }
+  .service-subpage .mo-work-band img,
+  .service-subpage .mo-work-item img,
+  .service-subpage .mo-work-item video {
+    height: auto;
+    object-fit: fill;
+  }
+}
