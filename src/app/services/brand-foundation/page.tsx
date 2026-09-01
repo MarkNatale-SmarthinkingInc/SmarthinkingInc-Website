@@ -1,4 +1,5 @@
 import FooterSection from "@/components/global/footer-section";
+import CtaSection from "@/components/global/cta-section";
 import {
   BrandFoundationDeliverablesSection,
   BrandFoundationIntroSection,
@@ -8,7 +9,7 @@ import {
   BrandFoundationWhySection,
   BrandFoundationWorkSection,
 } from "@/components/brand-foundation";
-import { CtaSection, SubpageHeroSection } from "@/components/services";
+import { SubpageHeroSection } from "@/components/services";
 import type { Metadata } from "next";
 
 import "@/css/components/cta.css";

@@ -1,16 +1,23 @@
 /*  CTA BAR  ──────────────────────────────────────────────────────────────────
+    Shared by /services and the three service subpages — the component lives at
+    src/components/global/cta-section.tsx. Keyed off .cta-bar rather than a page
+    id so any page can drop the section in.
+
     Comp (1440): copy 40.5px → .f-40 on ~1.55em leading; band 363px tall, which
     the 8.33328vw padding lands on. The button is the site's a.button with its
     arrow, scaled up from the standard 60px to the comp's 90px.               */
-#services-cta {
+.cta-bar {
   padding-top: 8.33328vw;
   padding-bottom: 8.33328vw;
 }
 .cta-row {
   align-items: center;
 }
+/* The revised comp sets these two lines close together — measured off the
+   design at roughly 50px of leading on 40px type. The old 1.55em was tuned
+   when this copy was still the sans face and read far looser. */
 .cta-copy {
-  line-height: 1.55em;
+  line-height: 1.25em;
 }
 /* a.button hardcodes font-size: 1em and justify-content: space-between, which
    leaves a 16px label pinned to the right edge. The comp sets it at ~38px with
@@ -37,7 +44,7 @@ a.button.cta-button .icon svg {
   }
 }
 @media only screen and (max-width: 768px) {
-  #services-cta > .grid-margin {
+  .cta-bar > .grid-margin {
     padding-left: 2.08333vw;
     padding-right: 2.08333vw;
   }

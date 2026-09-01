@@ -19,18 +19,33 @@ const ArrowIcon = () => (
   </svg>
 );
 
+/**
+ * The "Let's talk" bar. Shared verbatim by /services and the three service
+ * subpages — it lives in global/ rather than services/ because four pages
+ * import it and none of them owns it.
+ *
+ * Styled by .cta-bar in src/css/components/cta.css. The id is an anchor
+ * target only; nothing scripts against it.
+ */
 export default function CtaSection() {
   return (
-    <section id="services-cta" className="BgDark">
+    <section id="cta-bar" className="cta-bar BgDark">
       <div className="grid-margin">
         {/* Not .grid-middle — that class is declared twice in styles.css and
             also sets justify-content: center, which shifts the whole row. */}
         <div className="st-grid sm-wrap cta-row">
           <div className="st-xl-9 st-xl-os-1 st-sm-18 st-sm-os-0">
-            <p className="f-40 White cta-copy">
-              Let&rsquo;s talk about what you are building.
+            {/* Two-tone per the comp: the invitation in white, the call to
+                act in the brand orange. Colour sits on the spans so each line
+                carries its own, rather than one colour on the paragraph. */}
+            <p className="f-40 Title cta-copy">
+              <span className="White">
+                Let&rsquo;s talk about what you are building.
+              </span>
               <br />
-              Connect with Smarthinking Inc. today
+              <span className="Red">
+                Connect with Smarthinking Inc. today
+              </span>
             </p>
           </div>
           <div className="st-xl-6 st-xl-os-1 st-sm-18 st-sm-os-0 sm-top-2">

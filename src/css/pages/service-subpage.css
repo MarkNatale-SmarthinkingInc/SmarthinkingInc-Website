@@ -52,22 +52,62 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
 }
 
 /*  SHARED SECTION FURNITURE                                                   */
+/* 30px at the 1440 comp, expressed as a vw step so it rides the type scale
+   like the .f-* classes do (2.0833vw x 1440 = 30px). The element no longer
+   carries .f-18 — its size lives here. */
 .service-subpage .subpage-eyebrow {
-  font-weight: 600; /* comp sets a bold serif — see the Epica Pro Bold note */
+  font-size: clamp(22px, 2.0833vw, 38px);
+  line-height: 1.333em;
+  font-weight: 600;
   letter-spacing: 0.02em;
 }
-/* Three-dot divider under the eyebrow. */
+/* Diamond row under the eyebrow — see src/components/services/subpage-dot-nav.tsx.
+   Construction is lifted from #testimonial-box .t-control ("Word On The
+   Street"): a diamond SVG drawn at 30% of a square box, brown by default,
+   swapped to red and scaled 1.6 for the current page, on the same 1000ms
+   easing. Only the scale differs — the comp draws these at roughly a 9.5px
+   diamond against that section's 18px, so the box is 32px rather than 60px.
+   The box is much larger than the diamond on purpose: it is the click target. */
 .service-subpage .dot-rule {
   display: flex;
   justify-content: center;
-  gap: 1.38888vw;
-  margin: 1.38888vw 0 2.77776vw;
+  gap: 18px;
+  margin: 1.38888vw 0 3vw;
 }
-.service-subpage .dot-rule span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #1a1417;
+.service-subpage .dot-rule a {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: url("/img/svg/icon-diamond-brown.svg") no-repeat 50% 50%;
+  background-size: 30%;
+  transition: transform 1000ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+/* Not on .active — that already sits at 1.6 and must not shrink on hover. */
+.service-subpage .dot-rule a:not(.active):hover,
+.service-subpage .dot-rule a:not(.active):focus-visible {
+  transform: scale(1.35);
+}
+.service-subpage .dot-rule a.active {
+  background-image: url("/img/svg/icon-diamond-red.svg");
+  transform: scale(1.6);
+}
+/* Each dot needs an accessible name, but the label must not show. */
+.service-subpage .dot-rule a span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* Comp sets this copy at 36/58 — a 1.611 ratio, ported as a ratio so it holds
+   as .f-40 scales. Our type is 40px here against the comp's 36px; the leading
+   was the ask, so the size is left alone. */
+.service-subpage .subpage-lead {
+  line-height: 1.611em;
 }
 .service-subpage .subpage-lead strong {
   font-weight: 600;
@@ -185,10 +225,37 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
   border-bottom: 1px solid #1a1417;
   padding: 1.04166vw 0;
 }
+/* The comp holds these rows to roughly the width of the DELIVERABLES title
+   instead of letting them run the full grid, so the description's right edge
+   lands just past the title's rather than out at the page margin.
+
+   The clamp mirrors .f-100's own clamp(60px, 6.9444vw, 140px) multiplied by 7,
+   so the block tracks the title at every viewport instead of drifting apart
+   once the title hits its 140px cap. The 7 comes from measurement: the title's
+   glyphs run 6.78x their font-size, so 7 puts the rows just beyond it. */
+.service-subpage .deliverable-row > .grid-margin {
+  max-width: clamp(420px, 48.61vw, 980px);
+  margin-left: auto;
+  margin-right: auto;
+}
 /* Term and description sit on one line, optically centred against each other,
    rather than both aligning to the top of a two-line description. */
 .service-subpage .deliverable-row .st-grid {
   align-items: center;
+  justify-content: space-between;
+}
+/* The 6/10 column split pinned the two to opposite ends of the full grid and
+   opened the gap the comp closes. Inside the narrower block they take their
+   natural widths instead, held apart by space-between. */
+.service-subpage .deliverable-row .st-grid > div:first-child,
+.service-subpage .deliverable-row .st-grid > div:last-child {
+  width: auto;
+  margin-left: 0;
+  margin-right: 0;
+}
+/* Keeps a long description off the term when the row runs full. */
+.service-subpage .deliverable-row .st-grid > div:last-child {
+  padding-left: 1.38888vw;
 }
 .service-subpage .deliverable-term {
   font-weight: 600; /* comp sets a bold serif — see the Epica Pro Bold note */
@@ -363,20 +430,47 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
 .service-subpage .whats-next-copy {
   max-width: 34em;
 }
+/* The two cards as one centred row. They used to be st-xl-8 columns each
+   carrying st-xl-os-1, which spent 1+8+1+8 = all 18 columns: a gutter on the
+   left, none on the right, and the second card 5px past its container. They now
+   share the 16-column block the copy above uses, so the pair is centred with a
+   matching margin either side.
+
+   flex: 1 1 0 (not 1 1 auto) makes the two exactly equal regardless of how much
+   copy each carries. The gap is 5% of the block, measured off the comp — that
+   ratio is independent of whatever scale the screenshot was captured at. */
+.service-subpage .next-cards {
+  display: flex;
+  gap: 4.25vw;
+}
+.service-subpage .next-cards .next-card {
+  flex: 1 1 0;
+  min-width: 0;
+}
 .service-subpage .next-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #000;
-  border-radius: 5px;
+  border-radius: 16px;
   padding: 2.77776vw;
   min-height: 20.83332vw;
   text-decoration: none;
-  transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  /* Barely-there lift from the comp: a wide, low-opacity blur rather than a
+     visible drop, so on .BgFade it reads as the card sitting just off the
+     ground. Tinted with the ink colour instead of pure black so it stays warm
+     against the tinted band. */
+  box-shadow: 0 6px 24px rgba(26, 20, 23, 0.1);
+  transition:
+    transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+/* The card already rises 4px on hover; the shadow deepens with it so the lift
+   reads as movement rather than the card sliding under a fixed shadow. */
 .service-subpage .next-card:hover,
 .service-subpage .next-card:focus-visible {
   transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(26, 20, 23, 0.16);
 }
 .service-subpage .next-card-mark {
   display: flex;
@@ -395,7 +489,10 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
   justify-content: space-between;
   gap: 1.38888vw;
 }
+/* Serif, per the comp. The element carries .f-40 but not .Title, so it was
+   inheriting the Epica Sans Pro body face. */
 .service-subpage .next-card-title {
+  font-family: "Epica Pro";
   line-height: 1.1em;
 }
 .service-subpage .next-card-arrow svg {
@@ -452,6 +549,14 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
     margin-left: auto;
     margin-right: auto;
   }
+  /* Stack the pair once there is no room for two across. */
+  .service-subpage .next-cards {
+    flex-wrap: wrap;
+    gap: 5.55552vw;
+  }
+  .service-subpage .next-cards .next-card {
+    flex: 1 1 100%;
+  }
   .service-subpage .next-card {
     min-height: 0;
     padding: 5.55552vw;
@@ -467,6 +572,13 @@ to the existing .f-* scale: hero 105px → .f-100, intro lead 37px → .f-40.
      them wrap produced a staircase — each description dropping below its term. */
   .service-subpage .deliverable-row .st-grid {
     flex-wrap: nowrap;
+  }
+  /* The title-width constraint is a desktop composition — once the columns go
+     percentage-based there is not the room for it. */
+  .service-subpage .deliverable-row > .grid-margin {
+    max-width: none;
+    margin-left: 2.08333vw;
+    margin-right: 2.08333vw;
   }
   .service-subpage .deliverable-row .st-grid > div:first-child {
     width: 40%;

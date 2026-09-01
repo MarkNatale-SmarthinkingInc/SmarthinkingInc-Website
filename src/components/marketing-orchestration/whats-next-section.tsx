@@ -40,36 +40,43 @@ export default function WhatsNextSection() {
   return (
     <section id="mo-next" className="BgFade">
       <div className="grid-margin">
-        <div className="st-grid sm-wrap">
-          {NEXT.map((item) => (
-            <div
-              key={item.title.join(" ")}
-              className="st-xl-8 st-xl-os-1 st-sm-18 st-sm-os-0 sm-top-2"
-            >
-              <a href={item.href} className="next-card">
-                <figure className="next-card-mark">
-                  <img
-                    src={item.mark}
-                    alt=""
-                    width={578}
-                    height={578}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </figure>
-                <span className="next-card-foot">
-                  <span className="f-40 Red upper next-card-title">
-                    {item.title[0]}
-                    <br />
-                    {item.title[1]}
+        <div className="st-grid">
+          <div className="st-xl-16 st-xl-os-1 st-sm-18 st-sm-os-0">
+            {/* Both cards live in this one 16-column block so the pair sits
+                inside the same margins as the copy above. Previously each
+                card carried its own st-xl-os-1, which spent all 18 columns
+                and left the second card flush to the grid edge. */}
+            <div className="next-cards">
+              {NEXT.map((item) => (
+                <a
+                  key={item.title.join(" ")}
+                  href={item.href}
+                  className="next-card"
+                >
+                  <figure className="next-card-mark">
+                    <img
+                      src={item.mark}
+                      alt=""
+                      width={578}
+                      height={578}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </figure>
+                  <span className="next-card-foot">
+                    <span className="f-40 Red upper next-card-title">
+                      {item.title[0]}
+                      <br />
+                      {item.title[1]}
+                    </span>
+                    <span className="next-card-arrow">
+                      <ArrowIcon />
+                    </span>
                   </span>
-                  <span className="next-card-arrow">
-                    <ArrowIcon />
-                  </span>
-                </span>
-              </a>
+                </a>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

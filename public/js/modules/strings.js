@@ -48,7 +48,11 @@ export function strings() {
           cssH = Math.ceil(rect.height);
           numStrings = 25;
         } else if (canvas.classList.contains("gridFooter")) {
-          cssH = Math.ceil(window.innerHeight / 2);
+          // Sized to the band, not the viewport. The band is now a fixed vw
+          // height (see #footer .footer-bottom), so innerHeight/2 would leave
+          // the strings short of the bottom on short windows and overflowing
+          // on tall ones.
+          cssH = Math.ceil(rect.height);
           numStrings = 80;
         } else if (canvas.classList.contains("grid80")) {
           cssH = Math.ceil(window.innerHeight);

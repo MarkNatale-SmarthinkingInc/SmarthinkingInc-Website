@@ -1,7 +1,7 @@
 import FooterSection from "@/components/global/footer-section";
+import CtaSection from "@/components/global/cta-section";
 import {
   CapabilitiesSection,
-  CtaSection,
   InterplaySection,
   OurServicesSection,
   ProofSection,

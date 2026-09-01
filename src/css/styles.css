@@ -4833,11 +4833,17 @@ FOOTER//////////////////////////////////////////////////////////////////////////
     margin-right: 2%;
   }
 }
+/* Height is the headroom plus the visible slice of the wordmark, both in vw,
+   so the band holds the same proportions at every window size. It used to be
+   left to the strings canvas (innerHeight/2), which made the headroom whatever
+   was left after the crop — 142px at 1440x900, and worse the taller the
+   window. See the figure below for the two terms. */
 #footer .footer-bottom {
   position: relative;
   margin-top: 1.38888vw;
   line-height: 0;
   overflow: hidden;
+  height: 26.3571vw;
 }
 /* The wordmark is meant to be cut off by the bottom of the page — only the
    upper half of the letterforms shows. It is clipped by POSITION rather than by
@@ -4846,8 +4852,9 @@ FOOTER//////////////////////////////////////////////////////////////////////////
    `bandHeight - half that` puts its midline exactly on the band's bottom edge,
    and the band's overflow takes the rest.
 
-   The band is the footer string canvas, which strings.js builds at
-   innerHeight/2 (see its gridFooter branch) — hence the 50vh term.
+   The band is 26.3571vw tall: 5vw of headroom above the wordmark plus the
+   21.3571vw of it that shows. strings.js sizes the footer canvas to the band
+   (see its gridFooter branch), so the strings fill it exactly.
 
    The 21.3571vw is 65% of the wordmark's height — the cut line Andrew marked.
    For reference, from a raster probe of the SVG: x-height top is at 0.326 of
@@ -4855,10 +4862,10 @@ FOOTER//////////////////////////////////////////////////////////////////////////
    through the letter bodies about a quarter above the baseline, leaving the
    feet below the fold. This one number sets the crop: raise it to show more.
 
-   max(0px, ...) matters on wide, short viewports: there the band (50vh) is
-   shorter than 80% of the wordmark, and without the clamp the offset goes
-   negative and crops the TOPS of the letters too. Clamped, it simply shows as
-   much as the band allows, still cut only along the bottom. */
+   Headroom is 5vw — measured off the comp at roughly 0.15 of the wordmark's
+   height. Being a vw it holds that proportion everywhere, which is the whole
+   point of the change: no viewport-height term means no window can open the
+   gap back up. */
 #footer .footer-bottom figure {
   width: 100vw;
   overflow: hidden;
@@ -4866,7 +4873,7 @@ FOOTER//////////////////////////////////////////////////////////////////////////
   position: absolute;
   pointer-events: none;
   left: 0;
-  top: max(0px, calc(50vh - 21.3571vw));
+  top: 5vw;
 }
 #footer .footer-bottom figure img {
   width: 200%;
@@ -4894,15 +4901,17 @@ FOOTER//////////////////////////////////////////////////////////////////////////
   }
 }
 @media only screen and (max-width: 768px) {
+  /* Same construction as desktop, with this breakpoint's numbers: at 350% the
+     wordmark is 350/6.087 = 57.5vw tall, 65% of which is 37.375vw. Headroom is
+     the same 0.15 proportion of that — 8.75vw — so the band is 46.125vw.
+     The old `max(30vh, 300px)` band had the same leftover-space problem as
+     desktop, and worse: 154px of empty above a 146px wordmark at 390x844. */
   #footer .footer-bottom {
-    height: 30vh;
-    min-height: 300px;
+    height: 46.125vw;
+    min-height: 0;
   }
-  /* Same idea, with this breakpoint's own numbers: the band is
-     `height: 30vh; min-height: 300px`, and at 350% the wordmark is
-     350/6.087 = 57.5vw tall, so half of it is 28.75vw. */
   #footer .footer-bottom figure {
-    top: max(0px, calc(max(30vh, 300px) - 37.375vw));
+    top: 8.75vw;
     bottom: auto;
   }
   #footer .footer-bottom figure img {

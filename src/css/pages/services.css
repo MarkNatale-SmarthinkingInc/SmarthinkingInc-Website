@@ -110,6 +110,16 @@ Scoped to .services — see .services-old for the previous page.
 .services .section-copy strong {
   font-weight: 600;
 }
+/* The designer specified 20px/30px for this copy and was firmer about the
+   line-height than the size. .f-20 already lands on 20px at the 1440 artboard,
+   but its 1.4em leading gives 28px — so the ratio is what needs porting, not a
+   fixed 30px: .f-20 scales with the viewport up to a 26px cap, and a hard 30px
+   would only be correct at 1440. Scoped here rather than changed on .f-20
+   itself, which is used on ~20 other files including the footer and the legal
+   pages. */
+.services .section-copy p {
+  line-height: 1.5em;
+}
 /* The grid's full-width column (st-sm-18) is 95.83334vw, and vw is measured
    against the viewport *including* the scrollbar — so once a scrollbar exists
    the column is ~15px wider than its .grid-margin parent and the copy runs
@@ -147,6 +157,12 @@ Scoped to .services — see .services-old for the previous page.
 .services .service-card h3 {
   line-height: 1.1em;
 }
+/* Same 1.5 leading the designer specified for the "Our Services" copy, carried
+   onto the three card descriptions. Ported as a ratio, not a fixed px, so it
+   holds as .f-24 scales — see .services .section-copy p above. */
+.services .service-card p {
+  line-height: 1.5em;
+}
 /* Square 578x578 line-art marks; the comp draws them ~235px on a 1440 artboard. */
 .services .service-card-mark {
   margin: 2.77776vw 0;
@@ -171,10 +187,27 @@ Scoped to .services — see .services-old for the previous page.
 }
 /* The comp's button is plain orange with centred copy — no arrow, so the
    space-between that a.button uses for its icon variant is overridden. */
+/* Type per the designer: Epica Pro, 700, ~20px. Fixed px rather than a vw
+   step because the button's own geometry is fixed (60px tall, 40px padding),
+   so scaling only the label would drift against the box.
+
+   700 binds to the real EpicaPro-Bold face declared in src/css/fonts/fonts.css
+   — not a synthetic bold. Keep that @font-face if this rule survives. */
 .services .service-card-button {
   justify-content: center;
-  width: 15.9722vw;
+  /* 250px at the 1440 artboard. The vw width alone shrank the box while the
+     label (fixed 20px) and padding (fixed 40px a side) did not, so "Learn more"
+     wrapped to two lines everywhere between 1025px and 1300px. min-width is the
+     floor that stops that: 250px clears the 207.6px the label and padding
+     actually need, with room to spare. nowrap is the belt-and-braces guarantee
+     the label never breaks even if the copy is edited later. */
+  width: 17.3611vw;
+  min-width: 250px;
   max-width: 100%;
+  white-space: nowrap;
+  font-family: "Epica Pro";
+  font-weight: 700;
+  font-size: 20px;
   transition:
     background-color 400ms cubic-bezier(0.165, 0.84, 0.44, 1),
     color 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -268,34 +301,20 @@ Scoped to .services — see .services-old for the previous page.
   cursor: pointer;
   font-family: inherit;
 }
-/* A plus that rotates into a cross — one element, one transform. */
+/* Four-point sparkle, drawn at 14x14 in the comp. Kept on the 0.85em box the
+   old plus used so the row rhythm is unchanged and the mark scales with the
+   label rather than pinning to a fixed 14px — that lands on ~15px at the 1440
+   artboard. The glyph is solid #1a1417 in the file, matching .capability-toggle. */
 .services .capability-icon {
-  position: relative;
   flex: 0 0 auto;
   width: 0.85em;
   height: 0.85em;
+  background: url("/img/svg/icon-sparkle-dark.svg") no-repeat center center;
+  background-size: contain;
   transition: transform 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.services .capability-icon::before,
-.services .capability-icon::after {
-  content: "";
-  position: absolute;
-  background-color: #1a1417;
-}
-.services .capability-icon::before {
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1.5px;
-  transform: translateY(-50%);
-}
-.services .capability-icon::after {
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 1.5px;
-  transform: translateX(-50%);
-}
+/* The open state keeps the quarter-turn the plus had — the sparkle is
+   four-fold symmetric, so 45deg reads as a distinct rotated state. */
 .services .capability.is-open .capability-icon {
   transform: rotate(45deg);
 }
@@ -392,6 +411,15 @@ Scoped to .services — see .services-old for the previous page.
   border: 1px solid rgba(26, 20, 23, 0.35);
   border-radius: 50%;
 }
+/* Value and label are both the bold serif in the comp. Neither carries .Title,
+   so they were inheriting the Epica Sans Pro body face — the family has to be
+   set here, not just the weight. .stat-caption below is already Epica Pro via
+   .Title and is deliberately left alone. */
+.services .stat-value,
+.services .stat-label {
+  font-family: "Epica Pro";
+  font-weight: 700;
+}
 .services .stat-value {
   line-height: 1em;
 }
@@ -401,7 +429,6 @@ Scoped to .services — see .services-old for the previous page.
   line-height: 0;
 }
 .services .stat-label {
-  font-weight: 600; /* comp sets a bold serif — see the Epica Pro Bold note */
   line-height: 1.1em;
   margin-top: 0.1em;
 }

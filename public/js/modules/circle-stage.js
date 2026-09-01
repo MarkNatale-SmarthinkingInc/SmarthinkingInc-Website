@@ -27,51 +27,79 @@ export function circleStage() {
     const circle2 = stage.querySelector(".circle-2");
     const circle3 = stage.querySelector(".circle-3");
 
+    // How far the stage starts pushed down, as a percent of its own height.
+    // It is what lets the podium rise into place — and it is also the empty
+    // band above the wheel, and the reason the spin used to begin while the
+    // wheel was still below the fold. Both symptoms are this one number, so it
+    // is cut to a fifth, and the spin start below is keyed to it.
+    // Set it to 0 for no gap at all, at the cost of the rise.
+    const RISE_PERCENT = 20;
+    const riseOffset = () => stage.offsetHeight * (RISE_PERCENT / 100);
+
     gsap.set(circle1, { rotate: 135 });
     gsap.set(circle2, { rotate: -180 });
     gsap.set(circle3, { rotate: 180 });
-    gsap.set(stageInner, { yPercent: 50 });
+    gsap.set(stageInner, { yPercent: RISE_PERCENT });
 
-    // These three triggers are the old Services page's values verbatim, and
-    // they must stay that way: together they give the outer ring its full
-    // sweep — PHOTO on the right round to PRODUCT. Measured on /services-old
-    // at a 1440x900 viewport, they resolve to:
+    // The whole sequence is scaled off this one number: how many viewport
+    // heights of scrolling the sweep costs. The old Services page used 2.0
+    // (1800px at 1440x900). The rotation itself is a fixed set of angles, so a
+    // shorter distance does not truncate the sweep — the ring still travels
+    // PHOTO round to PRODUCT in full, it just scrubs through in less page.
+    // This is the dial: raise it for a slower, more drawn-out flourish, lower
+    // it for a cheaper one.
     //
-    //   rotation scrub   1800px  (2.0 viewport heights)
-    //   stage-inner rise 1350px  (1.5)
-    //   pin              1080px  (1.2)
-    //
-    // The pin is what buys that distance: it holds the circle still while the
+    // The pin is what buys the distance: it holds the circle still while the
     // page scrolls on beneath, so the sweep is watchable instead of racing past.
-    // Do not "tidy" these into shorter ranges — that shortens the spin.
+    // Both the rise and the pin below are derived from this, so they all stay
+    // in proportion and there is only ever one number to change.
     //
     // The pin does require that no ancestor of #circle-stage sets
     // overflow:hidden. Clipping a pinned element's ancestor slices the circle
     // in half and makes the pin-spacer maths jump.
+    const SPIN_VIEWPORTS = 1.5;
+    const spinDistance = () => window.innerHeight * SPIN_VIEWPORTS;
+    // The rise settles three quarters of the way through the spin — the ratio
+    // the old page's 1350/1800 worked out to, kept so the choreography reads
+    // the same at any distance.
+    const RISE_FRACTION = 0.75;
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: stage,
-        start: "top bottom",
-        end: "top -100%",
+        // Was "top bottom", which fired when the stage BOX crossed the viewport
+        // bottom. The wheel sits riseOffset() lower than that box, so the spin
+        // spent its first stretch turning off-screen. Offsetting the start by
+        // exactly that much means the first frame of the spin coincides with
+        // the wheel's top edge entering view.
+        start: () => "top bottom-=" + riseOffset(),
+        end: () => "+=" + spinDistance(),
         scrub: true,
       },
     });
 
+    // Starts on the same frame as the spin — stageInner's top IS the wheel's
+    // top edge, which is what the spin's offset start is keyed to.
     gsap.to(stageInner, {
       yPercent: 0,
       ease: "power2.inOut",
       scrollTrigger: {
         trigger: stageInner,
         start: "top bottom",
-        end: "top -50%",
+        end: () => "+=" + spinDistance() * RISE_FRACTION,
         scrub: true,
       },
     });
 
+    // The pin has to release exactly when the spin finishes, so its end is
+    // derived from the spin rather than stated independently — otherwise
+    // shifting the start would unpin the circle mid-sweep. Pin start is
+    // "bottom bottom" (stage fully in view), which sits stageHeight past the
+    // unshifted spin start, hence the subtraction.
     ScrollTrigger.create({
       trigger: stage,
       start: "bottom bottom",
-      end: "top -100%",
+      end: () => "+=" + (spinDistance() + riseOffset() - stage.offsetHeight),
       pin: true,
     });
 
