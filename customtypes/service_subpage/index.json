@@ -1,0 +1,98 @@
+{
+  "format": "custom",
+  "id": "service_subpage",
+  "label": "Service Subpage",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID",
+          "placeholder": "brand-foundation | brand-activation | marketing-orchestration"
+        }
+      },
+      "intro_lead": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Intro \u2014 Lead paragraph",
+          "placeholder": "The large serif paragraph under the eyebrow. The eyebrow itself is fixed in code.",
+          "multi": "paragraph, strong, em"
+        }
+      },
+      "why_copy": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Why \u2014 Body copy",
+          "placeholder": "Body of the WHY band. The title is fixed in code.",
+          "multi": "paragraph, strong, em"
+        }
+      },
+      "how_copy": {
+        "type": "StructuredText",
+        "config": {
+          "label": "How This Works \u2014 Body copy",
+          "placeholder": "Activation and Orchestration only. Leave empty on Brand Foundation.",
+          "multi": "paragraph, strong, em"
+        }
+      },
+      "collage": {
+        "type": "Group",
+        "config": {
+          "label": "Work collage",
+          "repeat": true,
+          "fields": {
+            "slot": {
+              "type": "Text",
+              "config": {
+                "label": "Slot (do not change)",
+                "placeholder": "Matches a fixed position in the layout"
+              }
+            },
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "video": {
+              "type": "Link",
+              "config": {
+                "label": "Video (optional \u2014 overrides the image)",
+                "placeholder": "Upload an .mp4 to the media library",
+                "select": "media"
+              }
+            }
+          }
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "Browser tab / search result title"
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "Search result description"
+        }
+      },
+      "meta_image": {
+        "type": "Image",
+        "config": {
+          "label": "Meta Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    }
+  }
+}

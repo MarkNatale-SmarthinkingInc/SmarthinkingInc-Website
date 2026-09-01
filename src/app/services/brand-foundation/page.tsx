@@ -10,6 +10,7 @@ import {
   BrandFoundationWorkSection,
 } from "@/components/brand-foundation";
 import { SubpageHeroSection } from "@/components/services";
+import { getServiceSubpage } from "@/utils/service-subpage";
 import type { Metadata } from "next";
 
 import "@/css/components/cta.css";
@@ -21,7 +22,11 @@ export const metadata: Metadata = {
     "Where brands are born — the strategy, insights and definitive point of view that a remarkable brand is forged from.",
 };
 
-export default function BrandFoundationPage() {
+export default async function BrandFoundationPage() {
+  // null until the Prismic document exists; every section below falls
+  // back to the copy in its own component.
+  const page = await getServiceSubpage("brand-foundation");
+
   return (
     <main
       id="smooth-wrapper"
@@ -38,9 +43,9 @@ export default function BrandFoundationPage() {
           image="/img/services-new/brand-foundation/Service-Brand-Foundation-1.jpg"
           imageAlt="Concept sketch of a spa bathing hall resolving into a finished render"
         />
-        <BrandFoundationIntroSection />
+        <BrandFoundationIntroSection page={page} />
         <BrandFoundationQuestionsSection />
-        <BrandFoundationWhySection />
+        <BrandFoundationWhySection page={page} />
         <BrandFoundationDeliverablesSection />
         <BrandFoundationProofSection />
         <BrandFoundationWorkSection />

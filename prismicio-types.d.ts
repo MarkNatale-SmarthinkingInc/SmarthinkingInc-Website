@@ -1915,6 +1915,45 @@ export interface ServicesDocumentDataClientLogosItem {
   client_name: prismic.KeyTextField;
 }
 
+/**
+ * Item in *Services → Capabilities Per Service*
+ */
+export interface ServicesDocumentDataCapabilitiesItem {
+  /**
+   * Which service column field in *Services → Capabilities Per Service*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Pick a column
+   * - **Default Value**: Brand Foundation
+   * - **API ID Path**: services.capabilities[].service_group
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  service_group: prismic.SelectField<
+    "Brand Foundation" | "Brand Activation" | "Marketing Orchestration",
+    "filled"
+  >;
+
+  /**
+   * Capability field in *Services → Capabilities Per Service*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Email + Social Media Marketing
+   * - **API ID Path**: services.capabilities[].capability_label
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  capability_label: prismic.KeyTextField;
+
+  /**
+   * Description field in *Services → Capabilities Per Service*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Shown when the row is expanded
+   * - **API ID Path**: services.capabilities[].capability_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  capability_description: prismic.RichTextField;
+}
+
 type ServicesDocumentDataSlicesSlice = never;
 
 /**
@@ -2075,6 +2114,30 @@ interface ServicesDocumentData {
    */
   client_logos: prismic.GroupField<
     Simplify<ServicesDocumentDataClientLogosItem>
+  >;
+
+  /**
+   * Our Services — Paragraphs field in *Services*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Body copy for the Our Services block. The section heading is fixed in code.
+   * - **API ID Path**: services.our_services_copy
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  our_services_copy: prismic.RichTextField;
+
+  /**
+   * Capabilities Per Service field in *Services*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.capabilities[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  capabilities: prismic.GroupField<
+    Simplify<ServicesDocumentDataCapabilitiesItem>
   >;
 
   /**
@@ -2866,6 +2929,132 @@ interface WorksDocumentData {
 export type WorksDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<WorksDocumentData>, "works", Lang>;
 
+/**
+ * Item in *Service Subpage → Work collage*
+ */
+export interface ServiceSubpageDocumentDataCollageItem {
+  /**
+   * Slot (do not change) field in *Service Subpage → Work collage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Matches a fixed position in the layout
+   * - **API ID Path**: service_subpage.collage[].slot
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  slot: prismic.KeyTextField;
+
+  /**
+   * Image field in *Service Subpage → Work collage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service_subpage.collage[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Video (optional — overrides the image) field in *Service Subpage → Work collage*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: Upload an .mp4 to the media library
+   * - **API ID Path**: service_subpage.collage[].video
+   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+   */
+  video: prismic.LinkToMediaField;
+}
+
+/**
+ * Content for Service Subpage documents
+ */
+interface ServiceSubpageDocumentData {
+  /**
+   * Intro — Lead paragraph field in *Service Subpage*
+   *
+   * - **Field Type**: Rich Text
+   * - **API ID Path**: service_subpage.intro_lead
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  intro_lead: prismic.RichTextField;
+
+  /**
+   * Why — Body copy field in *Service Subpage*
+   *
+   * - **Field Type**: Rich Text
+   * - **API ID Path**: service_subpage.why_copy
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  why_copy: prismic.RichTextField;
+
+  /**
+   * How This Works — Body copy field in *Service Subpage*
+   *
+   * - **Field Type**: Rich Text
+   * - **API ID Path**: service_subpage.how_copy
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  how_copy: prismic.RichTextField;
+
+  /**
+   * Work collage field in *Service Subpage*
+   *
+   * - **Field Type**: Group
+   * - **API ID Path**: service_subpage.collage[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  collage: prismic.GroupField<Simplify<ServiceSubpageDocumentDataCollageItem>>;
+
+  /**
+   * Meta Title field in *Service Subpage*
+   *
+   * - **Field Type**: Text
+   * - **API ID Path**: service_subpage.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Service Subpage*
+   *
+   * - **Field Type**: Text
+   * - **API ID Path**: service_subpage.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Service Subpage*
+   *
+   * - **Field Type**: Image
+   * - **API ID Path**: service_subpage.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Service Subpage document from Prismic
+ *
+ * - **API ID**: `service_subpage`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ServiceSubpageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ServiceSubpageDocumentData>,
+    "service_subpage",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | AboutDocument
   | BlogDocument
@@ -2877,6 +3066,7 @@ export type AllDocumentTypes =
   | PodcastDocument
   | PrivacyPolicyDocument
   | ServiceDocument
+  | ServiceSubpageDocument
   | ServicesDocument
   | SettingsDocument
   | TermsOfServiceDocument
@@ -3601,8 +3791,12 @@ declare module "@prismicio/client" {
       ServiceDocumentData,
       ServiceDocumentDataServiceItemsItem,
       ServiceDocumentDataSlicesSlice,
+      ServiceSubpageDocument,
+      ServiceSubpageDocumentData,
+      ServiceSubpageDocumentDataCollageItem,
       ServicesDocument,
       ServicesDocumentData,
+      ServicesDocumentDataCapabilitiesItem,
       ServicesDocumentDataClientLogosItem,
       ServicesDocumentDataSlicesSlice,
       SettingsDocument,

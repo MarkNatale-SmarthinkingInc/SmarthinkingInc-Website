@@ -12,6 +12,7 @@ import {
   BrandActivationWorkSection,
 } from "@/components/brand-activation";
 import { SubpageHeroSection } from "@/components/services";
+import { getServiceSubpage } from "@/utils/service-subpage";
 import type { Metadata } from "next";
 
 import "@/css/components/cta.css";
@@ -23,7 +24,11 @@ export const metadata: Metadata = {
     "Bring your collective brand expressions to life — a symphonic approach that applies to every interaction, ensuring a compelling and consistent brand narrative globally.",
 };
 
-export default function BrandActivationPage() {
+export default async function BrandActivationPage() {
+  // null until the Prismic document exists; every section below falls
+  // back to the copy in its own component.
+  const page = await getServiceSubpage("brand-activation");
+
   return (
     <main
       id="smooth-wrapper"
@@ -40,9 +45,9 @@ export default function BrandActivationPage() {
           image="/img/services-new/brand-activation/hero.jpg"
           imageAlt="Magazine spread pairing a portrait with a jaguar"
         />
-        <BrandActivationIntroSection />
-        <BrandActivationWhySection />
-        <BrandActivationHowSection />
+        <BrandActivationIntroSection page={page} />
+        <BrandActivationWhySection page={page} />
+        <BrandActivationHowSection page={page} />
         <BrandActivationStringsSection />
         <BrandActivationDeliverablesSection />
         <BrandActivationProofSection />

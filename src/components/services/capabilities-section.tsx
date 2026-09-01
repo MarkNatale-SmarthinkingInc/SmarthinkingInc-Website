@@ -1,6 +1,7 @@
+import type { Content } from "@prismicio/client";
 // Static for now — becomes a repeatable Prismic group when the page is wired up.
 // Copy is final, from Servivces_Home_Capabilities-Final.docx.
-const CAPABILITY_GROUPS = [
+const FALLBACK_GROUPS = [
   {
     title: ["Brand", "Foundation"],
     items: [
@@ -58,7 +59,48 @@ const slug = (value: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
-export default function CapabilitiesSection() {
+interface CapabilitiesSectionProps {
+  data?: Content.ServicesDocumentData;
+}
+
+/**
+ * Rows come from the `capabilities` group in Prismic, which is one flat list
+ * with a "which service column" select on each row — that is what lets the
+ * client add and remove capabilities while the three column headings stay
+ * fixed here in code. If the group is empty the page renders FALLBACK_GROUPS,
+ * so the section is never blank mid-migration.
+ */
+function groupRows(data?: Content.ServicesDocumentData) {
+  const rows = data?.capabilities ?? [];
+  if (!rows.length) return FALLBACK_GROUPS;
+
+  return FALLBACK_GROUPS.map((group) => ({
+    title: group.title,
+    items: rows
+      .filter((row) => row.service_group === group.title.join(" "))
+      .map((row) => ({
+        label: (row.capability_label ?? "").trim(),
+        copy: asPlainText(row.capability_description),
+      }))
+      .filter((item) => item.label),
+  })).filter((group) => group.items.length);
+}
+
+function asPlainText(field: unknown): string {
+  if (!Array.isArray(field)) return "";
+  return field
+    .map((block) =>
+      block && typeof block === "object" && "text" in block
+        ? String((block as { text?: string }).text ?? "")
+        : "",
+    )
+    .join(" ")
+    .trim();
+}
+
+export default function CapabilitiesSection({ data }: CapabilitiesSectionProps) {
+  const CAPABILITY_GROUPS = groupRows(data);
+
   return (
     <section id="capabilities">
       <div className="grid-margin">

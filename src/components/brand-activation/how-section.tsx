@@ -1,3 +1,6 @@
+import { type Content, isFilled } from "@prismicio/client";
+import { PrismicRichText } from "@prismicio/react";
+
 /**
  * HOW THIS WORKS — the copy block plus the rotating circle podium.
  *
@@ -15,7 +18,15 @@
  * No ancestor of #circle-stage may set overflow:hidden — the stage is pinned,
  * and clipping a pinned element's ancestor slices it in half.
  */
-export default function HowSection() {
+interface HowSectionProps {
+  /** The page's Prismic document, or null when it has not been created yet. */
+  page?: Content.ServiceSubpageDocument | null;
+}
+
+export default function HowSection({ page }: HowSectionProps) {
+  // Falls back to the copy below whenever the field is empty.
+  const copy = page?.data.how_copy;
+
   return (
     <section id="ba-how">
       <div className="grid-margin">
@@ -28,13 +39,26 @@ export default function HowSection() {
         </div>
         <div className="st-grid">
           <div className="st-xl-10 st-xl-os-4 st-sm-18 st-sm-os-0 center">
-            <p className="f-20 Title ba-how-copy">
-              Smarthinking Inc. applies the <strong>Brand Strategy</strong> to
-              all interactions the target markets have with the brand. This
-              symphonic approach creates a beautiful amalgamation of brand
-              expressions that tell your story and solidify your position within
-              the market.
-            </p>
+            {isFilled.richText(copy) ? (
+              <PrismicRichText
+                field={copy}
+                components={{
+                  paragraph: ({ children }) => (
+                    <p className="f-20 Title ba-how-copy">{children}</p>
+                  ),
+                }}
+              />
+            ) : (
+              <>
+              <p className="f-20 Title ba-how-copy">
+                Smarthinking Inc. applies the <strong>Brand Strategy</strong> to
+                all interactions the target markets have with the brand. This
+                symphonic approach creates a beautiful amalgamation of brand
+                expressions that tell your story and solidify your position within
+                the market.
+              </p>
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -29,7 +29,7 @@
         "type": "StructuredText",
         "config": {
           "label": "Hero Left Caption",
-          "placeholder": "Think Critically. Act Creatively.®",
+          "placeholder": "Think Critically. Act Creatively.\u00ae",
           "allowTargetBlank": false,
           "multi": "paragraph,strong,em"
         }
@@ -45,7 +45,7 @@
         "type": "Text",
         "config": {
           "label": "Hero Main Title",
-          "placeholder": "Think Critically. Act Creatively.®"
+          "placeholder": "Think Critically. Act Creatively.\u00ae"
         }
       },
       "hero_subtitle": {
@@ -55,6 +55,51 @@
           "placeholder": "At our core, Smarthinking Inc. is a group of problem solvers...",
           "allowTargetBlank": true,
           "multi": "paragraph"
+        }
+      },
+      "our_services_copy": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Our Services \u2014 Paragraphs",
+          "placeholder": "Body copy for the Our Services block. The section heading is fixed in code.",
+          "multi": "paragraph, strong, em"
+        }
+      },
+      "capabilities": {
+        "type": "Group",
+        "config": {
+          "label": "Capabilities Per Service",
+          "repeat": true,
+          "fields": {
+            "service_group": {
+              "type": "Select",
+              "config": {
+                "label": "Which service column",
+                "placeholder": "Pick a column",
+                "options": [
+                  "Brand Foundation",
+                  "Brand Activation",
+                  "Marketing Orchestration"
+                ],
+                "default_value": "Brand Foundation"
+              }
+            },
+            "capability_label": {
+              "type": "Text",
+              "config": {
+                "label": "Capability",
+                "placeholder": "e.g. Email + Social Media Marketing"
+              }
+            },
+            "capability_description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Description",
+                "placeholder": "Shown when the row is expanded",
+                "multi": "paragraph, strong, em"
+              }
+            }
+          }
         }
       },
       "service_intro_title": {
@@ -68,7 +113,7 @@
         "type": "Text",
         "config": {
           "label": "Service Intro Heading",
-          "placeholder": "Experience across Manhattan’s top hotels..."
+          "placeholder": "Experience across Manhattan\u2019s top hotels..."
         }
       },
       "service_intro_trademark_svg": {

@@ -36,10 +36,10 @@ export default async function ServicesPage() {
     >
       <div id="smooth-content" className="services" data-page="Services">
         <ServicesHeroSection data={data} />
-        <OurServicesSection />
+        <OurServicesSection data={data} />
         <ThreeServicesSection />
         <InterplaySection />
-        <CapabilitiesSection />
+        <CapabilitiesSection data={data} />
         <ProofSection />
         <ResultsSection />
         <CtaSection />
