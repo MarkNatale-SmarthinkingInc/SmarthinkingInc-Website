@@ -43,6 +43,10 @@ const PageToPage = () => {
     if (SERVICE_SUBPAGES.includes(pathname)) {
       return "service-subpage";
     }
+    // Standalone email-campaign landing page. Same prefix, so same rule.
+    if (pathname === "/services/email-diagnostic") {
+      return "email-diagnostic";
+    }
     if (pathname.startsWith("/services/")) {
       return "service-detail";
     }
