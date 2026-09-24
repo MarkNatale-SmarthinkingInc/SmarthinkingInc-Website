@@ -4959,8 +4959,15 @@ FOOTER//////////////////////////////////////////////////////////////////////////
 #newsletter .input-box {
   position: relative;
 }
-#newsletter input[type="email"] {
+#newsletter input[type="email"],
+#newsletter input.text-box {
   margin-bottom: 0;
+}
+/* The "next" arrow on the footer signup's name steps. */
+#newsletter input[type="submit"].is-next {
+  font-size: 22px;
+  font-family: inherit;
+  min-width: 60px;
 }
 #newsletter input[type="submit"] {
   position: absolute;
@@ -4974,7 +4981,8 @@ FOOTER//////////////////////////////////////////////////////////////////////////
   #newsletter input[type="submit"] {
     padding: 0 5.55552vw;
   }
-  #newsletter input[type="email"] {
+  #newsletter input[type="email"],
+  #newsletter input.text-box {
     padding-left: 4.16664vw;
   }
 }
