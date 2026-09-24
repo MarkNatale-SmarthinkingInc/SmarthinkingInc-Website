@@ -4963,6 +4963,29 @@ FOOTER//////////////////////////////////////////////////////////////////////////
 #newsletter input.text-box {
   margin-bottom: 0;
 }
+/* Turnstile's challenge box and error text hang below the footer signup
+   instead of growing the row, so the copyright line and social links (both
+   bottom-aligned to the row) stay level with the field. On phones the social
+   links sit directly underneath, so there it stays in the flow. */
+#newsletter {
+  position: relative;
+}
+@media only screen and (min-width: 769px) {
+  #newsletter .newsletter-overflow {
+    position: absolute;
+    z-index: 3;
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+}
+#newsletter .newsletter-overflow > div:not(:empty) {
+  margin-top: 5px;
+}
+#newsletter .newsletter-overflow .newsletter-error {
+  display: inline-block;
+  background-color: #fff;
+}
 /* The "next" arrow on the footer signup's name steps. */
 #newsletter input[type="submit"].is-next {
   font-size: 22px;

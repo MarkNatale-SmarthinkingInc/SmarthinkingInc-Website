@@ -151,10 +151,14 @@ export default function FooterNewsletter() {
         onChange={(e) => updateField("website", e.target.value)}
         style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }}
       />
-      {engaged && (
-        <Turnstile key={state.attempt} onToken={setTurnstileToken} />
-      )}
-      {state.error && <p className="newsletter-error f-14">{state.error}</p>}
+      {/* Hangs below the field on desktop so the rare "verify you are human"
+          box or an error doesn't push the copyright and social links down. */}
+      <div className="newsletter-overflow">
+        {engaged && (
+          <Turnstile key={state.attempt} onToken={setTurnstileToken} />
+        )}
+        {state.error && <p className="newsletter-error f-14">{state.error}</p>}
+      </div>
     </form>
   );
 }
