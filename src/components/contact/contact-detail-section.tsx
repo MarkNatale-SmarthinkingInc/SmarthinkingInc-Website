@@ -1,12 +1,15 @@
 "use client";
 
+import Turnstile from "@/components/global/turnstile";
 import { useContact } from "@/hooks/use-contact.hook";
+
 interface ContactDetailProps {
   data: import("@prismicio/client").Content.ContactDocumentData;
 }
 
 export default function ContactDetailSection({ data }: ContactDetailProps) {
-  const { state, updateField, submitForm, reset } = useContact();
+  const { state, updateField, setTurnstileToken, submitForm, reset } =
+    useContact();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,8 +101,6 @@ export default function ContactDetailSection({ data }: ContactDetailProps) {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="fadeUp">
-            <input type="hidden" name="acton_form_id" value="505767b6-e8f0-4573-9dec-af7437642c50" />
-            <input type="hidden" name="form_name" value="Contact" />
             {state.error && (
               <div
                 className="error-message"
@@ -146,7 +147,6 @@ export default function ContactDetailSection({ data }: ContactDetailProps) {
               value={state.formData.companyName}
               onChange={(e) => updateField("companyName", e.target.value)}
               disabled={state.isLoading}
-              required
             />
             <input
               className="text-box"
@@ -166,7 +166,6 @@ export default function ContactDetailSection({ data }: ContactDetailProps) {
               value={state.formData.phone}
               onChange={(e) => updateField("phone", e.target.value)}
               disabled={state.isLoading}
-              required
             />
             <textarea
               name="message"
@@ -177,6 +176,19 @@ export default function ContactDetailSection({ data }: ContactDetailProps) {
               onChange={(e) => updateField("message", e.target.value)}
               disabled={state.isLoading}
             />
+            {/* Honeypot: off-screen and skipped by keyboard and screen readers,
+                so only bots fill it in. */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              value={state.formData.website}
+              onChange={(e) => updateField("website", e.target.value)}
+              style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }}
+            />
+            <Turnstile key={state.attempt} onToken={setTurnstileToken} />
             <div className="form-button">
               <input
                 type="submit"
