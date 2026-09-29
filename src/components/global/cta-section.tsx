@@ -1,4 +1,4 @@
-const ArrowIcon = () => (
+export const ArrowIcon = () => (
   <svg
     width="18"
     height="13"
@@ -19,15 +19,26 @@ const ArrowIcon = () => (
   </svg>
 );
 
+interface CtaSectionProps {
+  /** The white first line. Defaults to the services copy. */
+  invitation?: string;
+  /** The orange second line. */
+  callToAction?: string;
+}
+
 /**
- * The "Let's talk" bar. Shared verbatim by /services and the three service
- * subpages — it lives in global/ rather than services/ because four pages
- * import it and none of them owns it.
+ * The "Let's talk" bar. Shared by /services, the three service subpages and
+ * /services/email-diagnostic. It lives in global/ rather than services/
+ * because several pages import it and none of them owns it. Pages can swap
+ * the two lines of copy; the layout is identical everywhere.
  *
  * Styled by .cta-bar in src/css/components/cta.css. The id is an anchor
  * target only; nothing scripts against it.
  */
-export default function CtaSection() {
+export default function CtaSection({
+  invitation = "Let’s talk about what you are building.",
+  callToAction = "Connect with Smarthinking Inc. today",
+}: CtaSectionProps) {
   return (
     <section id="cta-bar" className="cta-bar BgDark">
       <div className="grid-margin">
@@ -39,13 +50,9 @@ export default function CtaSection() {
                 act in the brand orange. Colour sits on the spans so each line
                 carries its own, rather than one colour on the paragraph. */}
             <p className="f-40 Title cta-copy">
-              <span className="White">
-                Let&rsquo;s talk about what you are building.
-              </span>
+              <span className="White">{invitation}</span>
               <br />
-              <span className="Red">
-                Connect with Smarthinking Inc. today
-              </span>
+              <span className="Red">{callToAction}</span>
             </p>
           </div>
           <div className="st-xl-6 st-xl-os-1 st-sm-18 st-sm-os-0 sm-top-2">

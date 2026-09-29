@@ -7,6 +7,8 @@ export interface ContactFormData {
   email: string;
   phone: string;
   message: string;
+  // Honeypot — hidden from people, so anything in it came from a bot.
+  website: string;
 }
 
 export interface ContactState {
@@ -14,11 +16,16 @@ export interface ContactState {
   isLoading: boolean;
   isSuccess: boolean;
   error: string | null;
+  turnstileToken: string | null;
+  // Bumped after every submit so the Turnstile widget remounts with a fresh
+  // token — tokens are single-use, even when the submit fails.
+  attempt: number;
 }
 
 export interface UseContactReturn {
   state: ContactState;
   updateField: (field: keyof ContactFormData, value: string) => void;
+  setTurnstileToken: (token: string | null) => void;
   submitForm: () => Promise<void>;
   reset: () => void;
 }
@@ -30,15 +37,20 @@ const initialFormData: ContactFormData = {
   email: "",
   phone: "",
   message: "",
+  website: "",
+};
+
+const initialState: ContactState = {
+  formData: initialFormData,
+  isLoading: false,
+  isSuccess: false,
+  error: null,
+  turnstileToken: null,
+  attempt: 0,
 };
 
 export function useContact(): UseContactReturn {
-  const [state, setState] = useState<ContactState>({
-    formData: initialFormData,
-    isLoading: false,
-    isSuccess: false,
-    error: null,
-  });
+  const [state, setState] = useState<ContactState>(initialState);
 
   const updateField = (field: keyof ContactFormData, value: string) => {
     setState((prev) => ({
@@ -51,18 +63,17 @@ export function useContact(): UseContactReturn {
     }));
   };
 
+  const setTurnstileToken = (token: string | null) => {
+    setState((prev) => ({ ...prev, turnstileToken: token }));
+  };
+
+  // Required fields mirror the Jotform form — keep them in step with it.
   const validateForm = (data: ContactFormData): string | null => {
     if (!data.firstName.trim() || !data.lastName.trim()) {
       return "First and last name are required";
     }
-    if (!data.companyName.trim()) {
-      return "Company name is required";
-    }
     if (!data.email || !data.email.includes("@")) {
       return "Please enter a valid email address";
-    }
-    if (!data.phone.trim()) {
-      return "Phone number is required";
     }
     if (!data.message.trim()) {
       return "Message is required";
@@ -80,6 +91,14 @@ export function useContact(): UseContactReturn {
       return;
     }
 
+    if (!state.turnstileToken) {
+      setState((prev) => ({
+        ...prev,
+        error: "Just a moment — we're checking your connection. Please try again.",
+      }));
+      return;
+    }
+
     setState((prev) => ({
       ...prev,
       isLoading: true,
@@ -87,20 +106,15 @@ export function useContact(): UseContactReturn {
     }));
 
     try {
-      const payload = {
-        firstName: state.formData.firstName,
-        lastName: state.formData.lastName,
-        companyName: state.formData.companyName,
-        email: state.formData.email,
-        phone: state.formData.phone,
-        message: state.formData.message,
-      };
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          ...state.formData,
+          turnstileToken: state.turnstileToken,
+        }),
       });
 
       const data = await response.json();
@@ -114,28 +128,28 @@ export function useContact(): UseContactReturn {
         isLoading: false,
         isSuccess: true,
         formData: initialFormData, // Reset form on success
+        turnstileToken: null,
+        attempt: prev.attempt + 1,
       }));
     } catch (error) {
       setState((prev) => ({
         ...prev,
         isLoading: false,
         error: error instanceof Error ? error.message : "Something went wrong",
+        turnstileToken: null,
+        attempt: prev.attempt + 1,
       }));
     }
   };
 
   const reset = () => {
-    setState({
-      formData: initialFormData,
-      isLoading: false,
-      isSuccess: false,
-      error: null,
-    });
+    setState((prev) => ({ ...initialState, attempt: prev.attempt + 1 }));
   };
 
   return {
     state,
     updateField,
+    setTurnstileToken,
     submitForm,
     reset,
   };

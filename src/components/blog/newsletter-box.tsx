@@ -1,8 +1,9 @@
 "use client";
 
-import { useNewsletter } from "@/hooks/use-newsletter.hook";
 import type { KeyTextField } from "@prismicio/client";
 import { useState } from "react";
+import Turnstile from "@/components/global/turnstile";
+import { useNewsletter } from "@/hooks/use-newsletter.hook";
 
 interface NewsletterBoxProps {
   title?: KeyTextField;
@@ -17,8 +18,9 @@ export default function NewsletterBox({
   variant = "blog-detail",
   className = "",
 }: NewsletterBoxProps) {
-  const { state, subscribe, setEmail } = useNewsletter();
-  const [localEmail, setLocalEmail] = useState("");
+  const { state, updateField, setTurnstileToken, subscribe } = useNewsletter();
+  // Turnstile loads once someone starts filling the form in.
+  const [engaged, setEngaged] = useState(false);
 
   const titleClass = variant === "blog-detail" ? "f-28" : "f-40";
   const subtitleClass = variant === "blog-detail" ? "caption" : "sup-title";
@@ -27,16 +29,7 @@ export default function NewsletterBox({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await subscribe(localEmail);
-    if (!state.error) {
-      setLocalEmail("");
-    }
-  };
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const email = e.target.value;
-    setLocalEmail(email);
-    setEmail(email);
+    await subscribe();
   };
 
   return (
@@ -49,21 +42,65 @@ export default function NewsletterBox({
 
       {state.isSuccess ? (
         <div className="newsletter-success">
-          <p className="f-16">✓ Successfully subscribed to our newsletter!</p>
+          <p className="f-16">Thanks for signing up! Check your inbox soon for more information!</p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="newsletter">
-          <input type="hidden" name="acton_form_id" value="fd7409c0-79ec-4d10-8e8e-a7d327b7cfaa" />
-          <input type="hidden" name="form_name" value="Email Signup" />
+        <form
+          onSubmit={handleSubmit}
+          onFocus={() => setEngaged(true)}
+          className="newsletter"
+        >
           <div className="input-box">
             <input
-              type="email"
-              placeholder="Your email..."
-              value={localEmail}
-              onChange={handleEmailChange}
+              className="text-box"
+              type="text"
+              name="firstName"
+              autoComplete="given-name"
+              aria-label="First name"
+              placeholder="First name"
+              value={state.formData.firstName}
+              onChange={(e) => updateField("firstName", e.target.value)}
               required
               disabled={state.isLoading}
             />
+            <input
+              className="text-box"
+              type="text"
+              name="lastName"
+              autoComplete="family-name"
+              aria-label="Last name"
+              placeholder="Last name"
+              value={state.formData.lastName}
+              onChange={(e) => updateField("lastName", e.target.value)}
+              required
+              disabled={state.isLoading}
+            />
+            <input
+              type="email"
+              name="email"
+              autoComplete="email"
+              aria-label="Email address"
+              placeholder="Your email..."
+              value={state.formData.email}
+              onChange={(e) => updateField("email", e.target.value)}
+              required
+              disabled={state.isLoading}
+            />
+            {/* Honeypot: off-screen and skipped by keyboard and screen
+                readers, so only bots fill it in. */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              value={state.formData.website}
+              onChange={(e) => updateField("website", e.target.value)}
+              style={{ position: "absolute", left: "-9999px", width: 1, height: 1 }}
+            />
+            {engaged && (
+              <Turnstile key={state.attempt} onToken={setTurnstileToken} />
+            )}
             <input
               type="submit"
               value={state.isLoading ? "Submitting..." : "Submit"}

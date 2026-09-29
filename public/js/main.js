@@ -28,6 +28,7 @@ import { button, serviceStack } from "/js/modules/small-hovers.js";
 import { rotateSlider, manifesto } from "/js/modules/about.js";
 import { textAnim } from "/js/modules/text-anim.js";
 import { error } from "/js/modules/error.js";
+import { emailDiagnosticHero } from "/js/modules/email-diagnostic.js";
 import { lazyLoad } from "/js/modules/lazy-load.js";
 
 // Helper function to determine page namespace from pathname
@@ -55,6 +56,10 @@ const getPageNamespace = (pathname) => {
   }
   if (SERVICE_SUBPAGES.includes(pathname)) {
     return "service-subpage";
+  }
+  // Standalone email-campaign landing page. Same /services/ prefix, own design.
+  if (pathname === "/services/email-diagnostic") {
+    return "email-diagnostic";
   }
   if (pathname.startsWith("/services/")) {
     return "service-detail";
@@ -153,6 +158,21 @@ const serviceScripts = () => {
 };
 // Brand Foundation / Brand Activation / Marketing Orchestration.
 // Modules get added here as the sections land, same as serviceScripts did.
+const emailDiagnosticScripts = () => {
+  setTimeout(() => {
+    lazyLoad();
+    smoothScroll();
+    // Before heroAnimations, which makes #smooth-wrapper visible. Both run in
+    // the same tick, so the hero's hidden state is set before the first paint.
+    emailDiagnosticHero();
+    heroAnimations();
+    button();
+    imgAnim();
+    reveal();
+    strings(); // footer string canvas
+  });
+};
+
 const serviceSubpageScripts = () => {
   setTimeout(() => {
     lazyLoad();
@@ -300,6 +320,8 @@ function afterEnter(pageNamespace) {
     serviceOldScripts();
   } else if (pageNamespace === "service-subpage") {
     serviceSubpageScripts();
+  } else if (pageNamespace === "email-diagnostic") {
+    emailDiagnosticScripts();
   } else if (pageNamespace === "service-detail") {
     serviceDetailScripts();
   } else if (pageNamespace === "work") {
