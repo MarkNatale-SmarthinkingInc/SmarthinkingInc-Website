@@ -3655,6 +3655,14 @@
 .contact #contact-detail > div {
   padding-top: 1.38888vw;
 }
+.contact #contact-detail > div:first-of-type {
+  padding-bottom: 5.55552vw;
+}
+@media only screen and (max-width: 768px) {
+  .contact #contact-detail > div:first-of-type {
+    padding-bottom: 0;
+  }
+}
 .contact #contact-detail address {
   margin-top: 2.77776vw;
 }
