@@ -76,6 +76,10 @@ const getPageNamespace = (pathname) => {
   if (pathname.startsWith("/blog/")) {
     return "blog-detail";
   }
+  // Standalone showcase page, linked to directly rather than from the nav.
+  if (pathname === "/films") {
+    return "films";
+  }
   if (pathname === "/contact") {
     return "contact";
   }
@@ -277,6 +281,15 @@ const contactScripts = () => {
   });
 };
 
+const filmsScripts = () => {
+  setTimeout(() => {
+    lazyLoad();
+    smoothScroll();
+    heroAnimations();
+    strings(); // footer string canvas
+  });
+};
+
 let legalScripts = () => {
   setTimeout(function () {
     lazyLoad();
@@ -332,6 +345,8 @@ function afterEnter(pageNamespace) {
     blogScripts();
   } else if (pageNamespace === "blog-detail") {
     blogDetailScripts();
+  } else if (pageNamespace === "films") {
+    filmsScripts();
   } else if (pageNamespace === "contact") {
     contactScripts();
   } else if (pageNamespace === "legal") {

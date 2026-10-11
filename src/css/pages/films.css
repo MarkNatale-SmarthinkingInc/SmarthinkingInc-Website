@@ -1,0 +1,56 @@
+/*  FILMS  ────────────────────────────────────────────────────────────────────
+    /films — standalone showcase page, not linked from the nav. Hero is the
+    /work hero; the lead copies the service subpage intro (.subpage-lead).   */
+
+.films #hero {
+  padding-top: 11.11104vw;
+}
+@media only screen and (max-width: 768px) {
+  .films #hero {
+    padding-top: 27.7776vw;
+  }
+}
+
+.films #films-intro {
+  padding-top: 4.16664vw;
+  padding-bottom: 8.33328vw;
+}
+.films .films-lead {
+  line-height: 1.611em;
+}
+.films .films-lead strong {
+  font-weight: 600;
+}
+.films .films-lead a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+  transition: color 0.3s ease;
+}
+.films .films-lead a:hover {
+  color: #99947e;
+}
+
+.films #films-videos {
+  padding-bottom: 8.33328vw;
+}
+.films .films-video {
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  background-color: #1a1417;
+}
+.films .films-video + .films-video {
+  margin-top: 4.16664vw;
+}
+.films .films-video video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+@media only screen and (max-width: 768px) {
+  .films .films-video + .films-video {
+    margin-top: 8.33328vw;
+  }
+}

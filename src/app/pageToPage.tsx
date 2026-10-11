@@ -62,6 +62,10 @@ const PageToPage = () => {
     if (pathname.startsWith("/blog/")) {
       return "blog-detail";
     }
+    // Standalone showcase page, linked to directly rather than from the nav.
+    if (pathname === "/films") {
+      return "films";
+    }
     if (pathname === "/contact") {
       return "contact";
     }

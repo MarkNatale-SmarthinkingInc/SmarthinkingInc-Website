@@ -218,6 +218,47 @@ export function heroAnimations() {
       "<"
     );
   }
+  // /films: the /work title build-in, minus the work grid's .imgIn reveal.
+  if (document.querySelector(".films")) {
+    if (!isMobile()) {
+      smoother?.paused(true);
+    }
+    tl.to(heroSplit.chars, {
+      duration: 1,
+      yPercent: 0,
+      scaleX: 1,
+      opacity: 1,
+      stagger: {
+        amount: 0.3,
+      },
+      ease: "power4",
+    });
+    tl.to(
+      fadeUp,
+      {
+        duration: 1,
+        y: 0,
+        opacity: 1,
+        ease: "power4",
+      },
+      "-=.8"
+    );
+    tl.to(
+      menu,
+      {
+        opacity: 1,
+        yPercent: 0,
+        duration: 0.75,
+        ease: "power2",
+        onStart: () => {
+          if (!isMobile()) {
+            smoother?.paused(false);
+          }
+        },
+      },
+      "-=1"
+    );
+  }
   if (document.querySelector(".blog")) {
     let fadeIn = document.querySelectorAll(".fadeIn");
     gsap.set(fadeIn, { opacity: 0 });
