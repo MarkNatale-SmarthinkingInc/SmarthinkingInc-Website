@@ -4,6 +4,7 @@ import { type Content, filter, isFilled } from "@prismicio/client";
 // biome-ignore lint/correctness/noUnusedImports: PREVIEW - used by temporarily hidden column
 import { PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
+import GatedContentForm from "./gated-content-form";
 // biome-ignore lint/correctness/noUnusedImports: PREVIEW - used by temporarily hidden column
 import NewsletterBox from "./newsletter-box";
 
@@ -49,6 +50,13 @@ export default async function BlogDetailContentSection({
           </p>
         )}
         <SliceZone slices={blogPost.data.slices} components={components} />
+        {blogPost.data.gated_form_enabled && (
+          <GatedContentForm
+            uid={blogPost.uid}
+            heading={blogPost.data.gated_form_heading}
+            description={blogPost.data.gated_form_description}
+          />
+        )}
       </div>
 
       {/* PREVIEW: right "More reading" column temporarily hidden */}

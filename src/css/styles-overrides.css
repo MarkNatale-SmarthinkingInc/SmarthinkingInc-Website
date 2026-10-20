@@ -163,3 +163,55 @@ does show it. Windows reserves scrollbar space in every browser.
     width: 100%;
   }
 }
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BLOG: gated download form
+
+Shown at the end of a post when "Gated Content" is switched on in Prismic.
+Same grey panel as the old blog-detail newsletter box; the inputs and submit
+button pick up the site-wide form styles.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.blog-detail #blog-content > .gated-content {
+  margin-top: var(--flow-section);
+}
+.blog-detail .gated-content {
+  background-color: #F2F2F3;
+  border-radius: 5px;
+  padding: clamp(24px, 2.77776vw, 53px);
+}
+.blog-detail .gated-content .gated-content-description {
+  margin-top: var(--flow-tight);
+}
+.blog-detail .gated-content form,
+.blog-detail .gated-content .gated-content-success {
+  margin-top: var(--flow);
+}
+.blog-detail .gated-content input.text-box,
+.blog-detail .gated-content input.text-box:focus {
+  background-color: #fff;
+}
+.blog-detail .gated-content form input[type="submit"],
+.blog-detail .gated-content .gated-content-button {
+  height: 60px;
+  line-height: 60px;
+  width: 100%;
+}
+.blog-detail .gated-content .gated-content-button {
+  display: block;
+  margin-top: var(--flow-tight);
+  background-color: #1A1417;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: 'Epica Sans Pro';
+  font-weight: 600;
+  transition: background-color 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.blog-detail .gated-content .gated-content-button:hover {
+  background-color: #f26722;
+}
+.blog-detail .gated-content .gated-content-error {
+  color: #d32f2f;
+}

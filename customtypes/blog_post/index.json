@@ -101,6 +101,54 @@
         }
       }
     },
+    "Gated Content": {
+      "gated_form_enabled": {
+        "type": "Boolean",
+        "config": {
+          "label": "Show the gated download form on this post",
+          "default_value": false,
+          "placeholder_true": "On",
+          "placeholder_false": "Off"
+        }
+      },
+      "gated_form_heading": {
+        "type": "Text",
+        "config": {
+          "label": "Form heading (empty = default)",
+          "placeholder": "Get the free download"
+        }
+      },
+      "gated_form_description": {
+        "type": "Text",
+        "config": {
+          "label": "Form description (optional)",
+          "placeholder": "Fill out the form and we'll give you instant access."
+        }
+      },
+      "gated_form_name": {
+        "type": "Text",
+        "config": {
+          "label": "Form name (sent to Act-On as form_name)",
+          "placeholder": "Gated Content: The Brand Foundation Playbook"
+        }
+      },
+      "gated_acton_form_id": {
+        "type": "Text",
+        "config": {
+          "label": "Act-On form ID (sent as acton_form_id)",
+          "placeholder": "988bab14-12b6-4750-b0aa-0354e3adac04"
+        }
+      },
+      "gated_download_link": {
+        "type": "Link",
+        "config": {
+          "label": "Download link (shown after the form is submitted)",
+          "placeholder": "Paste the Act-On PDF link, or upload a file",
+          "select": null,
+          "allowTargetBlank": false
+        }
+      }
+    },
     "SEO & Metadata": {
       "meta_title": {
         "config": {

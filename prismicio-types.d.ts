@@ -684,6 +684,73 @@ interface BlogPostDocumentData {
    * - **Documentation**: https://prismic.io/docs/slices
    */
   slices: prismic.SliceZone<BlogPostDocumentDataSlicesSlice> /**
+   * Show the gated download form on this post field in *Blog Post*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: blog_post.gated_form_enabled
+   * - **Tab**: Gated Content
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */;
+  gated_form_enabled: prismic.BooleanField;
+
+  /**
+   * Form heading (empty = default) field in *Blog Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Get the free download
+   * - **API ID Path**: blog_post.gated_form_heading
+   * - **Tab**: Gated Content
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  gated_form_heading: prismic.KeyTextField;
+
+  /**
+   * Form description (optional) field in *Blog Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Fill out the form and we'll give you instant access.
+   * - **API ID Path**: blog_post.gated_form_description
+   * - **Tab**: Gated Content
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  gated_form_description: prismic.KeyTextField;
+
+  /**
+   * Form name (sent to Act-On as form_name) field in *Blog Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Gated Content: The Brand Foundation Playbook
+   * - **API ID Path**: blog_post.gated_form_name
+   * - **Tab**: Gated Content
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  gated_form_name: prismic.KeyTextField;
+
+  /**
+   * Act-On form ID (sent as acton_form_id) field in *Blog Post*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 988bab14-12b6-4750-b0aa-0354e3adac04
+   * - **API ID Path**: blog_post.gated_acton_form_id
+   * - **Tab**: Gated Content
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  gated_acton_form_id: prismic.KeyTextField;
+
+  /**
+   * Download link (shown after the form is submitted) field in *Blog Post*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Paste the Act-On PDF link, or upload a file
+   * - **API ID Path**: blog_post.gated_download_link
+   * - **Tab**: Gated Content
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  gated_download_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
    * Meta Title field in *Blog Post*
    *
    * - **Field Type**: Text
@@ -691,7 +758,7 @@ interface BlogPostDocumentData {
    * - **API ID Path**: blog_post.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/fields/text
-   */;
+   */
   meta_title: prismic.KeyTextField;
 
   /**
