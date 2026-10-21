@@ -179,6 +179,11 @@ button pick up the site-wide form styles.
   border-radius: 5px;
   padding: clamp(24px, 2.77776vw, 53px);
 }
+.blog-detail .gated-content > h2,
+.blog-detail .gated-content .gated-content-description,
+.blog-detail .gated-content .gated-content-success {
+  text-align: center;
+}
 .blog-detail .gated-content .gated-content-description {
   margin-top: var(--flow-tight);
 }
@@ -186,19 +191,42 @@ button pick up the site-wide form styles.
 .blog-detail .gated-content .gated-content-success {
   margin-top: var(--flow);
 }
+/* Two columns on desktop: everything spans both, except the fields marked
+   .half (first/last name, company/job title), which pair up side by side. */
+.blog-detail .gated-content form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(8px, 0.69444vw, 13px);
+}
+.blog-detail .gated-content form > * {
+  grid-column: 1 / -1;
+}
+.blog-detail .gated-content form > .half {
+  grid-column: auto;
+}
+@media only screen and (max-width: 768px) {
+  .blog-detail .gated-content form > .half {
+    grid-column: 1 / -1;
+  }
+}
 .blog-detail .gated-content input.text-box,
 .blog-detail .gated-content input.text-box:focus {
   background-color: #fff;
 }
-.blog-detail .gated-content form input[type="submit"],
-.blog-detail .gated-content .gated-content-button {
+.blog-detail .gated-content form input[type="submit"] {
   height: 60px;
   line-height: 60px;
   width: 100%;
 }
-.blog-detail .gated-content .gated-content-button {
-  display: block;
+/* Needs the #blog-content ID to beat the article's own link style, which
+   makes every <a> in a post inline and underlined. */
+.blog-detail #blog-content .gated-content .gated-content-button {
+  display: inline-block;
+  text-decoration: none;
   margin-top: var(--flow-tight);
+  height: 48px;
+  line-height: 48px;
+  padding: 0 clamp(20px, 1.6vw, 32px);
   background-color: #1A1417;
   border-radius: 5px;
   color: #fff;
@@ -209,8 +237,9 @@ button pick up the site-wide form styles.
   font-weight: 600;
   transition: background-color 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.blog-detail .gated-content .gated-content-button:hover {
+.blog-detail #blog-content .gated-content .gated-content-button:hover {
   background-color: #f26722;
+  color: #fff;
 }
 .blog-detail .gated-content .gated-content-error {
   color: #d32f2f;

@@ -19,6 +19,8 @@ const FIELDS: {
   label: string;
   type: "text" | "email";
   autoComplete: string;
+  // Shares a row with its neighbour on desktop.
+  half?: boolean;
 }[] = [
   {
     name: "email",
@@ -31,24 +33,28 @@ const FIELDS: {
     label: "First name",
     type: "text",
     autoComplete: "given-name",
+    half: true,
   },
   {
     name: "lastName",
     label: "Last name",
     type: "text",
     autoComplete: "family-name",
+    half: true,
   },
   {
     name: "company",
     label: "Company",
     type: "text",
     autoComplete: "organization",
+    half: true,
   },
   {
     name: "jobTitle",
     label: "Job title",
     type: "text",
     autoComplete: "organization-title",
+    half: true,
   },
 ];
 
@@ -96,7 +102,7 @@ export default function GatedContentForm({
           {FIELDS.map((field) => (
             <input
               key={field.name}
-              className="text-box"
+              className={field.half ? "text-box half" : "text-box"}
               type={field.type}
               name={field.name}
               autoComplete={field.autoComplete}
