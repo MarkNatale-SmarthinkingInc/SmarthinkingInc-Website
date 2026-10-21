@@ -175,6 +175,12 @@ button pick up the site-wide form styles.
   margin-top: var(--flow-section);
 }
 .blog-detail .gated-content {
+  /* Capped so the fields don't stretch to the full article width on large
+     screens; at this width each paired field still fits a long name or
+     company comfortably. Centred in the article column. */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #F2F2F3;
   border-radius: 5px;
   padding: clamp(24px, 2.77776vw, 53px);

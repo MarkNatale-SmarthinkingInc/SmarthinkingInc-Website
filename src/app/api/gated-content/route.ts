@@ -15,12 +15,6 @@ const ACTON_ACCOUNT_ID = "47231";
 // Smarthinking's Act-On tracking domain (same one the beacon in head.tsx uses).
 const ACTON_DOMAIN = "https://insights.smarthinkinginc.com";
 
-// TEMPORARY (2026-10-20): while true, submissions are checked as normal but
-// never sent to Act-On — the visitor just gets the download link. Lets Andrew
-// and the client walk through the success step without creating real leads.
-// Set back to false before this ships to main.
-const ACTON_DRY_RUN = true;
-
 const ACTON_FIELDS = {
   email: "Email Address",
   firstName: "First Name",
@@ -155,14 +149,6 @@ export async function POST(request: NextRequest) {
   const headers: HeadersInit = {};
   const beacon = request.cookies.get(`wp${ACTON_ACCOUNT_ID}`);
   if (beacon) headers.Cookie = `${beacon.name}=${beacon.value}`;
-
-  if (ACTON_DRY_RUN) {
-    console.info("Gated content dry run, not sent to Act-On:", {
-      actonFormId,
-      formName: data.gated_form_name,
-    });
-    return NextResponse.json({ success: true, downloadUrl }, { status: 200 });
-  }
 
   try {
     const res = await fetch(
