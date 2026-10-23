@@ -7,7 +7,9 @@ import { type NextRequest, NextResponse } from "next/server";
 // them from the post itself, so the browser never sees (or can change) the IDs,
 // and the download link is only handed out after a successful submission.
 //
-// Leads go straight to Act-On as an external form post. Act-On matches on the
+// Leads go straight to the Act-On form (a Form Composer form) through Act-On's
+// own submit endpoint. The older /acton/eform/… external-post URL does not
+// exist for these forms and answers 404. Act-On matches on the
 // field *names* below, so they must stay identical to the fields on the Act-On
 // form. If the team renames a field there, rename it here too.
 
@@ -132,17 +134,26 @@ export async function POST(request: NextRequest) {
   }
 
   const actonFormId = data.gated_acton_form_id.trim();
-  const submission = new URLSearchParams({
-    [ACTON_FIELDS.email]: email,
-    [ACTON_FIELDS.firstName]: firstName,
-    [ACTON_FIELDS.lastName]: lastName,
-    [ACTON_FIELDS.company]: company,
-    [ACTON_FIELDS.jobTitle]: jobTitle,
-    [ACTON_FIELDS.formName]: data.gated_form_name?.trim() ?? "",
-    [ACTON_FIELDS.actonFormId]: actonFormId,
-  });
-  // Act-On records the visitor's IP from this field on server-side posts.
-  if (ip) submission.set("_ipaddr", ip);
+  const submission = new FormData();
+  submission.set(ACTON_FIELDS.email, email);
+  submission.set(ACTON_FIELDS.firstName, firstName);
+  submission.set(ACTON_FIELDS.lastName, lastName);
+  submission.set(ACTON_FIELDS.company, company);
+  submission.set(ACTON_FIELDS.jobTitle, jobTitle);
+  submission.set(ACTON_FIELDS.formName, data.gated_form_name?.trim() ?? "");
+  submission.set(ACTON_FIELDS.actonFormId, actonFormId);
+
+  // Act-On's routing fields, the same ones its own form-capture script
+  // (/acton/js/formcap.js) adds. The form ID is a Form Composer ID, and those
+  // forms always deploy as "d-0001".
+  const pageUrl = request.headers.get("referer") ?? "";
+  submission.set("ao_a", ACTON_ACCOUNT_ID);
+  submission.set("ao_f", actonFormId);
+  submission.set("ao_d", `${actonFormId}:d-0001`);
+  submission.set("ao_p", "0");
+  submission.set("ao_form_neg_cap", "");
+  submission.set("ao_refurl", pageUrl);
+  submission.set("ao_target", pageUrl);
 
   // Pass the Act-On beacon cookie along so the submission is tied to the
   // visitor's existing page-view history instead of starting a new record.
@@ -151,10 +162,12 @@ export async function POST(request: NextRequest) {
   if (beacon) headers.Cookie = `${beacon.name}=${beacon.value}`;
 
   try {
-    const res = await fetch(
-      `${ACTON_DOMAIN}/acton/eform/${ACTON_ACCOUNT_ID}/${encodeURIComponent(actonFormId)}/d-ext-0001`,
-      { method: "POST", headers, body: submission, redirect: "manual" },
-    );
+    const res = await fetch(`${ACTON_DOMAIN}/acton/forms/userSubmit.jsp`, {
+      method: "POST",
+      headers,
+      body: submission,
+      redirect: "manual",
+    });
 
     // Act-On answers a good post with a 200 page or a redirect to the
     // form's thank-you URL; anything 4xx/5xx means it was rejected.
